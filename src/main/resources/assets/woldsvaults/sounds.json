@@ -1,0 +1,26 @@
+{
+  "wold_ambient": {
+    "category": "hostile",
+    "sounds": [
+      "woldsvaults:wold/ambient1",
+      "woldsvaults:wold/ambient2",
+      "woldsvaults:wold/ambient3",
+      "woldsvaults:wold/ambient4"
+    ]
+  },
+  "wold_hurt": {
+    "category": "hostile",
+    "sounds": [
+      "woldsvaults:wold/hurt1",
+      "woldsvaults:wold/hurt2",
+      "woldsvaults:wold/hurt3"
+    ]
+  },
+  "wold_death": {
+    "category": "hostile",
+    "sounds": [
+      "woldsvaults:wold/death1",
+      "woldsvaults:wold/death2"
+    ]
+  }
+}

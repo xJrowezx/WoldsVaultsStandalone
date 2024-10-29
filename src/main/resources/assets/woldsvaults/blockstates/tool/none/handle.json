@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "": {
+      "model": "the_vault:item/tool"
+    },
+    "inventory": {
+      "model": "the_vault:item/tool"
+    }
+  }
+}

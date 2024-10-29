@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M#M",
+    "EAE",
+    "MSM"
+  ],
+  "key": {
+    "#": {
+      "item": "the_vault:vault_rock"
+    },
+    "E": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "A": {
+      "item": "minecraft:book"
+    },
+    "S": {
+      "type": "forge:nbt",
+      "item": "the_vault:god_token",
+      "nbt": {
+        "type": "tenos"
+      }
+    },
+    "M": {
+      "item": "the_vault:memory_powder"
+    }
+  },
+  "result": {
+    "item": "woldsvaults:tome_of_tenos",
+    "count": 1
+  }
+}

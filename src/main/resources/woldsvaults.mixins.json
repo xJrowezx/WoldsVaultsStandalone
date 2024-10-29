@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.iwolfking.woldsvaultsstandalone.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "woldsvaults.refmap.json",
+  "mixins": [
+    "accessors.VaultAltarTileEntityAccessor",
+    "infernalmobs.MixinInfernalMobsCore",
+    "the_vault.MixinCustomSpawnerTileEntity",
+    "the_vault.MixinGearRollHelper",
+    "the_vault.MixinLootInfoGroupDefinitionRegistry",
+    "the_vault.MixinModConfigs",
+    "the_vault.MixinPlayerVaultStatsData",
+    "the_vault.MixinSkill",
+    "the_vault.MixinToolItem"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
