@@ -13,7 +13,8 @@
     "the_vault.MixinModConfigs",
     "the_vault.MixinPlayerVaultStatsData",
     "the_vault.MixinSkill",
-    "the_vault.MixinToolItem"
+    "the_vault.MixinToolItem",
+    "the_vault.recipes.MixinAnvilRecipes"
   ],
   "client": [
   ],
