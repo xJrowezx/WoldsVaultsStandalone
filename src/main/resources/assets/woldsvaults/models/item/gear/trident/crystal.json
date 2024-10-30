@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "the_vault:item/gear/trident/crystal",
-		"particle": "the_vault:item/gear/trident/crystal"
+		"0": "woldsvaults:item/gear/trident/crystal",
+		"particle": "woldsvaults:item/gear/trident/crystal"
 	},
 	"elements": [
 		{

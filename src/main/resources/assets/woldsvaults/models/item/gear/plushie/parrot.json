@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "the_vault:item/gear/plushie/parrot",
+		"0": "woldsvaults:item/gear/plushie/parrot",
 		"particle": "minecraft:block/red_wool"
 	},
 	"elements": [

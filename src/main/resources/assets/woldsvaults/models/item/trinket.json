@@ -1,164 +1,164 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "the_vault:item/trinket/unidentified_trinket"
+        "layer0": "woldsvaults:item/trinket/unidentified_trinket"
     },
     "overrides": [
         {
             "predicate": {
-                "the_vault:trinket": 0
+                "woldsvaults:trinket": 0
             },
-            "model": "the_vault:item/trinket/carapace"
+            "model": "woldsvaults:item/trinket/carapace"
         },
         {
             "predicate": {
-                "the_vault:trinket": 1
+                "woldsvaults:trinket": 1
             },
-            "model": "the_vault:item/trinket/cat_in_a_jar"
+            "model": "woldsvaults:item/trinket/cat_in_a_jar"
         },
         {
             "predicate": {
-                "the_vault:trinket": 2
+                "woldsvaults:trinket": 2
             },
-            "model": "the_vault:item/trinket/centipede_feet"
+            "model": "woldsvaults:item/trinket/centipede_feet"
         },
         {
             "predicate": {
-                "the_vault:trinket": 3
+                "woldsvaults:trinket": 3
             },
-            "model": "the_vault:item/trinket/chromatic_feather"
+            "model": "woldsvaults:item/trinket/chromatic_feather"
         },
         {
             "predicate": {
-                "the_vault:trinket": 4
+                "woldsvaults:trinket": 4
             },
-            "model": "the_vault:item/trinket/chromatic_powder"
+            "model": "woldsvaults:item/trinket/chromatic_powder"
         },
         {
             "predicate": {
-                "the_vault:trinket": 5
+                "woldsvaults:trinket": 5
             },
-            "model": "the_vault:item/trinket/clover"
+            "model": "woldsvaults:item/trinket/clover"
         },
         {
             "predicate": {
-                "the_vault:trinket": 6
+                "woldsvaults:trinket": 6
             },
-            "model": "the_vault:item/trinket/crystal_ball"
+            "model": "woldsvaults:item/trinket/crystal_ball"
         },
         {
             "predicate": {
-                "the_vault:trinket": 7
+                "woldsvaults:trinket": 7
             },
-            "model": "the_vault:item/trinket/cufflinks"
+            "model": "woldsvaults:item/trinket/cufflinks"
         },
         {
             "predicate": {
-                "the_vault:trinket": 8
+                "woldsvaults:trinket": 8
             },
-            "model": "the_vault:item/trinket/elven_socks"
+            "model": "woldsvaults:item/trinket/elven_socks"
         },
         {
             "predicate": {
-                "the_vault:trinket": 9
+                "woldsvaults:trinket": 9
             },
-            "model": "the_vault:item/trinket/ender_anchor"
+            "model": "woldsvaults:item/trinket/ender_anchor"
         },
         {
             "predicate": {
-                "the_vault:trinket": 10
+                "woldsvaults:trinket": 10
             },
-            "model": "the_vault:item/trinket/giants_heart"
+            "model": "woldsvaults:item/trinket/giants_heart"
         },
         {
             "predicate": {
-                "the_vault:trinket": 11
+                "woldsvaults:trinket": 11
             },
-            "model": "the_vault:item/trinket/gluttony_pendant"
+            "model": "woldsvaults:item/trinket/gluttony_pendant"
         },
         {
             "predicate": {
-                "the_vault:trinket": 12
+                "woldsvaults:trinket": 12
             },
-            "model": "the_vault:item/trinket/golden_burger"
+            "model": "woldsvaults:item/trinket/golden_burger"
         },
         {
             "predicate": {
-                "the_vault:trinket": 13
+                "woldsvaults:trinket": 13
             },
-            "model": "the_vault:item/trinket/high_heels"
+            "model": "woldsvaults:item/trinket/high_heels"
         },
         {
             "predicate": {
-                "the_vault:trinket": 14
+                "woldsvaults:trinket": 14
             },
-            "model": "the_vault:item/trinket/idonas_blade"
+            "model": "woldsvaults:item/trinket/idonas_blade"
         },
         {
             "predicate": {
-                "the_vault:trinket": 15
+                "woldsvaults:trinket": 15
             },
-            "model": "the_vault:item/trinket/lucky_goose"
+            "model": "woldsvaults:item/trinket/lucky_goose"
         },
         {
             "predicate": {
-                "the_vault:trinket": 16
+                "woldsvaults:trinket": 16
             },
-            "model": "the_vault:item/trinket/miners_headlamp"
+            "model": "woldsvaults:item/trinket/miners_headlamp"
         },
         {
             "predicate": {
-                "the_vault:trinket": 17
+                "woldsvaults:trinket": 17
             },
-            "model": "the_vault:item/trinket/night_vision_goggles"
+            "model": "woldsvaults:item/trinket/night_vision_goggles"
         },
         {
             "predicate": {
-                "the_vault:trinket": 18
+                "woldsvaults:trinket": 18
             },
-            "model": "the_vault:item/trinket/phylactery"
+            "model": "woldsvaults:item/trinket/phylactery"
         },
         {
             "predicate": {
-                "the_vault:trinket": 19
+                "woldsvaults:trinket": 19
             },
-            "model": "the_vault:item/trinket/running_shoes"
+            "model": "woldsvaults:item/trinket/running_shoes"
         },
         {
             "predicate": {
-                "the_vault:trinket": 20
+                "woldsvaults:trinket": 20
             },
-            "model": "the_vault:item/trinket/spellbook"
+            "model": "woldsvaults:item/trinket/spellbook"
         },
         {
             "predicate": {
-                "the_vault:trinket": 21
+                "woldsvaults:trinket": 21
             },
-            "model": "the_vault:item/trinket/stone_of_jordan"
+            "model": "woldsvaults:item/trinket/stone_of_jordan"
         },
         {
             "predicate": {
-                "the_vault:trinket": 22
+                "woldsvaults:trinket": 22
             },
-            "model": "the_vault:item/trinket/tenos_charm"
+            "model": "woldsvaults:item/trinket/tenos_charm"
         },
         {
             "predicate": {
-                "the_vault:trinket": 23
+                "woldsvaults:trinket": 23
             },
-            "model": "the_vault:item/trinket/velaras_petal"
+            "model": "woldsvaults:item/trinket/velaras_petal"
         },
         {
             "predicate": {
-                "the_vault:trinket": 24
+                "woldsvaults:trinket": 24
             },
-            "model": "the_vault:item/trinket/wendarrs_hourglass"
+            "model": "woldsvaults:item/trinket/wendarrs_hourglass"
         },
         {
             "predicate": {
-                "the_vault:trinket": 25
+                "woldsvaults:trinket": 25
             },
-            "model": "the_vault:item/trinket/wings"
+            "model": "woldsvaults:item/trinket/wings"
         }
     ]
 }

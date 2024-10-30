@@ -2,7 +2,7 @@
 	"parent": "builtin/entity",
 	"gui_light": "front",
 	"textures": {
-		"particle": "the_vault:item/gear/trident/ocean_sword"
+		"particle": "woldsvaults:item/gear/trident/ocean_sword"
 	},
 	"display": {
 		"thirdperson_righthand": {

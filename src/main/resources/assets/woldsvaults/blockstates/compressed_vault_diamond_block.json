@@ -1,5 +1,5 @@
 {
   "variants": {
-    "": { "model": "woldsvaults:block/vault_diamond_1" }
+    "": { "model": "woldsvaults:block/compressed_vault_diamond_block" }
   }
 }

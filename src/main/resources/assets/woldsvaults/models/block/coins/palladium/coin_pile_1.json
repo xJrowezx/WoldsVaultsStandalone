@@ -1,7 +1,7 @@
 {
   "parent": "the_vault:block/coins/coin_pile_decor_1",
   "textures": {
-  	"coin": "the_vault:block/coinpilepalladium",
-	"particle": "the_vault:block/coin_particle_palladium"
+  	"coin": "woldsvaults:block/coinpilepalladium",
+	"particle": "woldsvaults:block/coin_particle_palladium"
   }
 }

@@ -5,9 +5,9 @@
     64
   ],
   "textures": {
-    "3": "the_vault:block/vault_salvager",
-    "4": "the_vault:block/vault_salvager_core",
-    "particle": "the_vault:block/vault_salvager"
+    "3": "woldsvaults:block/vault_salvager",
+    "4": "woldsvaults:block/vault_salvager_core",
+    "particle": "woldsvaults:block/vault_salvager"
   },
   "elements": [
     {

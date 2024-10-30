@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "the_vault:item/gear/trident/phantomguard",
-		"particle": "the_vault:item/gear/trident/phantomguard"
+		"0": "woldsvaults:item/gear/trident/phantomguard",
+		"particle": "woldsvaults:item/gear/trident/phantomguard"
 	},
 	"elements": [
 		{

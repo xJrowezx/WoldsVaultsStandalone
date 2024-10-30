@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "the_vault:item/gear/plushie/joseph",
-    "1": "the_vault:item/gear/plushie/joseph",
+    "0": "woldsvaults:item/gear/plushie/joseph",
+    "1": "woldsvaults:item/gear/plushie/joseph",
     "particle": "item/plush"
   },
   "elements": [

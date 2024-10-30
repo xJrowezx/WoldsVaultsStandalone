@@ -1,7 +1,7 @@
 {
   "parent": "item/default",
   "textures": {
-    "bundle": "the_vault:item/gear/loot_sack/green",
+    "bundle": "woldsvaults:item/gear/loot_sack/green",
     "particle": "#bundle"
   },
   "elements": [

@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "the_vault:item/gear/plushie/llama",
+		"0": "woldsvaults:item/gear/plushie/llama",
 		"particle": "plushies:blocks/llama_plushie"
 	},
 	"elements": [

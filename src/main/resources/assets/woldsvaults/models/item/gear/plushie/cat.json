@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "the_vault:item/gear/plushie/cat",
+		"0": "woldsvaults:item/gear/plushie/cat",
 		"particle": "plushies:blocks/cat_plushie"
 	},
 	"elements": [

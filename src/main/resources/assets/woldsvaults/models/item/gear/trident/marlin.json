@@ -5,7 +5,7 @@
 		32
 	],
 	"textures": {
-		"0": "the_vault:item/gear/trident/marlin"
+		"0": "woldsvaults:item/gear/trident/marlin"
 	},
 	"elements": [
 		{

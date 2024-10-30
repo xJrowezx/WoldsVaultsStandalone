@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "the_vault:item/catalyst/champion_catalyst"
+    "layer0": "woldsvaults:item/catalyst/champion_catalyst"
   }
 }

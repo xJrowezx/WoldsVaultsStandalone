@@ -5,7 +5,7 @@
 		32
 	],
 	"textures": {
-		"0": "the_vault:gear/trident/quindent"
+		"0": "woldsvaults:gear/trident/quindent"
 	},
 	"elements": [
 		{

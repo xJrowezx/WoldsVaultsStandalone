@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "the_vault:item/gear/plushie/iskall",
-    "1": "the_vault:item/gear/plushie/iskall",
+    "0": "woldsvaults:item/gear/plushie/iskall",
+    "1": "woldsvaults:item/gear/plushie/iskall",
     "particle": "item/plush"
   },
   "elements": [

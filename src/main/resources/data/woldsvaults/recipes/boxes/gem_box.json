@@ -7,13 +7,13 @@
   ],
   "key": {
     "G": {
-      "item": "the_vault:smashed_vault_gem"
+      "item": "woldsvaults:smashed_vault_gem"
     },
     "X": {
       "item": "the_vault:vault_diamond"
     },
     "R": {
-      "item": "woldsvaults:compressed_vault_essence_block"
+      "item": "woldsvaults:compressed_vault_essence"
     },
     "T": {
       "item": "the_vault:carbon_nugget"

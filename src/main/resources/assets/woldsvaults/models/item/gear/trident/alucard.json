@@ -2,7 +2,7 @@
 	"parent": "builtin/entity",
 	"gui_light": "front",
 	"textures": {
-		"particle": "the_vault:item/gear/trident/alucard"
+		"particle": "woldsvaults:item/gear/trident/alucard"
 	},
 	"display": {
 		"thirdperson_righthand": {

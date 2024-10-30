@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "the_vault:item/gear/plushie/panda",
+		"0": "woldsvaults:item/gear/plushie/panda",
 		"particle": "minecraft:block/white_wool"
 	},
 	"elements": [

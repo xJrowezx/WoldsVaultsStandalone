@@ -5,8 +5,8 @@
 		32
 	],
 	"textures": {
-		"0": "the_vault:item/gear/trident/pitchfork",
-		"particle": "the_vault:item/gear/trident/pitchfork"
+		"0": "woldsvaults:item/gear/trident/pitchfork",
+		"particle": "woldsvaults:item/gear/trident/pitchfork"
 	},
 	"elements": [
 		{

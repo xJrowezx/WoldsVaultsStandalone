@@ -2,8 +2,8 @@
   "credit": "Made with Blockbench",
   "texture_size": [64, 64],
   "textures": {
-    "0": "the_vault:item/gear/plushie/araevin",
-    "1": "the_vault:item/gear/plushie/araevin",
+    "0": "woldsvaults:item/gear/plushie/araevin",
+    "1": "woldsvaults:item/gear/plushie/araevin",
     "particle": "item/plush"
   },
   "elements": [
