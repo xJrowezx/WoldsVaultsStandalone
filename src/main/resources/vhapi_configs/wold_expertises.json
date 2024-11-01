@@ -1,0 +1,21 @@
+{
+  "tree": {
+    "type": "expertises",
+    "skills": [
+      {
+        "type": "tiered",
+        "id": "Craftsman",
+        "name": "Craftsman",
+        "tiers": [
+          {
+            "type": "craftsman",
+            "craftsmanLevel": 1,
+            "learnPointCost": 1,
+            "regretPointCost": 0,
+            "unlockLevel": 0
+          }
+        ]
+      }
+    ]
+  }
+}

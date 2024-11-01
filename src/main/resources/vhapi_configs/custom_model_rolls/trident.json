@@ -1,0 +1,37 @@
+{
+  "itemRegistryName": "the_vault:trident",
+  "MODEL_ROLLS": {
+    "SCRAPPY": [
+      "the_vault:gear/trident/scrappy_4",
+      "the_vault:gear/trident/scrappy_3",
+      "the_vault:gear/trident/scrappy_2",
+      "the_vault:gear/trident/scrappy_1"
+    ],
+    "COMMON": [
+      "the_vault:gear/trident/vanilla",
+      "the_vault:gear/trident/guardian",
+      "the_vault:gear/trident/orange",
+      "the_vault:gear/trident/golden"
+    ],
+    "RARE": [
+      "the_vault:gear/trident/seabird",
+      "the_vault:gear/trident/emerald",
+      "the_vault:gear/trident/axolotl"
+    ],
+    "EPIC": [
+      "the_vault:gear/trident/purple",
+      "the_vault:gear/trident/pink",
+      "the_vault:gear/trident/royal"
+    ],
+    "OMEGA": [
+      "the_vault:gear/trident/phantomguard",
+      "the_vault:gear/trident/prismarine",
+      "the_vault:gear/trident/crimson",
+      "the_vault:gear/trident/pitchfork",
+      "the_vault:gear/trident/crystal"
+    ],
+    "UNIQUE": [
+
+    ]
+  }
+}

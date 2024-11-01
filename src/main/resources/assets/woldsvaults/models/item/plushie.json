@@ -1,7 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "woldsvaults:item/gear/plushie/unidentified",
-    "layer1": "woldsvaults:item/gear/plushie/unidentified_overlay"
-  }
-}

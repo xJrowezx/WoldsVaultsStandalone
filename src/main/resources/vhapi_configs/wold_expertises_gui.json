@@ -1,0 +1,10 @@
+{
+  "styles": {
+    "Craftsman": {
+      "x": 210,
+      "y": 190,
+      "frameType": "STAR",
+      "icon": "the_vault:gui/skills/blacksmithing"
+    }
+  }
+}

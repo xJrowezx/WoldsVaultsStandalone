@@ -61,3 +61,31 @@ description='''${mod_description}'''
    versionRange="${minecraft_version_range}"
    ordering="NONE"
    side="BOTH"
+[[dependencies."${mod_id}"]]
+modId="vhapi"
+mandatory=true
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange="[3.0.1,)"
+ordering="AFTER"
+side="BOTH"
+[[dependencies."${mod_id}"]]
+modId="angelring"
+mandatory=true
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange="[2.0.4]"
+ordering="AFTER"
+side="BOTH"
+[[dependencies."${mod_id}"]]
+modId="pehkui"
+mandatory=true
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange="[3.7.11+1.18.2-forge]"
+ordering="AFTER"
+side="BOTH"
+[[dependencies."${mod_id}"]]
+modId="infernalmobs"
+mandatory=true
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange="[1.18.6]"
+ordering="AFTER"
+side="BOTH"
