@@ -136,9 +136,9 @@ repositories {
 
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-    // flatDir {
-    //     dir 'libs'
-    // }
+     flatDir {
+         dir 'libs'
+     }
     maven {
         url "https://cursemaven.com"
         content {
@@ -169,11 +169,13 @@ dependencies {
     implementation fg.deobf('curse.maven:alexs-mobs-426558:3853078')
     implementation fg.deobf('curse.maven:angel-ring-333396:4641783')
     implementation fg.deobf('curse.maven:quark-243121:3840125')
-    implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5857191")
+    //implementation fg.deobf("curse.maven:vault-hunters-api-1118899:5857191")
     implementation fg.deobf('curse.maven:atomicstrykers-infernal-mobs-227875:4149699')
     implementation fg.deobf("curse.maven:thermal-foundation-222880:4788649")
     implementation fg.deobf('curse.maven:pehkui-319596:4823461')
     implementation fg.deobf('curse.maven:ecologics-570463:4171283')
+
+    implementation fg.deobf(files('libs/vhapi-3.0.1.jar'))
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
 

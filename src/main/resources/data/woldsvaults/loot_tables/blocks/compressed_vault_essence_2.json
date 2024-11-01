@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "woldsvaults:compressed_vault_essence_block_2"
+          "name": "woldsvaults:compressed_vault_essence_2"
         }
       ],
       "conditions": [

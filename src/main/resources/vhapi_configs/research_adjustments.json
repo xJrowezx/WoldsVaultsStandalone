@@ -1,0 +1,28 @@
+{
+  "MOD_RESEARCHES": [],
+  "CUSTOM_RESEARCHES": [
+    {
+      "itemRestrictions": {
+        "the_vault:vault_harvester": {
+          "restricts": {
+            "HITTABILITY": true,
+            "USABILITY": true,
+            "CRAFTABILITY": true
+          }
+        },
+        "woldsvaults:vault_salvager": {
+          "restricts": {
+            "HITTABILITY": true,
+            "USABILITY": true,
+            "CRAFTABILITY": true
+          }
+        }
+      },
+      "blockRestrictions": {},
+      "entityRestrictions": {},
+      "name": "Soul Harvester",
+      "cost": 3,
+      "usesKnowledge": true
+    }
+  ]
+}
