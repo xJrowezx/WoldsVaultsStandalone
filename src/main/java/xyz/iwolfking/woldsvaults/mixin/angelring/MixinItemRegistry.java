@@ -35,6 +35,7 @@ public abstract class MixinItemRegistry {
      */
     @Inject(method = "RegisterItems", at = @At("HEAD"), cancellable = true)
     private static void RegisterItems(RegistryEvent.Register<Item> event, CallbackInfo ci) {
+        event.getRegistry().register(ItemRegistry.ItemRing = (Item)(new ItemRing()).setRegistryName(location("itemring")));
         ci.cancel();
     }
 }

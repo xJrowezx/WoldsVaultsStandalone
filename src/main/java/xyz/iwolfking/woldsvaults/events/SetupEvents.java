@@ -10,11 +10,13 @@ import xyz.iwolfking.vhapi.api.data.api.CustomGearModelRolls;
 import xyz.iwolfking.vhapi.api.events.VaultConfigEvent;
 import xyz.iwolfking.vhapi.api.loaders.Processors;
 import xyz.iwolfking.vhapi.api.loaders.general.TooltipConfigLoader;
+import xyz.iwolfking.vhapi.api.loaders.recipes.CustomVaultGearRecipesLoader;
 import xyz.iwolfking.vhapi.api.loaders.research.ResearchConfigLoader;
 import xyz.iwolfking.vhapi.api.loaders.vault.mobs.VaultMobsConfigLoader;
 import xyz.iwolfking.vhapi.api.util.VHAPIProcesserUtils;
 import xyz.iwolfking.vhapi.api.util.vhapi.VHAPILoggerUtils;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.configs.core.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.configs.gear.CustomVaultGearModelRollRaritiesConfig;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
 import xyz.iwolfking.woldsvaults.init.ModItems;
@@ -70,6 +72,13 @@ public class SetupEvents {
 
         //Tooltips
         registerManualConfigFile("/vhapi_configs/tooltips.json", WoldsVaults.id("tooltips/wold_tooltips"));
+
+        //Vault Gear Recipes
+        if(WoldsVaultsConfig.COMMON.enableVaultGearRecipes.get()) {
+            registerManualConfigFile("/vhapi_configs/recipes/gear_recipes.json", WoldsVaults.id("vault_recipes/gear/wold_gear_recipes"));
+        }
+
+
 
     }
 

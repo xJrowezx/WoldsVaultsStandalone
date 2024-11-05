@@ -21,6 +21,7 @@ import xyz.iwolfking.vhapi.api.events.VHAPIProcessorsEvent;
 import xyz.iwolfking.vhapi.api.loaders.general.TooltipConfigLoader;
 import xyz.iwolfking.vhapi.api.registry.gear.CustomVaultGearRegistryEntry;
 import xyz.iwolfking.vhapi.api.registry.objective.CustomObjectiveRegistryEntry;
+import xyz.iwolfking.woldsvaults.core.AddonLoader;
 import xyz.iwolfking.woldsvaults.events.LivingEntityEvents;
 import xyz.iwolfking.woldsvaults.events.SetupEvents;
 import xyz.iwolfking.woldsvaults.init.ModCustomVaultGearEntries;
@@ -48,6 +49,7 @@ public class WoldsVaults {
 
         modEventBus.addGenericListener(CustomObjectiveRegistryEntry.class, ModCustomVaultObjectiveEntries::registerCustomObjectives);
         modEventBus.addGenericListener(CustomVaultGearRegistryEntry.class, ModCustomVaultGearEntries::registerGearEntries);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(AddonLoader::onAddPackFinders);
         MinecraftForge.EVENT_BUS.addListener(EventPriority.LOWEST, SetupEvents::registerCustomModelRolls);
         MinecraftForge.EVENT_BUS.addListener(this::onVHAPIProcessorEnd);
         // Register ourselves for server and other game events we are interested in
