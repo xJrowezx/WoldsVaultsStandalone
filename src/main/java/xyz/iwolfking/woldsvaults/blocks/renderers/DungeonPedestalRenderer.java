@@ -29,7 +29,7 @@ public class DungeonPedestalRenderer implements BlockEntityRenderer<DungeonPedes
             ItemStack contained = tile.getContained();
             if (!contained.isEmpty()) {
                 BakedModel bakedmodel = this.itemRenderer.getModel(contained, this.minecraft.level, (LivingEntity)null, 0);
-                int tickPart = (int) ClientScheduler.INSTANCE.getTickCount();
+                int tickPart = (int) ClientScheduler.INSTANCE.getTick();
                 float angle = ((float)tickPart + pTicks) / 20.0F;
                 float yOffset = Mth.sin(((float)tickPart + pTicks) / 10.0F) * 0.1F + 0.1F;
                 yOffset += 0.25F * bakedmodel.getTransforms().getTransform(ItemTransforms.TransformType.GROUND).scale.y();

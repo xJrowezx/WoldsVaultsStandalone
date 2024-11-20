@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import iskallia.vault.gear.VaultGearClassification;
 import iskallia.vault.gear.VaultGearHelper;
 import iskallia.vault.gear.VaultGearState;
+import iskallia.vault.gear.VaultGearType;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.crafting.ProficiencyType;
 import iskallia.vault.gear.data.GearDataCache;
@@ -55,8 +56,13 @@ public class VaultPlushieItem extends BasicItem implements VaultGearItem {
         return ProficiencyType.FOCUS;
     }
 
-    @Nullable
+    @NotNull
     @Override
+    public VaultGearType getGearType(ItemStack itemStack) {
+        return VaultGearType.FOCUS;
+    }
+
+    @Nullable
     public EquipmentSlot getIntendedSlot(ItemStack itemStack) {
         return EquipmentSlot.OFFHAND;
     }

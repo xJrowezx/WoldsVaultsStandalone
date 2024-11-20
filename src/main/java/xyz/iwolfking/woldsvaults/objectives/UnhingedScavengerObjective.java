@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.objectives;
 
 import iskallia.vault.block.DivineAltarBlock;
 import iskallia.vault.block.PlaceholderBlock;
+import iskallia.vault.block.entity.ScavengerAltarTileEntity;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.data.adapter.basic.EnumAdapter;
@@ -80,37 +81,37 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
 
         });
         CommonEvents.SCAVENGER_ALTAR_CONSUME.register(this, (data) -> {
-            if (data.getLevel() == world && data.getTile().getItemPlacedBy() != null) {
-                Listener listener = ((Listeners)vault.get(Vault.LISTENERS)).get(data.getTile().getItemPlacedBy());
+            if (data.getLevel() == world && ((ScavengerAltarTileEntity)data.getTile()).getItemPlacedBy() != null) {
+                Listener listener = ((Listeners)vault.get(Vault.LISTENERS)).get(((ScavengerAltarTileEntity)data.getTile()).getItemPlacedBy());
                 if (listener instanceof Runner) {
                     BlockState state = data.getTile().getBlockState();
                     if (state.getBlock() == ModBlocks.DIVINE_ALTAR) {
-                        Item patt5959$temp = data.getTile().getHeldItem().getItem();
+                        Item patt5959$temp = ((ScavengerAltarTileEntity)data.getTile()).getHeldItem().getItem();
                         if (patt5959$temp instanceof KeystoneItem) {
                             KeystoneItem keystone = (KeystoneItem)patt5959$temp;
                             if (keystone.getGod() != state.getValue(DivineAltarBlock.GOD)) {
                                 return;
                             }
                         } else {
-                            if (!(data.getTile().getHeldItem().getItem() instanceof GodBlessingItem)) {
+                            if (!(((ScavengerAltarTileEntity)data.getTile()).getHeldItem().getItem() instanceof GodBlessingItem)) {
                                 return;
                             }
 
-                            if (GodBlessingItem.getGod(data.getTile().getHeldItem()) != state.getValue(DivineAltarBlock.GOD)) {
+                            if (GodBlessingItem.getGod(((ScavengerAltarTileEntity)data.getTile()).getHeldItem()) != state.getValue(DivineAltarBlock.GOD)) {
                                 return;
                             }
                         }
                     }
 
                     boolean creative = (Boolean)listener.getPlayer().map(ServerPlayer::isCreative).orElse(false);
-                    CompoundTag nbt = data.getTile().getHeldItem().getTag();
+                    CompoundTag nbt = ((ScavengerAltarTileEntity)data.getTile()).getHeldItem().getTag();
                     if (creative || nbt != null && nbt.getString("VaultId").equals(((UUID)vault.get(Vault.ID)).toString())) {
                         List<ScavengerGoal> goals = (List)((GoalMap)this.get(GOALS)).get(listener.get(Listener.ID));
                         Iterator var9 = goals.iterator();
 
                         while(var9.hasNext()) {
                             ScavengerGoal goal = (ScavengerGoal)var9.next();
-                            goal.consume(data.getTile().getHeldItem());
+                            goal.consume(((ScavengerAltarTileEntity)data.getTile()).getHeldItem());
                         }
 
                     }

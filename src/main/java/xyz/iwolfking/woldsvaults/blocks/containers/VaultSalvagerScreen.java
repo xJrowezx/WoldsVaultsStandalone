@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.blocks.containers;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.blaze3d.vertex.PoseStack;
 import iskallia.vault.client.gui.framework.ScreenRenderers;
 import iskallia.vault.client.gui.framework.ScreenTextures;
 import iskallia.vault.client.gui.framework.element.LabelElement;
@@ -49,6 +50,11 @@ public class VaultSalvagerScreen  extends AbstractElementContainerScreen<VaultSa
         this.addElement((ProgressElement)(new ProgressElement(var10003, var10004, var10005::getProgressPercent)).layout((screen, gui, parent, world) -> {
             world.translateXY(gui);
         }));
+    }
+
+    @Override
+    protected void renderBg(PoseStack poseStack, float v, int i, int i1) {
+
     }
 
     public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {

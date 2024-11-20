@@ -3,7 +3,7 @@ package xyz.iwolfking.woldsvaults.mixin;
 import iskallia.vault.VaultMod;
 import iskallia.vault.entity.entity.EffectCloudEntity;
 import iskallia.vault.event.ActiveFlags;
-import iskallia.vault.gear.attribute.custom.EffectCloudAttribute;
+import iskallia.vault.gear.attribute.custom.effect.EffectCloudAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.init.ModConfigs;
@@ -193,7 +193,6 @@ public abstract class MixinThrownTrident extends AbstractArrow {
                     }
                     EffectCloudEntity cloudEntity = new EffectCloudEntity(attacker.getLevel(), blockpos.getX(), blockpos.getY(), blockpos.getZ());
                     ((EffectCloudAttribute) cloud).apply(cloudEntity);
-                    cloudEntity.setRadius(AreaOfEffectHelper.adjustAreaOfEffect(attacker, cloudEntity.getRadius()));
                     cloudEntity.setOwner(attacker);
                     attacker.getLevel().addFreshEntity((Entity)cloudEntity);
                 });

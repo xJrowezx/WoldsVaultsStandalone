@@ -2,10 +2,7 @@ package xyz.iwolfking.woldsvaults.items.gear;
 
 import com.google.common.collect.Multimap;
 import iskallia.vault.dynamodel.DynamicModel;
-import iskallia.vault.gear.VaultGearClassification;
-import iskallia.vault.gear.VaultGearHelper;
-import iskallia.vault.gear.VaultGearRarity;
-import iskallia.vault.gear.VaultGearState;
+import iskallia.vault.gear.*;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.crafting.ProficiencyType;
 import iskallia.vault.gear.data.VaultGearData;
@@ -94,6 +91,13 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public ProficiencyType getCraftingProficiencyType(ItemStack stack) {
         /*  84 */     return ProficiencyType.AXE;
         /*     */   }
+
+    @NotNull
+    @Override
+    public VaultGearType getGearType(ItemStack itemStack) {
+        return VaultGearType.AXE;
+    }
+
     /*     */
     /*     */
     /*     */

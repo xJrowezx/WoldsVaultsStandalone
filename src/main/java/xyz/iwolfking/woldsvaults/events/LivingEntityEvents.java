@@ -71,7 +71,7 @@ public class LivingEntityEvents {
 
         if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
             VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
-            if(data != null && data.has(ModGearAttributes.REAVING_DAMAGE)) {
+            if(data != null && data.hasAttribute(ModGearAttributes.REAVING_DAMAGE)) {
                 event.getEntityLiving().addEffect(new MobEffectInstance(ModEffects.REAVING, Integer.MAX_VALUE, 0));
                 event.getEntityLiving().addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.NO_AI, 20, 0));
 

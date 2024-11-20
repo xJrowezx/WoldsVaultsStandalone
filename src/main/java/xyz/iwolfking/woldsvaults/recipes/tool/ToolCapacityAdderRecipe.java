@@ -39,7 +39,7 @@ public class ToolCapacityAdderRecipe extends VanillaAnvilRecipe {
             }
 
             if(toolCapacity < (normalMaxCapacity + 20)) {
-                gear.updateAttribute(ModGearAttributes.TOOL_CAPACITY, toolCapacity + 10);
+                gear.createOrReplaceAttributeValue(ModGearAttributes.TOOL_CAPACITY, toolCapacity + 10);
             }
             else {
                 return false;

@@ -43,11 +43,11 @@ public enum ExtendedToolType {
 
     public static @Nullable ExtendedToolType of(ItemStack stack) {
         VaultGearData data = VaultGearData.read(stack);
-        boolean picking = data.has(ModGearAttributes.PICKING);
-        boolean axing = data.has(ModGearAttributes.AXING);
-        boolean shoveling = data.has(ModGearAttributes.SHOVELLING);
-        boolean reaping = data.has(ModGearAttributes.REAPING);
-        boolean hammering = data.has(ModGearAttributes.HAMMERING);
+        boolean picking = data.hasAttribute(ModGearAttributes.PICKING);
+        boolean axing = data.hasAttribute(ModGearAttributes.AXING);
+        boolean shoveling = data.hasAttribute(ModGearAttributes.SHOVELLING);
+        boolean reaping = data.hasAttribute(ModGearAttributes.REAPING);
+        boolean hammering = data.hasAttribute(ModGearAttributes.HAMMERING);
         if(!picking && !axing && !shoveling && !reaping && !hammering) {
             return NONE;
         }

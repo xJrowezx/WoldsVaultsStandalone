@@ -2,10 +2,7 @@ package xyz.iwolfking.woldsvaults.items.gear;
 
 import com.google.common.collect.Multimap;
 import iskallia.vault.dynamodel.DynamicModel;
-import iskallia.vault.gear.VaultGearClassification;
-import iskallia.vault.gear.VaultGearHelper;
-import iskallia.vault.gear.VaultGearRarity;
-import iskallia.vault.gear.VaultGearState;
+import iskallia.vault.gear.*;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.crafting.ProficiencyType;
 import iskallia.vault.gear.data.VaultGearData;
@@ -80,6 +77,13 @@ public class VaultBattleStaffItem extends SwordItem implements VaultGearItem, Dy
     /*     */   public ProficiencyType getCraftingProficiencyType(ItemStack stack) {
         /*  84 */     return ProficiencyType.SWORD;
         /*     */   }
+
+    @NotNull
+    @Override
+    public VaultGearType getGearType(ItemStack itemStack) {
+        return VaultGearType.SWORD;
+    }
+
     /*     */
     /*     */
     /*     */
