@@ -133,6 +133,7 @@ public class ModItems {
     public static BasicItem WENDARR_GEM;
 
     public static LayoutModificationItem ETCHED_VAULT_LAYOUT;
+    public static ResearchTokenItem RESEARCH_TOKEN;
 
     //Backpack?
     //public static BackpackItem XL_BACKPACK;
@@ -224,6 +225,7 @@ public class ModItems {
         registry.register(CRYSTAL_SEAL_ZEALOT);
         registry.register(DIAMOND_RING);
         registry.register(ETCHED_VAULT_LAYOUT);
+        registry.register(RESEARCH_TOKEN);
         //registry.register(XL_BACKPACK);
     }
 
@@ -304,6 +306,7 @@ public class ModItems {
         WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
         ETCHED_VAULT_LAYOUT = new LayoutModificationItem(VAULT_MOD_GROUP, WoldsVaults.id("etched_vault_layout"));
+        RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         //XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         //XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
     }
