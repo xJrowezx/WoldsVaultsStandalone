@@ -12,10 +12,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.items.AirMobilityItem;
-import xyz.iwolfking.woldsvaults.items.AltarResetItem;
-import xyz.iwolfking.woldsvaults.items.ExpertiseOrbItem;
-import xyz.iwolfking.woldsvaults.items.ToolModifierNullifyingItem;
+import xyz.iwolfking.woldsvaults.items.*;
 import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
 import xyz.iwolfking.woldsvaults.items.fruits.PoltergeistPlum;
 import xyz.iwolfking.woldsvaults.items.fruits.WisdomFruitItem;
@@ -135,6 +132,8 @@ public class ModItems {
     public static BasicItem IDONA_DAGGER;
     public static BasicItem WENDARR_GEM;
 
+    public static LayoutModificationItem ETCHED_VAULT_LAYOUT;
+
     //Backpack?
     //public static BackpackItem XL_BACKPACK;
 
@@ -224,6 +223,7 @@ public class ModItems {
         registry.register(POLTERGEIST_PLUM);
         registry.register(CRYSTAL_SEAL_ZEALOT);
         registry.register(DIAMOND_RING);
+        registry.register(ETCHED_VAULT_LAYOUT);
         //registry.register(XL_BACKPACK);
     }
 
@@ -303,6 +303,7 @@ public class ModItems {
         VELARA_APPLE = new BasicItem(WoldsVaults.id("velara_apple"));
         WENDARR_GEM = new BasicItem(WoldsVaults.id("wendarr_gem"));
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
+        ETCHED_VAULT_LAYOUT = new LayoutModificationItem(VAULT_MOD_GROUP, WoldsVaults.id("etched_vault_layout"));
         //XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         //XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
     }

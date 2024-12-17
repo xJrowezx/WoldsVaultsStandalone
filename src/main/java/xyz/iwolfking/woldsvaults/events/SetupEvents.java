@@ -47,6 +47,7 @@ public class SetupEvents {
         VHAPILoggerUtils.info("Registering manual configs!");
         registerManualConfigFile("/vhapi_configs/custom_spawners.json", WoldsVaults.id("custom_entity_spawners/wold_custom_spawners"));
         registerManualConfigFile("/vhapi_configs/objective_seals.json", WoldsVaults.id("vault/crystal/wold_objective_seals"));
+        registerManualConfigFile("/vhapi_configs/etched_layouts.json", WoldsVaults.id("vault/crystal/etched_layouts"));
         registerManualConfigFile("/vhapi_configs/wold_expertises.json", WoldsVaults.id("expertise/expertises/wold_expertises"));
         registerManualConfigFile("/vhapi_configs/wold_expertises_gui.json", WoldsVaults.id("expertise/expertise_gui/wold_expertise_gui"));
         registerManualConfigFile("/vhapi_configs/wold_modifier_pools.json", WoldsVaults.id("vault/modifier_pools/wold_modifier_pools"));

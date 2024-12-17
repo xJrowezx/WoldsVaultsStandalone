@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.objectives;
 
 import atomicstryker.infernalmobs.common.InfernalMobsCore;
 import atomicstryker.infernalmobs.common.MobModifier;
+import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.ObeliskBlock;
 import iskallia.vault.block.PlaceholderBlock;
@@ -36,6 +37,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.fml.loading.LoadingModList;
 import xyz.iwolfking.woldsvaults.entities.WoldBoss;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
@@ -67,11 +69,17 @@ public class BrutalBossesObjective extends ObeliskObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
-        CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
-            this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
-                data.setProbability((double)probability);
+        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
+            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate(this, vault);
+        }
+        else {
+            CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
+                this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
+                    data.setProbability((double)probability);
+                });
             });
-        });
+        }
+
         CommonEvents.BLOCK_USE.in(world).at(BlockUseEvent.Phase.HEAD).of(ModBlocks.OBELISK).register(this, (data) -> {
             if (data.getHand() != InteractionHand.MAIN_HAND) {
                 data.setResult(InteractionResult.SUCCESS);

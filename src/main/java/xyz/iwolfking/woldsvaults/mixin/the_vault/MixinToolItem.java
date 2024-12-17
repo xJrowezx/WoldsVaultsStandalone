@@ -59,7 +59,7 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
      * @author iwolfking
      * @reason Add custom tool names
      */
-    @Inject(method = "getName", at = @At("HEAD"), cancellable = true, remap = true)
+    @Inject(method = "m_7626_", at = @At("HEAD"), cancellable = true)
     public void getName(ItemStack stack, CallbackInfoReturnable<Component> cir) {
         ToolType type = ToolType.of(stack);
         ToolMaterial material = getMaterial(stack);

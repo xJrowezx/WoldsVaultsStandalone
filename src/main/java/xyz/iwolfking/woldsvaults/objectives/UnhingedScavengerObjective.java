@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.objectives;
 
+import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
 import iskallia.vault.block.DivineAltarBlock;
 import iskallia.vault.block.PlaceholderBlock;
 import iskallia.vault.block.entity.ScavengerAltarTileEntity;
@@ -32,6 +33,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fml.loading.LoadingModList;
 import xyz.iwolfking.woldsvaults.configs.UnhingedScavengerConfig;
 
 
@@ -67,11 +69,17 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
-        CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
-            this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
-                data.setProbability((double)probability);
+        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
+            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate(this, vault);
+        }
+        else {
+            CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
+                this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
+                    data.setProbability((double)probability);
+                });
             });
-        });
+        }
+
         CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
             PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
             target.getState().set(PlaceholderBlock.TYPE, PlaceholderBlock.Type.OBJECTIVE);

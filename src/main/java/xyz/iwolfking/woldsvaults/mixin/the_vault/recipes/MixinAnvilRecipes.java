@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.recipes.capstone.*;
+import xyz.iwolfking.woldsvaults.recipes.crystal.LayoutModificationRecipe;
 import xyz.iwolfking.woldsvaults.recipes.gear.GearRepairAdderRecipe;
 import xyz.iwolfking.woldsvaults.recipes.tool.OmegaToolCapacityAdderRecipe;
 import xyz.iwolfking.woldsvaults.recipes.tool.ToolCapacityAdderRecipe;
@@ -35,6 +36,7 @@ public abstract class MixinAnvilRecipes {
         woldsVaults$register(new OmegaToolCapacityAdderRecipe());
         woldsVaults$register(new ToolModifierNullifierRecipe());
         woldsVaults$register(new ToolStylishAdderRecipe());
+        woldsVaults$register(new LayoutModificationRecipe());
     }
 
     @Unique

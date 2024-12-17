@@ -25,7 +25,7 @@ public abstract class MixinToolItemRenderer extends SpecialItemRenderer {
      * @reason Display Reaping correctly.
      */
     @Overwrite
-    public void renderByItem(@NotNull ItemStack stack, @NotNull ItemTransforms.TransformType transformType, @NotNull PoseStack matrices, @NotNull MultiBufferSource buffer, int light, int overlay) {
+    public void m_108829_(@NotNull ItemStack stack, @NotNull ItemTransforms.TransformType transformType, @NotNull PoseStack matrices, @NotNull MultiBufferSource buffer, int light, int overlay) {
         ToolType type = ToolType.of(stack);
         VaultGearData data = VaultGearData.read(stack);
         ToolMaterial material = (ToolMaterial) data.get(ModGearAttributes.TOOL_MATERIAL, VaultGearAttributeTypeMerger.of(() -> {

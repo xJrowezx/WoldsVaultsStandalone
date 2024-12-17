@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
+import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
 import iskallia.vault.block.MonolithBlock;
 import iskallia.vault.block.PlaceholderBlock;
 import iskallia.vault.block.entity.MonolithTileEntity;
@@ -63,6 +64,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.LoadingModList;
 import net.minecraftforge.network.PacketDistributor;
 import vazkii.quark.content.mobs.entity.Wraith;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
@@ -110,11 +112,17 @@ public class HauntedBraziersObjective extends MonolithObjective {
             VaultModifierUtils.addModifier(vault, WoldsVaults.id("haunting"), 1);
         }
 
-        CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
-            this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
-                data.setProbability((double)probability);
+        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
+            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate(this, vault);
+        }
+        else {
+            CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
+                this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
+                    data.setProbability((double)probability);
+                });
             });
-        });
+        }
+
         CommonEvents.BLOCK_USE.in(world).at(BlockUseEvent.Phase.HEAD).of(ModBlocks.MONOLITH).register(this, (data) -> {
             if (data.getHand() != InteractionHand.MAIN_HAND) {
                 data.setResult(InteractionResult.SUCCESS);
