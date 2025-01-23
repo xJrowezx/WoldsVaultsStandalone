@@ -3,13 +3,19 @@
   "minVersion": "0.8",
   "package": "xyz.iwolfking.woldsvaults.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "woldsvaults.refmap.json",
+  "refmap": "woldsvaultsstandalone.refmap.json",
+  "plugin": "xyz.iwolfking.woldsvaults.mixin.plugins.WoldMixinPlugin",
   "mixins": [
     "MixinLoaderRegistry",
     "MixinThrownTrident",
     "ThrownTridentAccessor",
+    "accessors.ClassicCircleCrystalLayoutAccessor",
+    "accessors.ClassicInfiniteCrystalLayoutAccessor",
+    "accessors.ClassicPolygonCrystalLayoutAccessor",
+    "accessors.ClassicSpiralCrystalLayoutAccessor",
     "accessors.VaultAltarTileEntityAccessor",
     "angelring.MixinItemRegistry",
+    "bettercombat.MixinBetterCombatAttackRange",
     "infernalmobs.MixinInfernalMobsCore",
     "the_vault.MixinCustomSpawnerTileEntity",
     "the_vault.MixinGearModelRollRaritiesConfig",
@@ -20,6 +26,7 @@
     "the_vault.MixinSkill",
     "the_vault.MixinToolItem",
     "the_vault.MixinVaultModifierTypeRegistry",
+    "the_vault.optimization.MixinGearStackingTalent",
     "the_vault.recipes.MixinAnvilRecipes"
   ],
   "client": [

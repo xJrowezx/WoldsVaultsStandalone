@@ -8,7 +8,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import xyz.iwolfking.woldsvaults.init.client.ModEntityRenderers;
 import xyz.iwolfking.woldsvaults.init.client.ModScreens;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT}, modid = "woldsvaultsstandalone")
 public class ClientSetupEvents {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void setupClient(FMLClientSetupEvent event) {

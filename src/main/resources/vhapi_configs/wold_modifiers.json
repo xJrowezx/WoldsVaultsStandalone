@@ -1343,7 +1343,7 @@
       "the_vault:plunderer": {
         "properties": {
           "children": {
-            "the_vault:true_noxp": 1,
+            "woldsvaults:true_noxp": 1,
             "the_vault:item_quantity": 1,
             "the_vault:plentiful": 1,
             "the_vault:plunder_artifact": 1

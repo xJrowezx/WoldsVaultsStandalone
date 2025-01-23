@@ -38,7 +38,7 @@ import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
 import xyz.iwolfking.woldsvaults.util.WoldEventUtils;
 
 @Mod.EventBusSubscriber(
-        modid = WoldsVaults.MODID
+        modid = "woldsvaultsstandalone"
 )
 public class LivingEntityEvents {
 

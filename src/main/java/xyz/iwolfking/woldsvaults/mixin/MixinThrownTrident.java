@@ -50,7 +50,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         super(p_36721_, p_36722_);
     }
 
-    @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "tick", at = @At("HEAD"), cancellable = true, remap = true)
     private void tickVaultTrident(CallbackInfo ci) {
         if(this.tridentItem != null && this.tridentItem.getItem() instanceof VaultTridentItem) {
             if (this.inGroundTime > 4) {
@@ -90,7 +90,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         }
 
     }
-    @Inject(method = "onHitEntity", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onHitEntity", at = @At("HEAD"), cancellable = true, remap = true)
     private void onHitEntityWithVaultTrident(EntityHitResult p_37573_, CallbackInfo ci) {
         if(this.tridentItem.getItem() instanceof VaultTridentItem) {
             if(!(p_37573_.getEntity() instanceof LivingEntity)) {

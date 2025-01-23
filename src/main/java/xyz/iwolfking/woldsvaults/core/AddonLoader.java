@@ -29,7 +29,7 @@ public class AddonLoader {
     private static void registerAddon(final AddPackFindersEvent event, final String packName) {
         event.addRepositorySource((packConsumer, constructor) -> {
             Pack pack = Pack.create(WoldsVaults.MODID + ":" + packName, true, () -> {
-                Path path = ModList.get().getModFileById(WoldsVaults.MODID).getFile().findResource("/" + packName);
+                Path path = ModList.get().getModFileById("woldsvaultsstandalone").getFile().findResource("/" + packName);
                 return new PathResourcePack(packName, path);
             }, constructor, Pack.Position.TOP, PackSource.DEFAULT);
 

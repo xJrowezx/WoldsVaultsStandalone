@@ -18,7 +18,7 @@ import xyz.iwolfking.woldsvaults.network.PacketHandler;
 
 import java.util.Random;
 
-@Mod.EventBusSubscriber(modid = WoldsVaults.MODID)
+@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone")
 public class TickEvents {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {

@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 @Mod.EventBusSubscriber(
-        modid = WoldsVaults.MODID,
+        modid = "woldsvaultsstandalone",
         bus = Mod.EventBusSubscriber.Bus.MOD
 )
 @ObjectHolder("angelring")

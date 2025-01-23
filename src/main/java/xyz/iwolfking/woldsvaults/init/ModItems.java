@@ -27,7 +27,7 @@ import java.util.Random;
 import static iskallia.vault.init.ModItems.GEAR_GROUP;
 import static iskallia.vault.init.ModItems.VAULT_MOD_GROUP;
 
-@Mod.EventBusSubscriber(modid = WoldsVaults.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModItems {
     public static final Random rand = new Random();
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_UNHINGED;

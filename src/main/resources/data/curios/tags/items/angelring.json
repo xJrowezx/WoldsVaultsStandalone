@@ -1,5 +1,5 @@
 {
-  "replace": false,
+  "replace": true,
   "values": [
     "woldsvaults:chromatic_iron_angel_ring",
     "woldsvaults:chromatic_gold_angel_ring",
