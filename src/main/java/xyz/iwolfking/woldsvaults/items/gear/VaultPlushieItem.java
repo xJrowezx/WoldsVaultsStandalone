@@ -71,7 +71,7 @@ public class VaultPlushieItem extends BasicItem implements VaultGearItem {
     @Override
     public ResourceLocation getRandomModel(ItemStack stack, Random random) {
         VaultGearData gearData = VaultGearData.read(stack);
-        EquipmentSlot intendedSlot = this.getIntendedSlot(stack);
+        EquipmentSlot intendedSlot = this.getGearType(stack).getEquipmentSlot();
         return ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(stack, gearData, intendedSlot, random);
     }
 

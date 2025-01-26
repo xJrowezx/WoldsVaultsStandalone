@@ -59,7 +59,7 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */   public ResourceLocation getRandomModel(ItemStack stack, Random random) {
         /*  56 */     VaultGearData gearData = VaultGearData.read(stack);
         /*  57 */     VaultGearRarity rarity = gearData.getRarity();
-        /*  58 */     EquipmentSlot intendedSlot = getIntendedSlot(stack);
+        /*  58 */     EquipmentSlot intendedSlot = this.getGearType(stack).getEquipmentSlot();
         /*  59 */     ResourceLocation possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(this.defaultItem(), gearData, intendedSlot, random);
         /*     */
         /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds);
