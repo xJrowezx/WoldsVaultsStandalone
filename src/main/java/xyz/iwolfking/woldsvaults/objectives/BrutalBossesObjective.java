@@ -47,6 +47,8 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.IntSupplier;
 
+import static xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry.BOSS_MODS_LIST;
+
 public class BrutalBossesObjective extends ObeliskObjective {
 
     private final Random random = new Random();
@@ -119,13 +121,15 @@ public class BrutalBossesObjective extends ObeliskObjective {
                 for(int var5 = 0; var5 < var4; ++var5) {
                     Wave wave = var3[var5];
                     if (((UUIDList)wave.get(Wave.MOBS)).remove(event.getEntity().getUUID())) {
-                        if(random.nextBoolean()) {
-                            event.getEntity().spawnAtLocation(ModItems.ENIGMA_EGG);
-                        }
-                        if(InfernalMobsCore.getMobModifiers(event.getEntityLiving()).getModSize() != 0) {
-                            MobModifier modifier = InfernalMobsCore.getMobModifiers(event.getEntityLiving());
+
+                        wave.modify(Wave.COUNT, (x) -> {
+                            return x + 1;
+                        });
+                        MobModifier modifier = InfernalMobsCore.getMobModifiers(event.getEntityLiving());
+                        List<VaultModifier<?>> modifiersForMsg = new ArrayList<>();
+
+                        if (modifier != null && modifier.getModSize() != 0) {
                             String modNames = modifier.getLinkedModNameUntranslated().trim();
-                            List<VaultModifier<?>> modifiersForMsg = new ArrayList<>();
                             for (String modName : modNames.split("\\s+")) {
                                 List<VaultModifier<?>> modifiers = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("bb_" + modName.toLowerCase()), 0, (RandomSource) JavaRandom.ofNanoTime());
                                 if (!modifiers.isEmpty()) {
@@ -138,18 +142,29 @@ public class BrutalBossesObjective extends ObeliskObjective {
                                     }
                                 }
                             }
-                            vault.get(Vault.LISTENERS).getAll().forEach(listener -> {
-                                if(listener.getPlayer().isPresent()) {
-                                    modifiersForMsg.forEach(mod -> {
-                                        listener.getPlayer().get().displayClientMessage(mod.getChatDisplayNameComponent(1).copy().append(" was added to The Vault!"), false);
-                                    });
+                        } else {
+                            // Add 2 random vault modifiers from BOSS_MODS_LIST
+                            for (int i = 0; i < 2; i++) {
+                                String modName = BOSS_MODS_LIST.getRandom().get().toLowerCase();
+                                List<VaultModifier<?>> modifiers = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("bb_" + modName), 0, (RandomSource) JavaRandom.ofNanoTime());
+                                if (!modifiers.isEmpty()) {
+                                    Iterator modIter = modifiers.iterator();
+
+                                    while (modIter.hasNext()) {
+                                        VaultModifier<?> mod = (VaultModifier<?>) modIter.next();
+                                        modifiersForMsg.add(mod);
+                                        ((Modifiers) vault.get(Vault.MODIFIERS)).addModifier(mod, 1, true, (RandomSource) JavaRandom.ofNanoTime());
+                                    }
                                 }
-                            });
+                            }
                         }
 
-
-                        wave.modify(Wave.COUNT, (x) -> {
-                            return x + 1;
+                        vault.get(Vault.LISTENERS).getAll().forEach(listener -> {
+                            if(listener.getPlayer().isPresent()) {
+                                modifiersForMsg.forEach(mod -> {
+                                    listener.getPlayer().get().displayClientMessage(mod.getChatDisplayNameComponent(1).copy().append(" was added to The Vault!"), false);
+                                });
+                            }
                         });
                     }
                 }
