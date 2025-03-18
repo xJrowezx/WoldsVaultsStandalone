@@ -21,6 +21,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.IntSupplier;
 
 public class BrutalBossesCrystalObjective extends CrystalObjective {
     protected IntRoll target;
@@ -39,9 +40,12 @@ public class BrutalBossesCrystalObjective extends CrystalObjective {
     public void configure(Vault vault, RandomSource random) {
         int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
-            objectives.add(BrutalBossesObjective.of(this.target.get(random), () -> {
-                return this.wave.get(random);
-            }, this.objectiveProbability).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.BOSS, "brutal_bosses", level, true)).add(VictoryObjective.of(300)));
+            IntSupplier limitedWave = () -> random.nextInt(3) + 1;
+            int obelisks = random.nextInt(3) + 3;
+
+            objectives.add(BrutalBossesObjective.of(obelisks, limitedWave, this.objectiveProbability)
+                    .add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.BOSS, "brutal_bosses", level, true))
+                    .add(VictoryObjective.of(300)));
             objectives.add(BailObjective.create(true, new ResourceLocation[]{ClassicPortalLogic.EXIT}));
             objectives.add(DeathObjective.create(true));
             objectives.set(Objectives.KEY, CrystalData.OBJECTIVE.getType(this));
