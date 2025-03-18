@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.mixin.the_vault;
 
 import iskallia.vault.block.AngelBlock;
+import iskallia.vault.world.data.ServerVaults;
 import me.fallenbreath.conditionalmixin.api.annotation.Condition;
 import me.fallenbreath.conditionalmixin.api.annotation.Restriction;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +22,7 @@ public abstract class MixinAngelBlock {
 
     @Inject(method = "isInRange", at = @At("HEAD"), cancellable = true)
     public void isInRange(Player player, CallbackInfoReturnable<Boolean> cir) {
-        if (AngelRingItem.isRingInCurioSlot(player)) {
+        if (AngelRingItem.isRingInCurioSlot(player) && ServerVaults.get(player.getLevel()).isEmpty()) {
             cir.setReturnValue(true);
         }
     }

@@ -305,13 +305,6 @@
           },
           {
             "value": {
-              "type": "alexsmobs:alligator_snapping_turtle",
-              "randomMotion": false
-            },
-            "weight": 2
-          },
-          {
-            "value": {
               "type": "alexsmobs:centipede_head",
               "randomMotion": false
             },
