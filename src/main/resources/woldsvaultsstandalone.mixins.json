@@ -15,6 +15,7 @@
     "accessors.ClassicSpiralCrystalLayoutAccessor",
     "accessors.VaultAltarTileEntityAccessor",
     "accessors.VaultDifficultyAccessor",
+    "angelring.MixinAbstractRingCurio",
     "angelring.MixinItemRegistry",
     "bettercombat.MixinBetterCombatAttackRange",
     "infernalmobs.MixinInfernalMobsCore",
