@@ -1,5 +1,85 @@
 {
   "modifiers": {
+    "the_vault:modifier_type/difficulty_lock": {
+      "woldsvaults:normalized": {
+        "properties": {
+          "difficulty": "NORMAL",
+          "lockHigher": false
+        },
+        "display": {
+          "name": "Normalized",
+          "color": "#EBFF8D",
+          "description": "This vault's difficulty is locked to at least Normal!",
+          "descriptionFormatted": "This vault's difficulty is locked to at least Normal!",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
+      },
+      "woldsvaults:hard": {
+        "properties": {
+          "difficulty": "HARD",
+          "lockHigher": false
+        },
+        "display": {
+          "name": "Hard Locked",
+          "color": "#EBFF8D",
+          "description": "This vault's difficulty is locked to at least Hard!",
+          "descriptionFormatted": "This vault's difficulty is locked to at least Hard!",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
+      },
+      "woldsvaults:impossible": {
+        "properties": {
+          "difficulty": "IMPOSSIBLE",
+          "lockHigher": false
+        },
+        "display": {
+          "name": "Impossible Locked",
+          "color": "#EBFF8D",
+          "description": "This vault's difficulty is locked to at least Impossible!",
+          "descriptionFormatted": "This vault's difficulty is locked to at least Impossible!",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
+      },
+      "woldsvaults:fragged": {
+        "properties": {
+          "difficulty": "FRAGGED",
+          "lockHigher": false
+        },
+        "display": {
+          "name": "Fragged",
+          "color": "#EBFF8D",
+          "description": "This vault's difficulty is locked to Fragged!",
+          "descriptionFormatted": "This vault's difficulty is locked to Fragged!",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
+      },
+      "woldsvaults:piece_of_cake": {
+        "properties": {
+          "difficulty": "PIECE_OF_CAKE",
+          "lockHigher": true
+        },
+        "display": {
+          "name": "Piece of Cake",
+          "color": "#EBFF8D",
+          "description": "This vault's difficulty is locked to Piece of Cake!",
+          "descriptionFormatted": "This vault's difficulty is locked to Piece of Cake!",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
+      },
+      "woldsvaults:normalized_lock": {
+        "properties": {
+          "difficulty": "NORMAL",
+          "lockHigher": true
+        },
+        "display": {
+          "name": "Normalized",
+          "color": "#EBFF8D",
+          "description": "This vault's difficulty is locked to Normal!",
+          "descriptionFormatted": "This vault's difficulty is locked to Normal!",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
+      }
+    },
     "the_vault:modifier_type/chance_artifact": {
       "woldsvaults:pogging": {
         "properties": {
