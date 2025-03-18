@@ -1,9 +1,8 @@
 package xyz.iwolfking.woldsvaults.blocks.containers;
 
-import iskallia.vault.container.base.SimpleSidedContainer;
+import iskallia.vault.container.oversized.OverSizedSlotContainer;
 import iskallia.vault.container.oversized.OverSizedTabSlot;
 import iskallia.vault.container.slot.TabSlot;
-import iskallia.vault.container.spi.AbstractElementContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,7 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import xyz.iwolfking.woldsvaults.blocks.tiles.VaultSalvagerTileEntity;
 import xyz.iwolfking.woldsvaults.init.ModContainers;
 
-public class VaultSalvagerContainer extends AbstractElementContainer {
+public class VaultSalvagerContainer extends OverSizedSlotContainer {
     private final VaultSalvagerTileEntity tileEntity;
     private final BlockPos tilePos;
 
@@ -29,7 +28,6 @@ public class VaultSalvagerContainer extends AbstractElementContainer {
         } else {
             this.tileEntity = null;
         }
-
     }
 
     private void initSlots(Inventory playerInventory) {
@@ -44,7 +42,7 @@ public class VaultSalvagerContainer extends AbstractElementContainer {
             this.addSlot(new TabSlot(playerInventory, hotbarSlot, 8 + hotbarSlot * 18, 140));
         }
 
-        SimpleSidedContainer ct = this.tileEntity.getInventory();
+        Container ct = this.tileEntity.getInventory();
         this.addSlot(new Slot(ct, 0, 40, 50) {
             public boolean mayPlace(ItemStack stack) {
                 return tileEntity.isValidInput(stack);
@@ -52,7 +50,6 @@ public class VaultSalvagerContainer extends AbstractElementContainer {
         });
         VaultSalvagerTileEntity.SalvagerInventory salvagerInventory = this.tileEntity.getInventory();
         for (int column = 1; column < 10; column++) {
-
             addSlot(new OverSizedTabSlot((Container) salvagerInventory, column, 8 + (column-1) * 18, 22) {
             });
         }
@@ -60,23 +57,25 @@ public class VaultSalvagerContainer extends AbstractElementContainer {
 
     public ItemStack quickMoveStack(Player playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = (Slot)this.slots.get(index);
+        Slot slot = this.slots.get(index);
         if (slot != null && slot.hasItem()) {
             ItemStack slotStack = slot.getItem();
             itemstack = slotStack.copy();
-            if (index >= 0 && index < 36 && this.moveItemStackTo(slotStack, 36, 37, false)) {
+
+            if (index >= 0 && index < 36 &&
+                    moveOverSizedItemStackTo(slotStack, slot, 36, 37, false)) {
                 return itemstack;
             }
 
             if (index >= 0 && index < 27) {
-                if (!this.moveItemStackTo(slotStack, 27, 36, false)) {
+                if (!moveOverSizedItemStackTo(slotStack, slot, 27, 36, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (index >= 27 && index < 36) {
-                if (!this.moveItemStackTo(slotStack, 0, 27, false)) {
+                if (!moveOverSizedItemStackTo(slotStack, slot, 0, 27, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(slotStack, 0, 36, false)) {
+            } else if (!moveOverSizedItemStackTo(slotStack, slot, 0, 36, false)) {
                 return ItemStack.EMPTY;
             }
 
