@@ -15,6 +15,7 @@
     "accessors.ClassicSpiralCrystalLayoutAccessor",
     "accessors.VaultAltarTileEntityAccessor",
     "accessors.VaultDifficultyAccessor",
+    "angelring.MixinAbstractRingCurio",
     "angelring.MixinItemRegistry",
     "bettercombat.MixinBetterCombatAttackRange",
     "infernalmobs.MixinInfernalMobsCore",
@@ -29,7 +30,11 @@
     "the_vault.MixinToolItem",
     "the_vault.MixinVaultModifierTypeRegistry",
     "the_vault.optimization.MixinGearStackingTalent",
-    "the_vault.recipes.MixinAnvilRecipes"
+    "the_vault.recipes.MixinAnvilRecipes",
+    "the_vault.skills.MixinAbilityLabelFactory",
+    "the_vault.skills.MixinAbstractVeinMinerAbility",
+    "the_vault.skills.MixinModAbilityLabelBindings",
+    "the_vault.skills.MixinResistanceHelper"
   ],
   "client": [
     "MixinThrownTridentRenderer",

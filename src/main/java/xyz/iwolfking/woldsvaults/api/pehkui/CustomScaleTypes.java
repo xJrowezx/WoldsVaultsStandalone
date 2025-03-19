@@ -9,7 +9,10 @@ public class CustomScaleTypes {
 
     public static final ScaleModifier SIZE_MODIFIER = registerModifier("size_modifier", new TypedScaleModifier(() -> CustomScaleTypes.SIZE));
     public static final ScaleModifier THICKNESS_MODIFIER = registerModifier("thickness_modifier", new TypedScaleModifier(() -> CustomScaleTypes.THICKNESS));
+    public static final ScaleModifier SIZE_NO_MOVEMENT_MODIFIER = registerModifier("size_no_movement_modifier",new TypedScaleModifier(() -> CustomScaleTypes.SIZE_NO_MOVEMENT));
 
+
+    public static final ScaleType SIZE_NO_MOVEMENT = registerScale("size_no_movement", CustomScaleTypes.SIZE_NO_MOVEMENT_MODIFIER);
     public static final ScaleType SIZE = registerScale("size", CustomScaleTypes.SIZE_MODIFIER);
     public static final ScaleType THICKNESS = registerScale("thickness", CustomScaleTypes.THICKNESS_MODIFIER);
 
@@ -32,6 +35,10 @@ public class CustomScaleTypes {
         ScaleTypes.WIDTH.getDefaultBaseValueModifiers().add(SIZE_MODIFIER);
         ScaleTypes.VISIBILITY.getDefaultBaseValueModifiers().add(SIZE_MODIFIER);
         ScaleTypes.MOTION.getDefaultBaseValueModifiers().add(SIZE_MODIFIER);
+
+        ScaleTypes.HEIGHT.getDefaultBaseValueModifiers().add(SIZE_NO_MOVEMENT_MODIFIER);
+        ScaleTypes.WIDTH.getDefaultBaseValueModifiers().add(SIZE_NO_MOVEMENT_MODIFIER);
+        ScaleTypes.VISIBILITY.getDefaultBaseValueModifiers().add(SIZE_NO_MOVEMENT_MODIFIER);
 
         ScaleTypes.WIDTH.getDefaultBaseValueModifiers().add(THICKNESS_MODIFIER);
     }

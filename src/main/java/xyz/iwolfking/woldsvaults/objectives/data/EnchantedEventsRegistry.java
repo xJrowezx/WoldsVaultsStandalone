@@ -69,7 +69,6 @@ public class EnchantedEventsRegistry {
     public static final SpawnEntityEnchantedEvent ARACHNOPHOBIA_EVENT;
     public static final SpawnEntityEnchantedEvent GHOSTY_EVENT;
     public static final SpawnEntityEnchantedEvent TNT_EVENT;
-    public static final SpawnEntityEnchantedEvent TURTLES_EVENT;
     public static final SpawnEntityEnchantedEvent ZOO_EVENT;
     public static final SpawnEntityEnchantedEvent VOID_ZOO_EVENT;
     public static final SpawnEntityEnchantedEvent DWELLER_EVENT;
@@ -136,7 +135,6 @@ public class EnchantedEventsRegistry {
         register(ZOO_EVENT, 5.0, false, false);
         register(DWELLER_EVENT, 16.0, false, false);
         register(VOID_ZOO_EVENT, 6.0, false, false);
-        register(TURTLES_EVENT, 16.0, false, false);
         register(THERMAL_EXPANSION, 8.0, false, false);
         register(LA_CUCARACHA_EVENT, 4.0, true, false);
 
@@ -249,7 +247,6 @@ public class EnchantedEventsRegistry {
         ARACHNOPHOBIA_EVENT = new SpawnEntityEnchantedEvent("Arachnophobia", "Attack of the spidders", "#0d0033",  new WeightedList<EntityType<?>>().add(ModEntities.VAULT_SPIDER, 6.0).add(ModEntities.VAULT_SPIDER_BABY, 4.0).add(ModEntities.DUNGEON_SPIDER, 2.0), new WeightedList<Integer>().add(6, 10).add(7, 10).add(8, 10));
         GHOSTY_EVENT = new SpawnEntityEnchantedEvent("Happy Halloween", "All ghost costumes this year?", "#ff471a",  new WeightedList<EntityType<?>>().add(WraithModule.wraithType, 6.0), new WeightedList<Integer>().add(8, 10).add(12, 10));
         TNT_EVENT = new SpawnEntityEnchantedEvent("Whoops", "Who left all this tnt around?", "#000000", new WeightedList<EntityType<?>>().add(EntityType.TNT, 6.0), new WeightedList<Integer>().add(8, 10).add(12, 10));
-        TURTLES_EVENT = new SpawnEntityEnchantedEvent("Ninja Turtles", "Attack of the turtles", "#40bf40", new WeightedList<EntityType<?>>().add(AMEntityRegistry.ALLIGATOR_SNAPPING_TURTLE.get(), 6.0), new WeightedList<Integer>().add(7, 10).add(9, 10));
         ZOO_EVENT = new SpawnEntityEnchantedEvent("Escaped Zoo", "Who's Alex anyway?", "#85e085", new WeightedList<EntityType<?>>().add(AMEntityRegistry.CROCODILE.get(), 6.0).add(AMEntityRegistry.GORILLA.get(), 6.0).add(AMEntityRegistry.TIGER.get(), 6.0).add(AMEntityRegistry.ELEPHANT.get(), 4.0).add(AMEntityRegistry.KOMODO_DRAGON.get(), 2.0).add(AMEntityRegistry.SNOW_LEOPARD.get(), 3.0), new WeightedList<Integer>().add(6, 10).add(8, 10));
         VOID_ZOO_EVENT = new SpawnEntityEnchantedEvent("Void Invasion", "Ender what now?", "#bf00ff",  new WeightedList<EntityType<?>>().add(AMEntityRegistry.ENDERIOPHAGE.get(), 12.0).add(AMEntityRegistry.VOID_WORM.get(), 3.0).add(AMEntityRegistry.COSMIC_COD.get(), 4.0).add(AMEntityRegistry.MIMICUBE.get(), 5.0).add(ModEntities.T1_ENDERMAN, 7.0).add(ModEntities.T2_ENDERMAN, 9.0), new WeightedList<Integer>().add(6, 10).add(8, 10));
         DWELLER_EVENT = new SpawnEntityEnchantedEvent("Dweller Duel", "Attack of the dwellers", "#ff6666",  new WeightedList<EntityType<?>>().add(ModEntities.VAULT_FIGHTER_TYPES.get(1), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(2), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(3), 6.0).add(ModEntities.VAULT_FIGHTER_TYPES.get(4), 6.0), new WeightedList<Integer>().add(6, 10).add(10, 10));

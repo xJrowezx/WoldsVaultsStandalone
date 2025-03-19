@@ -31,6 +31,9 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> CHANNELING_CHANCE = attr("trident_channeling_chance",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), (VaultGearModifierReader)ModGearAttributeReaders.percentageReader("Channeling Chance", 12925893), (VaultGearAttributeComparator<Float>)VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<Boolean> TREASURE_AFFINITY = attr("treasure_affinity", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Treasure Affinity", 16749824), VaultGearAttributeComparator.booleanComparator());
+
+
 //    public static final VaultGearAttribute<Boolean> MAGNET_ENDERGIZED = attr("endergized",
 //            VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
 
@@ -46,6 +49,7 @@ public class ModGearAttributes {
                       registry.register(TRIDENT_CHANNELING);
                       registry.register(CHANNELING_CHANCE);
                       registry.register(REAVING_DAMAGE);
+                      registry.register(TREASURE_AFFINITY);
                       registry.register(ROTATING_TOOL);
         /*     */   }
     /*     */

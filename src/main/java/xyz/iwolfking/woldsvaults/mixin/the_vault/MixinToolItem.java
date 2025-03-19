@@ -1,6 +1,10 @@
 package xyz.iwolfking.woldsvaults.mixin.the_vault;
 
+import com.llamalad7.mixinextras.sugar.Local;
+import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
+import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
+import iskallia.vault.init.ModBlocks;
 import iskallia.vault.item.tool.IManualModelLoading;
 import iskallia.vault.item.tool.ToolItem;
 import iskallia.vault.item.tool.ToolMaterial;
@@ -12,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.Vanishable;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.iwolfking.woldsvaults.api.tool.ExtendedToolType;
+import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 
 import java.util.function.Consumer;
 
@@ -69,4 +75,13 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
             cir.setReturnValue((new TranslatableComponent(material.getDescription())).append(" ").append(new TranslatableComponent(extendedToolType.getDescription())));
         }
     }
+
+    @Inject(method = "hasAffinity", at = @At("TAIL"), cancellable = true)
+    public void hasAffinity(ItemStack stack, BlockState state, CallbackInfoReturnable<Boolean> cir, @Local VaultGearData data) {
+        if(data.get(ModGearAttributes.TREASURE_AFFINITY, VaultGearAttributeTypeMerger.anyTrue()) && state.is(ModBlocks.TREASURE_CHEST)) {
+            cir.setReturnValue(true);
+        }
+    }
+
+
 }
