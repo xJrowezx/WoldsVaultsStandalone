@@ -152,6 +152,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_ability_increase_t0",
         "modifierIdentifier": "the_vault:crafted_ability_increase",
@@ -224,114 +225,7 @@
           }
         ]
       },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t0",
-        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
-        "modifierTier": 0,
-        "unlockCategory": "LEVEL",
-        "craftingCost": [
-          {
-            "AMOUNT": 4,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 4,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t1",
-        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
-        "modifierTier": 1,
-        "unlockCategory": "LEVEL",
-        "craftingCost": [
-          {
-            "AMOUNT": 8,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 8,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t2",
-        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
-        "modifierTier": 2,
-        "unlockCategory": "LEVEL",
-        "craftingCost": [
-          {
-            "AMOUNT": 16,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 16,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t3",
-        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
-        "modifierTier": 3,
-        "unlockCategory": "VAULT_DISCOVERY",
-        "craftingCost": [
-          {
-            "AMOUNT": 24,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 24,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t4",
-        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
-        "modifierTier": 4,
-        "unlockCategory": "VAULT_DISCOVERY",
-        "craftingCost": [
-          {
-            "AMOUNT": 32,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 32,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t5",
-        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
-        "modifierTier": 5,
-        "unlockCategory": "VAULT_DISCOVERY",
-        "craftingCost": [
-          {
-            "AMOUNT": 48,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 48,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_on_hit_chain_t0",
         "modifierIdentifier": "the_vault:crafted_on_hit_chain",
@@ -386,6 +280,76 @@
           }
         ]
       },
+
+      { "workbenchCraftIdentifier": "the_vault:crafted_resistance_t0",
+        "modifierIdentifier": "the_vault:crafted_resistance",
+        "modifierTier": 0,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 4,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 4,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_resistance_t1",
+        "modifierIdentifier": "the_vault:crafted_resistance",
+        "modifierTier": 1,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 8,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 8,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_resistance_t2",
+        "modifierIdentifier": "the_vault:crafted_resistance",
+        "modifierTier": 2,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 16,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 16,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_resistance_t3",
+        "modifierIdentifier": "the_vault:crafted_resistance",
+        "modifierTier": 3,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 32,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 32,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_soul_chance_t0",
         "modifierIdentifier": "the_vault:crafted_soul_chance",
@@ -458,6 +422,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_champion_t0",
         "modifierIdentifier": "the_vault:crafted_damage_champion",
@@ -530,6 +495,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_dungeon_t0",
         "modifierIdentifier": "the_vault:crafted_damage_dungeon",
@@ -602,6 +568,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_assassin_t0",
         "modifierIdentifier": "the_vault:crafted_damage_assassin",
@@ -674,6 +641,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_horde_t0",
         "modifierIdentifier": "the_vault:crafted_damage_horde",
@@ -746,6 +714,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_tank_t0",
         "modifierIdentifier": "the_vault:crafted_damage_tank",
@@ -818,6 +787,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_dweller_t0",
         "modifierIdentifier": "the_vault:crafted_damage_dweller",
@@ -982,6 +952,93 @@
           }
         ]
       },
+
+      { "workbenchCraftIdentifier": "the_vault:crafted_knockback_resistance_t0",
+        "modifierIdentifier": "the_vault:crafted_knockback_resistance",
+        "modifierTier": 0,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 2,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 2,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_knockback_resistance_t1",
+        "modifierIdentifier": "the_vault:crafted_knockback_resistance",
+        "modifierTier": 1,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 8,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 8,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_knockback_resistance_t2",
+        "modifierIdentifier": "the_vault:crafted_knockback_resistance",
+        "modifierTier": 2,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 16,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 16,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_knockback_resistance_t3",
+        "modifierIdentifier": "the_vault:crafted_knockback_resistance",
+        "modifierTier": 3,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 24,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 24,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_knockback_resistance_t4",
+        "modifierIdentifier": "the_vault:crafted_knockback_resistance",
+        "modifierTier": 4,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 32,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 32,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_soulbound_t0",
         "modifierIdentifier": "the_vault:crafted_soulbound",
@@ -1000,6 +1057,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_healing_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_healing_cloud",
@@ -1054,6 +1112,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_poison_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_poison_cloud",
@@ -1108,6 +1167,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_slowness_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_slowness_cloud",
@@ -1162,6 +1222,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_fear_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_fear_cloud",
@@ -1216,6 +1277,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_chill_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_chilling_cloud",
@@ -1270,6 +1332,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_attack_speed_percent_t0",
         "modifierIdentifier": "the_vault:crafted_attack_speed_percent",
@@ -1342,6 +1405,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_attack_range_t0",
         "modifierIdentifier": "the_vault:crafted_attack_range",
@@ -1414,6 +1478,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_on_hit_stun_t0",
         "modifierIdentifier": "the_vault:crafted_on_hit_stun",
@@ -1504,6 +1569,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_on_hit_shock_t0",
         "modifierIdentifier": "the_vault:crafted_on_hit_shock",
@@ -1594,6 +1660,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_lucky_hit_chance_t0",
         "modifierIdentifier": "the_vault:crafted_lucky_hit_chance",
@@ -1666,6 +1733,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_healing_eff_t0",
         "modifierIdentifier": "the_vault:crafted_healing_efficiency",
@@ -1774,6 +1842,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_area_of_effect_t0",
         "modifierIdentifier": "the_vault:crafted_area_of_effect",
@@ -1841,6 +1910,252 @@
           },
           {
             "AMOUNT": 32,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+
+      {
+        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t0",
+        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
+        "modifierTier": 0,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 4,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 4,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      {
+        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t1",
+        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
+        "modifierTier": 1,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 8,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 8,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      {
+        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t2",
+        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
+        "modifierTier": 2,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 16,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 16,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      {
+        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t3",
+        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
+        "modifierTier": 3,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 24,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 24,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      {
+        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t4",
+        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
+        "modifierTier": 4,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 32,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 32,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      {
+        "workbenchCraftIdentifier": "the_vault:crafted_cdr_t5",
+        "modifierIdentifier": "the_vault:crafted_cooldown_reduction",
+        "modifierTier": 5,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 48,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 48,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+
+      { "workbenchCraftIdentifier": "the_vault:crafted_mana_regen_t0",
+        "modifierIdentifier": "the_vault:crafted_mana_regen",
+        "modifierTier": 0,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 2,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 2,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_mana_regen_t1",
+        "modifierIdentifier": "the_vault:crafted_mana_regen",
+        "modifierTier": 1,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 4,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 4,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_mana_regen_t2",
+        "modifierIdentifier": "the_vault:crafted_mana_regen",
+        "modifierTier": 2,
+        "unlockCategory": "LEVEL",
+        "craftingCost": [
+          {
+            "AMOUNT": 8,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 8,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_mana_regen_t3",
+        "modifierIdentifier": "the_vault:crafted_mana_regen",
+        "modifierTier": 3,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 12,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 12,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_mana_regen_t4",
+        "modifierIdentifier": "the_vault:crafted_mana_regen",
+        "modifierTier": 4,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 16,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 16,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_mana_regen_t5",
+        "modifierIdentifier": "the_vault:crafted_mana_regen",
+        "modifierTier": 5,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 24,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 24,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_mana_regen_t6",
+        "modifierIdentifier": "the_vault:crafted_mana_regen",
+        "modifierTier": 6,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 32,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 32,
+            "ITEM": "the_vault:vault_gold",
+            "NBT": "{}"
+          }
+        ]
+      },
+      { "workbenchCraftIdentifier": "the_vault:crafted_mana_regen_t7",
+        "modifierIdentifier": "the_vault:crafted_mana_regen",
+        "modifierTier": 7,
+        "unlockCategory": "VAULT_DISCOVERY",
+        "craftingCost": [
+          {
+            "AMOUNT": 48,
+            "ITEM": "the_vault:amplifying_focus",
+            "NBT": "{}"
+          },
+          {
+            "AMOUNT": 48,
             "ITEM": "the_vault:vault_gold",
             "NBT": "{}"
           }
