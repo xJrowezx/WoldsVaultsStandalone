@@ -62,7 +62,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
             int i = VaultGearData.read(this.tridentItem).get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_LOYALTY, VaultGearAttributeTypeMerger.intSum());
             if (entity != null && i > 0 && (this.dealtDamage || this.isNoPhysics()) ) {
                 if (!this.isAcceptibleReturnOwner()) {
-                    if (!this.level.isClientSide && this.pickup == AbstractArrow.Pickup.ALLOWED) {
+                    if (!this.level.isClientSide && this.pickup == Pickup.ALLOWED) {
                         this.spawnAtLocation(this.getPickupItem(), 0.1F);
                     }
 
