@@ -83,6 +83,27 @@
           "NBT": "{}"
         }
       ]
+    },
+    {
+      "proficiencyType": "SWORD",
+      "id": "the_vault:rang",
+      "output": {
+        "AMOUNT": 1,
+        "ITEM": "the_vault:rang",
+        "NBT": "{Damage:0}"
+      },
+      "inputs": [
+        {
+          "AMOUNT": 1,
+          "ITEM": "the_vault:vault_gold",
+          "NBT": "{}"
+        },
+        {
+          "AMOUNT": 3,
+          "ITEM": "the_vault:vault_alloy",
+          "NBT": "{}"
+        }
+      ]
     }
   ]
 }
