@@ -110,7 +110,7 @@ public class WoldBoss extends Zombie implements VaultBoss {
     }
 
     public SoundEvent getHurtSound(DamageSource damageSourceIn) {
-        return xyz.iwolfking.woldsvaults.init.ModSounds.WOLD_HURT;
+        return ModSounds.WOLD_HURT;
     }
 
     public SoundEvent getDeathSound() {

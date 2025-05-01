@@ -25,11 +25,11 @@ public class WoldsVaultsConfig {
 
     }
 
-    public static final WoldsVaultsConfig.Common COMMON;
+    public static final Common COMMON;
     public static final ForgeConfigSpec COMMON_SPEC;
 
     static {
-        Pair<WoldsVaultsConfig.Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(WoldsVaultsConfig.Common::new);
+        Pair<Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(Common::new);
         COMMON = commonSpecPair.getLeft();
         COMMON_SPEC = commonSpecPair.getRight();
     }

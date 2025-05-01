@@ -9,19 +9,12 @@
             "USABILITY": true,
             "CRAFTABILITY": true
           }
-        },
-        "woldsvaults:vault_salvager": {
-          "restricts": {
-            "HITTABILITY": true,
-            "USABILITY": true,
-            "CRAFTABILITY": true
-          }
         }
       },
       "blockRestrictions": {},
       "entityRestrictions": {},
       "name": "Soul Harvester",
-      "cost": 3,
+      "cost": 16,
       "usesKnowledge": true
     }
   ]
