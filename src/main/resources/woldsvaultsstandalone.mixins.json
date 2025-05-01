@@ -48,7 +48,8 @@
     "the_vault.MixinCardItem",
     "MixinLivingEntity",
     "the_vault.custom.MixinUniqueCodexScreen",
-    "the_vault.custom.MixinModDynamicModels"
+    "the_vault.custom.MixinModDynamicModels",
+    "the_vault.custom.MixinTreasureDoorTileEntityRenderer"
 
   ],
   "client": [
