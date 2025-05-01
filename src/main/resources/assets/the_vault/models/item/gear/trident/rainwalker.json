@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "the_vault:item/gear/trident/rainwalker.png",
+	"texture": "the_vault:item/gear/trident/rainwalker",
 	"textureSize": [
 		32,
 		32
