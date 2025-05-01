@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.init;
 import iskallia.vault.VaultMod;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
 import iskallia.vault.gear.attribute.config.ConfigurableAttributeGenerator;
+import iskallia.vault.gear.attribute.custom.effect.EffectGearAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeType;
 import iskallia.vault.gear.comparator.VaultGearAttributeComparator;
 import iskallia.vault.gear.reader.VaultGearModifierReader;
@@ -12,7 +13,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
-import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.util.UniqueEffectGearAttribute;
 
 import javax.annotation.Nullable;
 
@@ -31,11 +32,36 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> CHANNELING_CHANCE = attr("trident_channeling_chance",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), (VaultGearModifierReader)ModGearAttributeReaders.percentageReader("Channeling Chance", 12925893), (VaultGearAttributeComparator<Float>)VaultGearAttributeComparator.floatComparator());
 
-    public static final VaultGearAttribute<Boolean> TREASURE_AFFINITY = attr("treasure_affinity", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Treasure Affinity", 16749824), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Boolean> TREASURE_AFFINITY = attr("treasure_affinity",
+            VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Treasure Affinity", 16749824), VaultGearAttributeComparator.booleanComparator());
 
+    public static final VaultGearAttribute<Integer> PIERCING = attr("piercing",
+            VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.addedIntReader("Piercing", 8847359), VaultGearAttributeComparator.intComparator());
 
-//    public static final VaultGearAttribute<Boolean> MAGNET_ENDERGIZED = attr("endergized",
-//            VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
+    public static final VaultGearAttribute<Float> RETURNING_DAMAGE = attr("returning_damage",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Returning Damage", 8833629), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> HEXING_CHANCE = attr("hexing_chance",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Hexing Chance", 11468966), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> CHAINING_DAMAGE = attr("chaining_damage",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Reduced Chaining Falloff", 6119096), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> EXECUTION_DAMAGE = attr("execution_damage",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Execution Damage", 10302464), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> THORNS_SCALING_DAMAGE = attr("thorns_scaling_damage",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Thorns Scaling", 3134464), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> AP_SCALING_DAMAGE = attr("ap_scaling_damage",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Ability Power Scaling", 11422101), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<EffectGearAttribute> UNIQUE_EFFECT = attr("unique_effect",
+            EffectGearAttribute.type(), EffectGearAttribute.generator(), UniqueEffectGearAttribute.reader());
+
+    public static final VaultGearAttribute<Boolean> MAGNET_ENDERGIZED = attr("endergized",
+            VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
+
 
     public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
@@ -51,6 +77,16 @@ public class ModGearAttributes {
                       registry.register(REAVING_DAMAGE);
                       registry.register(TREASURE_AFFINITY);
                       registry.register(ROTATING_TOOL);
+                      registry.register(PIERCING);
+                      registry.register(RETURNING_DAMAGE);
+                      registry.register(HEXING_CHANCE);
+                      registry.register(CHAINING_DAMAGE);
+                      registry.register(EXECUTION_DAMAGE);
+                      registry.register(THORNS_SCALING_DAMAGE);
+                      registry.register(AP_SCALING_DAMAGE);
+                      registry.register(UNIQUE_EFFECT);
+                      registry.register(MAGNET_ENDERGIZED);
+
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {
