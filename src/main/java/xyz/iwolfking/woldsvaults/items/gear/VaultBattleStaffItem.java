@@ -13,6 +13,7 @@ import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.item.gear.VaultSwordItem;
 import iskallia.vault.util.MiscUtils;
+import iskallia.vault.world.data.DiscoveredModelsData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -49,11 +50,11 @@ public class VaultBattleStaffItem extends SwordItem implements VaultGearItem, Dy
     /*     */
     /*     */
     /*     */   @Nullable
-    /*     */   public ResourceLocation getRandomModel(ItemStack stack, Random random) {
-                    VaultGearData gearData = VaultGearData.read(stack);
-                    EquipmentSlot intendedSlot = this.getGearType(stack).getEquipmentSlot();
-                    return ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(stack, gearData, intendedSlot, random);
-                }
+    public ResourceLocation getRandomModel(ItemStack stack, Random random, @Nullable Player player, @Nullable DiscoveredModelsData discoveredModelsData) {
+        VaultGearData gearData = VaultGearData.read(stack);
+        EquipmentSlot intendedSlot = this.getGearType(stack).getEquipmentSlot();
+        return ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(stack, gearData, intendedSlot, random, player, discoveredModelsData);
+    }
     /*     */
     /*     */
     /*     */   public Optional<? extends DynamicModel<?>> resolveDynamicModel(ItemStack stack, ResourceLocation key) {

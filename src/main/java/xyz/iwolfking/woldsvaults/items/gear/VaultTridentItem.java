@@ -11,6 +11,7 @@ import iskallia.vault.gear.tooltip.GearTooltip;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.util.MiscUtils;
+import iskallia.vault.world.data.DiscoveredModelsData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -56,14 +57,11 @@ public class VaultTridentItem extends TridentItem implements VaultGearItem, Dyea
     /*     */
     /*     */
     /*     */   @Nullable
-    /*     */   public ResourceLocation getRandomModel(ItemStack stack, Random random) {
-        /*  56 */     VaultGearData gearData = VaultGearData.read(stack);
-        /*  57 */     VaultGearRarity rarity = gearData.getRarity();
-        /*  58 */     EquipmentSlot intendedSlot = this.getGearType(stack).getEquipmentSlot();
-        /*  59 */     ResourceLocation possibleIds = ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(this.defaultItem(), gearData, intendedSlot, random);
-        /*     */
-        /*  61 */     return (ResourceLocation) MiscUtils.getRandomEntry(possibleIds);
-        /*     */   }
+    public ResourceLocation getRandomModel(ItemStack stack, Random random, @Nullable Player player, @Nullable DiscoveredModelsData discoveredModelsData) {
+        VaultGearData gearData = VaultGearData.read(stack);
+        EquipmentSlot intendedSlot = this.getGearType(stack).getEquipmentSlot();
+        return ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(stack, gearData, intendedSlot, random, player, discoveredModelsData);
+    }
 
 
 
