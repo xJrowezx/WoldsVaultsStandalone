@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "the_vault:item/gear/trident/plunger.png",
+	"texture": "the_vault:item/gear/trident/plunger",
 	"textureSize": [
 		32,
 		32

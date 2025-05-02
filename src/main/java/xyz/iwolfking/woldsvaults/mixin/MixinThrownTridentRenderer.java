@@ -31,7 +31,7 @@ public abstract class MixinThrownTridentRenderer extends EntityRenderer<ThrownTr
         if(((ThrownTridentAccessor)trident).callGetPickupItem().getItem()  instanceof VaultTridentItem item)  {
             ItemStack tridentStack = ((ThrownTridentAccessor) trident).callGetPickupItem();
             if(item.getDynamicModelId(tridentStack).isPresent()) {
-                cir.setReturnValue(ResourceLocUtils.prependToId("textures/item/",ResourceLocation.tryParse(item.getDynamicModelId(tridentStack).get() + ".png")));
+                cir.setReturnValue(ResourceLocation.tryParse(item.getDynamicModelId(tridentStack).get().toString() + ".png"));
             }
         }
     }

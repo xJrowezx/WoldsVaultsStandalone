@@ -65,7 +65,7 @@ minecraft {
     // However, it must be at "META-INF/accesstransformer.cfg" in the final mod jar to be loaded by Forge.
     // This default location is a best practice to automatically put the file in the right place in the final jar.
     // See https://docs.minecraftforge.net/en/latest/advanced/accesstransformers/ for more information.
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     // Default run configurations.
     // These can be tweaked, removed, or duplicated as needed.
@@ -176,9 +176,13 @@ dependencies {
     implementation fg.deobf('curse.maven:pehkui-319596:4823461')
     implementation fg.deobf('curse.maven:ecologics-570463:4171283')
     implementation fg.deobf("curse.maven:better-combat-by-daedelus-639842:4428885")
-    implementation fg.deobf(files('libs/vhapi-3.0.1.jar'))
-    implementation fg.deobf(files('libs/the_vault-1.18.2-3.15.2.3663.jar'))
+//    implementation fg.deobf(files('libs/vhapi-3.0.1.jar'))
+//    implementation fg.deobf(files('libs/the_vault-1.18.2-3.15.2.3663.jar'))
     implementation fg.deobf("curse.maven:vaultfaster-988487:5962104")
+
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6477559")
+    implementation fg.deobf("curse.maven:vault-hunters-api-1118899:6471174")
+
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
 

@@ -1,8 +1,8 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "0": "the_vault:item/gear/plushie/witch",
-    "particle": "minecraft:block/purple_wool"
+    "0": "the_vault:item/gear/plushie/wanda",
+    "particle": "the_vault:item/gear/plushie/wanda"
   },
   "elements": [
     {

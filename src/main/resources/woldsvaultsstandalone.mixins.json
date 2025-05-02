@@ -6,6 +6,7 @@
   "refmap": "woldsvaultsstandalone.refmap.json",
   "plugin": "xyz.iwolfking.woldsvaults.mixin.plugins.WoldMixinPlugin",
   "mixins": [
+    "LivingEntityAccessor",
     "MixinLoaderRegistry",
     "MixinThrownTrident",
     "ThrownTridentAccessor",
@@ -34,7 +35,22 @@
     "the_vault.skills.MixinAbilityLabelFactory",
     "the_vault.skills.MixinAbstractVeinMinerAbility",
     "the_vault.skills.MixinModAbilityLabelBindings",
-    "the_vault.skills.MixinResistanceHelper"
+    "the_vault.skills.MixinResistanceHelper",
+
+    "the_vault.custom.MixinSpecialAbilityModificationRegistry",
+    "the_vault.skills.modifications.MixinFireballAbility",
+    "the_vault.skills.modifications.MixinIceBoltChunkAbility",
+    "the_vault.custom.MixinGearAttributeEvents",
+    "the_vault.custom.MixinGrantedEffectHelper",
+    "the_vault.accessors.AttributeSnapshotValueAccessor",
+    "the_vault.custom.MixinAttributeSnapshot",
+    "the_vault.custom.MixinMagnetItem",
+    "the_vault.MixinCardItem",
+    "MixinLivingEntity",
+    "the_vault.custom.MixinUniqueCodexScreen",
+    "the_vault.custom.MixinModDynamicModels",
+    "the_vault.custom.MixinTreasureDoorTileEntityRenderer"
+
   ],
   "client": [
     "MixinThrownTridentRenderer",

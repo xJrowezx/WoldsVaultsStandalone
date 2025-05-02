@@ -12,6 +12,7 @@ import iskallia.vault.item.tool.ToolType;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -38,8 +40,11 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
         return null;
     }
 
-    public MixinToolItem(Tier p_43308_, Properties p_43309_) {
-        super(p_43308_, p_43309_);
+    @Shadow @Final
+    public static ResourceLocation SPAWNER_ID;
+
+    public MixinToolItem(Tier pTier, Properties pProperties) {
+        super(pTier, pProperties);
     }
 
     /**
@@ -53,8 +58,7 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
         for (ExtendedToolType type : extendedToolTypes) {
             consumer.accept(new ModelResourceLocation("the_vault:tool/%s/handle#inventory.".formatted(type.getId())));
 
-            ToolMaterial[] var6 = ToolMaterial.values();
-            for (ToolMaterial material : var6) {
+            for (ToolMaterial material : ToolMaterial.values()) {
                 consumer.accept(new ModelResourceLocation("the_vault:tool/%s/head/%s#inventory".formatted(type.getId(), material.getId())));
             }
         }
@@ -65,7 +69,7 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
      * @author iwolfking
      * @reason Add custom tool names
      */
-    @Inject(method = "m_7626_", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getName", at = @At("HEAD"), cancellable = true, remap = true)
     public void getName(ItemStack stack, CallbackInfoReturnable<Component> cir) {
         ToolType type = ToolType.of(stack);
         ToolMaterial material = getMaterial(stack);
@@ -82,6 +86,4 @@ public abstract class MixinToolItem extends TieredItem implements VaultGearItem,
             cir.setReturnValue(true);
         }
     }
-
-
 }

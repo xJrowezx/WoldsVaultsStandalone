@@ -152,60 +152,7 @@
           }
         ]
       },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_on_hit_chain_t0",
-        "modifierIdentifier": "the_vault:crafted_on_hit_chain",
-        "modifierTier": 0,
-        "unlockCategory": "LEVEL",
-        "craftingCost": [
-          {
-            "AMOUNT": 8,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 8,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_on_hit_chain_t1",
-        "modifierIdentifier": "the_vault:crafted_on_hit_chain",
-        "modifierTier": 1,
-        "unlockCategory": "VAULT_DISCOVERY",
-        "craftingCost": [
-          {
-            "AMOUNT": 16,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 16,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
-      {
-        "workbenchCraftIdentifier": "the_vault:crafted_on_hit_chain_t2",
-        "modifierIdentifier": "the_vault:crafted_on_hit_chain",
-        "modifierTier": 2,
-        "unlockCategory": "VAULT_DISCOVERY",
-        "craftingCost": [
-          {
-            "AMOUNT": 32,
-            "ITEM": "the_vault:amplifying_focus",
-            "NBT": "{}"
-          },
-          {
-            "AMOUNT": 32,
-            "ITEM": "the_vault:vault_gold",
-            "NBT": "{}"
-          }
-        ]
-      },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_soul_chance_t0",
         "modifierIdentifier": "the_vault:crafted_soul_chance",
@@ -278,6 +225,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_wind_up_percent_t0",
         "modifierIdentifier": "the_vault:crafted_wind_up_percent",
@@ -350,6 +298,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_trident_channeling_chance_t0",
         "modifierIdentifier": "the_vault:crafted_trident_channeling_chance",
@@ -422,6 +371,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_champion_t0",
         "modifierIdentifier": "the_vault:crafted_damage_champion",
@@ -494,6 +444,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_dungeon_t0",
         "modifierIdentifier": "the_vault:crafted_damage_dungeon",
@@ -566,6 +517,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_assassin_t0",
         "modifierIdentifier": "the_vault:crafted_damage_assassin",
@@ -638,6 +590,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_horde_t0",
         "modifierIdentifier": "the_vault:crafted_damage_horde",
@@ -710,6 +663,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_tank_t0",
         "modifierIdentifier": "the_vault:crafted_damage_tank",
@@ -782,6 +736,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_damage_dweller_t0",
         "modifierIdentifier": "the_vault:crafted_damage_dweller",
@@ -946,6 +901,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_soulbound_t0",
         "modifierIdentifier": "the_vault:crafted_soulbound",
@@ -964,6 +920,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_healing_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_healing_cloud",
@@ -1018,6 +975,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_poison_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_poison_cloud",
@@ -1072,6 +1030,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_slowness_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_slowness_cloud",
@@ -1126,6 +1085,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_fear_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_fear_cloud",
@@ -1180,6 +1140,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_chill_cloud_t0",
         "modifierIdentifier": "the_vault:crafted_chilling_cloud",
@@ -1234,6 +1195,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_attack_speed_percent_t0",
         "modifierIdentifier": "the_vault:crafted_attack_speed_percent",
@@ -1306,6 +1268,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_attack_range_t0",
         "modifierIdentifier": "the_vault:crafted_attack_range",
@@ -1378,6 +1341,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_on_hit_stun_t0",
         "modifierIdentifier": "the_vault:crafted_on_hit_stun",
@@ -1468,6 +1432,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_on_hit_shock_t0",
         "modifierIdentifier": "the_vault:crafted_on_hit_shock",
@@ -1558,6 +1523,7 @@
           }
         ]
       },
+
       {
         "workbenchCraftIdentifier": "the_vault:crafted_lucky_hit_chance_t0",
         "modifierIdentifier": "the_vault:crafted_lucky_hit_chance",

@@ -40,6 +40,7 @@ public class SetupEvents {
             CustomVaultGearModelRollRaritiesConfig.TRIDENT_MODEL_ROLLS = CustomGearModelRolls.CUSTOM_MODEL_ROLLS_MAP.get(ModItems.TRIDENT.getRegistryName());
             CustomVaultGearModelRollRaritiesConfig.LOOT_SACKS_MODEL_ROLLS = CustomGearModelRolls.CUSTOM_MODEL_ROLLS_MAP.get(ModItems.LOOT_SACK.getRegistryName());
             CustomVaultGearModelRollRaritiesConfig.PLUSHIE_MODEL_ROLLS = CustomGearModelRolls.CUSTOM_MODEL_ROLLS_MAP.get(ModItems.PLUSHIE.getRegistryName());
+            CustomVaultGearModelRollRaritiesConfig.RANG_MODEL_ROLLS = CustomGearModelRolls.CUSTOM_MODEL_ROLLS_MAP.get(ModItems.RANG.getRegistryName());
         }
     }
 
@@ -62,11 +63,14 @@ public class SetupEvents {
         registerManualConfigFile("/vhapi_configs/gear_modifiers/loot_sack.json", VHAPI.of("gear/gear_modifiers/loot_sack"));
         registerManualConfigFile("/vhapi_configs/gear_modifiers/plushie.json", VHAPI.of("gear/gear_modifiers/plushie"));
         registerManualConfigFile("/vhapi_configs/gear_modifiers/trident.json", VHAPI.of("gear/gear_modifiers/trident"));
+        registerManualConfigFile("/vhapi_configs/gear_modifiers/rang.json", VHAPI.of("gear/gear_modifiers/rang"));
 
         //Gear Workbench
         registerManualConfigFile("/vhapi_configs/gear_workbench/battlestaff.json", VHAPI.of("gear/gear_workbench/battlestaff"));
         registerManualConfigFile("/vhapi_configs/gear_workbench/loot_sack.json", VHAPI.of("gear/gear_workbench/loot_sack"));
         registerManualConfigFile("/vhapi_configs/gear_workbench/trident.json", VHAPI.of("gear/gear_workbench/trident"));
+        registerManualConfigFile("/vhapi_configs/gear_workbench/plushie.json", VHAPI.of("gear/gear_workbench/plushie"));
+        registerManualConfigFile("/vhapi_configs/gear_workbench/rang.json", VHAPI.of("gear/gear_workbench/rang"));
 
         //Research
         registerManualConfigFile("/vhapi_configs/research_adjustments.json", WoldsVaults.id("research/researches/salvager"));

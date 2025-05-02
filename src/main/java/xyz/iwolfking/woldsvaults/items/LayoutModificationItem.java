@@ -34,7 +34,7 @@ import java.util.Optional;
 
 public class LayoutModificationItem extends Item implements VaultLevelItem, DataTransferItem {
     public LayoutModificationItem(CreativeModeTab group, ResourceLocation id) {
-        super((new Item.Properties()).tab(group));
+        super((new Properties()).tab(group));
         this.setRegistryName(id);
     }
 

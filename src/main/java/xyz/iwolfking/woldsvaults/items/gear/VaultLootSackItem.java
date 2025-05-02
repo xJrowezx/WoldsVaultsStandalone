@@ -14,6 +14,7 @@ import iskallia.vault.gear.tooltip.GearTooltip;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.item.BasicItem;
+import iskallia.vault.world.data.DiscoveredModelsData;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -48,11 +49,11 @@ public class VaultLootSackItem extends BasicItem implements VaultGearItem {
         return VaultGearClassification.FOCUS;
     }
 
-    @NotNull
-    @Override
-    public ProficiencyType getCraftingProficiencyType(ItemStack itemStack) {
-        return ProficiencyType.FOCUS;
-    }
+//    @NotNull
+//    @Override
+//    public ProficiencyType getCraftingProficiencyType(ItemStack itemStack) {
+//        return ProficiencyType.FOCUS;
+//    }
 
     @NotNull
     @Override
@@ -65,12 +66,11 @@ public class VaultLootSackItem extends BasicItem implements VaultGearItem {
         return EquipmentSlot.OFFHAND;
     }
 
-    @Nullable
-    @Override
-    public ResourceLocation getRandomModel(ItemStack stack, Random random) {
+    @javax.annotation.Nullable
+    public ResourceLocation getRandomModel(ItemStack stack, Random random, @javax.annotation.Nullable Player player, @javax.annotation.Nullable DiscoveredModelsData discoveredModelsData) {
         VaultGearData gearData = VaultGearData.read(stack);
         EquipmentSlot intendedSlot = this.getGearType(stack).getEquipmentSlot();
-        return ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(stack, gearData, intendedSlot, random);
+        return ModConfigs.GEAR_MODEL_ROLL_RARITIES.getRandomRoll(stack, gearData, intendedSlot, random, player, discoveredModelsData);
     }
 
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {

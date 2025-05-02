@@ -12,6 +12,7 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.entities.WoldBoss;
 import xyz.iwolfking.woldsvaults.entities.ghosts.*;
+import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangEntity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +31,7 @@ public class ModEntities {
     public static EntityType<RedGhost> RED_GHOST;
     public static EntityType<YellowGhost> YELLOW_GHOST;
     public static EntityType<DarkGrayGhost> DARK_GRAY_GHOST;
+    public static EntityType<VaultRangEntity> VAULT_RANG;
 
     public static void register(RegistryEvent.Register<EntityType<?>> event) {
         WOLD = registerLivingWV("wold", EntityType.Builder.of(WoldBoss::new, MobCategory.MONSTER)
@@ -44,6 +46,11 @@ public class ModEntities {
         RED_GHOST = registerLivingWV("red_ghost", EntityType.Builder.of(RedGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new RedGhost(RED_GHOST, level))), RedGhost::createAttributes, event);
         YELLOW_GHOST = registerLivingWV("yellow_ghost", EntityType.Builder.of(YellowGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new YellowGhost(YELLOW_GHOST, level))), YellowGhost::createAttributes, event);
         DARK_GRAY_GHOST = registerLivingWV("dark_gray_ghost", EntityType.Builder.of(DarkGrayGhost::new, MobCategory.MONSTER).sized(0.6F, 1.95F).clientTrackingRange(8).fireImmune().setCustomClientFactory(((spawnEntity, level) -> new DarkGrayGhost(DARK_GRAY_GHOST, level))), DarkGrayGhost::createAttributes, event);
+        VAULT_RANG = registerWV("rang", EntityType.Builder.<VaultRangEntity>of(VaultRangEntity::new, MobCategory.MISC)
+                .sized(0.4F, 0.4F)
+                .clientTrackingRange(4)
+                .updateInterval(10) // update interval
+                .setCustomClientFactory((spawnEntity, world) -> new VaultRangEntity(VAULT_RANG, world)), event);
     }
 
 

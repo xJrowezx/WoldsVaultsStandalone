@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"texture": "the_vault:item/gear/trident/undyne.png",
+	"texture": "the_vault:item/gear/trident/undyne",
 	"textureSize": [
 		64,
 		64

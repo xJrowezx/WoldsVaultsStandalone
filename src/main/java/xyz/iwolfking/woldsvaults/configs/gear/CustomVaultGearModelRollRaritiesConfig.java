@@ -20,19 +20,21 @@ import java.util.Map;
 
 public class CustomVaultGearModelRollRaritiesConfig {
 
-    public static Map<VaultGearRarity, List<String>> BATTLESTAFF_MODEL_ROLLS = new HashMap<>();
-    public static Map<VaultGearRarity, List<String>> TRIDENT_MODEL_ROLLS = new HashMap<>();
-    public static Map<VaultGearRarity, List<String>> PLUSHIE_MODEL_ROLLS = new HashMap<>();
-    public static Map<VaultGearRarity, List<String>> LOOT_SACKS_MODEL_ROLLS = new HashMap<>();
+    public static Map<String, List<String>> BATTLESTAFF_MODEL_ROLLS = new HashMap<>();
+    public static Map<String, List<String>> TRIDENT_MODEL_ROLLS = new HashMap<>();
+    public static Map<String, List<String>> PLUSHIE_MODEL_ROLLS = new HashMap<>();
+    public static Map<String, List<String>> LOOT_SACKS_MODEL_ROLLS = new HashMap<>();
+    public static Map<String, List<String>> RANG_MODEL_ROLLS = new HashMap<>();
 
     static {
         BATTLESTAFF_MODEL_ROLLS = getModelMapFromFile(ModItems.BATTLESTAFF);
         TRIDENT_MODEL_ROLLS = getModelMapFromFile(ModItems.TRIDENT);
         PLUSHIE_MODEL_ROLLS = getModelMapFromFile(ModItems.PLUSHIE);
         LOOT_SACKS_MODEL_ROLLS = getModelMapFromFile(ModItems.LOOT_SACK);
+        RANG_MODEL_ROLLS = getModelMapFromFile(ModItems.RANG);
     }
 
-    public static Map<VaultGearRarity, List<String>> getModelMapFromFile(Item item) {
+    public static Map<String, List<String>> getModelMapFromFile(Item item) {
         CustomVaultConfigReader<CustomGearModelRollRaritiesConfig> reader = new CustomVaultConfigReader<>();
         try (InputStream stream = WoldsVaults.class.getResourceAsStream("/vhapi_configs/custom_model_rolls/" + item.getRegistryName().getPath() + ".json")) {
             if (stream == null) {
@@ -44,6 +46,4 @@ public class CustomVaultGearModelRollRaritiesConfig {
             throw new RuntimeException(e);
         }
     }
-
-
 }
