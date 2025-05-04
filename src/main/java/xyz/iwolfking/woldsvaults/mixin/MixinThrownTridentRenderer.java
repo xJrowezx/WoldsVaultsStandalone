@@ -32,8 +32,8 @@ public abstract class MixinThrownTridentRenderer extends EntityRenderer<ThrownTr
         if (itemStack.getItem() instanceof VaultTridentItem)  {
             matrix.pushPose();
             matrix.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(partialTicks, trident.yRotO, trident.getYRot()) - 90.0F));
-            matrix.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(partialTicks, trident.xRotO, trident.getXRot())));
-            Minecraft.getInstance().getItemRenderer().renderStatic(itemStack, ItemTransforms.TransformType.FIXED, light, OverlayTexture.NO_OVERLAY, matrix, buffer, 0);
+            matrix.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(partialTicks, trident.xRotO, trident.getXRot()) + 90.0F));
+            Minecraft.getInstance().getItemRenderer().renderStatic(itemStack, ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, light, OverlayTexture.NO_OVERLAY, matrix, buffer, 0);
             matrix.popPose();
             super.render(trident, yaw, partialTicks, matrix, buffer, light);
             ci.cancel();
