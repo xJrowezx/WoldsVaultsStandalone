@@ -9483,9 +9483,9 @@
 		},
 		"fixed": {
 			"rotation": [
+				180,
 				0,
-				0,
-				90
+				135
 			],
 			"translation": [
 				6,

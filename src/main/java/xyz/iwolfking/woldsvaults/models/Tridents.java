@@ -47,7 +47,7 @@ public class Tridents {
     public static final HandHeldModel VOID;
     public static final HandHeldModel WHISPER;
     public static final HandHeldModel MARLIN;
-    public static final HandHeldModel SWORDFISH;
+    //public static final HandHeldModel SWORDFISH;
 
     public static final HandHeldModel AQUATIC_RAGE;
     public static final HandHeldModel DEATH_KNIGHT;
@@ -105,8 +105,8 @@ public class Tridents {
 
 
         //unique
-        MARLIN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/marlin"), "Marlin Trident")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
-        SWORDFISH = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/swordfish"), "Swordfish Trident")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
+        MARLIN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/marlin"), "Marlin Trident")).properties(new DynamicModelProperties()));
+        //SWORDFISH = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/swordfish"), "Swordfish Trident")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         MJOLNIR = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/mjolnir"), "Mjolnir")).properties(new DynamicModelProperties()));
 
 
