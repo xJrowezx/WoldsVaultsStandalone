@@ -7,15 +7,20 @@ import iskallia.vault.gear.attribute.custom.effect.EffectCloudAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.init.ModConfigs;
+import iskallia.vault.init.ModEntities;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.init.ModSounds;
+import iskallia.vault.skill.ability.effect.spi.AbstractSmiteAbility;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
-import iskallia.vault.util.calc.AreaOfEffectHelper;
+import iskallia.vault.util.calc.AbilityPowerHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.*;
@@ -45,14 +50,29 @@ public abstract class MixinThrownTrident extends AbstractArrow {
     @Shadow private boolean dealtDamage;
 
     private static Random random = new Random();
+    private static final int SMITE_DELAY_TICKS = 3;
+    private LivingEntity pendingSmiteTarget = null;
+    private int smiteDelayCounter = 0;
 
-    protected MixinThrownTrident(EntityType<? extends AbstractArrow> p_36721_, Level p_36722_) {
-        super(p_36721_, p_36722_);
+    protected MixinThrownTrident(EntityType<? extends AbstractArrow> pEntityType, Level pLevel) {
+        super(pEntityType, pLevel);
     }
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true, remap = true)
     private void tickVaultTrident(CallbackInfo ci) {
         if(this.tridentItem != null && this.tridentItem.getItem() instanceof VaultTridentItem) {
+            if (pendingSmiteTarget != null) {
+                smiteDelayCounter++;
+                if (smiteDelayCounter >= SMITE_DELAY_TICKS) {
+                    Entity owner = this.getOwner();
+                    if (owner instanceof ServerPlayer serverPlayer && pendingSmiteTarget.isAlive()) {
+                        applySmiteDamage(serverPlayer, pendingSmiteTarget);
+                    }
+                    pendingSmiteTarget = null;
+                    smiteDelayCounter = 0;
+                }
+            }
+
             if (this.inGroundTime > 4) {
                 this.dealtDamage = true;
             }
@@ -88,8 +108,8 @@ public abstract class MixinThrownTrident extends AbstractArrow {
             super.tick();
             ci.cancel();
         }
-
     }
+
     @Inject(method = "onHitEntity", at = @At("HEAD"), cancellable = true, remap = true)
     private void onHitEntityWithVaultTrident(EntityHitResult p_37573_, CallbackInfo ci) {
         if(this.tridentItem.getItem() instanceof VaultTridentItem) {
@@ -101,58 +121,58 @@ public abstract class MixinThrownTrident extends AbstractArrow {
             VaultGearData data = VaultGearData.read(tridentItem);
             Double f = data.get(ModGearAttributes.ATTACK_DAMAGE, VaultGearAttributeTypeMerger.doubleSum());
 
-
             Entity entity1 = this.getOwner();
             if(entity1 instanceof Player player) {
                 AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
                 MobType type = ((LivingEntity) entity).getMobType();
+                boolean hasSmiteAttribute = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.CONDUIT, VaultGearAttributeTypeMerger.anyTrue());
                 float increasedDamage = 0.0F;
                 if (!ActiveFlags.IS_AP_ATTACKING.isSet())
-                    /* 417 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_INCREASE, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                /* 418 */     if (type == MobType.UNDEAD) {
-                    /* 419 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_UNDEAD, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
-                /* 421 */     if (type == MobType.ARTHROPOD) {
-                    /* 422 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_SPIDERS, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
-                /* 424 */     if (type == MobType.ILLAGER) {
-                    /* 425 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_ILLAGERS, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
-                /* 427 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/nether"), (Entity)entity)) {
-                    /* 428 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_NETHER, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_INCREASE, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                if (type == MobType.UNDEAD) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_UNDEAD, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+                if (type == MobType.ARTHROPOD) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_SPIDERS, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+                if (type == MobType.ILLAGER) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_ILLAGERS, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+                if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/nether"), (Entity)entity)) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_NETHER, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
                 if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/champion"), (Entity)entity)) {
-                    /* 434 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_CHAMPION, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
-                /*     */
-                /* 437 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/dungeon"), (Entity)entity)) {
-                    /* 438 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_DUNGEON, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
-                /*     */
-                /* 441 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/tank"), (Entity)entity)) {
-                    /* 442 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_TANK, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
-                /*     */
-                /* 445 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/horde"), (Entity)entity)) {
-                    /* 446 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_HORDE, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
-                /*     */
-                /* 449 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/assassin"), (Entity)entity)) {
-                    /* 450 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_ASSASSIN, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
-                /*     */
-                /* 453 */     if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/dweller"), (Entity)entity)) {
-                    /* 454 */       increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_DWELLER, VaultGearAttributeTypeMerger.floatSum())).floatValue();
-                    /*     */     }
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_CHAMPION, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+                if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/dungeon"), (Entity)entity)) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_DUNGEON, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+                if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/tank"), (Entity)entity)) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_TANK, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+                if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/horde"), (Entity)entity)) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_HORDE, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+                if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/assassin"), (Entity)entity)) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_ASSASSIN, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+                if (ModConfigs.ENTITY_GROUPS.isInGroup(VaultMod.id("mob_type/dweller"), (Entity)entity)) {
+                    increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_DWELLER, VaultGearAttributeTypeMerger.floatSum())).floatValue();
+                }
+
+                if (hasSmiteAttribute && entity1 instanceof ServerPlayer serverPlayer && entity instanceof LivingEntity livingTarget) {
+                    createSmiteVisualEffect(serverPlayer, livingTarget);
+                    pendingSmiteTarget = livingTarget;
+                    smiteDelayCounter = 0;
+                }
+
                 f += (f * (1.0F + increasedDamage));
             }
-
 
             DamageSource damagesource = DamageSource.trident(this, (Entity)(entity1 == null ? this : entity1));
             this.dealtDamage = true;
             SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
             if (entity.hurt(damagesource, f.floatValue())) {
-
                 if (entity instanceof LivingEntity) {
                     LivingEntity livingentity1 = (LivingEntity)entity;
                     if (entity1 instanceof LivingEntity) {
@@ -186,7 +206,6 @@ public abstract class MixinThrownTrident extends AbstractArrow {
 
                 AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(attacker);
                 ((List)snapshot.getAttributeValue(ModGearAttributes.EFFECT_CLOUD, VaultGearAttributeTypeMerger.asList())).forEach(cloud -> {
-
                     MobEffect effect = ((EffectCloudAttribute) cloud).getPrimaryEffect();
                     if (effect == null) {
                         return;
@@ -201,6 +220,30 @@ public abstract class MixinThrownTrident extends AbstractArrow {
             this.playSound(soundevent, f1, 1.0F);
             ci.cancel();
         }
+    }
+
+    private void createSmiteVisualEffect(ServerPlayer player, LivingEntity target) {
+        final int BOLT_COLOR = 0x7777FF;
+        AbstractSmiteAbility.SmiteBolt smiteBolt = ModEntities.SMITE_ABILITY_BOLT.create(player.level);
+        if (smiteBolt != null) {
+            smiteBolt.setColor(BOLT_COLOR);
+            smiteBolt.moveTo(target.position());
+            player.level.addFreshEntity(smiteBolt);
+        }
+
+        player.level.playSound((Player)null, target.getX(), target.getY(), target.getZ(),
+                ModSounds.SMITE_BOLT, SoundSource.PLAYERS, 1.0F,
+                1.0F + Mth.randomBetween(target.getRandom(), -0.2F, 0.2F));
+    }
+
+    private void applySmiteDamage(ServerPlayer player, LivingEntity target) {
+        final float ABILITY_POWER_PERCENTAGE = (float) ((233 + (Math.random() * 67)) / 100.0);
+        ActiveFlags.IS_AP_ATTACKING.runIfNotSet(() -> {
+            ActiveFlags.IS_SMITE_BASE_ATTACKING.runIfNotSet(() -> {
+                double damage = (double)(AbilityPowerHelper.getAbilityPower(player) * ABILITY_POWER_PERCENTAGE);
+                target.hurt(DamageSource.playerAttack(player), (float)damage);
+            });
+        });
     }
 
     private boolean isVaultTridentChanneling() {
