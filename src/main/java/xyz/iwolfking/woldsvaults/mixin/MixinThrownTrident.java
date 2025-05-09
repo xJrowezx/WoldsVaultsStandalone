@@ -19,6 +19,7 @@ import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.AbilityPowerHelper;
 import iskallia.vault.util.calc.PlayerStat;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -59,7 +60,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         super(pEntityType, pLevel);
     }
 
-    @Inject(method = "tick", at = @At("HEAD"), cancellable = true, remap = true)
+    @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void tickVaultTrident(CallbackInfo ci) {
         if (this.tridentItem == null || !(this.tridentItem.getItem() instanceof VaultTridentItem)) {
             return;
@@ -176,12 +177,11 @@ public abstract class MixinThrownTrident extends AbstractArrow {
             f += (f * (1.0F + increasedDamage));
         }
 
-        DamageSource damagesource = DamageSource.trident(this, (Entity)(entity1 == null ? this : entity1));
+        DamageSource damagesource = DamageSource.trident(this, entity1 == null ? this : entity1);
         this.dealtDamage = true;
         SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
         if (entity.hurt(damagesource, f.floatValue())) {
-            if (entity instanceof LivingEntity) {
-                LivingEntity livingentity1 = (LivingEntity)entity;
+            if (entity instanceof LivingEntity livingentity1) {
                 if (entity1 instanceof LivingEntity) {
                     EnchantmentHelper.doPostHurtEffects(livingentity1, entity1);
                     EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity1);
@@ -258,19 +258,28 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
         double damage = 0.0;
         damage += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER, VaultGearAttributeTypeMerger.floatSum());
+        player.sendMessage(new TextComponent("player damage: " + damage), player.getUUID());
         damage += data.get(ModGearAttributes.ABILITY_POWER, VaultGearAttributeTypeMerger.floatSum());
+        player.sendMessage(new TextComponent("player & trident damage: " + damage), player.getUUID());
 
         double multiplier = 1.0D;
         multiplier += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER_PERCENT, VaultGearAttributeTypeMerger.floatSum());
+        player.sendMessage(new TextComponent("player percent: " + multiplier), player.getUUID());
         multiplier += data.get(ModGearAttributes.ABILITY_POWER_PERCENT, VaultGearAttributeTypeMerger.floatSum());
+        player.sendMessage(new TextComponent("player & trident percent: " + multiplier), player.getUUID());
 
         double percentile = 1.0D;
         percentile += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER_PERCENTILE, VaultGearAttributeTypeMerger.floatSum());
+        player.sendMessage(new TextComponent("player percentile: " + percentile), player.getUUID());
         percentile += data.get(ModGearAttributes.ABILITY_POWER_PERCENTILE, VaultGearAttributeTypeMerger.floatSum());
+        player.sendMessage(new TextComponent("player & trident percentile: " + percentile), player.getUUID());
 
         damage *= multiplier;
+        player.sendMessage(new TextComponent("post percent damage: " + damage), player.getUUID());
         damage *= percentile;
+        player.sendMessage(new TextComponent("post percentile damage: " + damage), player.getUUID());
         damage *= CommonEvents.PLAYER_STAT.invoke(PlayerStat.ABILITY_POWER_MULTIPLIER, player, 1.0F).getValue();
+        player.sendMessage(new TextComponent("post event damage: " + damage), player.getUUID());
         target.hurt(DamageSource.playerAttack(player), (float) damage);
     }
 
