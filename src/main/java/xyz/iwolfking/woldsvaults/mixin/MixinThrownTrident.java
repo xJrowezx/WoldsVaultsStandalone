@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.mixin;
 
 import iskallia.vault.VaultMod;
+import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.entity.entity.EffectCloudEntity;
 import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.gear.attribute.custom.effect.EffectCloudAttribute;
@@ -16,6 +17,7 @@ import iskallia.vault.skill.base.SkillContext;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.AbilityPowerHelper;
+import iskallia.vault.util.calc.PlayerStat;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -49,7 +51,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
     @Shadow private ItemStack tridentItem;
     @Shadow private boolean dealtDamage;
 
-    private final VaultGearData data = VaultGearData.read(this.tridentItem);
+    private VaultGearData data = null;
     private LivingEntity pendingSmiteTarget = null;
     private int smiteDelayCounter = 0;
 
@@ -59,54 +61,60 @@ public abstract class MixinThrownTrident extends AbstractArrow {
 
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true, remap = true)
     private void tickVaultTrident(CallbackInfo ci) {
-        if(this.tridentItem != null && this.tridentItem.getItem() instanceof VaultTridentItem) {
-            if (pendingSmiteTarget != null) {
-                smiteDelayCounter++;
-                if (smiteDelayCounter >= SMITE_DELAY_TICKS) {
-                    Entity owner = this.getOwner();
-                    if (owner instanceof ServerPlayer serverPlayer && pendingSmiteTarget.isAlive()) {
-                        applySmiteDamage(serverPlayer, pendingSmiteTarget);
-                    }
-                    pendingSmiteTarget = null;
-                    smiteDelayCounter = 0;
-                }
-            }
-
-            if (this.inGroundTime > 4) {
-                this.dealtDamage = true;
-            }
-
-            Entity entity = this.getOwner();
-
-            int i = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_LOYALTY, VaultGearAttributeTypeMerger.intSum());
-            if (entity != null && i > 0 && (this.dealtDamage || this.isNoPhysics()) ) {
-                if (!this.isAcceptibleReturnOwner()) {
-                    if (!this.level.isClientSide && this.pickup == Pickup.ALLOWED) {
-                        this.spawnAtLocation(this.getPickupItem(), 0.1F);
-                    }
-
-                    this.discard();
-                } else {
-                    this.setNoPhysics(true);
-                    Vec3 vec3 = entity.getEyePosition().subtract(this.position());
-                    this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015D * (double)i, this.getZ());
-                    if (this.level.isClientSide) {
-                        this.yOld = this.getY();
-                    }
-
-                    double d0 = 0.05D * (double)i;
-                    this.setDeltaMovement(this.getDeltaMovement().scale(0.95D).add(vec3.normalize().scale(d0)));
-                    if (this.clientSideReturnTridentTickCount == 0) {
-                        this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
-                    }
-
-                    ++this.clientSideReturnTridentTickCount;
-                }
-            }
-
-            super.tick();
-            ci.cancel();
+        if (this.tridentItem == null || !(this.tridentItem.getItem() instanceof VaultTridentItem)) {
+            return;
         }
+
+        if (data == null) {
+            data = VaultGearData.read(this.tridentItem);
+        }
+
+        if (pendingSmiteTarget != null) {
+            smiteDelayCounter++;
+            if (smiteDelayCounter >= SMITE_DELAY_TICKS) {
+                Entity owner = this.getOwner();
+                if (owner instanceof ServerPlayer serverPlayer && pendingSmiteTarget.isAlive()) {
+                    applySmiteDamage(serverPlayer, pendingSmiteTarget);
+                }
+                pendingSmiteTarget = null;
+                smiteDelayCounter = 0;
+            }
+        }
+
+        if (this.inGroundTime > 4) {
+            this.dealtDamage = true;
+        }
+
+        Entity entity = this.getOwner();
+
+        int i = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.TRIDENT_LOYALTY, VaultGearAttributeTypeMerger.intSum());
+        if (entity != null && i > 0 && (this.dealtDamage || this.isNoPhysics()) ) {
+            if (!this.isAcceptibleReturnOwner()) {
+                if (!this.level.isClientSide && this.pickup == Pickup.ALLOWED) {
+                    this.spawnAtLocation(this.getPickupItem(), 0.1F);
+                }
+
+                this.discard();
+            } else {
+                this.setNoPhysics(true);
+                Vec3 vec3 = entity.getEyePosition().subtract(this.position());
+                this.setPosRaw(this.getX(), this.getY() + vec3.y * 0.015D * (double)i, this.getZ());
+                if (this.level.isClientSide) {
+                    this.yOld = this.getY();
+                }
+
+                double d0 = 0.05D * (double)i;
+                this.setDeltaMovement(this.getDeltaMovement().scale(0.95D).add(vec3.normalize().scale(d0)));
+                if (this.clientSideReturnTridentTickCount == 0) {
+                    this.playSound(SoundEvents.TRIDENT_RETURN, 10.0F, 1.0F);
+                }
+
+                ++this.clientSideReturnTridentTickCount;
+            }
+        }
+
+        super.tick();
+        ci.cancel();
     }
 
     @Inject(method = "onHitEntity", at = @At("HEAD"), cancellable = true, remap = true)
@@ -247,10 +255,22 @@ public abstract class MixinThrownTrident extends AbstractArrow {
             return;
         }
 
+        AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
         double damage = AbilityPowerHelper.getAbilityPower(player);
+        damage += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER, VaultGearAttributeTypeMerger.floatSum());
         damage += data.get(ModGearAttributes.ABILITY_POWER, VaultGearAttributeTypeMerger.floatSum());
-        damage += data.get(ModGearAttributes.ABILITY_POWER_PERCENT, VaultGearAttributeTypeMerger.floatSum()) * damage;
-        damage += data.get(ModGearAttributes.ABILITY_POWER_PERCENTILE, VaultGearAttributeTypeMerger.floatSum()) * damage;
+
+        double multiplier = 1.0D;
+        multiplier += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER_PERCENT, VaultGearAttributeTypeMerger.floatSum());
+        multiplier += data.get(ModGearAttributes.ABILITY_POWER_PERCENT, VaultGearAttributeTypeMerger.floatSum());
+
+        double percentile = 1.0D;
+        percentile += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER_PERCENTILE, VaultGearAttributeTypeMerger.floatSum());
+        percentile += data.get(ModGearAttributes.ABILITY_POWER_PERCENTILE, VaultGearAttributeTypeMerger.floatSum());
+
+        damage *= multiplier;
+        damage *= percentile;
+        damage *= CommonEvents.PLAYER_STAT.invoke(PlayerStat.ABILITY_POWER_MULTIPLIER, player, 1.0F).getValue();
         target.hurt(DamageSource.playerAttack(player), (float) damage);
     }
 
