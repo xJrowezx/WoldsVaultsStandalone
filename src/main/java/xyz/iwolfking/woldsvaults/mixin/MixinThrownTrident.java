@@ -254,33 +254,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         if (ActiveFlags.IS_AP_ATTACKING.isSet() || ActiveFlags.IS_SMITE_BASE_ATTACKING.isSet()) {
             return;
         }
-
-        AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
-        double damage = 0.0;
-        damage += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER, VaultGearAttributeTypeMerger.floatSum());
-        player.sendMessage(new TextComponent("player damage: " + damage), player.getUUID());
-        damage += data.get(ModGearAttributes.ABILITY_POWER, VaultGearAttributeTypeMerger.floatSum());
-        player.sendMessage(new TextComponent("player & trident damage: " + damage), player.getUUID());
-
-        double multiplier = 1.0D;
-        multiplier += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER_PERCENT, VaultGearAttributeTypeMerger.floatSum());
-        player.sendMessage(new TextComponent("player percent: " + multiplier), player.getUUID());
-        multiplier += data.get(ModGearAttributes.ABILITY_POWER_PERCENT, VaultGearAttributeTypeMerger.floatSum());
-        player.sendMessage(new TextComponent("player & trident percent: " + multiplier), player.getUUID());
-
-        double percentile = 1.0D;
-        percentile += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER_PERCENTILE, VaultGearAttributeTypeMerger.floatSum());
-        player.sendMessage(new TextComponent("player percentile: " + percentile), player.getUUID());
-        percentile += data.get(ModGearAttributes.ABILITY_POWER_PERCENTILE, VaultGearAttributeTypeMerger.floatSum());
-        player.sendMessage(new TextComponent("player & trident percentile: " + percentile), player.getUUID());
-
-        damage *= multiplier;
-        player.sendMessage(new TextComponent("post percent damage: " + damage), player.getUUID());
-        damage *= percentile;
-        player.sendMessage(new TextComponent("post percentile damage: " + damage), player.getUUID());
-        damage *= CommonEvents.PLAYER_STAT.invoke(PlayerStat.ABILITY_POWER_MULTIPLIER, player, 1.0F).getValue();
-        player.sendMessage(new TextComponent("post event damage: " + damage), player.getUUID());
-        target.hurt(DamageSource.playerAttack(player), (float) damage);
+        target.hurt(DamageSource.playerAttack(player), AbilityPowerHelper.getAbilityPower(player));
     }
 
     private boolean isVaultTridentChanneling() {
