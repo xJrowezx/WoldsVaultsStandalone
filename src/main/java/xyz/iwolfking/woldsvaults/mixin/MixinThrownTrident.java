@@ -256,7 +256,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         }
 
         AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
-        double damage = AbilityPowerHelper.getAbilityPower(player);
+        double damage = 0.0;
         damage += snapshot.getAttributeValue(ModGearAttributes.ABILITY_POWER, VaultGearAttributeTypeMerger.floatSum());
         damage += data.get(ModGearAttributes.ABILITY_POWER, VaultGearAttributeTypeMerger.floatSum());
 
