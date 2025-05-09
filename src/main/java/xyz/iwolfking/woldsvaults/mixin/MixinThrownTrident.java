@@ -10,7 +10,9 @@ import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModEntities;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.init.ModSounds;
+import iskallia.vault.skill.ability.effect.NovaAbility;
 import iskallia.vault.skill.ability.effect.spi.AbstractSmiteAbility;
+import iskallia.vault.skill.base.SkillContext;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.AbilityPowerHelper;
@@ -117,15 +119,15 @@ public abstract class MixinThrownTrident extends AbstractArrow {
                 ci.cancel();
                 return;
             }
+
             Entity entity = p_37573_.getEntity();
             VaultGearData data = VaultGearData.read(tridentItem);
             Double f = data.get(ModGearAttributes.ATTACK_DAMAGE, VaultGearAttributeTypeMerger.doubleSum());
-
+            boolean hasSmiteAttribute = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.CONDUIT, VaultGearAttributeTypeMerger.anyTrue());
             Entity entity1 = this.getOwner();
             if(entity1 instanceof Player player) {
                 AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
                 MobType type = ((LivingEntity) entity).getMobType();
-                boolean hasSmiteAttribute = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.CONDUIT, VaultGearAttributeTypeMerger.anyTrue());
                 float increasedDamage = 0.0F;
                 if (!ActiveFlags.IS_AP_ATTACKING.isSet())
                     increasedDamage += ((Float)snapshot.getAttributeValue(ModGearAttributes.DAMAGE_INCREASE, VaultGearAttributeTypeMerger.floatSum())).floatValue();
@@ -215,6 +217,14 @@ public abstract class MixinThrownTrident extends AbstractArrow {
                     cloudEntity.setOwner(attacker);
                     attacker.getLevel().addFreshEntity((Entity)cloudEntity);
                 });
+
+                if (entity1 instanceof ServerPlayer player && hasSmiteAttribute) {
+                    Vec3 hitPos = entity.position();
+                    NovaAbility novaAbility = new NovaAbility(0, 0, 0, 0,0.0f,7.0f, 1.0f, 0.4f);
+                    SkillContext context = SkillContext.of(player);
+                    context.getSource().setPos(hitPos);
+                    novaAbility.onAction(context);
+                }
             }
 
             this.playSound(soundevent, f1, 1.0F);
