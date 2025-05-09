@@ -1,7 +1,6 @@
 package xyz.iwolfking.woldsvaults.mixin;
 
 import iskallia.vault.VaultMod;
-import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.entity.entity.EffectCloudEntity;
 import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.gear.attribute.custom.effect.EffectCloudAttribute;
@@ -17,9 +16,7 @@ import iskallia.vault.skill.base.SkillContext;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.AbilityPowerHelper;
-import iskallia.vault.util.calc.PlayerStat;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -129,7 +126,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
 
         Entity entity = p_37573_.getEntity();
         Double f = data.get(ModGearAttributes.ATTACK_DAMAGE, VaultGearAttributeTypeMerger.doubleSum());
-        boolean hasSmiteAttribute = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.CONDUIT, VaultGearAttributeTypeMerger.anyTrue());
+        boolean hasSmiteAttribute = data.get(xyz.iwolfking.woldsvaults.init.ModGearAttributes.DISCHARGE, VaultGearAttributeTypeMerger.anyTrue());
         Entity entity1 = this.getOwner();
         if(entity1 instanceof Player player) {
             AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
@@ -225,7 +222,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
 
             if (entity1 instanceof ServerPlayer player && hasSmiteAttribute) {
                 Vec3 hitPos = entity.position();
-                NovaAbility novaAbility = new NovaAbility(0, 0, 0, 0,0.0f,7.0f, 1.0f, 0.4f);
+                NovaAbility novaAbility = new NovaAbility(0, 0, 0, 0,0.0f,7.0f, 7.0f, 0.4f);
                 SkillContext context = SkillContext.of(player);
                 context.getSource().setPos(hitPos);
                 novaAbility.onAction(context);
@@ -254,7 +251,7 @@ public abstract class MixinThrownTrident extends AbstractArrow {
         if (ActiveFlags.IS_AP_ATTACKING.isSet() || ActiveFlags.IS_SMITE_BASE_ATTACKING.isSet()) {
             return;
         }
-        target.hurt(DamageSource.playerAttack(player), AbilityPowerHelper.getAbilityPower(player));
+        target.hurt(DamageSource.playerAttack(player), AbilityPowerHelper.getAbilityPower(player)* 3.0F);
     }
 
     private boolean isVaultTridentChanneling() {
