@@ -89,47 +89,42 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
 
     private void finishCraft() {
         VaultRecyclerConfig.RecyclerOutput output = this.getRecipeOutput();
-        if (output != null) {
-            if (this.level != null) {
-                this.level.playSound((Player)null, this.getBlockPos(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 0.5F + (new Random()).nextFloat() * 0.25F, 0.75F + (new Random()).nextFloat() * 0.25F);
-            }
+        if (output == null || this.level == null) return;
 
-            ItemStack input = this.inventory.getItem(0).copy();
-            float additionalChance = 0.0F;
-            if (input.getItem() instanceof VaultGearItem) {
-                VaultGearRarity rarity = VaultGearData.read(input).getRarity();
-                additionalChance = ModConfigs.VAULT_RECYCLER.getAdditionalOutputRarityChance(rarity);
-            }
+        this.level.playSound(null, this.getBlockPos(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 0.5F + new Random().nextFloat() * 0.25F, 0.75F + new Random().nextFloat() * 0.25F);
 
-            this.inventory.removeItem(0, 1);
-            MiscUtils.addStackToSlot(this.inventory, 1, this.getUseRelatedOutput(input, output.generateMainOutput(additionalChance)));
-            MiscUtils.addStackToSlot(this.inventory, 2, this.getUseRelatedOutput(input, output.generateExtraOutput1(additionalChance)));
-
-
-            if(MiscUtils.canFullyMergeIntoSlot(this.inventory, 3, output.getExtraOutput2Matching())) {
-                MiscUtils.addStackToSlot(this.inventory, 3, this.getUseRelatedOutput(input, output.generateExtraOutput2(additionalChance)));
-            }
-            else if(MiscUtils.canFullyMergeIntoSlot(this.inventory, 4, output.getExtraOutput2Matching())) {
-                MiscUtils.addStackToSlot(this.inventory, 4, this.getUseRelatedOutput(input, output.generateExtraOutput2(additionalChance)));
-            }
-            else if(MiscUtils.canFullyMergeIntoSlot(this.inventory, 5, output.getExtraOutput2Matching())) {
-                MiscUtils.addStackToSlot(this.inventory, 5, this.getUseRelatedOutput(input, output.generateExtraOutput2(additionalChance)));
-            }
-            else if(MiscUtils.canFullyMergeIntoSlot(this.inventory, 6, output.getExtraOutput2Matching())) {
-                MiscUtils.addStackToSlot(this.inventory, 6, this.getUseRelatedOutput(input, output.generateExtraOutput2(additionalChance)));
-            }
-            else if(MiscUtils.canFullyMergeIntoSlot(this.inventory, 7, output.getExtraOutput2Matching())) {
-                MiscUtils.addStackToSlot(this.inventory, 7, this.getUseRelatedOutput(input, output.generateExtraOutput2(additionalChance)));
-            }
-            else if(MiscUtils.canFullyMergeIntoSlot(this.inventory, 8, output.getExtraOutput2Matching())) {
-                MiscUtils.addStackToSlot(this.inventory, 8, this.getUseRelatedOutput(input, output.generateExtraOutput2(additionalChance)));
-            }
-            else {
-                MiscUtils.addStackToSlot(this.inventory, 9, this.getUseRelatedOutput(input, output.generateExtraOutput2(additionalChance)));
-            }
-
-            ModNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new RecyclerParticleMessage(this.getBlockPos()));
+        ItemStack input = this.inventory.getItem(0).copy();
+        float additionalChance = 0.0F;
+        if (input.getItem() instanceof VaultGearItem) {
+            VaultGearRarity rarity = VaultGearData.read(input).getRarity();
+            additionalChance = ModConfigs.VAULT_RECYCLER.getAdditionalOutputRarityChance(rarity);
+            handleOutput(input, output, additionalChance, rarity);
+        } else {
+            handleOutput(input, output, additionalChance, null);
         }
+
+        ModNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new RecyclerParticleMessage(this.getBlockPos()));
+    }
+
+    private void handleOutput(ItemStack input, VaultRecyclerConfig.RecyclerOutput output, float additionalChance, VaultGearRarity rarity) {
+        this.inventory.removeItem(0, 1);
+
+        MiscUtils.addStackToSlot(this.inventory, 1, this.getUseRelatedOutput(input, output.generateMainOutput(additionalChance)));
+        MiscUtils.addStackToSlot(this.inventory, 2, this.getUseRelatedOutput(input, output.generateExtraOutput1(additionalChance)));
+
+        ItemStack extraOutput2 = (rarity != null)
+                ? output.generateExtraOutput2(additionalChance, rarity, false)
+                : output.generateExtraOutput2(additionalChance);
+
+        ItemStack matchedStack = output.getExtraOutput2Matching();
+        for (int slot = 3; slot <= 8; slot++) {
+            if (MiscUtils.canFullyMergeIntoSlot(this.inventory, slot, matchedStack)) {
+                MiscUtils.addStackToSlot(this.inventory, slot, this.getUseRelatedOutput(input, extraOutput2));
+                return;
+            }
+        }
+
+        MiscUtils.addStackToSlot(this.inventory, 9, this.getUseRelatedOutput(input, extraOutput2));
     }
 
     private ItemStack getUseRelatedOutput(ItemStack input, ItemStack output) {
