@@ -45,15 +45,11 @@ public class DecoBossRunePillarBlock extends Block implements EntityBlock {
     }
 
     public <A extends BlockEntity> BlockEntityTicker<A> getTicker(Level level, BlockState state, BlockEntityType<A> blockEntityType) {
-        return level.isClientSide() ? BlockHelper.getTicker(blockEntityType, ModBlocks.DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE, DecoBossRunePillarEntity::tickClient) : BlockHelper.getTicker(blockEntityType, ModBlocks.DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE, DecoBossRunePillarEntity::tickServer);
+        return level.isClientSide() ? BlockHelper.getTicker(blockEntityType, ModBlocks.DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE, DecoBossRunePillarEntity::tickClient) : null;
     }
 
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return ModBlocks.DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE.create(pPos, pState);
-    }
-
-    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-        return false;
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -61,49 +57,6 @@ public class DecoBossRunePillarBlock extends Block implements EntityBlock {
     }
 
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (hand != InteractionHand.MAIN_HAND) {
-            return InteractionResult.CONSUME;
-        } else {
-            BlockEntity var8 = world.getBlockEntity(pos);
-            if (var8 instanceof BossRunePillarTileEntity) {
-                BossRunePillarTileEntity tile = (BossRunePillarTileEntity)var8;
-                boolean mainHandEmpty = player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty();
-                boolean offHandEmpty = player.getItemInHand(InteractionHand.OFF_HAND).isEmpty();
-                ItemStack existing = tile.getHeldItem().copy();
-                if (offHandEmpty && mainHandEmpty && existing.isEmpty()) {
-                    return InteractionResult.PASS;
-                } else {
-                    ItemStack heldItem;
-                    if (mainHandEmpty && !offHandEmpty) {
-                        heldItem = player.getItemInHand(InteractionHand.OFF_HAND);
-                        if (heldItem.getItem() != ModItems.BOSS_RUNE) {
-                            return InteractionResult.PASS;
-                        }
-
-                        tile.setHeldItem(heldItem.copy());
-                        tile.setItemPlacedBy(player.getUUID());
-                        player.setItemInHand(InteractionHand.OFF_HAND, existing);
-                    } else {
-                        heldItem = player.getItemInHand(InteractionHand.MAIN_HAND);
-                        if (heldItem.getItem() != ModItems.BOSS_RUNE) {
-                            return InteractionResult.PASS;
-                        }
-
-                        tile.setHeldItem(heldItem.copy());
-                        tile.setItemPlacedBy(player.getUUID());
-                        player.setItemInHand(InteractionHand.MAIN_HAND, existing);
-                    }
-
-                    tile.ticksToConsume = 20;
-                    tile.consuming = false;
-                    world.playSound((Player)null, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
-                    tile.setChanged();
-                    world.sendBlockUpdated(pos, tile.getBlockState(), tile.getBlockState(), 3);
-                    return InteractionResult.CONSUME;
-                }
-            } else {
-                return InteractionResult.PASS;
-            }
-        }
+        return InteractionResult.PASS;
     }
 }

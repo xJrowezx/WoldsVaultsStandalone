@@ -166,7 +166,7 @@ public class ModBlocks {
 
     public static void registerTileEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, ScavengerAltarRenderer::new);
-        event.registerBlockEntityRenderer(DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE, RunePillarRenderer::new);
+        //event.registerBlockEntityRenderer(DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE, DecoBossRunePillarEntity::new);
         event.registerBlockEntityRenderer(SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE, SurvivalMobBarrierRenderer::new);
         event.registerBlockEntityRenderer(DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE, DungeonPedestalRenderer::new);
         //event.registerBlockEntityRenderer(DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, DecoLodestoneRenderer::new);
