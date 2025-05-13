@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.init;
 import com.mojang.datafixers.types.Type;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.CoinPileDecorBlock;
+import iskallia.vault.block.render.RunePillarRenderer;
 import iskallia.vault.block.render.ScavengerAltarRenderer;
 import iskallia.vault.init.ModItems;
 import iskallia.vault.item.CoinBlockItem;
@@ -20,7 +21,6 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.RegistryEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.blocks.*;
-import xyz.iwolfking.woldsvaults.blocks.renderers.DecoLodestoneRenderer;
 import xyz.iwolfking.woldsvaults.blocks.renderers.DungeonPedestalRenderer;
 import xyz.iwolfking.woldsvaults.blocks.renderers.SurvivalMobBarrierRenderer;
 import xyz.iwolfking.woldsvaults.blocks.tiles.*;
@@ -43,6 +43,7 @@ public class ModBlocks {
     public static final HellishSandBlock HELLISH_SAND_BLOCK;
     public static final DungeonPedestalBlock DUNGEON_PEDESTAL_BLOCK;
     public static final DecoScavengerAltarBlock DECO_SCAVENGER_ALTAR_BLOCK;
+    public static final DecoBossRunePillarBlock DECO_BOSS_RUNE_PILLAR_BLOCK;
     public static final DecoObeliskBlock DECO_OBELISK_BLOCK;
     public static final DecoLodestoneBlock DECO_LODESTONE_BLOCK;
     public static final DecoMonolithBlock DECO_MONOLITH_BLOCK;
@@ -58,6 +59,7 @@ public class ModBlocks {
     public static final BlockEntityType<HellishSandTileEntity> HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DungeonPedestalTileEntity> DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoScavengerAltarEntity> DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoBossRunePillarEntity> DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoObeliskTileEntity> DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoLodestoneTileEntity> DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoMonolithTileEntity> DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE;
@@ -77,6 +79,7 @@ public class ModBlocks {
         HELLISH_SAND_BLOCK = new HellishSandBlock();
         DUNGEON_PEDESTAL_BLOCK = new DungeonPedestalBlock();
         DECO_SCAVENGER_ALTAR_BLOCK = new DecoScavengerAltarBlock();
+        DECO_BOSS_RUNE_PILLAR_BLOCK = new DecoBossRunePillarBlock();
         DECO_OBELISK_BLOCK = (DecoObeliskBlock) new DecoObeliskBlock();
         DECO_LODESTONE_BLOCK = (DecoLodestoneBlock) new DecoLodestoneBlock();
         DECO_MONOLITH_BLOCK = (DecoMonolithBlock) new DecoMonolithBlock();
@@ -94,6 +97,7 @@ public class ModBlocks {
         HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(HellishSandTileEntity::new, new Block[]{HELLISH_SAND_BLOCK}).build((Type)null);
         DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DungeonPedestalTileEntity::new, new Block[]{DUNGEON_PEDESTAL_BLOCK}).build((Type)null);
         DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoScavengerAltarEntity::new, new Block[]{DECO_SCAVENGER_ALTAR_BLOCK}).build((Type)null);
+        DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoBossRunePillarEntity::new, new Block[]{DECO_BOSS_RUNE_PILLAR_BLOCK}).build((Type)null);
         DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoObeliskTileEntity::new, new Block[]{DECO_OBELISK_BLOCK}).build((Type)null);
         DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoLodestoneTileEntity::new, new Block[]{DECO_LODESTONE_BLOCK}).build((Type)null);
         DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoMonolithTileEntity::new, new Block[]{DECO_MONOLITH_BLOCK}).build((Type)null);
@@ -107,6 +111,7 @@ public class ModBlocks {
         registerBlock(event, HELLISH_SAND_BLOCK, WoldsVaults.id("hellish_sand"));
         registerBlock(event, DUNGEON_PEDESTAL_BLOCK, WoldsVaults.id("dungeon_pedestal"));
         registerBlock(event, DECO_SCAVENGER_ALTAR_BLOCK, WoldsVaults.id("scavenger_altar"));
+        registerBlock(event, DECO_BOSS_RUNE_PILLAR_BLOCK, WoldsVaults.id("rune_pillar"));
         registerBlock(event, DECO_OBELISK_BLOCK, WoldsVaults.id("obelisk"));
         registerBlock(event, DECO_LODESTONE_BLOCK, WoldsVaults.id("lodestone"));
         registerBlock(event, DECO_MONOLITH_BLOCK, WoldsVaults.id("monolith"));
@@ -129,6 +134,7 @@ public class ModBlocks {
         registerTileEntity(event, HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("hellish_sand_tile_entity"));
         registerTileEntity(event, DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("dungeon_pedestal_tile_entity"));
         registerTileEntity(event, DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("scavenger_altar_deco_tile_entity"));
+        registerTileEntity(event, DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("boss_rune_pillar_deco_tile_entity"));
         registerTileEntity(event, DECO_OBELISK_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("obelisk_deco_tile_entity"));
         registerTileEntity(event, DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("lodestone_deco_tile_entity"));
         registerTileEntity(event, DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("monolith_deco_tile_entity"));
@@ -141,6 +147,7 @@ public class ModBlocks {
         registerBlockItem(event, HELLISH_SAND_BLOCK);
         registerBlockItem(event, DUNGEON_PEDESTAL_BLOCK);
         registerBlockItem(event, DECO_SCAVENGER_ALTAR_BLOCK);
+        registerBlockItem(event, DECO_BOSS_RUNE_PILLAR_BLOCK);
         registerBlockItem(event, DECO_OBELISK_BLOCK);
         registerBlockItem(event, DECO_LODESTONE_BLOCK);
         registerBlockItem(event, DECO_MONOLITH_BLOCK);
@@ -159,9 +166,10 @@ public class ModBlocks {
 
     public static void registerTileEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, ScavengerAltarRenderer::new);
+        event.registerBlockEntityRenderer(DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE, RunePillarRenderer::new);
         event.registerBlockEntityRenderer(SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE, SurvivalMobBarrierRenderer::new);
         event.registerBlockEntityRenderer(DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE, DungeonPedestalRenderer::new);
-        event.registerBlockEntityRenderer(DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, DecoLodestoneRenderer::new);
+        //event.registerBlockEntityRenderer(DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, DecoLodestoneRenderer::new);
     }
 
 
