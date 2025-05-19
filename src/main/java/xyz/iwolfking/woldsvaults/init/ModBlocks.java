@@ -3,7 +3,6 @@ package xyz.iwolfking.woldsvaults.init;
 import com.mojang.datafixers.types.Type;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.CoinPileDecorBlock;
-import iskallia.vault.block.render.RunePillarRenderer;
 import iskallia.vault.block.render.ScavengerAltarRenderer;
 import iskallia.vault.init.ModItems;
 import iskallia.vault.item.CoinBlockItem;
@@ -21,6 +20,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.RegistryEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.blocks.*;
+import xyz.iwolfking.woldsvaults.blocks.renderers.DecoGridGatewayRenderer;
 import xyz.iwolfking.woldsvaults.blocks.renderers.DungeonPedestalRenderer;
 import xyz.iwolfking.woldsvaults.blocks.renderers.SurvivalMobBarrierRenderer;
 import xyz.iwolfking.woldsvaults.blocks.tiles.*;
@@ -48,11 +48,16 @@ public class ModBlocks {
     public static final DecoLodestoneBlock DECO_LODESTONE_BLOCK;
     public static final DecoMonolithBlock DECO_MONOLITH_BLOCK;
     public static final SurvivalMobBarrier SURVIVAL_MOB_BARRIER;
-
+    public static final DecoGridGatewayBlock DECO_GRID_GATEWAY_BLOCK;
     public static final CoinPileDecorBlock VAULT_PALLADIUM_PILE;
     public static final CoinPileDecorBlock VAULT_IRIDIUM_PILE;
     public static BlockItem VAULT_PALLADIUM;
     public static BlockItem VAULT_IRIDIUM;
+
+    public static final DecoIdonaAltarBlock DECO_IDONA_ALTAR_BLOCK;
+    public static final DecoTenosAltarBlock DECO_TENOS_ALTAR_BLOCK;
+    public static final DecoWendarrAltarBlock DECO_WENDARR_ALTAR_BLOCK;
+    public static final DecoVelaraAltarBlock DECO_VELARA_ALTAR_BLOCK;
 
     public static final BlockEntityType<VaultSalvagerTileEntity> VAULT_SALVAGER_ENTITY;
     public static final BlockEntityType<IskallianLeavesTileEntity> ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE;
@@ -64,6 +69,11 @@ public class ModBlocks {
     public static final BlockEntityType<DecoLodestoneTileEntity> DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoMonolithTileEntity> DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<SurvivalMobBarrierTileEntity> SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoGridGatewayTileEntity> DECO_GRID_GATEWAY_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoIdonaAltarTileEntity> DECO_IDONA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoTenosAltarTileEntity> DECO_TENOS_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoWendarrAltarTileEntity> DECO_WENDARR_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<DecoVelaraAltarTileEntity> DECO_VELARA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     //public static final BlockEntityType<BackpackBlockEntity> SOPHISTICATED_BACKPACK;
 
 
@@ -84,6 +94,11 @@ public class ModBlocks {
         DECO_LODESTONE_BLOCK = (DecoLodestoneBlock) new DecoLodestoneBlock();
         DECO_MONOLITH_BLOCK = (DecoMonolithBlock) new DecoMonolithBlock();
         SURVIVAL_MOB_BARRIER = (SurvivalMobBarrier) new SurvivalMobBarrier();
+        DECO_GRID_GATEWAY_BLOCK = (DecoGridGatewayBlock) new DecoGridGatewayBlock();
+        DECO_IDONA_ALTAR_BLOCK = (DecoIdonaAltarBlock) new DecoIdonaAltarBlock();
+        DECO_TENOS_ALTAR_BLOCK = (DecoTenosAltarBlock) new DecoTenosAltarBlock();
+        DECO_WENDARR_ALTAR_BLOCK = (DecoWendarrAltarBlock) new DecoWendarrAltarBlock();
+        DECO_VELARA_ALTAR_BLOCK = (DecoVelaraAltarBlock) new DecoVelaraAltarBlock();
         CHROMATIC_GOLD_BLOCK = new Block(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).strength(3.0F, 6.0F));
         OMEGA_POG_BLOCK = new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(9.0F, 60000.0F));
         ECHO_POG_BLOCK = new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(6.0F, 40000.0F));
@@ -102,6 +117,11 @@ public class ModBlocks {
         DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoLodestoneTileEntity::new, new Block[]{DECO_LODESTONE_BLOCK}).build((Type)null);
         DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoMonolithTileEntity::new, new Block[]{DECO_MONOLITH_BLOCK}).build((Type)null);
         SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(SurvivalMobBarrierTileEntity::new, new Block[]{SURVIVAL_MOB_BARRIER}).build((Type)null);
+        DECO_GRID_GATEWAY_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoGridGatewayTileEntity::new, new Block[]{DECO_GRID_GATEWAY_BLOCK}).build((Type)null);
+        DECO_IDONA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoIdonaAltarTileEntity::new, new Block[]{DECO_IDONA_ALTAR_BLOCK}).build((Type)null);
+        DECO_TENOS_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoTenosAltarTileEntity::new, new Block[]{DECO_TENOS_ALTAR_BLOCK}).build((Type)null);
+        DECO_WENDARR_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoWendarrAltarTileEntity::new, new Block[]{DECO_WENDARR_ALTAR_BLOCK}).build((Type)null);
+        DECO_VELARA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoVelaraAltarTileEntity::new, new Block[]{DECO_VELARA_ALTAR_BLOCK}).build((Type)null);
         // SOPHISTICATED_BACKPACK = BlockEntityType.Builder.of(BackpackBlockEntity::new, new Block[]{XL_BACKPACK}).build((Type)null);
     }
 
@@ -116,6 +136,11 @@ public class ModBlocks {
         registerBlock(event, DECO_LODESTONE_BLOCK, WoldsVaults.id("lodestone"));
         registerBlock(event, DECO_MONOLITH_BLOCK, WoldsVaults.id("monolith"));
         registerBlock(event, SURVIVAL_MOB_BARRIER, WoldsVaults.id("mob_barrier_red"));
+        registerBlock(event, DECO_GRID_GATEWAY_BLOCK, WoldsVaults.id("grid_gateway"));
+        registerBlock(event, DECO_IDONA_ALTAR_BLOCK, WoldsVaults.id("idona_altar"));
+        registerBlock(event, DECO_TENOS_ALTAR_BLOCK, WoldsVaults.id("tenos_altar"));
+        registerBlock(event, DECO_WENDARR_ALTAR_BLOCK, WoldsVaults.id("wendarr_altar"));
+        registerBlock(event, DECO_VELARA_ALTAR_BLOCK, WoldsVaults.id("velara_altar"));
         registerBlock(event, VAULT_PALLADIUM_PILE, WoldsVaults.id("vault_palladium"));
         registerBlock(event, VAULT_IRIDIUM_PILE, WoldsVaults.id("vault_iridium"));
         registerBlock(event, CHROMATIC_GOLD_BLOCK, WoldsVaults.id("chromatic_gold_block"));
@@ -139,6 +164,11 @@ public class ModBlocks {
         registerTileEntity(event, DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("lodestone_deco_tile_entity"));
         registerTileEntity(event, DECO_MONOLITH_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("monolith_deco_tile_entity"));
         registerTileEntity(event, SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("mob_barrier_entity"));
+        registerTileEntity(event, DECO_GRID_GATEWAY_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("grid_gateway_deco_tile_entity"));
+        registerTileEntity(event, DECO_IDONA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("god_altar.idona_deco_tile_entity"));
+        registerTileEntity(event, DECO_TENOS_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("god_altar.tenos_deco_tile_entity"));
+        registerTileEntity(event, DECO_WENDARR_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("god_altar.wendarr_deco_tile_entity"));
+        registerTileEntity(event, DECO_VELARA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("god_altar.velara_deco_tile_entity"));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
@@ -152,6 +182,11 @@ public class ModBlocks {
         registerBlockItem(event, DECO_LODESTONE_BLOCK);
         registerBlockItem(event, DECO_MONOLITH_BLOCK);
         registerBlockItem(event, SURVIVAL_MOB_BARRIER);
+        registerBlockItem(event, DECO_GRID_GATEWAY_BLOCK);
+        registerBlockItem(event, DECO_IDONA_ALTAR_BLOCK);
+        registerBlockItem(event, DECO_TENOS_ALTAR_BLOCK);
+        registerBlockItem(event, DECO_WENDARR_ALTAR_BLOCK);
+        registerBlockItem(event, DECO_VELARA_ALTAR_BLOCK);
         registerBlockItem(event, CHROMATIC_GOLD_BLOCK);
         registerBlockItem(event, OMEGA_POG_BLOCK);
         registerBlockItem(event, ECHO_POG_BLOCK);
@@ -169,6 +204,7 @@ public class ModBlocks {
         //event.registerBlockEntityRenderer(DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE, DecoBossRunePillarEntity::new);
         event.registerBlockEntityRenderer(SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE, SurvivalMobBarrierRenderer::new);
         event.registerBlockEntityRenderer(DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE, DungeonPedestalRenderer::new);
+        event.registerBlockEntityRenderer(DECO_GRID_GATEWAY_TILE_ENTITY_BLOCK_ENTITY_TYPE, DecoGridGatewayRenderer::new);
         //event.registerBlockEntityRenderer(DECO_LODESTONE_TILE_ENTITY_BLOCK_ENTITY_TYPE, DecoLodestoneRenderer::new);
     }
 

@@ -91,7 +91,7 @@ public class DecoScavengerAltarBlock extends Block implements EntityBlock {
     }
     @Override
     public @Nullable <A extends BlockEntity> BlockEntityTicker<A> getTicker(Level level, BlockState state, BlockEntityType<A> blockEntityType) {
-        return level.isClientSide() ? BlockHelper.getTicker(blockEntityType, ModBlocks.DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, DecoScavengerAltarEntity::tickClient) : BlockHelper.getTicker(blockEntityType, ModBlocks.DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, DecoScavengerAltarEntity::tickServer);
+        return level.isClientSide() ? BlockHelper.getTicker(blockEntityType, ModBlocks.DECO_SCAVENGER_ALTAR_ENTITY_BLOCK_ENTITY_TYPE, DecoScavengerAltarEntity::tickClient) : null;
     }
 
     @Override

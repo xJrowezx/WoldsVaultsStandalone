@@ -54,33 +54,7 @@ public class DecoObeliskBlock extends Block implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if(world.getBlockState(hit.getBlockPos()).getValue(HALF) == DoubleBlockHalf.UPPER) {
-            return InteractionResult.FAIL;
-        }
-        if(ServerVaults.get(world).isPresent()) {
-            return InteractionResult.FAIL;
-        }
-        else if(state.getValue(FILLED)) {
-            world.setBlock(pos, (BlockState)world.getBlockState(pos).setValue(DecoObeliskBlock.FILLED, false), 3);
-            world.setBlock(pos.above(), (BlockState)world.getBlockState(pos.above()).setValue(DecoObeliskBlock.FILLED, false), 3);
-            return InteractionResult.CONSUME;
-        }
-        else {
-            LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(world);
-            if(lightningbolt == null) {
-                return InteractionResult.FAIL;
-            }
-            lightningbolt.setDamage(0);
-            lightningbolt.moveTo(Vec3.atBottomCenterOf(pos));
-            lightningbolt.setCause(player instanceof ServerPlayer ? (ServerPlayer)player : null);
-            world.addFreshEntity(lightningbolt);
-            SoundEvent soundevent = SoundEvents.TRIDENT_THUNDER;
-            float f1 = 5.0F;
-            player.playSound(soundevent, f1, 0.5F);
-            world.setBlock(pos, (BlockState)world.getBlockState(pos).setValue(DecoObeliskBlock.FILLED, true), 3);
-            world.setBlock(pos.above(), (BlockState)world.getBlockState(pos.above()).setValue(DecoObeliskBlock.FILLED, true), 3);
-            return InteractionResult.CONSUME;
-        }
+        return InteractionResult.PASS;
     }
 
     public static final EnumProperty<DoubleBlockHalf> HALF;

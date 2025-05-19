@@ -1,23 +1,23 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "GPG",
-    " R ",
-    "GPG"
+    "LLL",
+    "ERE",
+    "LLL"
   ],
   "key": {
-    "G": {
-      "item": "minecraft:smooth_stone"
+    "L": {
+      "item": "the_vault:living_rock_bricks"
     },
-    "P": {
-      "item": "the_vault:gem_painite"
+    "E": {
+      "item": "the_vault:gem_alexandrite"
     },
     "R": {
       "item": "woldsvaults:general_decor_scroll"
     }
   },
   "result": {
-    "item": "woldsvaults:rune_pillar",
+    "item": "woldsvaults:grid_gateway",
     "count": 1
   }
 }

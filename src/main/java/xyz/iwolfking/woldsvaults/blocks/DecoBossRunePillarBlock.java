@@ -1,15 +1,10 @@
 package xyz.iwolfking.woldsvaults.blocks;
 
-import iskallia.vault.block.entity.BossRunePillarTileEntity;
-import iskallia.vault.init.ModItems;
 import iskallia.vault.util.BlockHelper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -20,7 +15,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -38,7 +32,7 @@ public class DecoBossRunePillarBlock extends Block implements EntityBlock {
     }).get();
 
     public DecoBossRunePillarBlock() {
-        super(Properties.of(Material.STONE, MaterialColor.COLOR_ORANGE).requiresCorrectToolForDrops().strength(-1.0F, 3600000.0F).noOcclusion().lightLevel((state) -> {
+        super(Properties.of(Material.STONE, MaterialColor.COLOR_ORANGE).strength(2.0F, 3600000.0F).noOcclusion().lightLevel((state) -> {
             return 12;
         }));
         this.registerDefaultState((BlockState)this.stateDefinition.any());
@@ -49,7 +43,7 @@ public class DecoBossRunePillarBlock extends Block implements EntityBlock {
     }
 
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return ModBlocks.DECO_BOSS_RUNE_PILLAR_ENTITY_BLOCK_ENTITY_TYPE.create(pPos, pState);
+        return ModBlocks.DECO_GRID_GATEWAY_TILE_ENTITY_BLOCK_ENTITY_TYPE.create(pPos, pState);
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

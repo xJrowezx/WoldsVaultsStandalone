@@ -54,33 +54,6 @@ public class DecoLodestoneBlock extends Block implements EntityBlock {
     @NotNull
     @Override
     public InteractionResult use(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        BlockEntity be = world.getBlockEntity(pos);
-        if(be instanceof DecoLodestoneTileEntity le) {
-            if (le.isConsumed()) {
-                if (!world.isClientSide) {
-                    le.setConsumed(false);
-                }
-
-                return InteractionResult.SUCCESS;
-            }
-            else if(ServerVaults.get(world).isEmpty()) {
-                if(player.isShiftKeyDown()) {
-                    if(!world.isClientSide) {
-                        world.playSound(null, pos, ModSounds.VAULT_PORTAL_OPEN, SoundSource.BLOCKS, 0.75F, 0.5F);
-                        if(!DecoLodestoneStrings.decoLodestoneMessages.isEmpty()) {
-                            player.displayClientMessage(DecoLodestoneStrings.getMessage(), false);
-                        }
-                    }
-                    return InteractionResult.SUCCESS;
-                }
-                if(!world.isClientSide) {
-                    le.setConsumed(true);
-                    world.playSound((Player)null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 2.0F);
-                }
-
-                return InteractionResult.SUCCESS;
-            }
-        }
         return InteractionResult.PASS;
     }
 

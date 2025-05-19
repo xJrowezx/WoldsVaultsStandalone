@@ -18,13 +18,4 @@ public class DecoScavengerAltarEntity extends ScavengerAltarTileEntity {
     public static void tickClient(Level world, BlockPos pos, BlockState state, DecoScavengerAltarEntity tile) {
         ScavengerAltarTileEntity.tickClient(world, pos, state, tile);
     }
-
-
-    public static void tickServer(Level world, BlockPos pos, BlockState state, DecoScavengerAltarEntity tile) {
-        if(ServerVaults.get(world).isPresent()) {
-            return;
-        }
-        ScavengerAltarTileEntity.tickServer(world, pos, state, tile);
-    }
-
 }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "woldsvaults:block/grid_gateway"
+    }
+  }
+}
