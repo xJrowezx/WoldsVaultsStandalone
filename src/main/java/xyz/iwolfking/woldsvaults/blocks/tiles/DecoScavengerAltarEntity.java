@@ -1,7 +1,6 @@
 package xyz.iwolfking.woldsvaults.blocks.tiles;
 
 import iskallia.vault.block.entity.ScavengerAltarTileEntity;
-import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;

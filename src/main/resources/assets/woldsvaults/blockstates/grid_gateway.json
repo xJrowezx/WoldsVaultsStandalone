@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "woldsvaults:block/grid_gateway"
+      "model": "the_vault:block/grid_gateway"
     }
   }
 }
