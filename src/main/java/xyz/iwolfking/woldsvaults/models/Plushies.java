@@ -74,11 +74,11 @@ public class Plushies {
     public static final HandHeldModel SQUISH;
     public static final HandHeldModel JOSEPH;
     public static final HandHeldModel IWK;
-    public static final HandHeldModel WOLD;
     public static final HandHeldModel JROWEZ;
     public static final HandHeldModel ATTACK8;
     public static final HandHeldModel JUSTA;
     public static final HandHeldModel DOGV2;
+    public static final HandHeldModel KATABLES;
 
     //unique
     public static final HandHeldModel BOGSTER;  //unique
@@ -157,12 +157,12 @@ public class Plushies {
 
 
         //omega
-        WOLD = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/wold"), "Wold the Tyrant")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         IWK = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/wolf"), "Wolf the Creator")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         JROWEZ = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/jrowez"), "Jawn the Tinkerer")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         ATTACK8 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/attack8"), "Attack8 the Developer")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         JUSTA = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/justa"), "JustAHuman the Developer")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         DOGV2 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/dogv2"), "Dog the Developer")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
+        KATABLES = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/katables"), "Katables the Builder")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
 
         //unique
         BATTY = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/batty"), "Batty the Bat")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
