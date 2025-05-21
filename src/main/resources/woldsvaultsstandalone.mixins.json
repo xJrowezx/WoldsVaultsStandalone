@@ -47,7 +47,8 @@
     "the_vault.custom.MixinMagnetItem",
     "MixinLivingEntity",
     "the_vault.custom.MixinModDynamicModels",
-    "the_vault.custom.MixinTreasureDoorTileEntityRenderer"
+    "the_vault.custom.MixinTreasureDoorTileEntityRenderer",
+    "the_vault.MixinClientEvents"
 
   ],
   "client": [
