@@ -48,7 +48,8 @@
     "MixinLivingEntity",
     "the_vault.custom.MixinModDynamicModels",
     "the_vault.custom.MixinTreasureDoorTileEntityRenderer",
-    "the_vault.MixinClientEvents"
+    "the_vault.MixinClientEvents",
+    "the_vault.MixinScheduledModifiers"
 
   ],
   "client": [

@@ -18,14 +18,14 @@ public class GearRepairAdderRecipe extends VanillaAnvilRecipe {
             VaultGearData gear = VaultGearData.read(output);
             int currentRepairSlotCount = gear.getRepairSlots();
             //If at the max number of slots already, don't allow any more.
-            if(currentRepairSlotCount == 5) {
+            if(currentRepairSlotCount >= 10 || !gear.isModifiable()) {
                 return false;
             }
 
             gear.setRepairSlots(currentRepairSlotCount + 1);
             gear.write(output);
             context.setOutput(output);
-            
+
             context.onTake(context.getTake().append(() -> {
                 context.getInput()[0].shrink(1);
                 context.getInput()[1].shrink(1);
