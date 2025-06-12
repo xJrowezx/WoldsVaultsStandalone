@@ -51,12 +51,5 @@ public class LootSacks {
         MIDNIGHT = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/loot_sack/midnight"), "Midnight Bundle Sack")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
         PRISMATIC = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/loot_sack/prismatic"), "Prismatic Bundle Sack")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
         TINKERS_TANKARD = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/loot_sack/tinkers_tankard"), "Loot Tankard")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
-
-        //unique
-
-        //ascension forge
-
-        //unused
-
     }
 }

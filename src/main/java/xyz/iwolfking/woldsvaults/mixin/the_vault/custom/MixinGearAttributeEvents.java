@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.mixin.the_vault.custom;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.EntityChainAttackedEvent;
 import iskallia.vault.core.event.common.EntityDamageBlockEvent;
@@ -36,7 +37,9 @@ import net.minecraftforge.network.PacketDistributor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModSounds;
@@ -128,41 +131,11 @@ public class MixinGearAttributeEvents {
 
 
     /**
-     * @return
      * @author aida
      * @reason chain falloff reduction stat
      */
-    @Inject(method = "lambda$triggerChainAttack$10", at = @At("HEAD"), cancellable = true)
-    private static void lambda$triggerChainAttack$10(Level world, LivingEntity attacked, float chainRange, LivingEntity attacker, LivingHurtEvent event, int chainCount, CallbackInfo ci) {
-
-        List<Mob> nearby = EntityHelper.getNearby(world, attacked.blockPosition(), chainRange, Mob.class);
-        List<Vec3> nearbyPos = new ArrayList<>();
-        nearby.remove(attacked);
-        nearby.remove(attacker);
-        nearby.removeIf(mobx -> (attacker instanceof EternalEntity || attacker instanceof Player) && mobx instanceof EternalEntity);
-        nearby.removeIf(mobx -> mobx.isInvulnerableTo(event.getSource()));
-        if (!nearby.isEmpty()) {
-            nearby.sort(Comparator.comparing(e -> e.distanceTo(attacked)));
-            nearby = nearby.subList(0, Math.min(chainCount, nearby.size()));
-
-            float baseMult = 0.5f * (1+AttributeSnapshotHelper.getInstance().getSnapshot(attacker).getAttributeValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.CHAINING_DAMAGE, VaultGearAttributeTypeMerger.floatSum()));
-            float multiplier = baseMult;
-            nearbyPos.add(attacked.position().add(0.0, attacked.getBbHeight() / 3.0F, 0.0));
-
-            for (Mob mob : nearby) {
-                Vec3 movement = mob.getDeltaMovement();
-                nearbyPos.add(mob.position().add(0.0, mob.getBbHeight() / 3.0F, 0.0));
-                mob.hurt(event.getSource(), event.getAmount() * multiplier);
-                mob.setDeltaMovement(movement);
-                multiplier *= baseMult;
-            }
-
-            CommonEvents.ENTITY_CHAIN_ATTACKED.invoke(new EntityChainAttackedEvent.Data(attacker, nearby));
-        }
-        ModNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new ChainingParticleMessage(nearbyPos));
-        if (attacker instanceof Player player)
-            PlayerActiveFlags.set(player, PlayerActiveFlags.Flag.CHAINING_AOE, 2);
-
-        ci.cancel();
+    @ModifyConstant(method = "lambda$triggerChainAttack$11", constant = @Constant(floatValue = 0.5f))
+    private static float changeChainAttackFalloff(float constant, @Local(ordinal = 1, argsOnly = true) LivingEntity attacker) {
+        return constant * (1+AttributeSnapshotHelper.getInstance().getSnapshot(attacker).getAttributeValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.CHAINING_DAMAGE, VaultGearAttributeTypeMerger.floatSum()));
     }
 }

@@ -71,10 +71,10 @@ public class AdditionalModels {
         MUSTARD = ModDynamicModels.Wands.REGISTRY.register(new PlainItemModel(VaultMod.id("gear/wand/mustard"), "Mustard Bottle")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
 
         //Magnets
-        BLOODSEEKING_MAGNET = ModDynamicModels.Magnets.REGISTRY_MAGNETS.register(new PlainItemModel(VaultMod.id("magnets/bloody_magnet"), "Bloodseeking Magnet")).properties(new DynamicModelProperties());
-        OTHERWORLDLY_MAGNET = ModDynamicModels.Magnets.REGISTRY_MAGNETS.register(new PlainItemModel(VaultMod.id("magnets/ender_magnet"), "Otherworldly Magnet")).properties(new DynamicModelProperties());
-        HEART_MAGNET = ModDynamicModels.Magnets.REGISTRY_MAGNETS.register(new PlainItemModel(VaultMod.id("magnets/heart_magnet"), "Heart Magnet")).properties(new DynamicModelProperties());
-        TREASURE_MAGNET = ModDynamicModels.Magnets.REGISTRY_MAGNETS.register(new PlainItemModel(VaultMod.id("magnets/treasure_magnet"), "Treasure Seeker's Magnet")).properties(new DynamicModelProperties());
+        BLOODSEEKING_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("magnets/bloodseeking_magnet"), "Bloodseeking Magnet")).properties(new DynamicModelProperties());
+        OTHERWORLDLY_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("magnets/ender_magnet"), "Otherworldly Magnet")).properties(new DynamicModelProperties());
+        HEART_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("magnets/heart_magnet"), "Heart Magnet")).properties(new DynamicModelProperties());
+        TREASURE_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("magnets/treasure_magnet"), "Treasure Seeker's Magnet")).properties(new DynamicModelProperties());
 
     }
 

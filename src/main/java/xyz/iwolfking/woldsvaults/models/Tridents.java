@@ -100,7 +100,7 @@ public class Tridents {
         CRYSTAL = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/crystal"), "Crystal Lance")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         PHANTOMGUARD = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/phantomguard"), "Phantomguard Lance")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         AQUATIC_RAGE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/aquatic_rage"), "Tidepiercer")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
-        PRISMATIC = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/prismatic"), "Primatic Lance")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
+        PRISMATIC = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/prismatic"), "Prismatic Lance")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         DIVINEGUARD = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/trident/divineguard"), "Divine Lance")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
 
 
