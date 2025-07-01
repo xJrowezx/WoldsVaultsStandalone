@@ -58,7 +58,7 @@
     },
     {
       "item": "woldsvaults:repair_augmenter",
-      "value": "Use with Vault Gear in an anvil to add a repair slot."
+      "value": "Can be used on a tool or gear piece with less than 10 repair slots."
     },
     {
       "item": "woldsvaults:expertise_orb",

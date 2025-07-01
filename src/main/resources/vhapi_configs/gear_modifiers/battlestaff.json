@@ -2608,7 +2608,7 @@
       },
       {
         "attribute": "the_vault:mana_regen",
-        "group": "ModStaffBonusDefensive",
+        "group": "ModManaRegen",
         "identifier": "the_vault:mod_mana_regen",
         "tiers": [
           {
@@ -4587,7 +4587,7 @@
       },
       {
         "attribute": "the_vault:mana_regen",
-        "group": "ModStaffBonusDefensive",
+        "group": "ModManaRegen",
         "identifier": "the_vault:crafted_mana_regen",
         "tiers": [
           {
