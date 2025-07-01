@@ -112,16 +112,12 @@ public class HauntedBraziersObjective extends MonolithObjective {
             VaultModifierUtils.addModifier(vault, WoldsVaults.id("haunting"), 1);
         }
 
-        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
-            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate(this, vault);
-        }
-        else {
-            CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
-                this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
-                    data.setProbability((double)probability);
-                });
-            });
-        }
+        CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
+            if (data.getVault() == vault) {
+                this.ifPresent(OBJECTIVE_PROBABILITY, probability -> data.setProbability(probability));
+            }
+        });
+        this.registerObjectiveTemplate(world, vault);
 
         CommonEvents.BLOCK_USE.in(world).at(BlockUseEvent.Phase.HEAD).of(ModBlocks.MONOLITH).register(this, (data) -> {
             if (data.getHand() != InteractionHand.MAIN_HAND) {

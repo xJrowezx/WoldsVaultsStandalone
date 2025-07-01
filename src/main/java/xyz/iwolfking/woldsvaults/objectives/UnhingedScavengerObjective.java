@@ -69,16 +69,12 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
-        if(LoadingModList.get().getModFileById("vaultfaster") != null) {
-            ObjectiveTemplateEvent.INSTANCE.registerObjectiveTemplate(this, vault);
-        }
-        else {
-            CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
-                this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> {
-                    data.setProbability((double)probability);
-                });
-            });
-        }
+        CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
+            if (data.getVault() == vault) {
+                this.ifPresent(OBJECTIVE_PROBABILITY, probability -> data.setProbability(probability));
+            }
+        });
+        this.registerObjectiveTemplate(world, vault);
 
         CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
             PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());

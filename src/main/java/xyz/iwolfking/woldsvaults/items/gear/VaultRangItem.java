@@ -98,13 +98,8 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             worldIn.addFreshEntity(entity);
         }
 
-        if(!playerIn.getAbilities().instabuild) {
-            int cooldown = 10 - attackSpeed.intValue();
-            if (cooldown > 0)
-                playerIn.getCooldowns().addCooldown(this, cooldown);
-        }
-
         playerIn.awardStat(Stats.ITEM_USED.get(this));
+        System.out.println("Rang used");
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
     }
 
