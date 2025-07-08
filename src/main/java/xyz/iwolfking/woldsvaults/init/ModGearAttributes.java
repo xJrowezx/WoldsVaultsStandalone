@@ -35,6 +35,9 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Boolean> DISCHARGE = attr("discharge",
             VaultGearAttributeType.booleanType(), (ConfigurableAttributeGenerator<Boolean, ?>)ModGearAttributeGenerators.booleanFlag(), (VaultGearModifierReader<Boolean>)ModGearAttributeReaders.booleanReader("Discharge", 16777037), VaultGearAttributeComparator.booleanComparator());
 
+    public static final VaultGearAttribute<Float> COIN_DOUBLE_CHANCE = attr("coin_double_chance",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Piggy Procc", 14922686), VaultGearAttributeComparator.floatComparator());
+
     public static final VaultGearAttribute<Boolean> TREASURE_AFFINITY = attr("treasure_affinity",
             VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Treasure Affinity", 16749824), VaultGearAttributeComparator.booleanComparator());
 
@@ -90,6 +93,7 @@ public class ModGearAttributes {
                       registry.register(UNIQUE_EFFECT);
                       registry.register(MAGNET_ENDERGIZED);
                       registry.register(DISCHARGE);
+                      registry.register(COIN_DOUBLE_CHANCE);
 
         /*     */   }
     /*     */

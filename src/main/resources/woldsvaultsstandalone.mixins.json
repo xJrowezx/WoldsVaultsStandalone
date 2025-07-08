@@ -49,8 +49,8 @@
     "the_vault.custom.MixinModDynamicModels",
     "the_vault.custom.MixinTreasureDoorTileEntityRenderer",
     "the_vault.MixinClientEvents",
-    "the_vault.MixinScheduledModifiers"
-
+    "the_vault.MixinScheduledModifiers",
+    "the_vault.custom.MixinCoinLooting"
   ],
   "client": [
     "MixinThrownTridentRenderer",
