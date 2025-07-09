@@ -69,12 +69,24 @@ public class BallisticBingoObjective extends BingoObjective {
     }
 
     public TaskContext getContext(VirtualWorld world, Vault vault) {
-        this.setIfAbsent(TASK_SOURCE, () -> EntityTaskSource.ofUuids(JavaRandom.ofInternal(vault.get(Vault.SEED))));
-        return TaskContext.of(this.get(TASK_SOURCE), world.getServer()).setVault(vault);
+        this.setIfAbsent(TASK_SOURCE, () -> {
+            return EntityTaskSource.ofUuids(JavaRandom.ofInternal((Long)vault.get(Vault.SEED)), new UUID[0]);
+        });
+        return TaskContext.of((TaskSource)this.get(TASK_SOURCE), world.getServer()).setVault(vault);
     }
 
     public boolean isCompleted() {
-        return this.get(TASK) instanceof BingoTask bingo && bingo.areAllCompleted();
+        Object var2 = this.get(TASK);
+        boolean var10000;
+        if (var2 instanceof BingoTask bingo) {
+            if (bingo.areAllCompleted()) {
+                var10000 = true;
+                return var10000;
+            }
+        }
+
+        var10000 = false;
+        return var10000;
     }
 
     public int getBingos() {
@@ -91,30 +103,50 @@ public class BallisticBingoObjective extends BingoObjective {
 
     public void initServer(VirtualWorld world, Vault vault) {
         CommonEvents.LISTENER_JOIN.register(this, (data) -> {
-            if (data.getVault() == vault && data.getListener() instanceof Runner runner) {
-                if (this.get(TASK_SOURCE) instanceof EntityTaskSource entitySource) {
-                    entitySource.add(runner.getId());
+            if (data.getVault() == vault) {
+                Listener patt3500$temp = data.getListener();
+                if (patt3500$temp instanceof Runner) {
+                    Runner runner = (Runner)patt3500$temp;
+                    Object patt3573$temp = this.get(TASK_SOURCE);
+                    if (patt3573$temp instanceof EntityTaskSource) {
+                        EntityTaskSource entitySource = (EntityTaskSource)patt3573$temp;
+                        entitySource.add(new UUID[]{runner.getId()});
+                    }
+
+                    this.set(JOINED, (Integer)this.getOr(JOINED, 0) + 1);
                 }
-                this.set(JOINED, this.getOr(JOINED, 0) + 1);
             }
         });
         CommonEvents.LISTENER_LEAVE.register(this, (data) -> {
-            if (data.getVault() == vault && data.getListener() instanceof Runner runner && this.get(TASK_SOURCE) instanceof EntityTaskSource entitySource) {
-                entitySource.remove(runner.getId());
+            if (data.getVault() == vault) {
+                Listener patt3898$temp = data.getListener();
+                if (patt3898$temp instanceof Runner) {
+                    Runner runner = (Runner)patt3898$temp;
+                    Object patt3971$temp = this.get(TASK_SOURCE);
+                    if (patt3971$temp instanceof EntityTaskSource) {
+                        EntityTaskSource entitySource = (EntityTaskSource)patt3971$temp;
+                        entitySource.remove(new UUID[]{runner.getId()});
+                    }
+
+                }
             }
         });
-        this.get(TASK).onAttach(this.getContext(world, vault));
+        ((Task)this.get(TASK)).onAttach(this.getContext(world, vault));
         CommonEvents.GRID_GATEWAY_UPDATE.register(this, (data) -> {
             if (data.getLevel() == world) {
                 data.getEntity().setCompletedBingos(this.getBingos());
             }
         });
-        this.get(CHILDREN).forEach((child) -> child.initServer(world, vault));
+        ((ObjList)this.get(CHILDREN)).forEach((child) -> {
+            child.initServer(world, vault);
+        });
     }
 
     public void tickServer(VirtualWorld world, Vault vault) {
         if (this.getBingos() > 0) {
-            this.get(CHILDREN).forEach((child) -> child.tickServer(world, vault));
+            ((ObjList)this.get(CHILDREN)).forEach((child) -> {
+                child.tickServer(world, vault);
+            });
             if (this.isCompleted()) {
                 return;
             }
@@ -153,7 +185,9 @@ public class BallisticBingoObjective extends BingoObjective {
         }
 
         if (listener instanceof Runner && this.getBingos() > 0) {
-            this.get(CHILDREN).forEach((child) -> child.tickListener(world, vault, listener));
+            ((ObjList)this.get(CHILDREN)).forEach((child) -> {
+                child.tickListener(world, vault, listener);
+            });
         }
 
     }
