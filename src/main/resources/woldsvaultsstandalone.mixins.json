@@ -56,7 +56,8 @@
     "MixinThrownTridentRenderer",
     "the_vault.MixinToolItemRenderer",
     "the_vault.custom.MixinUniqueCodexScreen",
-    "the_vault.MixinCardItem"
+    "the_vault.MixinCardItem",
+    "the_vault.MixinCatalystItem"
   ],
   "injectors": {
     "defaultRequire": 1
