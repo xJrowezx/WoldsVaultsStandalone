@@ -17,11 +17,11 @@ public class MixinCatalystItem {
     @Inject(method = "loadModels", at = @At("TAIL"))
     public void loadModels(Consumer<ModelResourceLocation> consumer, CallbackInfo ci) {
         Map<Integer, String> CUSTOM_CATALYST_MODELS = new HashMap<>();
-        CUSTOM_CATALYST_MODELS.put(95, "95");
-        CUSTOM_CATALYST_MODELS.put(96, "96");
-        CUSTOM_CATALYST_MODELS.put(97, "97");
-        CUSTOM_CATALYST_MODELS.put(98, "98");
-        CUSTOM_CATALYST_MODELS.put(99, "99");
+        CUSTOM_CATALYST_MODELS.put(95, "95"); // Power Catalyst
+        CUSTOM_CATALYST_MODELS.put(96, "96"); // Item Quantity Small Catalyst
+        CUSTOM_CATALYST_MODELS.put(97, "97"); // Item Quantity Large Catalyst
+        CUSTOM_CATALYST_MODELS.put(98, "98"); // Item Rarity Small Catalyst
+        CUSTOM_CATALYST_MODELS.put(99, "99"); // Item Rarity Large Catalyst
 
         for(Integer i : CUSTOM_CATALYST_MODELS.keySet()) {
             consumer.accept(new ModelResourceLocation("the_vault:catalyst/%d#inventory".formatted(i)));
