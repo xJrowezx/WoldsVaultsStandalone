@@ -22,9 +22,10 @@ public class LootSacks {
     public static final HandHeldModel GREEN;
     public static final HandHeldModel MIDNIGHT;
     public static final HandHeldModel PRISMATIC;
-
-    //unique
     public static final HandHeldModel TINKERS_TANKARD;
+
+    //Unique
+    public static final HandHeldModel HUNNY;
 
 
     public LootSacks() {
@@ -51,5 +52,8 @@ public class LootSacks {
         MIDNIGHT = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/loot_sack/midnight"), "Midnight Bundle Sack")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
         PRISMATIC = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/loot_sack/prismatic"), "Prismatic Bundle Sack")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
         TINKERS_TANKARD = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/loot_sack/tinkers_tankard"), "Loot Tankard")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
+
+        //Unique
+        HUNNY = REGISTRY.register(new HandHeldModel(VaultMod.id("gear/loot_sack/hunny"), "My Hunny")).properties(new DynamicModelProperties().allowTransmogrification());
     }
 }

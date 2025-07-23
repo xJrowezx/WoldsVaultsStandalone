@@ -22,7 +22,8 @@
       "the_vault:gear/loot_sack/prismatic"
     ],
     "UNIQUE": [
-      "the_vault:gear/loot_sack/midnight"
+      "the_vault:gear/loot_sack/midnight",
+      "the_vault:gear/loot_sack/hunny"
     ]
   }
 }
