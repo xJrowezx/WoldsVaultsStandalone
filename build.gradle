@@ -177,10 +177,10 @@ dependencies {
     implementation fg.deobf("curse.maven:better-combat-by-daedelus-639842:4428885")
 //    implementation fg.deobf(files('libs/vhapi-3.0.1.jar'))
 //    implementation fg.deobf(files('libs/the_vault-1.18.2-3.15.2.3663.jar'))
-    implementation fg.deobf("curse.maven:vaultfaster-988487:5962104")
+    //implementation fg.deobf("curse.maven:vaultfaster-988487:6807118")
 
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6604944")
-    implementation fg.deobf("curse.maven:vault-hunters-api-1118899:6471174")
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6802790")
+    implementation fg.deobf("curse.maven:vault-hunters-api-1118899:6803115")
 
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")

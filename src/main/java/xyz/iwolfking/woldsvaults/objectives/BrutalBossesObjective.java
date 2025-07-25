@@ -2,7 +2,6 @@ package xyz.iwolfking.woldsvaults.objectives;
 
 import atomicstryker.infernalmobs.common.InfernalMobsCore;
 import atomicstryker.infernalmobs.common.MobModifier;
-import implementslegend.mod.vaultfaster.event.ObjectiveTemplateEvent;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.ObeliskBlock;
 import iskallia.vault.block.PlaceholderBlock;

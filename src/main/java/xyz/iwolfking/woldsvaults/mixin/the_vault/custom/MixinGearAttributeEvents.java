@@ -134,8 +134,8 @@ public class MixinGearAttributeEvents {
      * @author aida
      * @reason chain falloff reduction stat
      */
-    @ModifyConstant(method = "lambda$triggerChainAttack$11", constant = @Constant(floatValue = 0.5f))
-    private static float changeChainAttackFalloff(float constant, @Local(ordinal = 1, argsOnly = true) LivingEntity attacker) {
+    @ModifyConstant(method = "triggerChainAttack", constant = @Constant(floatValue = 0.5f))
+    private static float changeChainAttackFalloff(float constant, @Local(ordinal = 0) LivingEntity attacker) {
         return constant * (1+AttributeSnapshotHelper.getInstance().getSnapshot(attacker).getAttributeValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.CHAINING_DAMAGE, VaultGearAttributeTypeMerger.floatSum()));
     }
 }

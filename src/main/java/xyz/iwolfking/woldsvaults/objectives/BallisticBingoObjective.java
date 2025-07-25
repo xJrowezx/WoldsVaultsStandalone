@@ -31,7 +31,7 @@ import iskallia.vault.task.Task;
 import iskallia.vault.task.TaskContext;
 import iskallia.vault.task.counter.TargetTaskCounter;
 import iskallia.vault.task.counter.TaskCounter;
-import iskallia.vault.task.renderer.context.BingoRendererContext;
+import iskallia.vault.task.renderer.context.TaskRendererContext;
 import iskallia.vault.task.source.EntityTaskSource;
 import iskallia.vault.task.source.TaskSource;
 import net.minecraft.ChatFormatting;
@@ -209,7 +209,7 @@ public class BallisticBingoObjective extends BingoObjective {
     @OnlyIn(Dist.CLIENT)
     public void initClient(Vault vault) {
         ClientEvents.MOUSE_SCROLL.register(vault, (event) -> {
-            BingoRendererContext context = new BingoRendererContext((PoseStack)null, 0.0F, MultiBufferSource.immediate(Tesselator.getInstance().getBuilder()), Minecraft.getInstance().font);
+            TaskRendererContext context = new TaskRendererContext((PoseStack)null, 0.0F, MultiBufferSource.immediate(Tesselator.getInstance().getBuilder()), Minecraft.getInstance().font);
             if (((Task)this.get(TASK)).onMouseScrolled(event.getScrollDelta(), context)) {
                 event.setCanceled(true);
             }
@@ -235,7 +235,7 @@ public class BallisticBingoObjective extends BingoObjective {
             }
         }
 
-        BingoRendererContext context = new BingoRendererContext(poseStack, partialTicks, MultiBufferSource.immediate(Tesselator.getInstance().getBuilder()), Minecraft.getInstance().font);
+        TaskRendererContext context = new TaskRendererContext(poseStack, partialTicks, MultiBufferSource.immediate(Tesselator.getInstance().getBuilder()), Minecraft.getInstance().font);
         ((Task)this.get(TASK)).onRender(context);
         return true;
     }
