@@ -1321,7 +1321,7 @@
           "icon": "the_vault:gui/modifiers/companion_challenge"
         }
       },
-      "the_vault:curse": {
+      "the_vault:legacy_curses": {
         "properties": {
           "children": {
             "the_vault:collapsing": 1,
@@ -1334,7 +1334,7 @@
           }
         },
         "display": {
-          "name": ":curse_voidpools: Cursed!",
+          "name": "Legacy Curses!",
           "color": "#ad2b2b",
           "description": "This vault is cursed, it's collapsing, void pools have appeared, some mobs are immortal & their attacks seem to have hexing effects on you!",
           "icon": "the_vault:gui/modifiers/curse_voidpools"
