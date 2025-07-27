@@ -31,7 +31,9 @@
       "the_vault:gear/rang/ace_of_spades"
     ],
     "UNIQUE": [
-      "the_vault:gear/rang/trirang",
+      "the_vault:gear/rang/trirang"
+    ],
+    "SPECIAL": [
       "the_vault:gear/rang/bananarang",
       "the_vault:gear/rang/ceiling_fan",
       "the_vault:gear/rang/red_joker",

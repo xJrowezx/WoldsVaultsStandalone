@@ -40,7 +40,9 @@
     ],
     "UNIQUE": [
       "the_vault:gear/trident/marlin",
-      "the_vault:gear/trident/mjolnir",
+      "the_vault:gear/trident/mjolnir"
+    ],
+    "SPECIAL": [
       "the_vault:gear/trident/scarlet_piercer",
       "the_vault:gear/trident/death_knight_spear"
     ]

@@ -67,7 +67,9 @@
 
     ],
     "UNIQUE": [
-      "the_vault:gear/plushie/safer_spaces",
+      "the_vault:gear/plushie/safer_spaces"
+    ],
+    "SPECIAL": [
       "the_vault:gear/plushie/armani",
       "the_vault:gear/plushie/breezy",
       "the_vault:gear/plushie/bogster",
