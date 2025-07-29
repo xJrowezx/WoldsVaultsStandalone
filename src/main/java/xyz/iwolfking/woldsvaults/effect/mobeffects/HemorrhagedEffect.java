@@ -46,32 +46,30 @@ public class HemorrhagedEffect extends MobEffect {
         }
 
         MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
-        if (instance instanceof HemorrhagedInstance casted && entity.level.getPlayerByUUID(casted.source) instanceof ServerPlayer source) {
-            if (dealsDamage(instance.getDuration(), amplifier)) {
-                ActiveFlags.IS_EFFECT_ATTACKING.runIfNotSet(() -> {
-                    float damage = entity.getMaxHealth() * .01F;
-                    Vec3 movement = entity.getDeltaMovement();
-                    entity.hurt(createDamageSource(source), damage);
-                    entity.setDeltaMovement(movement);
+        if (instance instanceof HemorrhagedInstance casted && entity.level.getPlayerByUUID(casted.source) instanceof ServerPlayer source && dealsDamage(instance.getDuration(), amplifier)) {
+            ActiveFlags.IS_EFFECT_ATTACKING.runIfNotSet(() -> {
+                float damage = entity.getMaxHealth() * .01F;
+                Vec3 movement = entity.getDeltaMovement();
+                entity.hurt(createDamageSource(source), damage);
+                entity.setDeltaMovement(movement);
 
-                    EntityDimensions dimensions = entity.getDimensions(entity.getPose());
-                    for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
-                        ((ServerLevel) entity.level).sendParticles(
-                                player,
-                                new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
-                                true,
-                                entity.getX(),
-                                entity.getY() + dimensions.height * 0.5F,
-                                entity.getZ(),
-                                25, // count
-                                dimensions.width / 6, // xOffset
-                                dimensions.height / 4, // yOffset
-                                dimensions.width / 6, // zOffset
-                                0  // speed
-                        );
-                    }
-                });
-            }
+                EntityDimensions dimensions = entity.getDimensions(entity.getPose());
+                for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
+                    ((ServerLevel) entity.level).sendParticles(
+                            player,
+                            new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
+                            true,
+                            entity.getX(),
+                            entity.getY() + dimensions.height * 0.5F,
+                            entity.getZ(),
+                            25, // count
+                            dimensions.width / 6, // xOffset
+                            dimensions.height / 4, // yOffset
+                            dimensions.width / 6, // zOffset
+                            0  // speed
+                    );
+                }
+            });
 
             if (instance.getDuration() == 1 && amplifier > 0) {
                 entity.removeEffectNoUpdate(ModEffects.HEMORRHAGED);
