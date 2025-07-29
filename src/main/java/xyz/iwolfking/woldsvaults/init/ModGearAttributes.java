@@ -65,6 +65,9 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<EffectGearAttribute> UNIQUE_EFFECT = attr("unique_effect",
             EffectGearAttribute.type(), EffectGearAttribute.generator(), UniqueEffectGearAttribute.reader());
 
+    public static final VaultGearAttribute<EffectGearAttribute> HEMORRHAGING = attr("hemorrhaging",
+            EffectGearAttribute.type(), EffectGearAttribute.generator(), UniqueEffectGearAttribute.reader());
+
     public static final VaultGearAttribute<Boolean> MAGNET_ENDERGIZED = attr("endergized",
             VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
 

@@ -40,10 +40,12 @@ import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.api.helper.WoldAttributeHelper;
 import xyz.iwolfking.woldsvaults.configs.core.WoldsVaultsConfig;
 import xyz.iwolfking.woldsvaults.data.HexEffects;
+import xyz.iwolfking.woldsvaults.effect.mobeffects.HemorrhagedEffect;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import xyz.iwolfking.woldsvaults.items.gear.VaultLootSackItem;
 import xyz.iwolfking.woldsvaults.items.gear.VaultPlushieItem;
+import xyz.iwolfking.woldsvaults.mixin.the_vault.custom.MixinGrantedEffectHelper;
 import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 import xyz.iwolfking.woldsvaults.util.WoldEventUtils;
 
@@ -198,6 +200,21 @@ public class LivingEntityEvents {
         }
     }
 
+    @SubscribeEvent
+    public static void hemorrhagingEffect(LivingHurtEvent event) {
+        if(!WoldEventHelper.isNormalAttack() || event.getSource().isProjectile()) {
+            return;
+        }
+
+        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
+            if(data.hasAttribute(ModGearAttributes.HEMORRHAGING)) {
+                MobEffectInstance existing = event.getEntityLiving().getEffect(ModEffects.HEMORRHAGED);
+                int amplifier = existing != null ? Math.max(HemorrhagedEffect.MAX_STACKS - 1, existing.getAmplifier() + 1) : 0;
+                event.getEntityLiving().addEffect(new MobEffectInstance(ModEffects.HEMORRHAGED, HemorrhagedEffect.STACK_DURATION, amplifier));
+            }
+        }
+    }
 
 
     @SubscribeEvent(
