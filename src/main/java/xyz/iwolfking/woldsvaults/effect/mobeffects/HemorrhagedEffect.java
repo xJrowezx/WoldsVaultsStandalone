@@ -5,6 +5,7 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -35,7 +36,14 @@ public class HemorrhagedEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity.level.isClientSide || entity.isDeadOrDying()) {
+        if (entity.level.isClientSide) {
+            MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
+            if (instance != null && dealsDamage(instance.getDuration(), amplifier)) {
+                float damage = entity.getMaxHealth() * .01F;
+                DamageParticleSystem.addDamageParticle(entity, damage, DamageParticleSystem.DamageType.GENERIC);
+            }
+            return;
+        } else if (entity.isDeadOrDying()) {
             return;
         }
 
@@ -45,20 +53,23 @@ public class HemorrhagedEffect extends MobEffect {
                 float damage = entity.getMaxHealth() * .01F;
                 entity.setHealth(entity.getHealth() - damage);
                 entity.hurt(DAMAGE_SOURCE, 0.0F);
-                DamageParticleSystem.addDamageParticle(entity, damage, DamageParticleSystem.DamageType.GENERIC);
 
                 EntityDimensions dimensions = entity.getDimensions(entity.getPose());
-                ((ServerLevel) entity.level).sendParticles(
-                        new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
-                        entity.getX() + dimensions.width * 0.5F,
-                        entity.getY() + dimensions.height * 0.5F,
-                        entity.getZ() + dimensions.width * 0.5F,
-                        25, // count
-                        0, // xOffset
-                        dimensions.height / 4, // yOffset
-                        0, // zOffset
-                        0  // speed
-                );
+                for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
+                    ((ServerLevel) entity.level).sendParticles(
+                            player,
+                            new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
+                            true,
+                            entity.getX() + dimensions.width * 0.5F,
+                            entity.getY() + dimensions.height * 0.5F,
+                            entity.getZ() + dimensions.width * 0.5F,
+                            25, // count
+                            0, // xOffset
+                            dimensions.height / 4, // yOffset
+                            0, // zOffset
+                            0  // speed
+                    );
+                }
             }
 
             if (instance.getDuration() == 1 && amplifier > 0) {
