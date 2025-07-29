@@ -98,7 +98,7 @@ public class ModGearAttributes {
                       registry.register(MAGNET_ENDERGIZED);
                       registry.register(DISCHARGE);
                       registry.register(COIN_DOUBLE_CHANCE);
-
+                      registry.register(HEMORRHAGING);
         /*     */   }
     /*     */
     /*     */   public static void registerVanillaAssociations() {
