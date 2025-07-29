@@ -47,7 +47,7 @@ public class HemorrhagedEffect extends MobEffect {
 
         MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
         if (instance instanceof HemorrhagedInstance casted && entity.level.getPlayerByUUID(casted.source) instanceof ServerPlayer source && dealsDamage(instance.getDuration(), amplifier)) {
-            ActiveFlags.IS_EFFECT_ATTACKING.runIfNotSet(() -> {
+            ActiveFlags.IS_AOE_ATTACKING.runIfNotSet(() -> {
                 float damage = entity.getMaxHealth() * .01F;
                 Vec3 movement = entity.getDeltaMovement();
                 entity.hurt(createDamageSource(source), damage);
