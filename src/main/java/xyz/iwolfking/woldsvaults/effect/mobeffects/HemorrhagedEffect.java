@@ -14,6 +14,7 @@ import net.minecraft.world.phys.Vec3;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 
 public class HemorrhagedEffect extends MobEffect {
+    public static final int COLOR = 0x6e0000;
     public static final int STACK_DURATION = 5 * 20;
     public static final int MAX_STACKS = 5;
 

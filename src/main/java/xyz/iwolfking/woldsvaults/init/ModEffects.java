@@ -19,7 +19,7 @@ public class ModEffects {
     public static final MobEffect SNEAKY_GETAWAY = new SneakyGetawayAbility.SneakyGetawayEffect(MobEffectCategory.BENEFICIAL,0xcca468,CustomScaleTypes.SIZE_NO_MOVEMENT, new ResourceLocation(WoldsVaults.MODID,"sneaky_getaway"));
     public static final MobEffect SAFER_SPACE = new SaferSpacePotionEffect(MobEffectCategory.BENEFICIAL,0xae6bd1, new ResourceLocation(WoldsVaults.MODID,"safer_space"));
     public static final MobEffect LEVITATEII = new LevitateIIPotionEffect(MobEffectCategory.BENEFICIAL,0xceffff, new ResourceLocation(WoldsVaults.MODID,"levitateii"));
-    public static final MobEffect HEMORRHAGED = new HemorrhagedEffect(MobEffectCategory.HARMFUL, 0x6e0000, WoldsVaults.id("hemorrhaged"));
+    public static final MobEffect HEMORRHAGED = new HemorrhagedEffect(MobEffectCategory.HARMFUL, HemorrhagedEffect.COLOR, WoldsVaults.id("hemorrhaged"));
 
     public static void register(RegistryEvent.Register<MobEffect> event) {
         event.getRegistry().registerAll(SHRINKING, GROWING, REAVING, COLOSSUS, SNEAKY_GETAWAY, SAFER_SPACE, LEVITATEII, HEMORRHAGED);

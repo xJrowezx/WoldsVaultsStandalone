@@ -13,6 +13,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
+import xyz.iwolfking.woldsvaults.effect.mobeffects.HemorrhagedEffect;
 import xyz.iwolfking.woldsvaults.util.UniqueEffectGearAttribute;
 
 import javax.annotation.Nullable;
@@ -65,8 +66,8 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<EffectGearAttribute> UNIQUE_EFFECT = attr("unique_effect",
             EffectGearAttribute.type(), EffectGearAttribute.generator(), UniqueEffectGearAttribute.reader());
 
-    public static final VaultGearAttribute<EffectGearAttribute> HEMORRHAGING = attr("hemorrhaging",
-            EffectGearAttribute.type(), EffectGearAttribute.generator(), UniqueEffectGearAttribute.reader());
+    public static final VaultGearAttribute<Boolean> HEMORRHAGING = attr("hemorrhaging",
+            VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Hemorrhaging", HemorrhagedEffect.COLOR), VaultGearAttributeComparator.booleanComparator());
 
     public static final VaultGearAttribute<Boolean> MAGNET_ENDERGIZED = attr("endergized",
             VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Endergized", 46276), VaultGearAttributeComparator.booleanComparator());
