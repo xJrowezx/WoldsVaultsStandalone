@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.effect.mobeffects;
 
+import iskallia.vault.client.render.healthbar.DamageParticleSystem;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -8,6 +9,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
@@ -39,19 +41,20 @@ public class HemorrhagedEffect extends MobEffect {
         MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
         if (instance != null) {
             if (dealsDamage(instance.getDuration(), amplifier)) {
-                entity.setHealth(entity.getHealth() - (entity.getMaxHealth() * .01F));
+                float damage = entity.getMaxHealth() * .01F;
+                entity.setHealth(entity.getHealth() - damage);
                 entity.hurt(DAMAGE_SOURCE, 0.0F);
+                DamageParticleSystem.addDamageParticle(entity, damage, DamageParticleSystem.DamageType.GENERIC);
 
-                AABB boundingBox = entity.getBoundingBox().move(entity.blockPosition());
-                Vec3 center = boundingBox.getCenter();
+                EntityDimensions dimensions = entity.getDimensions(entity.getPose());
                 ((ServerLevel) entity.level).sendParticles(
                         new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
-                        center.x,
-                        center.y,
-                        center.z,
+                        entity.getX() + dimensions.width * 0.5F,
+                        entity.getY() + dimensions.height * 0.5F,
+                        entity.getZ() + dimensions.width * 0.5F,
                         25, // count
                         0, // xOffset
-                        boundingBox.getYsize() / 4, // yOffset
+                        dimensions.height / 4, // yOffset
                         0, // zOffset
                         0  // speed
                 );
