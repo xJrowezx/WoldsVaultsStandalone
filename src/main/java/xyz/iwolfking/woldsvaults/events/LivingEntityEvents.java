@@ -12,7 +12,6 @@ import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.util.calc.PlayerStat;
-import iskallia.vault.util.calc.ThornsHelper;
 import iskallia.vault.world.data.ServerVaults;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -116,32 +115,6 @@ public class LivingEntityEvents {
     }
 
     @SubscribeEvent
-    public static void thornsScalingDamage(LivingHurtEvent event) {
-        //Prevent an entity from being reaved more than once or applying to non-melee strikes.
-        if(!WoldEventHelper.isNormalAttack()) {
-            return;
-        }
-
-        if(event.getSource().isProjectile()) {
-            return;
-        }
-
-        if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
-            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
-            if(data != null) {
-                float thornsScalingPercent = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.THORNS_SCALING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
-                if(thornsScalingPercent <= 0F) {
-                    return;
-                }
-
-                float thornsDamage = ThornsHelper.getAdditionalThornsFlatDamage(player);
-                event.setAmount(event.getAmount() + (thornsDamage * thornsScalingPercent));
-
-            }
-        }
-    }
-
-    @SubscribeEvent
     public static void apScalingDamage(LivingHurtEvent event) {
         //Prevent an entity from being reaved more than once or applying to non-melee strikes.
         if(!WoldEventHelper.isNormalAttack()) {
@@ -153,17 +126,13 @@ public class LivingEntityEvents {
         }
 
         if(event.getSource().getEntity() instanceof Player player && player.getMainHandItem().getItem() instanceof VaultGearItem) {
-            VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
-            if(data != null) {
-                float apScalingPercent = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.AP_SCALING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
-                if(apScalingPercent <= 0F) {
-                    return;
-                }
-
-                float abilityPower = WoldAttributeHelper.getAdditionalAbilityPower(player);
-                event.setAmount(event.getAmount() + (abilityPower * apScalingPercent));
-
+            float apScalingPercent = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.AP_SCALING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
+            if(apScalingPercent <= 0F) {
+                return;
             }
+
+            float abilityPower = WoldAttributeHelper.getAdditionalAbilityPower(player);
+            event.setAmount(event.getAmount() + (abilityPower * apScalingPercent));
         }
     }
 
