@@ -1,6 +1,5 @@
 package xyz.iwolfking.woldsvaults.effect.mobeffects;
 
-import iskallia.vault.client.render.healthbar.DamageParticleSystem;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -10,10 +9,14 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.Nullable;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
+
+import java.util.UUID;
 
 public class HemorrhagedEffect extends MobEffect {
     public static final int COLOR = 0x6e0000;
@@ -23,7 +26,7 @@ public class HemorrhagedEffect extends MobEffect {
     public static final int BASE_INTERVAL = 25;
     public static final int STACK_INTERVAL_DECREASE = 5;
 
-    public static final DamageSource DAMAGE_SOURCE = new DamageSource("hemorrhaged");
+    public static final DamageSource DAMAGE_SOURCE = new DamageSource("hemorrhaged").bypassInvul().bypassArmor();
 
     public HemorrhagedEffect(MobEffectCategory category, int color, ResourceLocation id) {
         super(category, color);
@@ -36,23 +39,15 @@ public class HemorrhagedEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        if (entity.level.isClientSide) {
-            MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
-            if (instance != null && dealsDamage(instance.getDuration(), amplifier)) {
-                float damage = entity.getMaxHealth() * .01F;
-                DamageParticleSystem.addDamageParticle(entity, damage, DamageParticleSystem.DamageType.GENERIC);
-            }
-            return;
-        } else if (entity.isDeadOrDying()) {
+        if (entity.level.isClientSide || entity.isDeadOrDying()) {
             return;
         }
 
         MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
-        if (instance != null) {
+        if (instance instanceof HemorrhagedInstance casted && entity.level.getPlayerByUUID(casted.source) instanceof ServerPlayer source) {
             if (dealsDamage(instance.getDuration(), amplifier)) {
                 float damage = entity.getMaxHealth() * .01F;
-                entity.setHealth(entity.getHealth() - damage);
-                entity.hurt(DAMAGE_SOURCE, 0.0F);
+                entity.hurt(createDamageSource(source), damage);
 
                 EntityDimensions dimensions = entity.getDimensions(entity.getPose());
                 for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
@@ -60,13 +55,13 @@ public class HemorrhagedEffect extends MobEffect {
                             player,
                             new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
                             true,
-                            entity.getX() + dimensions.width * 0.5F,
+                            entity.getX(),
                             entity.getY() + dimensions.height * 0.5F,
-                            entity.getZ() + dimensions.width * 0.5F,
+                            entity.getZ(),
                             25, // count
-                            0, // xOffset
+                            dimensions.width / 6, // xOffset
                             dimensions.height / 4, // yOffset
-                            0, // zOffset
+                            dimensions.width / 6, // zOffset
                             0  // speed
                     );
                 }
@@ -74,7 +69,8 @@ public class HemorrhagedEffect extends MobEffect {
 
             if (instance.getDuration() == 1 && amplifier > 0) {
                 entity.removeEffectNoUpdate(ModEffects.HEMORRHAGED);
-                entity.addEffect(new MobEffectInstance(
+                entity.addEffect(new HemorrhagedInstance(
+                        casted.source,
                         instance.getEffect(),
                         STACK_DURATION,
                         --amplifier,
@@ -88,5 +84,28 @@ public class HemorrhagedEffect extends MobEffect {
 
     public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration == 1 || dealsDamage(duration, amplifier);
+    }
+
+    private static DamageSource createDamageSource(ServerPlayer source) {
+        return new DamageSource("hemorrhaged") {
+            @Override
+            public @Nullable Entity getEntity() {
+                return source;
+            }
+        }.bypassInvul().bypassArmor();
+    }
+
+    public static class HemorrhagedInstance extends MobEffectInstance {
+        private final UUID source;
+
+        public HemorrhagedInstance(UUID source, MobEffect effect, int duration, int amplifier) {
+            super(effect, duration, amplifier);
+            this.source = source;
+        }
+
+        public HemorrhagedInstance(UUID source, MobEffect p_19528_, int p_19529_, int p_19530_, boolean p_19531_, boolean p_19532_, boolean p_19533_) {
+            super(p_19528_, p_19529_, p_19530_, p_19531_, p_19532_, p_19533_);
+            this.source = source;
+        }
     }
 }
