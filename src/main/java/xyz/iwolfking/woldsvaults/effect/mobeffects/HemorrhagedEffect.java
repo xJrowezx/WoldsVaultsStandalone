@@ -19,6 +19,9 @@ public class HemorrhagedEffect extends MobEffect {
     public static final int STACK_DURATION = 5 * 20;
     public static final int MAX_STACKS = 5;
 
+    public static final int BASE_INTERVAL = 25;
+    public static final int STACK_INTERVAL_DECREASE = 5;
+
     public static final DamageSource DAMAGE_SOURCE = new DamageSource("hemorrhaged");
 
     public HemorrhagedEffect(MobEffectCategory category, int color, ResourceLocation id) {
@@ -27,7 +30,7 @@ public class HemorrhagedEffect extends MobEffect {
     }
 
     public boolean dealsDamage(int duration, int amplifier) {
-        return duration % Math.max(1, 25 - amplifier * 5) == 0;
+        return duration % Math.max(1, BASE_INTERVAL - amplifier * STACK_INTERVAL_DECREASE) == 0;
     }
 
     @Override
