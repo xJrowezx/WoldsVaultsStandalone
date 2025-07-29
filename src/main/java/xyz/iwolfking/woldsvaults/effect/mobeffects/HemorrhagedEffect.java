@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.effect.mobeffects;
 
+import iskallia.vault.event.ActiveFlags;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
@@ -13,20 +14,21 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 
 import java.util.UUID;
 
 public class HemorrhagedEffect extends MobEffect {
+    public static final String ID = "hemorrhaged";
+
     public static final int COLOR = 0x6e0000;
     public static final int STACK_DURATION = 5 * 20;
     public static final int MAX_STACKS = 5;
 
     public static final int BASE_INTERVAL = 25;
     public static final int STACK_INTERVAL_DECREASE = 5;
-
-    public static final DamageSource DAMAGE_SOURCE = new DamageSource("hemorrhaged").bypassInvul().bypassArmor();
 
     public HemorrhagedEffect(MobEffectCategory category, int color, ResourceLocation id) {
         super(category, color);
@@ -46,25 +48,29 @@ public class HemorrhagedEffect extends MobEffect {
         MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
         if (instance instanceof HemorrhagedInstance casted && entity.level.getPlayerByUUID(casted.source) instanceof ServerPlayer source) {
             if (dealsDamage(instance.getDuration(), amplifier)) {
-                float damage = entity.getMaxHealth() * .01F;
-                entity.hurt(createDamageSource(source), damage);
+                ActiveFlags.IS_EFFECT_ATTACKING.runIfNotSet(() -> {
+                    float damage = entity.getMaxHealth() * .01F;
+                    Vec3 movement = entity.getDeltaMovement();
+                    entity.hurt(createDamageSource(source), damage);
+                    entity.setDeltaMovement(movement);
 
-                EntityDimensions dimensions = entity.getDimensions(entity.getPose());
-                for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
-                    ((ServerLevel) entity.level).sendParticles(
-                            player,
-                            new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
-                            true,
-                            entity.getX(),
-                            entity.getY() + dimensions.height * 0.5F,
-                            entity.getZ(),
-                            25, // count
-                            dimensions.width / 6, // xOffset
-                            dimensions.height / 4, // yOffset
-                            dimensions.width / 6, // zOffset
-                            0  // speed
-                    );
-                }
+                    EntityDimensions dimensions = entity.getDimensions(entity.getPose());
+                    for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
+                        ((ServerLevel) entity.level).sendParticles(
+                                player,
+                                new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
+                                true,
+                                entity.getX(),
+                                entity.getY() + dimensions.height * 0.5F,
+                                entity.getZ(),
+                                25, // count
+                                dimensions.width / 6, // xOffset
+                                dimensions.height / 4, // yOffset
+                                dimensions.width / 6, // zOffset
+                                0  // speed
+                        );
+                    }
+                });
             }
 
             if (instance.getDuration() == 1 && amplifier > 0) {
@@ -87,7 +93,7 @@ public class HemorrhagedEffect extends MobEffect {
     }
 
     private static DamageSource createDamageSource(ServerPlayer source) {
-        return new DamageSource("hemorrhaged") {
+        return new DamageSource(ID) {
             @Override
             public @Nullable Entity getEntity() {
                 return source;

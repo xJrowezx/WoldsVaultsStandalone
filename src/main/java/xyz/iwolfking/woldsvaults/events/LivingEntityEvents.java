@@ -195,7 +195,8 @@ public class LivingEntityEvents {
 
     @SubscribeEvent
     public static void hemorrhagingEffect(LivingHurtEvent event) {
-        if(!WoldEventHelper.isNormalAttack() || event.getSource().isProjectile()) {
+        DamageSource source = event.getSource();
+        if(!WoldEventHelper.isNormalAttack() || source.isProjectile()) {
             return;
         }
 
