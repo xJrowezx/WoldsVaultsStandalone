@@ -210,7 +210,7 @@ public class LivingEntityEvents {
             VaultGearData data = VaultGearData.read(player.getMainHandItem().copy());
             if(data.hasAttribute(ModGearAttributes.HEMORRHAGING)) {
                 MobEffectInstance existing = event.getEntityLiving().getEffect(ModEffects.HEMORRHAGED);
-                int amplifier = existing != null ? Math.max(HemorrhagedEffect.MAX_STACKS - 1, existing.getAmplifier() + 1) : 0;
+                int amplifier = existing != null ? Math.min(HemorrhagedEffect.MAX_STACKS - 1, existing.getAmplifier() + 1) : 0;
                 event.getEntityLiving().addEffect(new MobEffectInstance(ModEffects.HEMORRHAGED, HemorrhagedEffect.STACK_DURATION, amplifier));
             }
         }

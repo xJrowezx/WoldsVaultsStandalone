@@ -4,6 +4,7 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -18,13 +19,15 @@ public class HemorrhagedEffect extends MobEffect {
     public static final int STACK_DURATION = 5 * 20;
     public static final int MAX_STACKS = 5;
 
+    public static final DamageSource DAMAGE_SOURCE = new DamageSource("hemorrhaged");
+
     public HemorrhagedEffect(MobEffectCategory category, int color, ResourceLocation id) {
         super(category, color);
         this.setRegistryName(id);
     }
 
-    public boolean dealDamage(int duration, int amplifier) {
-        return duration % (25 - amplifier * 5) == 0;
+    public boolean dealsDamage(int duration, int amplifier) {
+        return duration % Math.max(1, 25 - amplifier * 5) == 0;
     }
 
     @Override
@@ -35,11 +38,11 @@ public class HemorrhagedEffect extends MobEffect {
 
         MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
         if (instance != null) {
-            if (dealDamage(instance.getDuration(), amplifier)) {
+            if (dealsDamage(instance.getDuration(), amplifier)) {
                 entity.setHealth(entity.getHealth() - (entity.getMaxHealth() * .01F));
-                entity.animateHurt();
+                entity.hurt(DAMAGE_SOURCE, 0.0F);
 
-                AABB boundingBox = entity.getBoundingBox();
+                AABB boundingBox = entity.getBoundingBox().move(entity.blockPosition());
                 Vec3 center = boundingBox.getCenter();
                 ((ServerLevel) entity.level).sendParticles(
                         new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
@@ -69,6 +72,6 @@ public class HemorrhagedEffect extends MobEffect {
     }
 
     public boolean isDurationEffectTick(int duration, int amplifier) {
-        return duration == 1 || dealDamage(duration, amplifier);
+        return duration == 1 || dealsDamage(duration, amplifier);
     }
 }
