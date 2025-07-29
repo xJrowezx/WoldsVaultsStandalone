@@ -12,8 +12,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 
 public class HemorrhagedEffect extends MobEffect {
