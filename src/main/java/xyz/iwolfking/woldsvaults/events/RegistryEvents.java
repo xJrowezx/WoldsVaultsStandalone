@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.events;
 
+import net.minecraft.core.particles.ParticleType;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
@@ -48,13 +49,15 @@ public class RegistryEvents {
         ModBlocks.registerTileEntityRenderers(event);
     }
 
-
+    @SubscribeEvent
+    public static void onParticleRegister(RegistryEvent.Register<ParticleType<?>> event) {
+        ModParticles.register(event);
+    }
 
     @SubscribeEvent
     public static void onEffectRegister(RegistryEvent.Register<MobEffect> event) {
         CustomScaleTypes.init();
         ModEffects.register(event);
-
     }
 
     @SubscribeEvent

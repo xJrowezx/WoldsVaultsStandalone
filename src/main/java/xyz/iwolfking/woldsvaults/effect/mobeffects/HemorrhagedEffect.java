@@ -1,8 +1,6 @@
 package xyz.iwolfking.woldsvaults.effect.mobeffects;
 
 import iskallia.vault.event.ActiveFlags;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -13,10 +11,10 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
+import xyz.iwolfking.woldsvaults.init.ModParticles;
 
 import java.util.UUID;
 
@@ -50,23 +48,26 @@ public class HemorrhagedEffect extends MobEffect {
             ActiveFlags.IS_AOE_ATTACKING.runIfNotSet(() -> {
                 float damage = entity.getMaxHealth() * .01F;
                 Vec3 movement = entity.getDeltaMovement();
+                int invulnerableTime = entity.invulnerableTime;
+                entity.invulnerableTime = 0;
                 entity.hurt(createDamageSource(source), damage);
                 entity.setDeltaMovement(movement);
+                entity.invulnerableTime = invulnerableTime;
 
                 EntityDimensions dimensions = entity.getDimensions(entity.getPose());
                 for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
                     ((ServerLevel) entity.level).sendParticles(
                             player,
-                            new BlockParticleOption(ParticleTypes.BLOCK, Blocks.REDSTONE_BLOCK.defaultBlockState()),
+                            ModParticles.BLOOD_PARTICLE,
                             true,
                             entity.getX(),
                             entity.getY() + dimensions.height * 0.5F,
                             entity.getZ(),
-                            25, // count
-                            dimensions.width / 6, // xOffset
-                            dimensions.height / 4, // yOffset
-                            dimensions.width / 6, // zOffset
-                            0  // speed
+                            25,
+                            dimensions.width / 6,
+                            dimensions.height / 4,
+                            dimensions.width / 6,
+                            0
                     );
                 }
             });
