@@ -36,6 +36,6 @@ public class ModParticles {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerParticles(ParticleFactoryRegisterEvent event) {
         ParticleEngine particleManager = Minecraft.getInstance().particleEngine;
-        particleManager.register(BLOOD_PARTICLE, new BloodParticle.Factory());
+        particleManager.register(BLOOD_PARTICLE, BloodParticle.Factory::new);
     }
 }
