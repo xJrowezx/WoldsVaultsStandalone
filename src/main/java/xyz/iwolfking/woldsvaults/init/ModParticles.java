@@ -20,7 +20,7 @@ import xyz.iwolfking.woldsvaults.particle.BloodParticle;
         value = Dist.CLIENT
 )
 public class ModParticles {
-    public static final SimpleParticleType BLOOD_PARTICLE = simple("blood_particle", true);
+    public static final SimpleParticleType BLOOD_PARTICLE = simple("blood", true);
 
     private static SimpleParticleType simple(String name, boolean overrideLimiter) {
         SimpleParticleType type = new SimpleParticleType(overrideLimiter);
