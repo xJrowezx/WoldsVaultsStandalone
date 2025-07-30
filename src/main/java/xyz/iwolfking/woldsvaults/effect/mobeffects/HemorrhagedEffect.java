@@ -44,33 +44,35 @@ public class HemorrhagedEffect extends MobEffect {
         }
 
         MobEffectInstance instance = entity.getEffect(ModEffects.HEMORRHAGED);
-        if (instance instanceof HemorrhagedInstance casted && entity.level.getPlayerByUUID(casted.source) instanceof ServerPlayer source && dealsDamage(instance.getDuration(), amplifier)) {
-            ActiveFlags.IS_AOE_ATTACKING.runIfNotSet(() -> {
-                float damage = entity.getMaxHealth() * .01F;
-                Vec3 movement = entity.getDeltaMovement();
-                int invulnerableTime = entity.invulnerableTime;
-                entity.invulnerableTime = 0;
-                entity.hurt(createDamageSource(source), damage);
-                entity.setDeltaMovement(movement);
-                entity.invulnerableTime = invulnerableTime;
+        if (instance instanceof HemorrhagedInstance casted && entity.level.getPlayerByUUID(casted.source) instanceof ServerPlayer source) {
+            if (dealsDamage(instance.getDuration(), amplifier)) {
+                ActiveFlags.IS_AOE_ATTACKING.runIfNotSet(() -> {
+                    float damage = entity.getMaxHealth() * .01F;
+                    Vec3 movement = entity.getDeltaMovement();
+                    int invulnerableTime = entity.invulnerableTime;
+                    entity.invulnerableTime = 0;
+                    entity.hurt(createDamageSource(source), damage);
+                    entity.setDeltaMovement(movement);
+                    entity.invulnerableTime = invulnerableTime;
 
-                EntityDimensions dimensions = entity.getDimensions(entity.getPose());
-                for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
-                    ((ServerLevel) entity.level).sendParticles(
-                            player,
-                            ModParticles.BLOOD_PARTICLE,
-                            true,
-                            entity.getX(),
-                            entity.getY() + dimensions.height * 0.5F,
-                            entity.getZ(),
-                            25,
-                            dimensions.width / 6,
-                            dimensions.height / 4,
-                            dimensions.width / 6,
-                            0
-                    );
-                }
-            });
+                    EntityDimensions dimensions = entity.getDimensions(entity.getPose());
+                    for (ServerPlayer player : ((ServerLevel) entity.level).players()) {
+                        ((ServerLevel) entity.level).sendParticles(
+                                player,
+                                ModParticles.BLOOD_PARTICLE,
+                                true,
+                                entity.getX(),
+                                entity.getY() + dimensions.height * 0.5F,
+                                entity.getZ(),
+                                25,
+                                dimensions.width / 6,
+                                dimensions.height / 4,
+                                dimensions.width / 6,
+                                0
+                        );
+                    }
+                });
+            }
 
             if (instance.getDuration() == 1 && amplifier > 0) {
                 entity.removeEffectNoUpdate(ModEffects.HEMORRHAGED);
