@@ -29,7 +29,9 @@ public class BloodParticle extends TextureSheetParticle {
 
         @Override
         public Particle createParticle(@NotNull SimpleParticleType type, @NotNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new BloodParticle(level, x, y, z);
+            BloodParticle particle = new BloodParticle(level, x, y, z);
+            particle.pickSprite(this.sprite);
+            return particle;
         }
     }
 }
