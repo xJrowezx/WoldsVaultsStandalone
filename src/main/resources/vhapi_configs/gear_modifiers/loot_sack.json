@@ -157,6 +157,34 @@
         ]
       },
       {
+        "attribute": "the_vault:effect",
+        "group": "BaseBonusPool",
+        "identifier": "the_vault:mod_effect_speed",
+        "tags": [
+          "noLegendary"
+        ],
+        "tiers": [
+          {
+            "minLevel": 20,
+            "maxLevel": -1,
+            "weight": 20,
+            "value": {
+              "effectKey": "minecraft:speed",
+              "amplifier": 1
+            }
+          },
+          {
+            "minLevel": 50,
+            "maxLevel": -1,
+            "weight": 20,
+            "value": {
+              "effectKey": "minecraft:speed",
+              "amplifier": 2
+            }
+          }
+        ]
+      },
+      {
         "attribute": "the_vault:mining_speed",
         "group": "ModMiningSpeed",
         "identifier": "the_vault:mod_mining_speed",
@@ -1047,26 +1075,6 @@
             "value": {
               "min": 0.26,
               "max": 0.30,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 101,
-            "maxLevel": -1,
-            "weight": 100,
-            "value": {
-              "min": 0.31,
-              "max": 0.36,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 102,
-            "maxLevel": -1,
-            "weight": 100,
-            "value": {
-              "min": 0.37,
-              "max": 0.45,
               "step": 0.01
             }
           }
