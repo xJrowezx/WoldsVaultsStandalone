@@ -1,6 +1,6 @@
 package xyz.iwolfking.woldsvaults.jei;
 
-import iskallia.vault.init.ModConfigs;
+import dev.attackeight.just_enough_vh.jei.TheVaultJEIPlugin;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -12,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.jei.category.*;
-
 
 import java.util.List;
 
@@ -39,8 +38,6 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new MysteryEggRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
-        registration.addRecipeCategories(new MysteryHostileEggRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new EnigmaEggRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new OmegaBoxRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new GemBoxRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
@@ -53,8 +50,6 @@ public class WoldsVaultsJeiPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        registration.addRecipes(MysteryEggRecipeCategory.RECIPE_TYPE, List.of(ModConfigs.MYSTERY_EGG));
-        registration.addRecipes(MysteryHostileEggRecipeCategory.RECIPE_TYPE, List.of(ModConfigs.MYSTERY_HOSTILE_EGG));
         registration.addRecipes(EnigmaEggRecipeCategory.RECIPE_TYPE, List.of(xyz.iwolfking.woldsvaults.init.ModConfigs.ENIGMA_EGG));
         registration.addRecipes(OmegaBoxRecipeCategory.RECIPE_TYPE, List.of(xyz.iwolfking.woldsvaults.init.ModConfigs.OMEGA_BOX));
         registration.addRecipes(GemBoxRecipeCategory.RECIPE_TYPE, List.of(xyz.iwolfking.woldsvaults.init.ModConfigs.GEM_BOX));

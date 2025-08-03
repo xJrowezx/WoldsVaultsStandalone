@@ -184,7 +184,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6802790")
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:6803115")
-
+    implementation fg.deobf("curse.maven:just-enough-vh-1035310:6830728")
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
 
