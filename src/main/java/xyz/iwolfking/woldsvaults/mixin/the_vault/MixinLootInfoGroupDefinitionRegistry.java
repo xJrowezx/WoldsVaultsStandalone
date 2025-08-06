@@ -23,9 +23,9 @@ public abstract class MixinLootInfoGroupDefinitionRegistry {
         register("treasure_pedestal", () -> {
             return new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_PEDESTAL);
         });
-        register("vendor_pedestal", () -> {
-            return new ItemStack(iskallia.vault.init.ModBlocks.SHOP_PEDESTAL);
-        });
+//        register("vendor_pedestal", () -> {
+//            return new ItemStack(iskallia.vault.init.ModBlocks.SHOP_PEDESTAL);
+//        });
         register("digsite_sand", () -> {
             return new ItemStack(iskallia.vault.init.ModBlocks.TREASURE_SAND);
         });
