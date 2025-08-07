@@ -6,6 +6,7 @@ import iskallia.vault.gear.VaultGearRarity;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.init.ModConfigs;
+import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.init.ModNetwork;
 import iskallia.vault.item.gear.RecyclableItem;
 import iskallia.vault.network.message.RecyclerParticleMessage;
@@ -109,22 +110,36 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
     private void handleOutput(ItemStack input, VaultRecyclerConfig.RecyclerOutput output, float additionalChance, VaultGearRarity rarity) {
         this.inventory.removeItem(0, 1);
 
-        MiscUtils.addStackToSlot(this.inventory, 1, this.getUseRelatedOutput(input, output.generateMainOutput(additionalChance)));
-        MiscUtils.addStackToSlot(this.inventory, 2, this.getUseRelatedOutput(input, output.generateExtraOutput1(additionalChance)));
+        if (input.getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(input);
+            boolean isCrafted = data.hasAttribute(ModGearAttributes.CRAFTED_BY) || data.getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent();
 
-        ItemStack extraOutput2 = (rarity != null)
-                ? output.generateExtraOutput2(additionalChance, rarity, false)
-                : output.generateExtraOutput2(additionalChance);
+            MiscUtils.addStackToSlot(this.inventory, 1, this.getUseRelatedOutput(input, output.generateMainOutput(additionalChance)));
+            MiscUtils.addStackToSlot(this.inventory, 2, this.getUseRelatedOutput(input, output.generateExtraOutput1(additionalChance, rarity, isCrafted)));
 
-        ItemStack matchedStack = output.getExtraOutput2Matching();
-        for (int slot = 3; slot <= 8; slot++) {
-            if (MiscUtils.canFullyMergeIntoSlot(this.inventory, slot, matchedStack)) {
-                MiscUtils.addStackToSlot(this.inventory, slot, this.getUseRelatedOutput(input, extraOutput2));
-                return;
+            ItemStack extraOutput2 = output.generateExtraOutput2(additionalChance, rarity, isCrafted);
+            ItemStack matchedStack = output.getExtraOutput2Matching();
+            for (int slot = 3; slot <= 8; slot++) {
+                if (MiscUtils.canFullyMergeIntoSlot(this.inventory, slot, matchedStack)) {
+                    MiscUtils.addStackToSlot(this.inventory, slot, this.getUseRelatedOutput(input, extraOutput2));
+                    return;
+                }
             }
-        }
+            MiscUtils.addStackToSlot(this.inventory, 9, this.getUseRelatedOutput(input, extraOutput2));
+        } else {
+            MiscUtils.addStackToSlot(this.inventory, 1, this.getUseRelatedOutput(input, output.generateMainOutput(additionalChance)));
+            MiscUtils.addStackToSlot(this.inventory, 2, this.getUseRelatedOutput(input, output.generateExtraOutput1(additionalChance)));
 
-        MiscUtils.addStackToSlot(this.inventory, 9, this.getUseRelatedOutput(input, extraOutput2));
+            ItemStack extraOutput2 = output.generateExtraOutput2(additionalChance);
+            ItemStack matchedStack = output.getExtraOutput2Matching();
+            for (int slot = 3; slot <= 8; slot++) {
+                if (MiscUtils.canFullyMergeIntoSlot(this.inventory, slot, matchedStack)) {
+                    MiscUtils.addStackToSlot(this.inventory, slot, this.getUseRelatedOutput(input, extraOutput2));
+                    return;
+                }
+            }
+            MiscUtils.addStackToSlot(this.inventory, 9, this.getUseRelatedOutput(input, extraOutput2));
+        }
     }
 
     private ItemStack getUseRelatedOutput(ItemStack input, ItemStack output) {
