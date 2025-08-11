@@ -133,7 +133,6 @@
         "group": "ModEffect",
         "identifier": "the_vault:mod_effect_haste",
         "tags": [
-          "noLegendary"
         ],
         "tiers": [
           {
@@ -152,6 +151,24 @@
             "value": {
               "effectKey": "minecraft:haste",
               "amplifier": 2
+            }
+          },
+          {
+            "minLevel": 101,
+            "maxLevel": -1,
+            "weight": 20,
+            "value": {
+              "effectKey": "minecraft:haste",
+              "amplifier": 3
+            }
+          },
+          {
+            "minLevel": 102,
+            "maxLevel": -1,
+            "weight": 20,
+            "value": {
+              "effectKey": "minecraft:haste",
+              "amplifier": 3
             }
           }
         ]
@@ -161,7 +178,6 @@
         "group": "BaseBonusPool",
         "identifier": "the_vault:mod_effect_speed",
         "tags": [
-          "noLegendary"
         ],
         "tiers": [
           {
@@ -180,6 +196,24 @@
             "value": {
               "effectKey": "minecraft:speed",
               "amplifier": 2
+            }
+          },
+          {
+            "minLevel": 101,
+            "maxLevel": -1,
+            "weight": 20,
+            "value": {
+              "effectKey": "minecraft:speed",
+              "amplifier": 3
+            }
+          },
+          {
+            "minLevel": 102,
+            "maxLevel": -1,
+            "weight": 20,
+            "value": {
+              "effectKey": "minecraft:speed",
+              "amplifier": 3
             }
           }
         ]
@@ -329,7 +363,6 @@
         "group": "BaseBonusPool",
         "identifier": "the_vault:base_movement",
         "tags": [
-          "noLegendary"
         ],
         "tiers": [
           {
@@ -369,6 +402,26 @@
             "value": {
               "min": 0.25,
               "max": 0.3,
+              "step": 0.01
+            }
+          },
+          {
+            "minLevel": 101,
+            "maxLevel": -1,
+            "weight": 100,
+            "value": {
+              "min": 0.35,
+              "max": 0.47,
+              "step": 0.01
+            }
+          },
+          {
+            "minLevel": 102,
+            "maxLevel": -1,
+            "weight": 100,
+            "value": {
+              "min": 0.48,
+              "max": 0.60,
               "step": 0.01
             }
           }
