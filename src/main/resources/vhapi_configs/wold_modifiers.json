@@ -1856,7 +1856,7 @@
                 "type": "woldsvaults:black_ghost",
                 "randomMotion": false
               },
-              "weight": 6
+              "weight": 0
             },
             {
               "value": {

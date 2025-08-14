@@ -29,16 +29,8 @@
                 "weight": 12
               },
               {
-                "value": "the_vault:champion_chance",
-                "weight": 8
-              },
-              {
                 "value": "woldsvaults:disarming",
                 "weight": 12
-              },
-              {
-                "value": "the_vault:crate_tier",
-                "weight": 2
               },
               {
                 "value": "the_vault:soul_surge",
@@ -135,10 +127,6 @@
                 "weight": 30
               },
               {
-                "value": "the_vault:rotten",
-                "weight": 10
-              },
-              {
                 "value": "woldsvaults:rigged",
                 "weight": 10
               },
@@ -226,6 +214,73 @@
               {
                 "value": "woldsvaults:ghost_party",
                 "weight": 50
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "level": 50,
+        "entries": [
+          {
+            "min": 1,
+            "max": 1,
+            "pool": [
+              {
+                "value": "woldsvaults:ghost_party",
+                "weight": 5
+              },
+              {
+                "value": "the_vault:brazier_shortened",
+                "weight": 5
+              },
+              {
+                "value": "the_vault:wounded",
+                "weight": 5
+              },
+              {
+                "value": "the_vault:brazier_voiding",
+                "weight": 5
+              },
+              {
+                "value": "the_vault:brazier_ethereal",
+                "weight": 5
+              },
+              {
+                "value": "the_vault:slowed_t2",
+                "weight": 5
+              },
+              {
+                "value": "woldsvaults:abusive_mobs",
+                "weight": 3
+              },
+              {
+                "value": "the_vault:chemical_bath",
+                "weight": 3
+              },
+              {
+                "value": "the_vault:phantasmal_mobs",
+                "weight": 3
+              },
+              {
+                "value": "the_vault:fleet_footed_mobs",
+                "weight": 3
+              },
+              {
+                "value": "the_vault:mana_leak",
+                "weight": 2
+              },
+              {
+                "value": "the_vault:crab_walk",
+                "weight": 2
+              },
+              {
+                "value": "the_vault:confused",
+                "weight": 2
+              },
+              {
+                "value": "woldsvaults:corrosive",
+                "weight": 2
               }
             ]
           }

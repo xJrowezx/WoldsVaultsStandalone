@@ -73,6 +73,16 @@
         "theme": {
           "type": "value",
           "id": "the_vault:classic_vault_cave_deepslate"
+        },
+        "modifiers": {
+          "type": "default",
+          "list": [
+            {
+              "modifier": "the_vault:rotten",
+              "count": 1
+            }
+          ],
+          "random_modifiers": false
         }
       },
       {
@@ -92,6 +102,16 @@
         "theme": {
           "type": "value",
           "id": "the_vault:classic_vault_cave_deepslate"
+        },
+        "modifiers": {
+          "type": "default",
+          "list": [
+            {
+              "modifier": "the_vault:rotten",
+              "count": 1
+            }
+          ],
+          "random_modifiers": false
         }
       },
       {
@@ -111,6 +131,16 @@
         "theme": {
           "type": "value",
           "id": "the_vault:classic_vault_cave_deepslate"
+        },
+        "modifiers": {
+          "type": "default",
+          "list": [
+            {
+              "modifier": "the_vault:rotten",
+              "count": 1
+            }
+          ],
+          "random_modifiers": false
         }
       }
     ],
