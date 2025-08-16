@@ -47,8 +47,8 @@
           "objective_probability": 1.0,
           "target": {
             "type": "uniform",
-            "min": 5,
-            "max": 12
+            "min": 4,
+            "max": 6
           }
         },
         "theme": {
@@ -66,8 +66,8 @@
           "objective_probability": 1.0,
           "target": {
             "type": "uniform",
-            "min": 5,
-            "max": 12
+            "min": 4,
+            "max": 8
           }
         },
         "theme": {
@@ -82,7 +82,7 @@
               "count": 1
             }
           ],
-          "random_modifiers": false
+          "random_modifiers": true
         }
       },
       {
@@ -96,7 +96,7 @@
           "target": {
             "type": "uniform",
             "min": 6,
-            "max": 12
+            "max": 8
           }
         },
         "theme": {
@@ -111,7 +111,7 @@
               "count": 1
             }
           ],
-          "random_modifiers": false
+          "random_modifiers": true
         }
       },
       {
@@ -124,8 +124,8 @@
           "objective_probability": 1.0,
           "target": {
             "type": "uniform",
-            "min": 7,
-            "max": 15
+            "min": 6,
+            "max": 10
           }
         },
         "theme": {
@@ -140,7 +140,7 @@
               "count": 1
             }
           ],
-          "random_modifiers": false
+          "random_modifiers": true
         }
       }
     ],
