@@ -11,6 +11,7 @@
     "MixinLoaderRegistry",
     "MixinThrownTrident",
     "ThrownTridentAccessor",
+    "MixinItemStack",
     "accessors.ClassicCircleCrystalLayoutAccessor",
     "accessors.ClassicInfiniteCrystalLayoutAccessor",
     "accessors.ClassicPolygonCrystalLayoutAccessor",
