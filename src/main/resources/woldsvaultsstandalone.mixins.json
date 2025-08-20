@@ -52,7 +52,8 @@
     "the_vault.skills.MixinModAbilityLabelBindings",
     "the_vault.skills.MixinResistanceHelper",
     "the_vault.skills.modifications.MixinFireballAbility",
-    "the_vault.skills.modifications.MixinIceBoltChunkAbility"
+    "the_vault.skills.modifications.MixinIceBoltChunkAbility",
+    "the_vault.custom.MixinVaultXPFoodItem"
   ],
   "client": [
     "MixinThrownTridentRenderer",
