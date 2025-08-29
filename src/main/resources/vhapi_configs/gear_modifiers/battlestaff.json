@@ -2258,6 +2258,9 @@
         "attribute": "the_vault:mana_regen",
         "group": "ModManaRegen",
         "identifier": "the_vault:mod_mana_regen",
+        "tags": [
+          "focusManaRegen"
+        ],
         "tiers": [
           {
             "minLevel": 0,
@@ -4285,6 +4288,9 @@
         "attribute": "the_vault:mana_regen",
         "group": "ModManaRegen",
         "identifier": "the_vault:crafted_mana_regen",
+        "tags": [
+          "focusManaRegen"
+        ],
         "tiers": [
           {
             "minLevel": 0,
