@@ -99,7 +99,6 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
         }
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
-        System.out.println("Rang used");
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
     }
 

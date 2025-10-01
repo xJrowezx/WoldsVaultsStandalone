@@ -31,8 +31,7 @@ public abstract class MixinItemStack extends net.minecraftforge.common.capabilit
 
         // Treat as weapons (using VaultSwordItem as reference)
         if (item instanceof VaultBattleStaffItem
-                || item instanceof VaultTridentItem
-                || item instanceof VaultRangItem) {
+                || item instanceof VaultTridentItem) {
             return ModItems.SWORD;
         }
 
