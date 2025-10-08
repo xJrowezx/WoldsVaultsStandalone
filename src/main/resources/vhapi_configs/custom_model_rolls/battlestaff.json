@@ -32,7 +32,9 @@
       "the_vault:gear/battlestaff/bamboo_fightstick",
       "the_vault:gear/battlestaff/ninja_baton",
       "the_vault:gear/battlestaff/darksaber",
-      "the_vault:gear/battlestaff/scarlet_twins",
+      "the_vault:gear/battlestaff/scarlet_twins"
+    ],
+    "SPECIAL": [
       "the_vault:gear/battlestaff/eldritch_staff"
     ]
   }
