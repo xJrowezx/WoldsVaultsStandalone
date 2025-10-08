@@ -26,18 +26,14 @@
       "the_vault:gear/battlestaff/murakumogiri",
       "the_vault:gear/battlestaff/chopstick_battlestaff",
       "the_vault:gear/battlestaff/sun_wukong_staff",
-      "the_vault:gear/battlestaff/quackhammer",
-      "the_vault:gear/battlestaff/prismatic_battlestaff",
-      "the_vault:gear/battlestaff/midnight_battlestaff"
+      "the_vault:gear/battlestaff/quackhammer"
     ],
     "UNIQUE": [
       "the_vault:gear/battlestaff/bamboo_fightstick",
-      "the_vault:gear/battlestaff/ninja_baton"
-    ],
-    "SPECIAL": [
+      "the_vault:gear/battlestaff/ninja_baton",
       "the_vault:gear/battlestaff/darksaber",
       "the_vault:gear/battlestaff/scarlet_twins",
-      "the_vault:gear/battlestaff/darksaber2"
+      "the_vault:gear/battlestaff/eldritch_staff"
     ]
   }
 }
