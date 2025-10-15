@@ -27,7 +27,7 @@ public abstract class MixinModAbilityLabelBindings {
                 ability -> AbilityLabelFormatters.ticks(ability.getCooldownTicks()),
                 "manaCost",
                 ability -> AbilityLabelFormatters.integer((int) ability.getManaCost()),
-                "duration",
+                "adjustedDuration",
                 ability -> AbilityLabelFormatters.ticks(ability.getDurationTicks())
 
         ));
@@ -40,7 +40,7 @@ public abstract class MixinModAbilityLabelBindings {
                 ability -> AbilityLabelFormatters.ticks(ability.getCooldownTicks()),
                 "manaCost",
                 ability -> AbilityLabelFormatters.integer((int) ability.getManaCost()),
-                "duration",
+                "adjustedDuration",
                 ability -> AbilityLabelFormatters.ticks(ability.getDurationTicks())
 
         ));

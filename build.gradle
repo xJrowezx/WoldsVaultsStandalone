@@ -179,10 +179,10 @@ dependencies {
     implementation fg.deobf('curse.maven:ecologics-570463:4171283')
     implementation fg.deobf("curse.maven:better-combat-by-daedelus-639842:4428885")
 //    implementation fg.deobf(files('libs/vhapi-3.0.1.jar'))
-//    implementation fg.deobf(files('libs/the_vault-1.18.2-3.15.2.3663.jar'))
     //implementation fg.deobf("curse.maven:vaultfaster-988487:6807118")
 
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6802790")
+   // implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:6802790") 3.19.5
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7102303") // 3.19.6 ish
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:6803115")
     implementation fg.deobf("curse.maven:just-enough-vh-1035310:6830728")
 

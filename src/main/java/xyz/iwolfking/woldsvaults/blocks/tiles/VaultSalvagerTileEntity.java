@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.blocks.tiles;
 import com.google.common.collect.Lists;
 import iskallia.vault.config.VaultRecyclerConfig;
 import iskallia.vault.gear.VaultGearRarity;
+import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.init.ModConfigs;
@@ -113,11 +114,12 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
         if (input.getItem() instanceof VaultGearItem) {
             VaultGearData data = VaultGearData.read(input);
             boolean isCrafted = data.hasAttribute(ModGearAttributes.CRAFTED_BY) || data.getFirstValue(ModGearAttributes.CRAFTED_BY).isPresent();
+            boolean isLegendary = data.get(ModGearAttributes.IS_LEGENDARY, VaultGearAttributeTypeMerger.anyTrue());
 
             MiscUtils.addStackToSlot(this.inventory, 1, this.getUseRelatedOutput(input, output.generateMainOutput(additionalChance)));
-            MiscUtils.addStackToSlot(this.inventory, 2, this.getUseRelatedOutput(input, output.generateExtraOutput1(additionalChance, rarity, isCrafted)));
+            MiscUtils.addStackToSlot(this.inventory, 2, this.getUseRelatedOutput(input, output.generateExtraOutput1(additionalChance, rarity, isCrafted, isLegendary)));
 
-            ItemStack extraOutput2 = output.generateExtraOutput2(additionalChance, rarity, isCrafted);
+            ItemStack extraOutput2 = output.generateExtraOutput2(additionalChance, rarity, isCrafted, isLegendary);
             ItemStack matchedStack = output.getExtraOutput2Matching();
             for (int slot = 3; slot <= 8; slot++) {
                 if (MiscUtils.canFullyMergeIntoSlot(this.inventory, slot, matchedStack)) {
