@@ -19,6 +19,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.IntSupplier;
@@ -37,7 +38,7 @@ public class BrutalBossesCrystalObjective extends CrystalObjective {
         this.objectiveProbability = objectiveProbability;
     }
 
-    public void configure(Vault vault, RandomSource random) {
+    public void configure(Vault vault, RandomSource random, @Nullable String sigil) {
         int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
             IntSupplier limitedWave = () -> random.nextInt(3) + 1;
@@ -52,7 +53,7 @@ public class BrutalBossesCrystalObjective extends CrystalObjective {
         });
     }
 
-    @Override
+
     public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
         tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Slay the Brutal Bosses")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
     }

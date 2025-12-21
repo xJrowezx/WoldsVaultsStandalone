@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.objectives;
 
 import com.google.gson.JsonObject;
+import iskallia.vault.VaultMod;
 import iskallia.vault.block.VaultCrateBlock;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.random.RandomSource;
@@ -17,6 +18,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,11 +28,13 @@ public class UnhingedScavengerCrystalObjective extends CrystalObjective {
         /*    */   }
     /*    */   protected float objectiveProbability;
     /*    */   public UnhingedScavengerCrystalObjective() {}
-    /*    */   public void configure(Vault vault, RandomSource random) {
+    /*    */   public void configure(Vault vault, RandomSource random, @Nullable String sigil) {
         /* 34 */     int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         /*    */
         /* 36 */     vault.ifPresent(Vault.OBJECTIVES, objectives -> {
-            /*    */           objectives.add(UnhingedScavengerObjective.of(this.objectiveProbability, UnhingedScavengerObjective.Config.DEFAULT).add((Objective) AwardCrateObjective.ofConfig(VaultCrateBlock.Type.SCAVENGER, "unhinged_scavenger", level, true)).add((Objective) VictoryObjective.of(300)));
+            /*    */           objectives.add(UnhingedScavengerObjective.of(this.objectiveProbability, UnhingedScavengerObjective.Config.DEFAULT, VaultMod.id("default"))
+                    .add((Objective) AwardCrateObjective.ofConfig(VaultCrateBlock.Type.SCAVENGER, "unhinged_scavenger", level, true))
+                    .add((Objective) VictoryObjective.of(300)));
             /*    */           objectives.add((Objective) BailObjective.create(true, new ResourceLocation[] { ClassicPortalLogic.EXIT }));
             /*    */           objectives.add((Objective) DeathObjective.create(true));
             /*    */           objectives.set(Objectives.KEY, CrystalData.OBJECTIVE.getType(this));
@@ -76,7 +80,7 @@ public class UnhingedScavengerCrystalObjective extends CrystalObjective {
         /* 80 */     this.objectiveProbability = ((Float)Adapters.FLOAT.readJson(json.get("objective_probability")).orElse(Float.valueOf(0.0F))).floatValue();
         /*    */   }
 
-    @Override
+
     public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
         tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Unhinged Scavenger Hunt")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
     }

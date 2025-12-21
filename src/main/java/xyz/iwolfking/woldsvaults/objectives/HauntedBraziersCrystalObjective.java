@@ -19,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +35,8 @@ public class HauntedBraziersCrystalObjective extends CrystalObjective {
         this.objectiveProbability = objectiveProbability;
     }
 
-    @Override
-    public void configure(Vault vault, RandomSource random) {
+
+    public void configure(Vault vault, RandomSource random, @Nullable String sigil) {
         int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
             objectives.add(HauntedBraziersObjective.of(this.target.get(random), this.objectiveProbability, ModConfigs.HAUNTED_BRAZIERS.getStackModifierPool(level),  ModConfigs.HAUNTED_BRAZIERS.getOverStackModifierPool(level), ModConfigs.HAUNTED_BRAZIERS.getOverStackLootTable(level)).add(FindExitObjective.create(new ResourceLocation[]{ClassicPortalLogic.EXIT}).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.MONOLITH, "haunted_braziers", level, true))));
@@ -45,7 +46,7 @@ public class HauntedBraziersCrystalObjective extends CrystalObjective {
         });
     }
 
-    @Override
+
     public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
         tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Light the Haunted Braziers")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
     }

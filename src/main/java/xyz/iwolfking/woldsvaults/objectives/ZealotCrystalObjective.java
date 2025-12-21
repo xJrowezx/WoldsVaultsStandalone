@@ -21,6 +21,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ public class ZealotCrystalObjective extends CrystalObjective {
         this.target = target;
     }
 
-    public void configure(Vault vault, RandomSource random) {
+    public void configure(Vault vault, RandomSource random, @Nullable String sigil) {
         int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
             objectives.add(ZealotObjective.of(this.target.get(random), 0).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.MONOLITH, "zealot", level, true)));
@@ -43,7 +44,7 @@ public class ZealotCrystalObjective extends CrystalObjective {
         });
     }
 
-    @Override
+
     public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time) {
         tooltip.add((new TextComponent("Objective: ")).append((new TextComponent("Zealot")).withStyle(Style.EMPTY.withColor((Integer)this.getColor(time).orElseThrow()))));
     }

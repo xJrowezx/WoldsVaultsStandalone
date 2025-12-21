@@ -2,8 +2,8 @@ package xyz.iwolfking.woldsvaults.recipes.gear;
 
 import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
-import iskallia.vault.item.crystal.recipe.AnvilContext;
-import iskallia.vault.item.crystal.recipe.VanillaAnvilRecipe;
+import iskallia.vault.recipe.anvil.AnvilContext;
+import iskallia.vault.recipe.anvil.VanillaAnvilRecipe;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.world.item.ItemStack;
 import xyz.iwolfking.woldsvaults.init.ModItems;
