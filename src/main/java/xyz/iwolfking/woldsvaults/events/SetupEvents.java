@@ -5,14 +5,8 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import xyz.iwolfking.vhapi.VHAPI;
-import xyz.iwolfking.vhapi.api.LoaderRegistry;
 import xyz.iwolfking.vhapi.api.data.api.CustomGearModelRolls;
 import xyz.iwolfking.vhapi.api.events.VaultConfigEvent;
-import xyz.iwolfking.vhapi.api.loaders.Processors;
-import xyz.iwolfking.vhapi.api.loaders.general.TooltipConfigLoader;
-import xyz.iwolfking.vhapi.api.loaders.recipes.CustomVaultGearRecipesLoader;
-import xyz.iwolfking.vhapi.api.loaders.research.ResearchConfigLoader;
-import xyz.iwolfking.vhapi.api.loaders.vault.mobs.VaultMobsConfigLoader;
 import xyz.iwolfking.vhapi.api.util.VHAPIProcesserUtils;
 import xyz.iwolfking.vhapi.api.util.vhapi.VHAPILoggerUtils;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
@@ -59,18 +53,18 @@ public class SetupEvents {
         registerManualConfigFile("/vhapi_configs/wold_mobs.json", WoldsVaults.id("vault/mobs/wold_mobs"));
 
         //Gear Modifiers
-        registerManualConfigFile("/vhapi_configs/gear_modifiers/battlestaff.json", VHAPI.of("gear/gear_modifiers/battlestaff"));
-        registerManualConfigFile("/vhapi_configs/gear_modifiers/loot_sack.json", VHAPI.of("gear/gear_modifiers/loot_sack"));
-        registerManualConfigFile("/vhapi_configs/gear_modifiers/plushie.json", VHAPI.of("gear/gear_modifiers/plushie"));
-        registerManualConfigFile("/vhapi_configs/gear_modifiers/trident.json", VHAPI.of("gear/gear_modifiers/trident"));
-        registerManualConfigFile("/vhapi_configs/gear_modifiers/rang.json", VHAPI.of("gear/gear_modifiers/rang"));
+        registerManualConfigFile("/vhapi_configs/gear_modifiers/overwrite/battlestaff.json", VHAPI.of("gear/gear_modifiers/overwrite/battlestaff"));
+        registerManualConfigFile("/vhapi_configs/gear_modifiers/overwrite/loot_sack.json", VHAPI.of("gear/gear_modifiers/overwrite/loot_sack"));
+        registerManualConfigFile("/vhapi_configs/gear_modifiers/overwrite/plushie.json", VHAPI.of("gear/gear_modifiers/overwrite/plushie"));
+        registerManualConfigFile("/vhapi_configs/gear_modifiers/overwrite/trident.json", VHAPI.of("gear/gear_modifiers/overwrite/trident"));
+        registerManualConfigFile("/vhapi_configs/gear_modifiers/overwrite/rang.json", VHAPI.of("gear/gear_modifiers/overwrite/rang"));
 
         //Gear Workbench
-        registerManualConfigFile("/vhapi_configs/gear_workbench/battlestaff.json", VHAPI.of("gear/gear_workbench/battlestaff"));
-        registerManualConfigFile("/vhapi_configs/gear_workbench/loot_sack.json", VHAPI.of("gear/gear_workbench/loot_sack"));
-        registerManualConfigFile("/vhapi_configs/gear_workbench/trident.json", VHAPI.of("gear/gear_workbench/trident"));
-        registerManualConfigFile("/vhapi_configs/gear_workbench/plushie.json", VHAPI.of("gear/gear_workbench/plushie"));
-        registerManualConfigFile("/vhapi_configs/gear_workbench/rang.json", VHAPI.of("gear/gear_workbench/rang"));
+//        registerManualConfigFile("/vhapi_configs/gear_workbench/battlestaff.json", VHAPI.of("gear/gear_workbench/battlestaff"));
+//        registerManualConfigFile("/vhapi_configs/gear_workbench/loot_sack.json", VHAPI.of("gear/gear_workbench/loot_sack"));
+//        registerManualConfigFile("/vhapi_configs/gear_workbench/trident.json", VHAPI.of("gear/gear_workbench/trident"));
+//        registerManualConfigFile("/vhapi_configs/gear_workbench/plushie.json", VHAPI.of("gear/gear_workbench/plushie"));
+//        registerManualConfigFile("/vhapi_configs/gear_workbench/rang.json", VHAPI.of("gear/gear_workbench/rang"));
 
         //Research
         registerManualConfigFile("/vhapi_configs/research_adjustments.json", WoldsVaults.id("research/researches/salvager"));
