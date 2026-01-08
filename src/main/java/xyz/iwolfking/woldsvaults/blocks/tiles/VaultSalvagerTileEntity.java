@@ -8,6 +8,7 @@ import iskallia.vault.gear.data.VaultGearData;
 import iskallia.vault.gear.item.VaultGearItem;
 import iskallia.vault.init.ModConfigs;
 import iskallia.vault.init.ModGearAttributes;
+import iskallia.vault.init.ModItems;
 import iskallia.vault.init.ModNetwork;
 import iskallia.vault.item.gear.RecyclableItem;
 import iskallia.vault.network.message.RecyclerParticleMessage;
@@ -97,8 +98,19 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
 
         ItemStack input = this.inventory.getItem(0).copy();
         float additionalChance = 0.0F;
+
         if (input.getItem() instanceof VaultGearItem) {
-            VaultGearRarity rarity = VaultGearData.read(input).getRarity();
+            VaultGearData data = VaultGearData.read(input);
+            VaultGearRarity rarity = data.getRarity();
+
+            // Handle Unique rarity - drop unique shard
+            if (rarity == VaultGearRarity.UNIQUE) {
+                this.inventory.removeItem(0, 1);
+                MiscUtils.addStackToSlot(this.inventory, 1, new ItemStack(ModItems.UNIQUE_SHARD, 1));
+                ModNetwork.CHANNEL.send(PacketDistributor.ALL.noArg(), new RecyclerParticleMessage(this.getBlockPos()));
+                return;
+            }
+
             additionalChance = ModConfigs.VAULT_RECYCLER.getAdditionalOutputRarityChance(rarity);
             handleOutput(input, output, additionalChance, rarity);
         } else {
@@ -170,17 +182,34 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
             return false;
         }
 
+        // Special handling for Unique gear
+        ItemStack input = this.inventory.getItem(0);
+        if (input.getItem() instanceof VaultGearItem) {
+            VaultGearData data = VaultGearData.read(input);
+            VaultGearRarity rarity = data.getRarity();
+
+            // If it's Unique rarity, only check if unique shard can fit in slot 1
+            if (rarity == VaultGearRarity.UNIQUE) {
+                return MiscUtils.canFullyMergeIntoSlot(this.inventory, 1, new ItemStack(ModItems.UNIQUE_SHARD, 1));
+            }
+        }
+
+        // Normal recycling checks
         if(!MiscUtils.canFullyMergeIntoSlot(this.inventory, 1, output.getMainOutputMatching())) {
             return false;
         }
         else if(!MiscUtils.canFullyMergeIntoSlot(this.inventory, 2, output.getExtraOutput1Matching())) {
             return false;
         }
-        else if(!MiscUtils.canFullyMergeIntoSlot(this.inventory, 3, output.getExtraOutput2Matching()) && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 4, output.getExtraOutput2Matching()) && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 5, output.getExtraOutput2Matching())  && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 6, output.getExtraOutput2Matching()) && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 7, output.getExtraOutput2Matching()) && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 8, output.getExtraOutput2Matching())) {
-            return  MiscUtils.canFullyMergeIntoSlot(this.inventory, 9, output.getExtraOutput2Matching());
+        else if(!MiscUtils.canFullyMergeIntoSlot(this.inventory, 3, output.getExtraOutput2Matching())
+                && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 4, output.getExtraOutput2Matching())
+                && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 5, output.getExtraOutput2Matching())
+                && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 6, output.getExtraOutput2Matching())
+                && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 7, output.getExtraOutput2Matching())
+                && !MiscUtils.canFullyMergeIntoSlot(this.inventory, 8, output.getExtraOutput2Matching())) {
+            return MiscUtils.canFullyMergeIntoSlot(this.inventory, 9, output.getExtraOutput2Matching());
         }
-        return  MiscUtils.canFullyMergeIntoSlot(this.inventory, 9, output.getExtraOutput2Matching());
-
+        return MiscUtils.canFullyMergeIntoSlot(this.inventory, 9, output.getExtraOutput2Matching());
     }
 
     @Nullable
