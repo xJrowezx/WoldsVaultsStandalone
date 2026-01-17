@@ -43,6 +43,7 @@
     "the_vault.custom.MixinGrantedEffectHelper",
     "the_vault.custom.MixinMagnetItem",
     "the_vault.custom.MixinModDynamicModels",
+    "the_vault.custom.MixinVaultCrateType",
     "the_vault.custom.MixinSpecialAbilityModificationRegistry",
     "the_vault.custom.MixinTreasureDoorTileEntityRenderer",
     "the_vault.optimization.MixinGearStackingTalent",

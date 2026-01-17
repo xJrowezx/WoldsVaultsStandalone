@@ -16,12 +16,13 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
+import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class EnchantedElixirCrystalObjective extends CrystalObjective {
+public class EnchantedElixirCrystalObjective extends WoldCrystalObjective {
     protected float objectiveProbability;
 
     public EnchantedElixirCrystalObjective() {
@@ -68,5 +69,10 @@ public class EnchantedElixirCrystalObjective extends CrystalObjective {
 
     public void readJson(JsonObject json) {
         this.objectiveProbability = (Float)Adapters.FLOAT.readJson(json.get("objective_probability")).orElse(0.0F);
+    }
+
+    @Override
+    ResourceLocation getObjectiveId() {
+        return ModCustomVaultObjectiveEntries.ENCHANTED_ELIXIR.getRegistryName();
     }
 }

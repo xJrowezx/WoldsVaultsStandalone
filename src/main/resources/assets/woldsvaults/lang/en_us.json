@@ -150,5 +150,11 @@
   "effect.woldsvaults.hemorrhaged": "Hemorrhaged",
   "woldsvaults.key.cherish_item": "Cherish Item",
   "key.woldsvaults.cherish_item": "Cherish Item",
-  "key.woldsvaults.category": "Wold's Vaults"
+  "key.woldsvaults.category": "Wold's Vaults",
+  "vault_objective.woldsvaultsstandalone.ballistic_bingo": "Ballistic Bingo",
+  "vault_objective.woldsvaultsstandalone.zealot": "Zealot",
+  "vault_objective.woldsvaultsstandalone.haunted_braziers": "Haunted Brazier",
+  "vault_objective.woldsvaultsstandalone.enchanted_elixir": "Enchanted Elixir",
+  "vault_objective.woldsvaultsstandalone.brutal_bosses": "Brutal Bosses",
+  "vault_objective.woldsvaultsstandalone.unhinged_scavenger": "Unhinged Scavenger Hunt"
 }

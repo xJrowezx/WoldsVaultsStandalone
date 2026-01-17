@@ -18,12 +18,13 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
+import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class HauntedBraziersCrystalObjective extends CrystalObjective {
+public class HauntedBraziersCrystalObjective extends WoldCrystalObjective {
     protected IntRoll target;
     protected float objectiveProbability;
 
@@ -91,5 +92,10 @@ public class HauntedBraziersCrystalObjective extends CrystalObjective {
     public void readJson(JsonObject json) {
         this.target = (IntRoll)Adapters.INT_ROLL.readJson(json.getAsJsonObject("target")).orElse((IntRoll) null);
         this.objectiveProbability = (Float)Adapters.FLOAT.readJson(json.get("objective_probability")).orElse(0.0F);
+    }
+
+    @Override
+    ResourceLocation getObjectiveId() {
+        return ModCustomVaultObjectiveEntries.HAUNTED_BRAZIERS.getRegistryName();
     }
 }

@@ -20,12 +20,13 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
+import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class ZealotCrystalObjective extends CrystalObjective {
+public class ZealotCrystalObjective extends WoldCrystalObjective {
     protected IntRoll target;
 
     public ZealotCrystalObjective() {
@@ -79,5 +80,10 @@ public class ZealotCrystalObjective extends CrystalObjective {
     @Override
     public void readJson(JsonObject json) {
         this.target = (IntRoll)Adapters.INT_ROLL.readJson(json.getAsJsonObject("target")).orElse((IntRoll) null);
+    }
+
+    @Override
+    ResourceLocation getObjectiveId() {
+        return ModCustomVaultObjectiveEntries.ZEALOT.getRegistryName();
     }
 }

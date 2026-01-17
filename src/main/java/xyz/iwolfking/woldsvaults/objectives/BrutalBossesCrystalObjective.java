@@ -18,13 +18,14 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
+import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.IntSupplier;
 
-public class BrutalBossesCrystalObjective extends CrystalObjective {
+public class BrutalBossesCrystalObjective extends WoldCrystalObjective {
     protected IntRoll target;
     protected IntRoll wave;
     protected float objectiveProbability;
@@ -100,5 +101,10 @@ public class BrutalBossesCrystalObjective extends CrystalObjective {
         this.target = (IntRoll)Adapters.INT_ROLL.readJson(json.getAsJsonObject("target")).orElse((IntRoll) null);
         this.wave = (IntRoll)Adapters.INT_ROLL.readJson(json.getAsJsonObject("wave")).orElse(IntRoll.ofConstant(3));
         this.objectiveProbability = (Float)Adapters.FLOAT.readJson(json.get("objective_probability")).orElse(0.0F);
+    }
+
+    @Override
+    ResourceLocation getObjectiveId() {
+        return ModCustomVaultObjectiveEntries.BRUTAL_BOSSES.getRegistryName();
     }
 }

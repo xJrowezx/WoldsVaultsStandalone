@@ -24,16 +24,16 @@ public class ModConfigs {
     public static EnchantedElixirConfig ENCHANTED_ELIXIR;
 
     public static void register() {
-        try (InputStream stream = WoldsVaults.class.getResourceAsStream("/default_configs/unhinged_scavenger.json")) {
-            CustomVaultConfigReader<UnhingedScavengerConfig> reader = new CustomVaultConfigReader<>();
-            if(stream == null) {
-                throw new IOException();
-            }
-            UNHINGED_SCAVENGER = reader.readCustomConfig("unhinged_scavenger", JsonUtils.parseJsonContentFromStream(stream), UnhingedScavengerConfig.class);
-        } catch (IOException e) {
-            System.out.println("Failed to read default Unhinged Scavenger config...");
-            throw new RuntimeException(e);
-        }
+//        try (InputStream stream = WoldsVaults.class.getResourceAsStream("/default_configs/unhinged_scavenger.json")) {
+//            CustomVaultConfigReader<UnhingedScavengerConfig> reader = new CustomVaultConfigReader<>();
+//            if(stream == null) {
+//                throw new IOException();
+//            }
+//            UNHINGED_SCAVENGER = reader.readCustomConfig("unhinged_scavenger", JsonUtils.parseJsonContentFromStream(stream), UnhingedScavengerConfig.class);
+//        } catch (IOException e) {
+//            System.out.println("Failed to read default Unhinged Scavenger config...");
+//            throw new RuntimeException(e);
+//        }
         GEM_BOX = (GemBoxConfig) (new GemBoxConfig()).readConfig();
         SUPPLY_BOX = (SupplyBoxConfig) (new SupplyBoxConfig()).readConfig();
         AUGMENT_BOX = (AugmentBoxConfig) (new AugmentBoxConfig()).readConfig();
@@ -45,5 +45,6 @@ public class ModConfigs {
         BALLISTIC_BINGO_CONFIG = (BallisticBingoConfig) (new BallisticBingoConfig().readConfig());
         HAUNTED_BRAZIERS = (HauntedBraziersConfig) (new HauntedBraziersConfig().readConfig());
         ENCHANTED_ELIXIR = (EnchantedElixirConfig) (new EnchantedElixirConfig().readConfig());
+        UNHINGED_SCAVENGER = (UnhingedScavengerConfig) (new UnhingedScavengerConfig().readConfig());
     }
 }
