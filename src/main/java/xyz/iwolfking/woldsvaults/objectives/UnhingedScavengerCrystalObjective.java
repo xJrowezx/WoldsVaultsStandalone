@@ -42,12 +42,12 @@ public class UnhingedScavengerCrystalObjective extends WoldCrystalObjective {
         Optional<SigilConfig.LevelEntry> optSigil = SigilConfig.getConfig(sigil).map((config) -> config.getLevel(level));
         ResourceLocation entryPool = optSigil.map(SigilConfig.LevelEntry::getScavengerPool).orElse(VaultMod.id("default"));
         ModConfigs.UNHINGED_SCAVENGER.getEntry(entryPool, level).ifPresentOrElse((entry) -> vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
-            objectives.add(UnhingedScavengerObjective.of(this.objectiveProbability, UnhingedScavengerObjective.Config.DEFAULT, entryPool).add(AwardCrateObjective.ofLootTable(VaultCrateBlock.Type.valueOf("UNHINGED_SCAVENGER"), entry.getLootTable(level), level, true)).add(VictoryObjective.of(300)));
+            objectives.add(UnhingedScavengerObjective.of(this.objectiveProbability, UnhingedScavengerObjective.Config.DEFAULT, entryPool).add(AwardCrateObjective.ofLootTable(VaultCrateBlock.Type.valueOf("SCAVENGER"), entry.getLootTable(level), level, true)).add(VictoryObjective.of(300)));
             objectives.add(BailObjective.create(true, ClassicPortalLogic.EXIT));
             objectives.add(DeathObjective.create(true));
             objectives.set(Objectives.KEY, CrystalData.OBJECTIVE.getType(this));
         }), () -> vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
-            objectives.add(UnhingedScavengerObjective.of(this.objectiveProbability, UnhingedScavengerObjective.Config.DEFAULT, entryPool).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.valueOf("UNHINGED_SCAVENGER"), "unhinged_scavenger", level, true)).add(VictoryObjective.of(300)));
+            objectives.add(UnhingedScavengerObjective.of(this.objectiveProbability, UnhingedScavengerObjective.Config.DEFAULT, entryPool).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.valueOf("SCAVENGER"), "unhinged_scavenger", level, true)).add(VictoryObjective.of(300)));
             objectives.add(BailObjective.create(true, ClassicPortalLogic.EXIT));
             objectives.add(DeathObjective.create(true));
             objectives.set(Objectives.KEY, CrystalData.OBJECTIVE.getType(this));
