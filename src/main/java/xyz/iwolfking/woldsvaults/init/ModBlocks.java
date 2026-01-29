@@ -36,6 +36,8 @@ public class ModBlocks {
     public static final Block COMPRESSED_VAULT_DIAMOND_BLOCK;
     public static final Block COMPRESSED_VAULT_ESSENCE;
     public static final Block COMPRESSED_VAULT_ESSENCE_2;
+    public static final Block COMPRESSED_VAULT_CARBON;
+    public static final Block KNOWLEDGE_STAR_BLOCK;
 
 
     public static final VaultSalvagerBlock VAULT_SALVAGER_BLOCK;
@@ -100,9 +102,11 @@ public class ModBlocks {
         OMEGA_POG_BLOCK = new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(9.0F, 60000.0F));
         ECHO_POG_BLOCK = new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(6.0F, 40000.0F));
         GEM_POG_BLOCK = new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(3.0F, 1000.0F));
+        COMPRESSED_VAULT_CARBON = new Block(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK).strength(3.0F, 1000.0F)); //TODO: FINALIZE SOUND
         COMPRESSED_VAULT_DIAMOND_BLOCK = new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).strength(5.0F, 500.0F));
         COMPRESSED_VAULT_ESSENCE = new Block(BlockBehaviour.Properties.copy(Blocks.SAND).strength(8.0F, 200.0F));
         COMPRESSED_VAULT_ESSENCE_2 = new Block(BlockBehaviour.Properties.copy(Blocks.SAND).strength(10.0F, 200.0F));
+        KNOWLEDGE_STAR_BLOCK = new Block(BlockBehaviour.Properties.copy(Blocks.DIAMOND_BLOCK).strength(10.0F, 200.0F)); //TODO: FINALIZE SOUND
         VAULT_SALVAGER_ENTITY = BlockEntityType.Builder.of(VaultSalvagerTileEntity::new, new Block[]{VAULT_SALVAGER_BLOCK}).build((Type)null);
         ISKALLIAN_LEAVES_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(IskallianLeavesTileEntity::new, new Block[]{ISKALLIAN_LEAVES_BLOCK}).build((Type)null);
         HELLISH_SAND_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(HellishSandTileEntity::new, new Block[]{HELLISH_SAND_BLOCK}).build((Type)null);
@@ -145,6 +149,8 @@ public class ModBlocks {
         registerBlock(event, COMPRESSED_VAULT_DIAMOND_BLOCK, WoldsVaults.id("compressed_vault_diamond_block"));
         registerBlock(event, COMPRESSED_VAULT_ESSENCE, WoldsVaults.id("compressed_vault_essence"));
         registerBlock(event, COMPRESSED_VAULT_ESSENCE_2, WoldsVaults.id("compressed_vault_essence_2"));
+        registerBlock(event, COMPRESSED_VAULT_CARBON, WoldsVaults.id("compressed_vault_carbon"));
+        registerBlock(event, KNOWLEDGE_STAR_BLOCK, WoldsVaults.id("knowledge_star_block"));
 
     }
     public static void registerTileEntities(RegistryEvent.Register<BlockEntityType<?>> event) {
@@ -188,6 +194,8 @@ public class ModBlocks {
         registerBlockItem(event, COMPRESSED_VAULT_DIAMOND_BLOCK);
         registerBlockItem(event, COMPRESSED_VAULT_ESSENCE);
         registerBlockItem(event, COMPRESSED_VAULT_ESSENCE_2);
+        registerBlockItem(event, COMPRESSED_VAULT_CARBON);
+        registerBlockItem(event, KNOWLEDGE_STAR_BLOCK);
         registerBlockItem(event, VAULT_PALLADIUM_PILE, VAULT_PALLADIUM);
         registerBlockItem(event, VAULT_IRIDIUM_PILE, VAULT_IRIDIUM);
 
