@@ -1,5 +1,7 @@
 package xyz.iwolfking.woldsvaults.events;
 
+import iskallia.vault.gear.modification.GearModification;
+import iskallia.vault.init.ModGearModifications;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
@@ -73,6 +75,11 @@ public class RegistryEvents {
     @SubscribeEvent
     public static void onSoundRegister(RegistryEvent.Register<SoundEvent> event) {
         ModSounds.registerSounds(event);
+    }
+
+    @SubscribeEvent
+    public static void onModificationRegistry(RegistryEvent.Register<GearModification> event) {
+        ModGearModifications.init(event);
     }
 
 
