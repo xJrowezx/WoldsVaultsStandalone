@@ -64,6 +64,7 @@ public class ModItems {
     public static BasicScavengerItem ENDER_EYE;
     public static BasicScavengerItem ENDER_CRYSTAL;
     public static BasicScavengerItem ENDER_ARTIFACT;
+    public static ItemScavengerPouch SCAVENGER_POUCH_ITEM;
 
     public static final BasicMobEggItem WOLD_EGG = new BasicMobEggItem(WoldsVaults.id("wold_spawn_egg"), () -> (EntityType)ModEntities.WOLD, 1447446, DyeColor.GRAY.getId(), (new Item.Properties()).tab(VAULT_MOD_GROUP));
     public static final BasicMobEggItem BOOGIEMAN_EGG = new BasicMobEggItem(WoldsVaults.id("boogieman_spawn_egg"), () -> (EntityType) iskallia.vault.init.ModEntities.BOOGIEMAN, 333333, DyeColor.GRAY.getId(), (new Item.Properties()).tab(VAULT_MOD_GROUP));
@@ -227,6 +228,7 @@ public class ModItems {
         registry.register(DIAMOND_RING);
         registry.register(ETCHED_VAULT_LAYOUT);
         registry.register(RESEARCH_TOKEN);
+        registry.register(SCAVENGER_POUCH_ITEM);
         //registry.register(XL_BACKPACK);
     }
 
@@ -309,6 +311,7 @@ public class ModItems {
         POLTERGEIST_PLUM = new PoltergeistPlum(WoldsVaults.id("poltergeist_plum"));
         ETCHED_VAULT_LAYOUT = new LayoutModificationItem(VAULT_MOD_GROUP, WoldsVaults.id("etched_vault_layout"));
         RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
+        SCAVENGER_POUCH_ITEM = new ItemScavengerPouch(WoldsVaults.id("scavenger_pouch"));
         //XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         //XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
     }
