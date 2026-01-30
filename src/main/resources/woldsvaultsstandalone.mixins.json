@@ -19,6 +19,7 @@
     "accessors.ClassicSpiralCrystalLayoutAccessor",
     "accessors.VaultAltarTileEntityAccessor",
     "accessors.VaultDifficultyAccessor",
+    "accessors.SheepAccessor",
     "angelring.MixinAbstractRingCurio",
     "angelring.MixinItemRegistry",
     "bettercombat.MixinBetterCombatAttackRange",
