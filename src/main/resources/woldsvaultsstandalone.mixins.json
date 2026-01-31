@@ -37,6 +37,7 @@
     "the_vault.MixinVaultModifierTypeRegistry",
     "the_vault.accessors.AttributeSnapshotAccessor",
     "the_vault.accessors.AttributeSnapshotValueAccessor",
+    "the_vault.accessors.ModifierGearTierAccessor",
     "the_vault.custom.MixinAttributeSnapshot",
     "the_vault.custom.MixinAttributeSnapshotCalculator",
     "the_vault.custom.MixinCoinLooting",
