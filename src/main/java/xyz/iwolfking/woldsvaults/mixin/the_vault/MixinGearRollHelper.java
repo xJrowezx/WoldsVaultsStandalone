@@ -1,6 +1,7 @@
 package xyz.iwolfking.woldsvaults.mixin.the_vault;
 
 import com.llamalad7.mixinextras.sugar.Local;
+import iskallia.vault.VaultMod;
 import iskallia.vault.gear.GearRollHelper;
 import iskallia.vault.gear.VaultGearLegendaryHelper;
 import iskallia.vault.gear.attribute.VaultGearModifier;
@@ -62,15 +63,8 @@ public class MixinGearRollHelper {
         int itemLevel = data.getItemLevel();
         float increasedSpecialRollsChance = 0.0F;
 
-        //Randomly Roll Unusual Modifiers
-        if(itemLevel>= 20 && rand.nextFloat() <= 0.02F + increasedSpecialRollsChance) {
-//          WoldGearModifierHelper.removeRandomModifierAlways(stack, rand);
+        if (itemLevel >= 20 && rand.nextFloat() <= 0.12F + increasedSpecialRollsChance) { //12% is a test value, can change later
             WoldGearModifierHelper.addUnusualModifier(stack, player.level.getGameTime(), rand);
-        }
-
-//Randomly add greater modifier
-        else if(itemLevel >= 40 && rand.nextFloat() <= 0.01F + increasedSpecialRollsChance) {
-            VaultGearLegendaryHelper.improveExistingModifier(stack, 1, rand, List.of(VaultGearModifier.AffixCategory.GREATER));
         }
     }
 }

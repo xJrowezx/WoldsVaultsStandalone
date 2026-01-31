@@ -7,7 +7,8 @@ import iskallia.vault.gear.attribute.config.FloatAttributeGenerator;
 import iskallia.vault.gear.attribute.custom.effect.EffectCloudAttribute;
 import net.minecraft.resources.ResourceLocation;
 import xyz.iwolfking.vhapi.api.lib.core.modifiers.StringValueGenerator;
-import xyz.iwolfking.vhapi.api.util.gear.GearModifierRegistryHelper;
+import xyz.iwolfking.woldsvaults.api.gear.util.GearModifierRegistryHelper;
+
 
 import java.util.List;
 
