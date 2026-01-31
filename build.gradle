@@ -179,7 +179,7 @@ dependencies {
     implementation fg.deobf("curse.maven:better-combat-by-daedelus-639842:4428885")
 
     implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7373671") // 3.20.3
-    implementation fg.deobf("curse.maven:vault-hunters-api-1118899:7394193") // 3.20
+    implementation fg.deobf("curse.maven:vault-hunters-api-1118899:7509170") // 3.20
     implementation fg.deobf("curse.maven:just-enough-vh-1035310:7318869")
     implementation fg.deobf("curse.maven:geckolib-388172:4181370")
 
