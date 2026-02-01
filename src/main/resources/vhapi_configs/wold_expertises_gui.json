@@ -11,6 +11,12 @@
       "y": 70,
       "frameType": "STAR",
       "icon": "the_vault:gui/skills/augmentation_luck"
+    },
+    "Pylon_Pilferer": {
+      "x": 210,
+      "y": 280,
+      "frameType": "STAR",
+      "icon": "the_vault:gui/skills/pylon_pilferer"
     }
   }
 }
