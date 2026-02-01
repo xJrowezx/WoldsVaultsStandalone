@@ -2,19 +2,19 @@
   "styles": {
     "Craftsman": {
       "x": 210,
-      "y": 190,
+      "y": 120,
       "frameType": "STAR",
       "icon": "the_vault:gui/skills/blacksmithing"
     },
     "Augmentation_Luck": {
-      "x": 420,
-      "y": 70,
+      "x": 350,
+      "y": 120,
       "frameType": "STAR",
       "icon": "the_vault:gui/skills/augmentation_luck"
     },
     "Pylon_Pilferer": {
-      "x": 210,
-      "y": 280,
+      "x": 350,
+      "y": 170,
       "frameType": "STAR",
       "icon": "the_vault:gui/skills/pylon_pilferer"
     }
