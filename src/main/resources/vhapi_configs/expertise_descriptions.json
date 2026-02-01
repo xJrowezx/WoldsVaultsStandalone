@@ -12,6 +12,30 @@
         "color": "#8BD0C9"
       }
     ],
+    "Augmentation_Luck": [
+      {
+        "text": "Improves your luck with rolling "
+      },
+      {
+        "text": "Unusual",
+        "color": "#039261"
+      },
+      {
+        "text": " modifiers."
+      },
+      {
+        "text": "\n\n",
+        "color": "$text"
+      },
+      {
+        "text": "1 ",
+        "color": "$text"
+      },
+      {
+        "text": "+1.0%\n",
+        "color": "#FFD700"
+      }
+    ],
     "Soul Harvester": [
       {
         "text": "Unlocks the "

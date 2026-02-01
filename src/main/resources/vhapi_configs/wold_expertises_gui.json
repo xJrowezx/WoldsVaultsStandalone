@@ -5,6 +5,12 @@
       "y": 190,
       "frameType": "STAR",
       "icon": "the_vault:gui/skills/blacksmithing"
+    },
+    "Augmentation_Luck": {
+      "x": 420,
+      "y": 70,
+      "frameType": "STAR",
+      "icon": "the_vault:gui/skills/augmentation_luck"
     }
   }
 }
