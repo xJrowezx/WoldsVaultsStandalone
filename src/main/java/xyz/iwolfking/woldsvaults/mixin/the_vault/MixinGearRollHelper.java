@@ -64,10 +64,12 @@ public class MixinGearRollHelper {
         int itemLevel = data.getItemLevel();
         float increasedSpecialRollsChance = 0.0F;
 
-        if(player != null) {
-            ExpertiseTree expertises = PlayerExpertisesData.get((ServerLevel) player.getLevel()).getExpertises(player);
-            for (EclecticGearExpertise eclecticGearExpertise : expertises.getAll(EclecticGearExpertise.class, Skill::isUnlocked)) {
-                increasedSpecialRollsChance += eclecticGearExpertise.getIncreasedChance();
+        if (player != null) {
+            ExpertiseTree expertises =
+                    PlayerExpertisesData.get((ServerLevel) player.getLevel()).getExpertises(player);
+
+            if (!expertises.getAll(EclecticGearExpertise.class, Skill::isUnlocked).isEmpty()) {
+                increasedSpecialRollsChance = 1.0F;
             }
         }
 
