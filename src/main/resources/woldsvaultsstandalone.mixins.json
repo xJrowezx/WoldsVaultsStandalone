@@ -25,6 +25,7 @@
     "bettercombat.MixinBetterCombatAttackRange",
     "infernalmobs.MixinInfernalMobsCore",
     "the_vault.MixinAngelBlock",
+    "the_vault.MixinTalentWidget",
     "the_vault.MixinClientEvents",
     "the_vault.MixinCustomSpawnerTileEntity",
     "the_vault.MixinGearModelRollRaritiesConfig",
