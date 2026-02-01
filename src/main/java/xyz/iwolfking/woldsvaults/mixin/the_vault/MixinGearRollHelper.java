@@ -23,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.iwolfking.woldsvaults.api.gear.modification.WoldGearModifierHelper;
 import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
+import xyz.iwolfking.woldsvaults.expertises.EclecticGearExpertise;
 
 import java.util.List;
 import java.util.Random;
@@ -62,6 +63,13 @@ public class MixinGearRollHelper {
 
         int itemLevel = data.getItemLevel();
         float increasedSpecialRollsChance = 0.0F;
+
+        if(player != null) {
+            ExpertiseTree expertises = PlayerExpertisesData.get((ServerLevel) player.getLevel()).getExpertises(player);
+            for (EclecticGearExpertise eclecticGearExpertise : expertises.getAll(EclecticGearExpertise.class, Skill::isUnlocked)) {
+                increasedSpecialRollsChance += eclecticGearExpertise.getIncreasedChance();
+            }
+        }
 
         if (itemLevel >= 20 && rand.nextFloat() <= 0.12F + increasedSpecialRollsChance) { //12% is a test value, can change later
             WoldGearModifierHelper.addUnusualModifier(stack, player.level.getGameTime(), rand);

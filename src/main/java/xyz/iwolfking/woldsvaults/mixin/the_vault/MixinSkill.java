@@ -11,6 +11,7 @@ import xyz.iwolfking.woldsvaults.abilities.LevitateAbility;
 import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
 import xyz.iwolfking.woldsvaults.abilities.VeinMinerChainAbility;
 import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
+import xyz.iwolfking.woldsvaults.expertises.EclecticGearExpertise;
 
 
 @Mixin(targets = "iskallia/vault/skill/base/Skill$Adapter", remap = false)
@@ -27,5 +28,6 @@ public abstract class MixinSkill extends TypeSupplierAdapter<Skill> {
         this.register("sneaky_getaway", SneakyGetawayAbility.class,SneakyGetawayAbility::new);
         this.register("vein_miner_chain", VeinMinerChainAbility.class, VeinMinerChainAbility::new);
         this.register("levitate", LevitateAbility.class,LevitateAbility::new);
+        this.register("augmentation_luck", EclecticGearExpertise.class, EclecticGearExpertise::new);
     }
 }
