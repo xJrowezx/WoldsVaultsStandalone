@@ -12,6 +12,7 @@ import xyz.iwolfking.woldsvaults.abilities.SneakyGetawayAbility;
 import xyz.iwolfking.woldsvaults.abilities.VeinMinerChainAbility;
 import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 import xyz.iwolfking.woldsvaults.expertises.EclecticGearExpertise;
+import xyz.iwolfking.woldsvaults.expertises.NavigatorExpertise;
 import xyz.iwolfking.woldsvaults.expertises.PylonPilfererExpertise;
 
 
@@ -31,5 +32,6 @@ public abstract class MixinSkill extends TypeSupplierAdapter<Skill> {
         this.register("levitate", LevitateAbility.class,LevitateAbility::new);
         this.register("augmentation_luck", EclecticGearExpertise.class, EclecticGearExpertise::new);
         this.register("pylon_pilferer", PylonPilfererExpertise.class, PylonPilfererExpertise::new);
+        this.register("navigator", NavigatorExpertise.class, NavigatorExpertise::new);
     }
 }

@@ -58,6 +58,7 @@
     "the_vault.custom.MixinModifierAffixTagGroupEnum",
     "the_vault.custom.MixinAffixCategoryEnum",
     "the_vault.custom.MixinPylonBlock",
+    "the_vault.custom.MixinCompassPenalty",
     "the_vault.optimization.MixinGearStackingTalent",
     "the_vault.recipes.MixinAnvilRecipes",
     "the_vault.skills.MixinAbilityLabelFactory",
