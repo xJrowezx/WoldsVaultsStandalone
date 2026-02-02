@@ -57,6 +57,19 @@
             "unlockLevel": 0
           }
         ]
+      },
+      {
+        "type": "tiered",
+        "id": "Navigator",
+        "name": "Navigator",
+        "tiers": [
+          {
+            "type": "pylon_pilferer",
+            "increasedChance": 0.01,
+            "learnPointCost": 1,
+            "regretPointCost": 0
+          }
+        ]
       }
     ]
   }

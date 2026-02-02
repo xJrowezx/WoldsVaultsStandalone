@@ -36,23 +36,45 @@
         "color": "#FFD700"
       }
     ],
-    "Soul Harvester": [
+    "Navigator": [
       {
-        "text": "Unlocks the "
+        "text": "Grants a chance for selecting a Vault Compass objective to consume no player health. "
       },
       {
-        "text": "Soul Harvester",
-        "color": "yellow"
+        "text": "\n\n",
+        "color": "$text"
       },
       {
-        "text": " which is a much faster way of breaking down items to "
+        "text": "1 ",
+        "color": "$text"
       },
       {
-        "text": "Soul Essence",
-        "color": "light_purple"
+        "text": "20%\n",
+        "color": "#FFD700"
       },
       {
-        "text": ".\n\nThe Soul Harvester automatically pulls from an inventory above it, and automatically pushes to an inventory below it, and it is, very fast."
+        "text": "\n",
+        "color": "$text"
+      },
+      {
+        "text": "2 ",
+        "color": "$text"
+      },
+      {
+        "text": "33%\n",
+        "color": "#FFD700"
+      },
+      {
+        "text": "\n",
+        "color": "$text"
+      },
+      {
+        "text": "3 ",
+        "color": "$text"
+      },
+      {
+        "text": "50%\n",
+        "color": "#FFD700"
       }
     ]
   }
