@@ -41,6 +41,7 @@
     "the_vault.accessors.AttributeSnapshotValueAccessor",
     "the_vault.accessors.ModifierGearTierAccessor",
     "the_vault.accessors.VaultGearTierConfigAccessor",
+    "the_vault.accessors.VanillaAttributeTalentAccessor",
     "the_vault.custom.CardEntryColorEnumMixin",
     "the_vault.custom.MixinAttributeSnapshot",
     "the_vault.custom.MixinAttributeSnapshotCalculator",
