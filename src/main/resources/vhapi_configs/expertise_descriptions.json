@@ -53,10 +53,6 @@
         "color": "#FFD700"
       },
       {
-        "text": "\n",
-        "color": "$text"
-      },
-      {
         "text": "2 ",
         "color": "$text"
       },
@@ -65,16 +61,8 @@
         "color": "#FFD700"
       },
       {
-        "text": "\n",
-        "color": "$text"
-      },
-      {
         "text": "3 ",
         "color": "$text"
-      },
-      {
-        "text": "50%\n",
-        "color": "#FFD700"
       }
     ]
   }

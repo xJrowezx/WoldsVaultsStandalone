@@ -64,10 +64,25 @@
         "name": "Navigator",
         "tiers": [
           {
-            "type": "pylon_pilferer",
-            "increasedChance": 0.01,
+            "type": "navigator",
+            "chanceIncrease": 0.25,
             "learnPointCost": 1,
-            "regretPointCost": 0
+            "regretPointCost": 0,
+            "unlockLevel": 0
+          },
+          {
+            "type": "navigator",
+            "chanceIncrease": 0.33,
+            "learnPointCost": 1,
+            "regretPointCost": 0,
+            "unlockLevel": 0
+          },
+          {
+            "type": "navigator",
+            "chanceIncrease": 0.50,
+            "learnPointCost": 1,
+            "regretPointCost": 0,
+            "unlockLevel": 0
           }
         ]
       }
