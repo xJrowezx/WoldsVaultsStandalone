@@ -11,6 +11,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
+import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
 import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
@@ -137,7 +138,7 @@ public class ModItems {
     public static ResearchTokenItem RESEARCH_TOKEN;
 
     //Backpack?
-    //public static BackpackItem XL_BACKPACK;
+    public static BackpackItem XL_BACKPACK;
 
 
 
@@ -229,7 +230,7 @@ public class ModItems {
         registry.register(ETCHED_VAULT_LAYOUT);
         registry.register(RESEARCH_TOKEN);
         registry.register(SCAVENGER_POUCH_ITEM);
-        //registry.register(XL_BACKPACK);
+        registry.register(XL_BACKPACK);
     }
 
     static {
@@ -312,7 +313,7 @@ public class ModItems {
         ETCHED_VAULT_LAYOUT = new LayoutModificationItem(VAULT_MOD_GROUP, WoldsVaults.id("etched_vault_layout"));
         RESEARCH_TOKEN = new ResearchTokenItem(WoldsVaults.id("research_token"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         SCAVENGER_POUCH_ITEM = new ItemScavengerPouch(WoldsVaults.id("scavenger_pouch"));
-        //XL_BACKPACK = new BackpackItem(() -> 180, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
-        //XL_BACKPACK.setRegistryName(WoldsVaults.MOD_ID, "xl_backpack");
+        XL_BACKPACK = new BackpackItem(() -> 216, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
+        XL_BACKPACK.setRegistryName(WoldsVaults.MODID, "xl_backpack");
     }
 }

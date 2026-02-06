@@ -67,7 +67,9 @@
     "the_vault.skills.MixinResistanceHelper",
     "the_vault.skills.modifications.MixinFireballAbility",
     "the_vault.skills.modifications.MixinIceBoltChunkAbility",
-    "the_vault.custom.MixinVaultXPFoodItem"
+    "the_vault.custom.MixinVaultXPFoodItem",
+    "sophisticatedbackpacks.MixinModBlocks",
+    "sophisticatedbackpacks.MixinBackpackModel"
   ],
   "client": [
     "MixinThrownTridentRenderer",
