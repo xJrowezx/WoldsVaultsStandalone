@@ -80,9 +80,8 @@ public class ModGearAttributes {
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Float> STUNNING_BLOCK = attr("stunning_block",
-            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(),
-            new FloatValueModifierReader("Block Stunning Chance", 14901010,
-                    (chance) -> "+Successful Blocks have a <$uniqueHighlight>" + DECIMAL_FORMAT.format(chance) + "<reset> chance to <$uniqueHighlight>stun<reset> the blocked mob"), VaultGearAttributeComparator.floatComparator());
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Stunning Block Chance", 6970061), VaultGearAttributeComparator.floatComparator());
+
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -107,6 +106,7 @@ public class ModGearAttributes {
                       registry.register(DISCHARGE);
                       registry.register(COIN_DOUBLE_CHANCE);
                       registry.register(HEMORRHAGING);
+                      registry.register(STUNNING_BLOCK);
    }
 
    public static void registerVanillaAssociations() {
