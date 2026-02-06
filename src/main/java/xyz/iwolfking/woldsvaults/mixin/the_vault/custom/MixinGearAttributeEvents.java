@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.core.event.common.EntityChainAttackedEvent;
 import iskallia.vault.core.event.common.EntityDamageBlockEvent;
+import iskallia.vault.core.event.common.EntityStunnedEvent;
 import iskallia.vault.entity.entity.EternalEntity;
 import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.event.GearAttributeEvents;
@@ -15,14 +16,19 @@ import iskallia.vault.init.ModDynamicModels;
 import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.init.ModNetwork;
 import iskallia.vault.network.message.ChainingParticleMessage;
+import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
+import iskallia.vault.util.EffectInstances;
 import iskallia.vault.util.EntityHelper;
 import iskallia.vault.util.Entropy;
 import iskallia.vault.util.calc.BlockChanceHelper;
+import iskallia.vault.util.calc.EffectDurationHelper;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -137,5 +143,36 @@ public class MixinGearAttributeEvents {
     @ModifyConstant(method = "triggerChainAttack", constant = @Constant(floatValue = 0.5f))
     private static float changeChainAttackFalloff(float constant, @Local(ordinal = 0) LivingEntity attacker) {
         return constant * (1+AttributeSnapshotHelper.getInstance().getSnapshot(attacker).getAttributeValue(xyz.iwolfking.woldsvaults.init.ModGearAttributes.CHAINING_DAMAGE, VaultGearAttributeTypeMerger.floatSum()));
+    }
+
+    @Inject(method = "onSuccessfulBlock", at = @At("TAIL"))
+    private static void stunOnBlock(EntityDamageBlockEvent.Data data, CallbackInfo ci) {
+
+        if (!(data.getAttacked() instanceof ServerPlayer player)) return;
+        if (!AttributeSnapshotHelper.canHaveSnapshot(player)) return;
+
+        AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
+
+        Entity src = data.getDamageSource().getEntity();
+        if (!(src instanceof LivingEntity attacker)) return;
+
+
+        float stunChance = (Float) snapshot.getAttributeValue(
+                xyz.iwolfking.woldsvaults.init.ModGearAttributes.STUNNING_BLOCK,
+                iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger.floatSum()
+        );
+
+
+        if (stunChance > 0.0F && Entropy.canExecute(player, Entropy.Stat.BLOCK_GLACIAL_PRISON, stunChance)) {
+
+
+            int duration = 30; // tweak later
+            duration = (int) EffectDurationHelper.adjustEffectDurationFloor(player, (float) duration);
+
+            attacker.addEffect(EffectInstances.stunning(duration));
+
+
+            CommonEvents.ENTITY_STUNNED.invoke(new EntityStunnedEvent.Data(player, attacker));
+        }
     }
 }

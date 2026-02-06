@@ -6,6 +6,7 @@ import iskallia.vault.gear.attribute.config.ConfigurableAttributeGenerator;
 import iskallia.vault.gear.attribute.custom.effect.EffectGearAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeType;
 import iskallia.vault.gear.comparator.VaultGearAttributeComparator;
+import iskallia.vault.gear.reader.FloatValueModifierReader;
 import iskallia.vault.gear.reader.VaultGearModifierReader;
 import iskallia.vault.init.ModGearAttributeGenerators;
 import iskallia.vault.init.ModGearAttributeReaders;
@@ -17,6 +18,8 @@ import xyz.iwolfking.woldsvaults.effect.mobeffects.HemorrhagedEffect;
 import xyz.iwolfking.woldsvaults.util.UniqueEffectGearAttribute;
 
 import javax.annotation.Nullable;
+
+import static net.minecraft.stats.StatFormatter.DECIMAL_FORMAT;
 
 @Mod.EventBusSubscriber(modid = "woldsvaultsstandalone", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModGearAttributes {
@@ -76,6 +79,11 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> REAVING_DAMAGE = attr("reaving_damage",
             VaultGearAttributeType.floatType(), (ConfigurableAttributeGenerator<Float, ?>)ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Bonus Reaving Damage", 12417954), VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<Float> STUNNING_BLOCK = attr("stunning_block",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(),
+            new FloatValueModifierReader("Block Stunning Chance", 14901010,
+                    (chance) -> "+Successful Blocks have a <$uniqueHighlight>" + DECIMAL_FORMAT.format(chance) + "<reset> chance to <$uniqueHighlight>stun<reset> the blocked mob"), VaultGearAttributeComparator.floatComparator());
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
@@ -99,24 +107,20 @@ public class ModGearAttributes {
                       registry.register(DISCHARGE);
                       registry.register(COIN_DOUBLE_CHANCE);
                       registry.register(HEMORRHAGING);
-        /*     */   }
-    /*     */
-    /*     */   public static void registerVanillaAssociations() {
-        /*     */   }
-    /*     */
-    /*     */
-    /*     */
-    /*     */
-    /*     */   private static <T> VaultGearAttribute<T> attr(String name, VaultGearAttributeType<T> type, ConfigurableAttributeGenerator<T, ?> generator, VaultGearModifierReader<T> reader) {
-        /* 469 */     return attr(name, type, generator, reader, null);
-        /*     */   }
-    /*     */
-    /*     */
-    /*     */
-    /*     */
-    /*     */
-    /*     */
-    /*     */   private static <T> VaultGearAttribute<T> attr(String name, VaultGearAttributeType<T> type, ConfigurableAttributeGenerator<T, ?> generator, VaultGearModifierReader<T> reader, @Nullable VaultGearAttributeComparator<T> comparator) {
-        /* 478 */     return new VaultGearAttribute<>(VaultMod.id(name), type, generator, reader, comparator);
-        /*     */   }
+   }
+
+   public static void registerVanillaAssociations() {
+   }
+
+
+
+
+   private static <T> VaultGearAttribute<T> attr(String name, VaultGearAttributeType<T> type, ConfigurableAttributeGenerator<T, ?> generator, VaultGearModifierReader<T> reader) {
+     return attr(name, type, generator, reader, null);
+   }
+
+
+   private static <T> VaultGearAttribute<T> attr(String name, VaultGearAttributeType<T> type, ConfigurableAttributeGenerator<T, ?> generator, VaultGearModifierReader<T> reader, @Nullable VaultGearAttributeComparator<T> comparator) {
+     return new VaultGearAttribute<>(VaultMod.id(name), type, generator, reader, comparator);
+   }
 }
