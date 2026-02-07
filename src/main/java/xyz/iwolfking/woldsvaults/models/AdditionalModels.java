@@ -42,6 +42,7 @@ public class AdditionalModels {
     public static final PlainItemModel OTHERWORLDLY_MAGNET;
     public static final PlainItemModel HEART_MAGNET;
     public static final PlainItemModel TREASURE_MAGNET;
+    public static final PlainItemModel CAKE_MAGNET;
 
     static {
         //Swords
@@ -75,7 +76,7 @@ public class AdditionalModels {
         OTHERWORLDLY_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("magnets/ender_magnet"), "Otherworldly Magnet")).properties(new DynamicModelProperties());
         HEART_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("magnets/heart_magnet"), "Heart Magnet")).properties(new DynamicModelProperties());
         TREASURE_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("magnets/treasure_magnet"), "Treasure Seeker's Magnet")).properties(new DynamicModelProperties());
-
+        CAKE_MAGNET = ModDynamicModels.Magnets.REGISTRY.register(new PlainItemModel(VaultMod.id("magnets/cake_magnet"), "Cake Magnet")).properties(new DynamicModelProperties());
     }
 
 }
