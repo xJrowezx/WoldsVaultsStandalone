@@ -4,9 +4,9 @@ import iskallia.vault.VaultMod;
 import iskallia.vault.gear.attribute.VaultGearAttribute;
 import iskallia.vault.gear.attribute.config.ConfigurableAttributeGenerator;
 import iskallia.vault.gear.attribute.custom.effect.EffectGearAttribute;
+import iskallia.vault.gear.attribute.custom.effect.EffectTrialAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeType;
 import iskallia.vault.gear.comparator.VaultGearAttributeComparator;
-import iskallia.vault.gear.reader.FloatValueModifierReader;
 import iskallia.vault.gear.reader.VaultGearModifierReader;
 import iskallia.vault.init.ModGearAttributeGenerators;
 import iskallia.vault.init.ModGearAttributeReaders;
@@ -15,11 +15,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
 import xyz.iwolfking.woldsvaults.effect.mobeffects.HemorrhagedEffect;
+import xyz.iwolfking.woldsvaults.gear.attribute.custom.PoisonTrailReader;
 import xyz.iwolfking.woldsvaults.util.UniqueEffectGearAttribute;
 
 import javax.annotation.Nullable;
-
-import static net.minecraft.stats.StatFormatter.DECIMAL_FORMAT;
 
 @Mod.EventBusSubscriber(modid = "woldsvaultsstandalone", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModGearAttributes {
@@ -82,6 +81,8 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> STUNNING_BLOCK = attr("stunning_block",
             VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Stunning Block Chance", 6970061), VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<EffectTrialAttribute> POISON_TRAIL = attr("poison_trail",
+            EffectTrialAttribute.type(), EffectTrialAttribute.generator(), new PoisonTrailReader(), EffectTrialAttribute.comparator());
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -107,6 +108,7 @@ public class ModGearAttributes {
                       registry.register(COIN_DOUBLE_CHANCE);
                       registry.register(HEMORRHAGING);
                       registry.register(STUNNING_BLOCK);
+                      registry.register(POISON_TRAIL);
    }
 
    public static void registerVanillaAssociations() {
