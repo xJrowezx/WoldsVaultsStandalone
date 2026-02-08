@@ -31,5 +31,11 @@
       "woldsvaults:saferspaces/bear_02",
       "woldsvaults:saferspaces/bear_03"
     ]
+  },
+  "overworld_portal_spawn": {
+    "category": "block",
+    "sounds": [
+      "woldsvaults:portal_spawn"
+    ]
   }
 }

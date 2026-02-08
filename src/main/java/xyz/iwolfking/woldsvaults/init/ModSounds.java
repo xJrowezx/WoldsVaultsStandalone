@@ -11,6 +11,7 @@ public class ModSounds {
     public static SoundEvent WOLD_HURT;
     public static SoundEvent WOLD_DEATH;
     public static SoundEvent SAFERSPACES_PROC;
+    public static SoundEvent OVERVAULT_PORTAL_SPAWN;
 
 
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
@@ -18,6 +19,8 @@ public class ModSounds {
         WOLD_HURT = registerSound(event, "wold_hurt");
         WOLD_AMBIENT = registerSound(event, "wold_ambient");
         SAFERSPACES_PROC = registerSound(event, "saferspaces_proc");
+        OVERVAULT_PORTAL_SPAWN = registerSound(event, "overworld_portal_spawn");
+
     }
 
     private static SoundEvent registerSound(RegistryEvent.Register<SoundEvent> event, String soundName) {
