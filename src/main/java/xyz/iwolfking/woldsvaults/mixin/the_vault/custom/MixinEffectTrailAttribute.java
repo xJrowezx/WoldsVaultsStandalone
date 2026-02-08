@@ -10,7 +10,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import iskallia.vault.init.ModEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
@@ -67,7 +67,7 @@ public class MixinEffectTrailAttribute {
                 pos.getZ() + 0.5D
         );
 
-        entity.addEffect(new MobEffectInstance(MobEffects.POISON, poisonDuration, 0, true, true, true));
+        entity.addEffect(new MobEffectInstance(ModEffects.POISON_OVERRIDE, poisonDuration, 0, true, true, true));
         entity.setRadius(0.75F);
         entity.setRadiusOnUse(-0.5F);
         entity.setDuration(poisonDuration);
