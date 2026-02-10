@@ -36,6 +36,7 @@
     "the_vault.MixinPlayerVaultStatsData",
     "the_vault.MixinScheduledModifiers",
     "the_vault.MixinSkill",
+    "the_vault.MixinStatisticsElementContainerScreenData",
     "the_vault.MixinTalentWidget",
     "the_vault.MixinToolItem",
     "the_vault.MixinVaultModifierTypeRegistry",

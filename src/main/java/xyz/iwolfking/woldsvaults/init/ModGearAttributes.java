@@ -84,6 +84,14 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<EffectTrialAttribute> POISON_TRAIL = attr("poison_trail",
             EffectTrialAttribute.type(), EffectTrialAttribute.generator(), new PoisonTrailReader(), EffectTrialAttribute.comparator());
 
+
+    public static final VaultGearAttribute<Float> ECHOING_CHANCE = attr("echoing_chance",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Echoing Chance", 6886199), VaultGearAttributeComparator.floatComparator());
+    public static final VaultGearAttribute<Float> ECHOING_DAMAGE = attr("echoing_damage",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Increased Echoing Damage", 6886199), VaultGearAttributeComparator.floatComparator());
+
+
+
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
         IForgeRegistry<VaultGearAttribute<?>> registry = event.getRegistry();
@@ -109,6 +117,8 @@ public class ModGearAttributes {
                       registry.register(HEMORRHAGING);
                       registry.register(STUNNING_BLOCK);
                       registry.register(POISON_TRAIL);
+                      registry.register(ECHOING_CHANCE);
+                      registry.register(ECHOING_DAMAGE);
    }
 
    public static void registerVanillaAssociations() {
