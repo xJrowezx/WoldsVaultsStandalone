@@ -91,6 +91,10 @@ public class ModGearAttributes {
             VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Increased Echoing Damage", 6886199), VaultGearAttributeComparator.floatComparator());
 
 
+    public static final VaultGearAttribute<Float> MANA_COST_REDUCTION = attr("mana_cost_reduction",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mana Cost Reduction", 2415352), VaultGearAttributeComparator.floatComparator());
+
+
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -119,7 +123,9 @@ public class ModGearAttributes {
                       registry.register(POISON_TRAIL);
                       registry.register(ECHOING_CHANCE);
                       registry.register(ECHOING_DAMAGE);
-   }
+                      registry.register(MANA_COST_REDUCTION);
+
+    }
 
    public static void registerVanillaAssociations() {
    }

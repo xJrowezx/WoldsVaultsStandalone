@@ -32,6 +32,7 @@
     "the_vault.MixinGearModelRollRaritiesConfig",
     "the_vault.MixinGearRollHelper",
     "the_vault.MixinLootInfoGroupDefinitionRegistry",
+    "the_vault.MixinManaCostHelper",
     "the_vault.MixinModConfigs",
     "the_vault.MixinPlayerVaultStatsData",
     "the_vault.MixinScheduledModifiers",
