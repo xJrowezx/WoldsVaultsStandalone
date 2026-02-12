@@ -14,4 +14,12 @@ public class ModAttributeLimitHelper {
         limit += snap.getAttributeValue(ModGearAttributes.MANA_COST_REDUCTION_CAP, VaultGearAttributeTypeMerger.floatSum());
         return Mth.clamp(limit, 0.0F, 0.95F);
     }
+
+    public static float getEchoingDamageLimit(LivingEntity e) {
+        float limit = 0.50F;
+        AttributeSnapshot snap = AttributeSnapshotHelper.getInstance().getSnapshot(e);
+        limit += snap.getAttributeValue(ModGearAttributes.ECHOING_DAMAGE_CAP, VaultGearAttributeTypeMerger.floatSum());
+        return Mth.clamp(limit, 0.0F, 0.95F);
+    }
+
 }

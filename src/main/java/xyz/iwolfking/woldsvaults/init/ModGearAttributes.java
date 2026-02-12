@@ -90,13 +90,15 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> ECHOING_DAMAGE = attr("echoing_damage",
             VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Increased Echoing Damage", 6886199), VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<Float> ECHOING_DAMAGE_CAP = attr("echoing_damage_cap",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Increased Echoing Damage Cap", 6886199), VaultGearAttributeComparator.floatComparator());
+
 
     public static final VaultGearAttribute<Float> MANA_COST_REDUCTION = attr("mana_cost_reduction",
             VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mana Cost Reduction", 20220), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Float> MANA_COST_REDUCTION_CAP = attr("mana_cost_reduction_cap",
             VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mana Cost Reduction Cap", 20220), VaultGearAttributeComparator.floatComparator());
-
 
 
     @SubscribeEvent
@@ -127,10 +129,13 @@ public class ModGearAttributes {
                       registry.register(ECHOING_CHANCE);
                       registry.register(ECHOING_DAMAGE);
                       registry.register(MANA_COST_REDUCTION);
+                      registry.register(MANA_COST_REDUCTION_CAP);
+                      registry.register(ECHOING_DAMAGE_CAP);
 
     }
 
    public static void registerVanillaAssociations() {
+
    }
 
 

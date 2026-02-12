@@ -31,7 +31,7 @@ public class MixinStatisticsElementContainerScreenData {
         result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.CHAINING_DAMAGE));
         result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.CHANNELING_CHANCE));
         result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.ECHOING_CHANCE));
-        result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.ECHOING_DAMAGE));
+        result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.ECHOING_DAMAGE, ModAttributeLimitHelper::getEchoingDamageLimit));
         result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.HEXING_CHANCE));
         result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.EXECUTION_DAMAGE));
         result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.REAVING_DAMAGE));

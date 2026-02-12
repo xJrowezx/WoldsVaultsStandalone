@@ -274,6 +274,8 @@ public class LivingEntityEvents {
         if(event.getSource().getEntity() instanceof Player player) {
             float echoingChance = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.ECHOING_CHANCE, VaultGearAttributeTypeMerger.floatSum());
             float echoingDamage = AttributeSnapshotHelper.getInstance().getSnapshot(player).getAttributeValue(ModGearAttributes.ECHOING_DAMAGE, VaultGearAttributeTypeMerger.floatSum());
+            float echoingDamageCap = 0.50f;
+            float appliedBonus = Math.min(echoingDamage, echoingDamageCap);
             if(echoingChance != 0) {
                 if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet())
                     echoingChance = (float) Math.sqrt(echoingChance);
@@ -283,8 +285,7 @@ public class LivingEntityEvents {
 
                     if (WoldActiveFlags.IS_ECHOING_ATTACKING.isSet() && event.getEntityLiving().hasEffect(ModEffects.ECHOING)) {
                         newEffect = (EchoingPotionEffect) event.getEntityLiving().getEffect(ModEffects.ECHOING).getEffect();
-                        ////[[DEBUG]]
-                        //WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack from a previous echo.", newEffect.getDamage());
+
                     }
                     else {
                         newEffect.setDamage(event.getAmount());
@@ -295,15 +296,14 @@ public class LivingEntityEvents {
                     float damage = newEffect.getDamage() * 0.667f; //HAHAHA 6-7 FUNNY
 
                     if(echoingDamage != 0)
-                        damage *= 1 + echoingDamage;
+                        damage *= 1 + appliedBonus;
 
                     if(damage > 1.0f) {
                         newEffect.setDamage(damage);
                         int duration = EffectDurationHelper.adjustEffectDurationFloor(player, 1) * 10;
                         event.getEntityLiving().addEffect(new MobEffectInstance(newEffect, duration, 0));
 
-                        ////[[DEBUG]]
-                        //WoldsVaults.LOGGER.info("[WOLD'S VAULTS] Added a {} damage echo to attack.", damage);
+
                     }
                 }
             }
