@@ -24,7 +24,8 @@ public class MixinStatisticsElementContainerScreenData {
     @Final
     protected Player player;
 
-    @Inject(method = "getStatListPlayer", at = @At("TAIL"))
+    @Inject(method = "getStatListPlayer", at = @At(value = "INVOKE",
+            target = "Ljava/util/List;sort(Ljava/util/Comparator;)V"))
     private void addNewDamageStats(CallbackInfoReturnable<List<StatLabelElementBuilder<?>>> cir, @Local List<StatLabelElementBuilder<?>> result) {
         result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.AP_SCALING_DAMAGE));
         result.add( GearAttributeStatLabel.ofFloat(this.player, ModGearAttributes.CHAINING_DAMAGE));
