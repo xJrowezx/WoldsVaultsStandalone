@@ -92,7 +92,10 @@ public class ModGearAttributes {
 
 
     public static final VaultGearAttribute<Float> MANA_COST_REDUCTION = attr("mana_cost_reduction",
-            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mana Cost Reduction", 2415352), VaultGearAttributeComparator.floatComparator());
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mana Cost Reduction", 20220), VaultGearAttributeComparator.floatComparator());
+
+    public static final VaultGearAttribute<Float> MANA_COST_REDUCTION_CAP = attr("mana_cost_reduction_cap",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mana Cost Reduction Cap", 20220), VaultGearAttributeComparator.floatComparator());
 
 
 
