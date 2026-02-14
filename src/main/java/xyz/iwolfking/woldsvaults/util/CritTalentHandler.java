@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -68,17 +69,19 @@ public class CritTalentHandler {
                 && !sp.onClimbable()
                 && !sp.isInWater()
                 && !sp.isPassenger()
-                && sp.getEffect(net.minecraft.world.effect.MobEffects.BLINDNESS) == null;
+                && sp.getEffect(MobEffects.BLINDNESS) == null;
 
-        boolean isCrit = forcedCrit || vanillaCrit;
-        if (!isCrit) return;
+        if (!forcedCrit && !vanillaCrit) return;
 
-        float critDamageBonus = getCritDamage(sp);
-        float baseCritMultiplier = 1.5f; // vanilla crit is 1.5x
+        float bonus = getCritDamage(sp);
+        float mult = 1.0F;
 
-        float finalMultiplier = baseCritMultiplier * (1.0f + Math.max(0f, critDamageBonus));
+        if (forcedCrit) {
+            mult *= 1.5F;
+        }
+        mult *= (1.0F + bonus);
 
-        event.setAmount(event.getAmount() * finalMultiplier);
+        event.setAmount(event.getAmount() * mult);
 
         if (forcedCrit) sp.getPersistentData().putBoolean(FORCED_CRIT_TAG, false);
     }
