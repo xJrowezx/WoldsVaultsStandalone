@@ -170,13 +170,18 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation fg.deobf('curse.maven:curios-309927:4985315')
     implementation fg.deobf('curse.maven:alexs-mobs-426558:3853078')
+    implementation fg.deobf("curse.maven:citadel-331936:3783096")
     implementation fg.deobf('curse.maven:angel-ring-333396:4641783')
     implementation fg.deobf('curse.maven:quark-243121:3840125')
+    implementation fg.deobf("curse.maven:autoreglib-250363:3642382")
     implementation fg.deobf('curse.maven:atomicstrykers-infernal-mobs-227875:4149699')
     implementation fg.deobf("curse.maven:thermal-foundation-222880:4788649")
+    implementation fg.deobf("curse.maven:cofh-core-69162:4801048")
     implementation fg.deobf('curse.maven:pehkui-319596:4823461')
     implementation fg.deobf('curse.maven:ecologics-570463:4171283')
     implementation fg.deobf("curse.maven:better-combat-by-daedelus-639842:4428885")
+    implementation fg.deobf("curse.maven:playeranimator-658587:4418152")
+    implementation fg.deobf("curse.maven:cloth-config-348521:5729090")
 
     implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7373671") // 3.20.3
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:7509170") // 3.20
@@ -186,6 +191,7 @@ dependencies {
     implementation fg.deobf("curse.maven:sophisticated-core-618298:5296312")
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 
     compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.3")
 
