@@ -131,7 +131,7 @@
         "tiers": [
           {
             "minLevel": 0,
-            "maxLevel": 15,
+            "maxLevel": 24,
             "weight": 10,
             "value": {
               "min": 6.0,
@@ -141,7 +141,7 @@
           },
           {
             "minLevel": 10,
-            "maxLevel": 47,
+            "maxLevel": 35,
             "weight": 10,
             "value": {
               "min": 10.0,
@@ -151,7 +151,7 @@
           },
           {
             "minLevel": 16,
-            "maxLevel": 57,
+            "maxLevel": 47,
             "weight": 10,
             "value": {
               "min": 13.0,
@@ -161,7 +161,7 @@
           },
           {
             "minLevel": 25,
-            "maxLevel": 63,
+            "maxLevel": 57,
             "weight": 10,
             "value": {
               "min": 16.0,
@@ -171,7 +171,7 @@
           },
           {
             "minLevel": 36,
-            "maxLevel": 71,
+            "maxLevel": 63,
             "weight": 10,
             "value": {
               "min": 21.0,
@@ -181,7 +181,7 @@
           },
           {
             "minLevel": 48,
-            "maxLevel": 82,
+            "maxLevel": 71,
             "weight": 10,
             "value": {
               "min": 31.0,
@@ -191,7 +191,7 @@
           },
           {
             "minLevel": 58,
-            "maxLevel": 89,
+            "maxLevel": 82,
             "weight": 10,
             "value": {
               "min": 43.0,
@@ -201,7 +201,7 @@
           },
           {
             "minLevel": 64,
-            "maxLevel": -1,
+            "maxLevel": 89,
             "weight": 10,
             "value": {
               "min": 56.0,
@@ -211,7 +211,7 @@
           },
           {
             "minLevel": 72,
-            "maxLevel": -1,
+            "maxLevel": 94,
             "weight": 10,
             "value": {
               "min": 65.0,
@@ -221,7 +221,7 @@
           },
           {
             "minLevel": 83,
-            "maxLevel": -1,
+            "maxLevel": 99,
             "weight": 10,
             "value": {
               "min": 77.0,
@@ -1259,85 +1259,6 @@
           }
         ]
       },
-      { "attribute": "the_vault:ability_power",
-        "group": "ModOnHitAddition",
-        "identifier": "the_vault:mod_ability_power",
-        "tags": [
-          "focusAbilityPower"
-        ],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": 49,
-            "weight": 10,
-            "value": {
-              "min": 1.0,
-              "max": 4.0,
-              "step": 0.5
-            }
-          },
-          {
-            "minLevel": 25,
-            "maxLevel": 74,
-            "weight": 10,
-            "value": {
-              "min": 5.0,
-              "max": 8.0,
-              "step": 0.5
-            }
-          },
-          {
-            "minLevel": 50,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 9.0,
-              "max": 12.0,
-              "step": 0.5
-            }
-          },
-          {
-            "minLevel": 75,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 13.0,
-              "max": 16.0,
-              "step": 0.5
-            }
-          },
-          {
-            "minLevel": 100,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 17.0,
-              "max": 20.0,
-              "step": 0.5
-            }
-          },
-          {
-            "minLevel": 101,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 21.0,
-              "max": 24.0,
-              "step": 0.5
-            }
-          },
-          {
-            "minLevel": 102,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 25.0,
-              "max": 50.0,
-              "step": 0.5
-            }
-          }
-        ]
-      },
       {
         "attribute": "the_vault:durability",
         "group": "ModDurability",
@@ -1663,131 +1584,6 @@
               "duration": 300,
               "radius": 4.0,
               "color": 4236591,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          }
-        ]
-      },
-      {
-        "attribute": "the_vault:effect_cloud",
-        "group": "ModHitCloud",
-        "identifier": "the_vault:mod_slowness_cloud",
-        "tags": [
-          "focusSlownessCloud"
-        ],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 0,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 120,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          },
-          {
-            "minLevel": 32,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness II",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 0,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 160,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          },
-          {
-            "minLevel": 64,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness III",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 0,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 200,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          },
-          {
-            "minLevel": 101,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness IV",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 1,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 240,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          },
-          {
-            "minLevel": 102,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness V",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 1,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 300,
-              "radius": 4.0,
-              "color": 7400423,
               "affectsOwner": false,
               "triggerChance": 0.05
             }

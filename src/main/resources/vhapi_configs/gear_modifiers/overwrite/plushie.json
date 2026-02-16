@@ -1679,131 +1679,6 @@
       {
         "attribute": "the_vault:effect_cloud_when_hit",
         "group": "ModOnHit",
-        "identifier": "the_vault:mod_slowness_cloud",
-        "tags": [
-          "focusSlownessCloud"
-        ],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 0,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 120,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          },
-          {
-            "minLevel": 32,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness II",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 0,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 160,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          },
-          {
-            "minLevel": 64,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness III",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 0,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 200,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          },
-          {
-            "minLevel": 101,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness IV",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 1,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 240,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          },
-          {
-            "minLevel": 102,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "tooltipDisplayName": "Slowness V",
-              "potion": "minecraft:empty",
-              "additionalEffects": [
-                {
-                  "effect": "minecraft:slowness",
-                  "duration": 140,
-                  "amplifier": 1,
-                  "showParticles": true,
-                  "showIcon": true
-                }
-              ],
-              "duration": 300,
-              "radius": 4.0,
-              "color": 7400423,
-              "affectsOwner": false,
-              "triggerChance": 0.05
-            }
-          }
-        ]
-      },
-      {
-        "attribute": "the_vault:effect_cloud_when_hit",
-        "group": "ModOnHit",
         "identifier": "the_vault:mod_chilling_cloud",
         "tags": [
           "focusChillingCloud"
@@ -2456,6 +2331,75 @@
             "value": {
               "min": 1.31,
               "max": 2.0,
+              "step": 0.01
+            }
+          }
+        ]
+      },
+      { "attribute": "the_vault:mana_cost_reduction",
+        "group": "ModManaRegen",
+        "identifier": "the_vault:mod_mana_cost_reduction",
+        "tags": [
+          "focusManaCostReduction"
+        ],
+        "tiers": [
+          {
+            "minLevel": 20,
+            "maxLevel": 65,
+            "weight": 100,
+            "value": {
+              "min": 0.03,
+              "max": 0.05,
+              "step": 0.01
+            }
+          },
+          {
+            "minLevel": 50,
+            "maxLevel": -1,
+            "weight": 100,
+            "value": {
+              "min": 0.04,
+              "max": 0.06,
+              "step": 0.01
+            }
+          },
+          {
+            "minLevel": 65,
+            "maxLevel": -1,
+            "weight": 100,
+            "value": {
+              "min": 0.05,
+              "max": 0.07,
+              "step": 0.01
+            }
+          },
+          {
+            "minLevel": 90,
+            "maxLevel": -1,
+            "weight": 100,
+            "value": {
+              "min": 0.06,
+              "max": 0.08,
+              "step": 0.01
+            }
+          },
+          {
+            "minLevel": 101,
+            "maxLevel": -1,
+            "weight": 100,
+            "value": {
+              "min": 0.09,
+              "max": 0.11,
+              "step": 0.01
+            }
+          },
+          {
+            "minLevel": 102,
+            "maxLevel": -1,
+            "weight": 100,
+            "value": {
+              "min": 0.11,
+              "max": 0.13,
               "step": 0.01
             }
           }
