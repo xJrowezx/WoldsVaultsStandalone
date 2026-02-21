@@ -4439,6 +4439,32 @@
           }
         ]
       },
+      { "attribute": "the_vault:mana_per_looted_tile",
+        "group": "uLootedTile",
+        "identifier": "the_vault:u_mana_looting",
+        "tags": [],
+        "tiers": [
+          {
+            "minLevel": 0,
+            "maxLevel": -1,
+            "weight": 500,
+            "value": {
+              "tileEntityGroupId": "the_vault:chest",
+              "displayName": "Chest",
+              "manaGenerationChance": {
+                "min": 0.2,
+                "max": 0.6,
+                "step": 0.01
+              },
+              "manaGenerated": {
+                "min": 1,
+                "max": 3,
+                "step": 1
+              }
+            }
+          }
+        ]
+      },
       { "attribute": "the_vault:third_attack",
         "group": "ModThirdAttack",
         "identifier": "the_vault:u_third_attack",
@@ -4662,93 +4688,7 @@
           }
         ]
       },
-      { "attribute": "the_vault:ability_area_of_effect_percent",
-        "group": "ModEnhancement",
-        "identifier": "the_vault:fireball_aoe_increase",
-        "tags": [],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 250,
-            "value": {
-              "min": 0.1,
-              "max": 0.24,
-              "step": 0.01,
-              "abilityKey": "Fireball_Base"
-            }
-          },
-          {
-            "minLevel": 64,
-            "maxLevel": -1,
-            "weight": 250,
-            "value": {
-              "min": 0.25,
-              "max": 0.5,
-              "step": 0.01,
-              "abilityKey": "Fireball_Base"
-            }
-          }
-        ]
-      },
-      { "attribute": "the_vault:ability_area_of_effect_percent",
-        "group": "ModEnhancement",
-        "identifier": "the_vault:storm_aoe_reduce",
-        "tags": [],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 500,
-            "value": {
-              "min": -0.8,
-              "max": -0.6,
-              "step": 0.01,
-              "abilityKey": "Storm_Arrow_Base"
-            }
-          }
-        ]
-      },
-      { "attribute": "the_vault:ability_area_of_effect_percent",
-        "group": "ModEnhancement",
-        "identifier": "the_vault:fear_effect_increase",
-        "tags": [],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 166,
-            "value": {
-              "min": 0.2,
-              "max": 0.4,
-              "step": 0.01,
-              "abilityKey": "Taunt_Repel"
-            }
-          },
-          {
-            "minLevel": 60,
-            "maxLevel": -1,
-            "weight": 166,
-            "value": {
-              "min": 0.41,
-              "max": 0.6,
-              "step": 0.01,
-              "abilityKey": "Taunt_Repel"
-            }
-          },
-          {
-            "minLevel": 80,
-            "maxLevel": -1,
-            "weight": 166,
-            "value": {
-              "min": 0.61,
-              "max": 1.0,
-              "step": 0.01,
-              "abilityKey": "Taunt_Repel"
-            }
-          }
-        ]
-      },
+
       { "attribute": "the_vault:ability_special_modification",
         "group": "ModEnhancement",
         "identifier": "the_vault:unique_frost_nova_vulnerability",
@@ -4798,6 +4738,7 @@
           }
         ]
       },
+
       { "attribute": "the_vault:ability_cooldown_percent",
         "group": "ModEnhancement",
         "identifier": "the_vault:storm_cooldown",
@@ -4863,6 +4804,7 @@
           }
         ]
       },
+
       { "attribute": "the_vault:on_hit_aoe",
         "group": "ModOnHitType",
         "identifier": "the_vault:u_on_hit_aoe",
@@ -4882,6 +4824,7 @@
           }
         ]
       },
+
       { "attribute": "the_vault:added_ability_level",
         "group": "ModAbility",
         "identifier": "the_vault:u_all_skills",
@@ -4908,6 +4851,7 @@
           }
         ]
       },
+
       { "attribute": "the_vault:added_ability_level",
         "group": "ModAbility",
         "identifier": "the_vault:seal_offensive_skills",
@@ -4952,6 +4896,7 @@
           }
         ]
       },
+
       { "attribute": "the_vault:added_ability_level",
         "group": "ModAbility",
         "identifier": "the_vault:seal_utility_skills",
@@ -4996,6 +4941,7 @@
           }
         ]
       },
+
       { "attribute": "the_vault:added_ability_level",
         "group": "ModAbility",
         "identifier": "the_vault:seal_powerup_skills",
@@ -5040,6 +4986,7 @@
           }
         ]
       },
+
       { "attribute": "the_vault:added_ability_level",
         "group": "ModAbility",
         "identifier": "the_vault:seal_ultimate_skills",
@@ -5080,228 +5027,6 @@
             "value": {
               "levelChange": 4,
               "abilityKey": "ULTIMATE"
-            }
-          }
-        ]
-      },
-
-      {
-        "attribute": "the_vault:added_ability_level",
-        "group": "ModAbility",
-        "identifier": "the_vault:mod_everfrost_blast",
-        "tags": [],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 20,
-            "value": {
-              "abilityKey": "Ice_Bolt_Blast",
-              "levelChange": 1
-            }
-          },
-          {
-            "minLevel": 25,
-            "maxLevel": -1,
-            "weight": 20,
-            "value": {
-              "abilityKey": "Ice_Bolt_Blast",
-              "levelChange": 2
-            }
-          },
-          {
-            "minLevel": 50,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "abilityKey": "Ice_Bolt_Blast",
-              "levelChange": 3
-            }
-          }
-        ]
-      },
-      {
-        "attribute": "the_vault:added_ability_level",
-        "group": "ModAbility",
-        "identifier": "the_vault:mod_everflame_fireball",
-        "tags": [],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 20,
-            "value": {
-              "abilityKey": "Fireball_Base",
-              "levelChange": 1
-            }
-          },
-          {
-            "minLevel": 25,
-            "maxLevel": -1,
-            "weight": 20,
-            "value": {
-              "abilityKey": "Fireball_Base",
-              "levelChange": 2
-            }
-          },
-          {
-            "minLevel": 50,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "abilityKey": "Fireball_Base",
-              "levelChange": 3
-            }
-          }
-        ]
-      },
-      {
-        "attribute": "the_vault:thorns_scaling_damage",
-        "group": "BaseScaling",
-        "identifier": "the_vault:thorns_scaling_damage_grass_sword",
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 0.15,
-              "max": 0.3,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 40,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 0.31,
-              "max": 0.5,
-              "step": 0.01
-            }
-          }
-        ]
-      },
-      {
-        "attribute": "the_vault:ap_scaling_damage",
-        "group": "BaseScaling",
-        "identifier": "the_vault:ap_scaling_damage_scissors",
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 0.2,
-              "max": 0.4,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 40,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 0.4,
-              "max": 0.5,
-              "step": 0.01
-            }
-          }
-        ]
-      },
-      {
-        "attribute": "the_vault:movement_speed",
-        "group": "uMovementSpeed",
-        "identifier": "the_vault:u_movement_horse",
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": -1,
-            "weight": 100,
-            "value": {
-              "min": 0.1,
-              "max": 0.2,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 40,
-            "maxLevel": -1,
-            "weight": 100,
-            "value": {
-              "min": 0.2,
-              "max": 0.3,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 80,
-            "maxLevel": -1,
-            "weight": 100,
-            "value": {
-              "min": 0.3,
-              "max": 0.4,
-              "step": 0.01
-            }
-          }
-        ]
-      },
-      {
-        "attribute": "the_vault:block",
-        "group": "BaseBlock",
-        "identifier": "the_vault:u_safer_block",
-        "tags": [
-          "noLegendary"
-        ],
-        "tiers": [
-          {
-            "minLevel": 0,
-            "maxLevel": 35,
-            "weight": 10,
-            "value": {
-              "min": 0.05,
-              "max": 0.09,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 18,
-            "maxLevel": 51,
-            "weight": 10,
-            "value": {
-              "min": 0.10,
-              "max": 0.14,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 42,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 0.15,
-              "max": 0.18,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 52,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 0.19,
-              "max": 0.22,
-              "step": 0.01
-            }
-          },
-          {
-            "minLevel": 85,
-            "maxLevel": -1,
-            "weight": 10,
-            "value": {
-              "min": 0.23,
-              "max": 0.25,
-              "step": 0.01
             }
           }
         ]
