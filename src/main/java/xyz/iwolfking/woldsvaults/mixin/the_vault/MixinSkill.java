@@ -13,7 +13,7 @@ import xyz.iwolfking.woldsvaults.expertises.NavigatorExpertise;
 import xyz.iwolfking.woldsvaults.expertises.PylonPilfererExpertise;
 
 
-@Mixin(targets = "iskallia/vault/skill/base/Skill$Adapter", remap = false)
+@Mixin(value = Skill.Adapter.class, remap = false)
 public abstract class MixinSkill extends TypeSupplierAdapter<Skill> {
     public MixinSkill(String key, boolean nullable) {
         super(key, nullable);
