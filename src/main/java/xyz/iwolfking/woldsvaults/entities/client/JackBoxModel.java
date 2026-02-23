@@ -9,16 +9,16 @@ public class JackBoxModel extends AnimatedGeoModel<JackBoxEntity> {
 
     @Override
     public ResourceLocation getModelLocation(JackBoxEntity entity) {
-        return new ResourceLocation(WoldsVaults.MODID, "geo/jack_box.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(WoldsVaults.MODID, "geo/jack_box.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureLocation(JackBoxEntity entity) {
-        return new ResourceLocation(WoldsVaults.MODID, "textures/entity/jack_box.png");
+        return ResourceLocation.fromNamespaceAndPath(WoldsVaults.MODID, "textures/entity/jack_box.png");
     }
 
     @Override
     public ResourceLocation getAnimationFileLocation(JackBoxEntity entity) {
-        return new ResourceLocation(WoldsVaults.MODID, "animations/jack_box.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(WoldsVaults.MODID, "animations/jack_box.animation.json");
     }
 }

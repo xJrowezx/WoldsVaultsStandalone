@@ -53,9 +53,8 @@ public class LivingEntityEvents {
     private static SoundEvent ALTERNATIVE_SOUND = null;
 
     public static void init() {
-         ANCHOR_SLAM_SOUND  = Registry.SOUND_EVENT.get(new ResourceLocation("bettercombat:anchor_slam"));
+         ANCHOR_SLAM_SOUND  = Registry.SOUND_EVENT.get(ResourceLocation.withDefaultNamespace("bettercombat:anchor_slam"));
          ALTERNATIVE_SOUND  = SoundEvents.ANVIL_HIT;
-                 //Registry.SOUND_EVENT.get(new ResourceLocation("bettercombat:anchor_slam"));
     }
 
     @SubscribeEvent

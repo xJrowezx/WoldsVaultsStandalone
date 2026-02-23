@@ -23,11 +23,11 @@ public class CustomScaleTypes {
         builder.addDependentModifier(dependantModifier);
 
         return ScaleRegistries.register(ScaleRegistries.SCALE_TYPES,
-                new ResourceLocation(WoldsVaults.MODID, id),
+                ResourceLocation.fromNamespaceAndPath(WoldsVaults.MODID, id),
                 builder.build());
     }
     public static ScaleModifier registerModifier(String id, ScaleModifier modifier) {
-        return ScaleRegistries.register(ScaleRegistries.SCALE_MODIFIERS, new ResourceLocation(WoldsVaults.MODID, id), modifier);
+        return ScaleRegistries.register(ScaleRegistries.SCALE_MODIFIERS, ResourceLocation.fromNamespaceAndPath(WoldsVaults.MODID, id), modifier);
     }
 
     public static void init() {
