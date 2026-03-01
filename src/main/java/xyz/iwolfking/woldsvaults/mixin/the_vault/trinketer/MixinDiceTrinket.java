@@ -20,8 +20,6 @@ public class MixinDiceTrinket {
             return instance.getMinimumMultiplier();
         }
 
-        double enhancement = PlayerExpertisesData.get(player.getLevel()).getExpertises(player).getAll(TrinketerExpertise.class, Skill::isUnlocked).stream().mapToDouble(TrinketerExpertise::getDamageAvoidanceChance).sum();
-
-        return (float) enhancement;
+        return (float) PlayerExpertisesData.get(player.getLevel()).getExpertises(player).getAll(TrinketerExpertise.class, Skill::isUnlocked).stream().mapToDouble(TrinketerExpertise::getDamageAvoidanceChance).sum();
     }
 }
