@@ -183,6 +183,7 @@ dependencies {
     implementation fg.deobf("curse.maven:create-328085:5797603")
     implementation fg.deobf("curse.maven:twigs-496913:3968055")
     implementation fg.deobf("curse.maven:architects-palette-433862:4957984")
+    implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:3820503")
 
     implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7373671") // 3.20.3
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:7509170") // 3.20

@@ -22,6 +22,6 @@ public class MixinDiceTrinket {
 
         double enhancement = PlayerExpertisesData.get(player.getLevel()).getExpertises(player).getAll(TrinketerExpertise.class, Skill::isUnlocked).stream().mapToDouble(TrinketerExpertise::getDamageAvoidanceChance).sum();
 
-        return (int) Math.floor(enhancement);
+        return (float) enhancement;
     }
 }
