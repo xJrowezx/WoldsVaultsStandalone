@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = WallClimbingTrinket.class, remap = false)
 public class MixinWallClimbingTrinket {
 
-    @Redirect(method = "onTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getSpeed()F"))
+    @Redirect(method = "onTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;getSpeed()F", remap = true))
     private static float increaseWallClimbingSpeed(Player instance) {
         double enhancement;
         if (instance instanceof ServerPlayer player) {
