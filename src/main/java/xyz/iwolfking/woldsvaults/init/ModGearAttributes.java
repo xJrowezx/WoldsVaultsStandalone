@@ -100,6 +100,9 @@ public class ModGearAttributes {
     public static final VaultGearAttribute<Float> MANA_COST_REDUCTION_CAP = attr("mana_cost_reduction_cap",
             VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mana Cost Reduction Cap", 20220), VaultGearAttributeComparator.floatComparator());
 
+    public static final VaultGearAttribute<Float> SWIFT_SNEAK = attr("swift_sneak",
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Swift Sneak", 65280), VaultGearAttributeComparator.floatComparator());
+
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
@@ -131,6 +134,7 @@ public class ModGearAttributes {
                       registry.register(MANA_COST_REDUCTION);
                       registry.register(MANA_COST_REDUCTION_CAP);
                       registry.register(ECHOING_DAMAGE_CAP);
+                      registry.register(SWIFT_SNEAK);
 
     }
 
