@@ -14,13 +14,13 @@
     },
     "Pylon_Pilferer": {
       "x": 350,
-      "y": 170,
+      "y": 180,
       "frameType": "STAR",
       "icon": "the_vault:gui/skills/pylon_pilferer"
     },
     "Navigator": {
       "x": 350,
-      "y": 70,
+      "y": 60,
       "frameType": "STAR",
       "icon": "the_vault:gui/skills/navigator"
     }

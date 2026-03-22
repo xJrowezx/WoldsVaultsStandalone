@@ -1,9 +1,8 @@
 package xyz.iwolfking.woldsvaults.mixin.the_vault.custom;
 
 import iskallia.vault.item.VaultXPFoodItem;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
@@ -13,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(VaultXPFoodItem.class)
 public class MixinVaultXPFoodItem {
 
+    @Unique
     private static final int DEFAULT_LEVEL_CAP = 100;
 
     /**

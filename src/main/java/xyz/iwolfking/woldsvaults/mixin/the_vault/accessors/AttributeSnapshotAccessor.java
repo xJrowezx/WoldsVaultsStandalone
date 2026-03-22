@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 import java.util.Map;
 
-@Mixin(AttributeSnapshot.class)
+@Mixin(value = AttributeSnapshot.class, remap = false)
 public interface AttributeSnapshotAccessor {
     @Accessor
     Map<VaultGearAttribute<?>, AttributeSnapshot.AttributeValue<?, ?>> getGearAttributeValues();

@@ -3,12 +3,10 @@ package xyz.iwolfking.woldsvaults;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -20,7 +18,6 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import xyz.iwolfking.vhapi.api.events.VHAPIProcessorsEvent;
-import xyz.iwolfking.vhapi.api.loaders.general.TooltipConfigLoader;
 import xyz.iwolfking.vhapi.api.registry.gear.CustomVaultGearRegistryEntry;
 import xyz.iwolfking.vhapi.api.registry.objective.CustomObjectiveRegistryEntry;
 import xyz.iwolfking.woldsvaults.configs.core.WoldsVaultsConfig;
@@ -33,8 +30,6 @@ import xyz.iwolfking.woldsvaults.models.AdditionalModels;
 import xyz.iwolfking.woldsvaults.network.PacketHandler;
 import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
-
-import java.util.Set;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("woldsvaultsstandalone")
@@ -81,11 +76,11 @@ public class WoldsVaults {
 
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation(MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 
     public static String sId(String path) {
-        return new ResourceLocation(MODID, path).toString();
+        return ResourceLocation.fromNamespaceAndPath(MODID, path).toString();
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = "woldsvaultsstandalone")
@@ -94,8 +89,8 @@ public class WoldsVaults {
         @SubscribeEvent
         public static void textureStitch(TextureStitchEvent.Pre event) {
             if (event.getAtlas().location().equals(TextureAtlas.LOCATION_BLOCKS)) {
-                event.addSprite(new ResourceLocation(MODID, "gui/bingo/shopping"));
-                event.addSprite(new ResourceLocation(MODID, "gui/bingo/vindicator"));
+                event.addSprite(ResourceLocation.fromNamespaceAndPath(MODID, "gui/bingo/shopping"));
+                event.addSprite(ResourceLocation.fromNamespaceAndPath(MODID, "gui/bingo/vindicator"));
             }
         }
     }

@@ -13,6 +13,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,35 +28,44 @@ public class CritTalentHandler {
 
     private static final Random RNG = new Random();
     private static final String FORCED_CRIT_TAG = "forced_crit";
+    public static final String FULLY_CHARGED_TAG = "fully_charged";
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public static void criticalHitChance(CriticalHitEvent event){
+    public static void criticalHitChance(CriticalHitEvent event) {
         Player player = event.getPlayer();
-        if(!(player instanceof ServerPlayer sp)) return;
+        if (!(player instanceof ServerPlayer sp)) return;
+        if (!(event.getTarget() instanceof LivingEntity)) return;
 
-        if(!(event.getTarget() instanceof LivingEntity)) return;
+        boolean fullyCharged = sp.getPersistentData().getBoolean(FULLY_CHARGED_TAG);
 
         float critHitChance = getCritChance(sp);
         boolean isVanillaCrit = event.isVanillaCritical();
         sp.getPersistentData().putBoolean(FORCED_CRIT_TAG, false);
 
         if (isVanillaCrit) return;
-        if (critHitChance > 0f && roll(critHitChance)) {
+
+        if (fullyCharged && critHitChance > 0f && roll(critHitChance)) {
             sp.getPersistentData().putBoolean(FORCED_CRIT_TAG, true);
             event.setResult(net.minecraftforge.eventbus.api.Event.Result.ALLOW);
 
-            // Visuals
             if (sp.level instanceof ServerLevel sl) {
                 LivingEntity target = (LivingEntity) event.getTarget();
-
-                sl.sendParticles(
-                        ParticleTypes.CRIT,
-                        target.getX(), target.getY() + 1.0D, target.getZ(), 12, 0.3D, 0.4D, 0.3D, 0.1D);
-
-                sl.playSound(
-                        null, target.blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT, SoundSource.PLAYERS, 1.0F, 1.0F);
+                sl.sendParticles(ParticleTypes.CRIT, target.getX(), target.getY() + 1.0D, target.getZ(),
+                        12, 0.3D, 0.4D, 0.3D, 0.1D);
+                sl.playSound(null, target.blockPosition(), SoundEvents.PLAYER_ATTACK_CRIT,
+                        SoundSource.PLAYERS, 1.0F, 1.0F);
             }
         }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onAttackEntity(AttackEntityEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer sp)) return;
+
+        float strength = sp.getAttackStrengthScale(0.0F); // server-side, use 0.0F
+        boolean fullyCharged = strength >= 0.9F;          // pick threshold you want
+
+        sp.getPersistentData().putBoolean(FULLY_CHARGED_TAG, fullyCharged);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)

@@ -10,6 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.entities.client.JackBoxRenderer;
 import xyz.iwolfking.woldsvaults.entities.client.WoldBossRenderer;
 import xyz.iwolfking.woldsvaults.entities.ghosts.lib.client.GenericWraithRenderer;
 import xyz.iwolfking.woldsvaults.entities.thanksgiving.client.renderer.CranberrySlimeRenderer;
@@ -43,5 +44,6 @@ public class ModEntityRenderers {
         EntityRenderers.register(ModEntities.HOSTILE_SHEEP, SheepRenderer::new);
         EntityRenderers.register(ModEntities.HOSTILE_PIG, PigRenderer::new);
         EntityRenderers.register(ModEntities.HATURKIN, HaturkeyRenderer::new);
+        EntityRenderers.register(ModEntities.JACK_BOX, JackBoxRenderer::new);
     }
 }

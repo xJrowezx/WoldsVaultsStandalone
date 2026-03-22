@@ -11,6 +11,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.entities.WoldBoss;
+import xyz.iwolfking.woldsvaults.entities.aprilfools.JackBoxEntity;
 import xyz.iwolfking.woldsvaults.entities.barnyard.HostileChickenEntity;
 import xyz.iwolfking.woldsvaults.entities.barnyard.HostilePigEntity;
 import xyz.iwolfking.woldsvaults.entities.barnyard.HostileSheepEntity;
@@ -44,6 +45,7 @@ public class ModEntities {
     public static EntityType<HostileSheepEntity> HOSTILE_SHEEP;
     public static EntityType<HostilePigEntity> HOSTILE_PIG;
     public static EntityType<HaturkeyEntity> HATURKIN;
+    public static EntityType<JackBoxEntity> JACK_BOX;
 
     public static void register(RegistryEvent.Register<EntityType<?>> event) {
         WOLD = registerLivingWV("wold", EntityType.Builder.of(WoldBoss::new, MobCategory.MONSTER)
@@ -69,6 +71,14 @@ public class ModEntities {
                 .clientTrackingRange(4)
                 .updateInterval(10) // update interval
                 .setCustomClientFactory((spawnEntity, world) -> new VaultRangEntity(VAULT_RANG, world)), event);
+
+        JACK_BOX = registerLivingWV("jack_box", EntityType.Builder.of(JackBoxEntity::new, MobCategory.MONSTER)
+                .sized(1.0F, 1.0F)
+                .clientTrackingRange(16)
+                .fireImmune()
+                .setCustomClientFactory(((spawnEntity, level) ->
+                        new JackBoxEntity(JACK_BOX, level))), JackBoxEntity::createAttributes, event);
+
     }
 
 
