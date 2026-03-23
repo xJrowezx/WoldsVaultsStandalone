@@ -126,7 +126,7 @@ public class ModItems {
     public static BasicItem GEM_REAGENT_XENIUM;
     public static BasicItem GEM_REAGENT_SPARKLETINE;
     public static BasicItem GEM_REAGENT_TUBIUM;
-    public static PoltergeistPlum POLTERGEIST_PLUM;
+
 
     //Zealot items
     public static BasicItem TOME_OF_TENOS;
@@ -139,6 +139,10 @@ public class ModItems {
 
     //Backpack?
     public static BackpackItem XL_BACKPACK;
+
+    //Fruit
+    public static ItemVaultFruit DRAGON_FRUIT;
+    public static PoltergeistPlum POLTERGEIST_PLUM;
 
 
 
@@ -231,6 +235,7 @@ public class ModItems {
         registry.register(RESEARCH_TOKEN);
         registry.register(SCAVENGER_POUCH_ITEM);
         registry.register(XL_BACKPACK);
+        registry.register(DRAGON_FRUIT);
     }
 
     static {
@@ -315,5 +320,6 @@ public class ModItems {
         SCAVENGER_POUCH_ITEM = new ItemScavengerPouch(WoldsVaults.id("scavenger_pouch"));
         XL_BACKPACK = new BackpackItem(() -> 216, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         XL_BACKPACK.setRegistryName(WoldsVaults.MODID, "xl_backpack");
+        DRAGON_FRUIT = new ItemVaultFruit(WoldsVaults.id("dragon_fruit"), 9000);
     }
 }
