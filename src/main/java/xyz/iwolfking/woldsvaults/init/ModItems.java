@@ -14,6 +14,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
+import xyz.iwolfking.woldsvaults.items.fruits.DragonFruitItem;
 import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
 import xyz.iwolfking.woldsvaults.items.fruits.PoltergeistPlum;
 import xyz.iwolfking.woldsvaults.items.fruits.WisdomFruitItem;
@@ -99,8 +100,6 @@ public class ModItems {
     public static BasicItem RESONATING_REINFORCEMENT;
     public static BasicItem STYLISH_FOCUS;
     public static BasicItem UBER_CHAOS_CATALYST;
-    public static HastyPomegranteItem HASTY_POMEGRANATE;
-    public static WisdomFruitItem WISDOM_FRUIT;
     public static ToolModifierNullifyingItem CHISELING_FOCUS;
     public static AirMobilityItem ZEPHYR_CHARM;
     public static VaultBasicFoodItem VAULT_ROCK_CANDY;
@@ -141,8 +140,10 @@ public class ModItems {
     public static BackpackItem XL_BACKPACK;
 
     //Fruit
-    public static ItemVaultFruit DRAGON_FRUIT;
+    public static DragonFruitItem DRAGON_FRUIT;
     public static PoltergeistPlum POLTERGEIST_PLUM;
+    public static HastyPomegranteItem HASTY_POMEGRANATE;
+    public static WisdomFruitItem WISDOM_FRUIT;
 
 
 
@@ -320,6 +321,6 @@ public class ModItems {
         SCAVENGER_POUCH_ITEM = new ItemScavengerPouch(WoldsVaults.id("scavenger_pouch"));
         XL_BACKPACK = new BackpackItem(() -> 216, () -> 8, () -> ModBlocks.XL_BACKPACK, Item.Properties::fireResistant);
         XL_BACKPACK.setRegistryName(WoldsVaults.MODID, "xl_backpack");
-        DRAGON_FRUIT = new ItemVaultFruit(WoldsVaults.id("dragon_fruit"), 9000);
+        DRAGON_FRUIT = new DragonFruitItem(WoldsVaults.id("dragon_fruit"));
     }
 }
