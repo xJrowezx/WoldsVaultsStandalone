@@ -202,7 +202,7 @@ dependencies {
 
     compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.3")
 
-    if (use_va) {
+    if (use_va.toBoolean()) {
         implementation fg.deobf("xyz.iwolfking.vaultadditions:VaultAdditions:1.20.0")
     }
 
