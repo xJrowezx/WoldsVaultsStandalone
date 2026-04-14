@@ -67,6 +67,7 @@
     "the_vault.custom.MixinVaultXPFoodItem",
     "the_vault.optimization.MixinGearStackingTalent",
     "the_vault.recipes.MixinAnvilRecipes",
+    "the_vault.skills.MixinAbilityDescriptionFactory",
     "the_vault.skills.MixinAbilityLabelFactory",
     "the_vault.skills.MixinAbstractVeinMinerAbility",
     "the_vault.skills.MixinModAbilityLabelBindings",
