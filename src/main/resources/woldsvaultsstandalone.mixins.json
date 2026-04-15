@@ -23,7 +23,6 @@
     "angelring.MixinAbstractRingCurio",
     "angelring.MixinItemRegistry",
     "bettercombat.MixinBetterCombatAttackRange",
-    "infernalmobs.MixinInfernalMobsCore",
     "sophisticatedbackpacks.MixinBackpackModel",
     "sophisticatedbackpacks.MixinModBlocks",
     "the_vault.MixinAngelBlock",

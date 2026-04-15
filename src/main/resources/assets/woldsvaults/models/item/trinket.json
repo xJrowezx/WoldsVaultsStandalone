@@ -122,41 +122,35 @@
             "predicate": {
                 "woldsvaults:trinket": 19
             },
-            "model": "woldsvaults:item/trinket/running_shoes"
+            "model": "woldsvaults:item/trinket/spellbook"
         },
         {
             "predicate": {
                 "woldsvaults:trinket": 20
             },
-            "model": "woldsvaults:item/trinket/spellbook"
+            "model": "woldsvaults:item/trinket/stone_of_jordan"
         },
         {
             "predicate": {
                 "woldsvaults:trinket": 21
             },
-            "model": "woldsvaults:item/trinket/stone_of_jordan"
+            "model": "woldsvaults:item/trinket/tenos_charm"
         },
         {
             "predicate": {
                 "woldsvaults:trinket": 22
             },
-            "model": "woldsvaults:item/trinket/tenos_charm"
+            "model": "woldsvaults:item/trinket/velaras_petal"
         },
         {
             "predicate": {
                 "woldsvaults:trinket": 23
             },
-            "model": "woldsvaults:item/trinket/velaras_petal"
-        },
-        {
-            "predicate": {
-                "woldsvaults:trinket": 24
-            },
             "model": "woldsvaults:item/trinket/wendarrs_hourglass"
         },
         {
             "predicate": {
-                "woldsvaults:trinket": 25
+                "woldsvaults:trinket": 24
             },
             "model": "woldsvaults:item/trinket/wings"
         }

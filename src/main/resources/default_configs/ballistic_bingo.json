@@ -2421,29 +2421,6 @@
           {
             "type": "add_vault_modifier",
             "modifiers": {
-              "the_vault:infernal_bingo": 1
-            },
-            "message": [
-              "",
-              {
-                "text": " BINGO! ",
-                "color": "#bbf333"
-              },
-              {
-                "text": "Added ",
-                "color": "gray"
-              },
-              "${modifiers}",
-              {
-                "text": ".",
-                "color": "gray"
-              }
-            ],
-            "weight": 100.0
-          },
-          {
-            "type": "add_vault_modifier",
-            "modifiers": {
               "the_vault:bonus_bingo": 1
             },
             "message": [
@@ -2782,7 +2759,6 @@
           {
             "type": "add_vault_modifier",
             "modifiers": {
-              "the_vault:infernal_bingo": 1,
               "the_vault:crate_tier": 1,
               "the_vault:bingo_challenge": 1
             },
@@ -5426,29 +5402,6 @@
           {
             "type": "add_vault_modifier",
             "modifiers": {
-              "the_vault:infernal_bingo": 1
-            },
-            "message": [
-              "",
-              {
-                "text": " BINGO! ",
-                "color": "#bbf333"
-              },
-              {
-                "text": "Added ",
-                "color": "gray"
-              },
-              "${modifiers}",
-              {
-                "text": ".",
-                "color": "gray"
-              }
-            ],
-            "weight": 100.0
-          },
-          {
-            "type": "add_vault_modifier",
-            "modifiers": {
               "the_vault:bonus_bingo": 1
             },
             "message": [
@@ -5787,7 +5740,6 @@
           {
             "type": "add_vault_modifier",
             "modifiers": {
-              "the_vault:infernal_bingo": 1,
               "the_vault:crate_tier": 1,
               "the_vault:bingo_challenge": 1
             },
@@ -8431,29 +8383,6 @@
           {
             "type": "add_vault_modifier",
             "modifiers": {
-              "the_vault:infernal_bingo": 1
-            },
-            "message": [
-              "",
-              {
-                "text": " BINGO! ",
-                "color": "#bbf333"
-              },
-              {
-                "text": "Added ",
-                "color": "gray"
-              },
-              "${modifiers}",
-              {
-                "text": ".",
-                "color": "gray"
-              }
-            ],
-            "weight": 100.0
-          },
-          {
-            "type": "add_vault_modifier",
-            "modifiers": {
               "the_vault:bonus_bingo": 1
             },
             "message": [
@@ -8792,7 +8721,6 @@
           {
             "type": "add_vault_modifier",
             "modifiers": {
-              "the_vault:infernal_bingo": 1,
               "the_vault:crate_tier": 1,
               "the_vault:bingo_challenge": 1
             },

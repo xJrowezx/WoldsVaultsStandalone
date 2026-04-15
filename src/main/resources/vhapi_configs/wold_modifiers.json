@@ -1140,21 +1140,6 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:infernal_bingo": {
-        "properties": {
-          "children": {
-            "woldsvaults:bingo_infernal": 1,
-            "the_vault:bingo_quantity": 1,
-            "the_vault:bingo_rarity": 1
-          }
-        },
-        "display": {
-          "name": "Infernal Bingo!",
-          "color": "#9FA8DA",
-          "description": "Every Infernal BINGO adds item quantity and item rarity, plus a 2.5% chance for a mob to gain Infernal Modifiers.",
-          "icon": "the_vault:gui/modifiers/bingo"
-        }
-      },
       "woldsvaults:sweet_bingo": {
         "properties": {
           "children": {
@@ -2392,34 +2377,6 @@
           "color": "#BBDEFB",
           "description": "Mobs sometimes drop lightning grenades on death.",
           "icon": "woldsvaults:gui/modifiers/lightning_grenade"
-        }
-      }
-    },
-    "woldsvaults:modifier_type/infernal_mobs": {
-      "woldsvaults:raging": {
-        "properties": {
-          "filter": "",
-          "chance": 0.05,
-          "amount": 3
-        },
-        "display": {
-          "name": "Raging",
-          "color": "#a996ca",
-          "description": "Mobs sometimes spawn with infernal mob modifiers.",
-          "icon": "woldsvaults:gui/modifiers/infernal"
-        }
-      },
-      "woldsvaults:bingo_infernal": {
-        "properties": {
-          "filter": "",
-          "chance": 0.025,
-          "amount": 2
-        },
-        "display": {
-          "name": "Infernal",
-          "color": "#a996ca",
-          "description": "Mobs sometimes spawn with infernal mob modifiers.",
-          "icon": "woldsvaults:gui/modifiers/infernal"
         }
       }
     },

@@ -1,7 +1,5 @@
 package xyz.iwolfking.woldsvaults.objectives;
 
-import atomicstryker.infernalmobs.common.InfernalMobsCore;
-import atomicstryker.infernalmobs.common.MobModifier;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.ObeliskBlock;
 import iskallia.vault.block.PlaceholderBlock;
@@ -23,6 +21,7 @@ import iskallia.vault.core.world.data.entity.PartialCompoundNbt;
 import iskallia.vault.core.world.data.tile.PartialBlockState;
 import iskallia.vault.core.world.data.tile.PartialTile;
 import iskallia.vault.core.world.storage.VirtualWorld;
+import iskallia.vault.entity.champion.ChampionPromoter;
 import iskallia.vault.init.ModBlocks;
 import iskallia.vault.init.ModConfigs;
 import net.minecraft.ChatFormatting;
@@ -120,36 +119,18 @@ public class BrutalBossesObjective extends ObeliskObjective {
                         wave.modify(Wave.COUNT, (x) -> {
                             return x + 1;
                         });
-                        MobModifier modifier = InfernalMobsCore.getMobModifiers(event.getEntityLiving());
                         List<VaultModifier<?>> modifiersForMsg = new ArrayList<>();
 
-                        if (modifier != null && modifier.getModSize() != 0) {
-                            String modNames = modifier.getLinkedModNameUntranslated().trim();
-                            for (String modName : modNames.split("\\s+")) {
-                                List<VaultModifier<?>> modifiers = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("bb_" + modName.toLowerCase()), 0, (RandomSource) JavaRandom.ofNanoTime());
-                                if (!modifiers.isEmpty()) {
-                                    Iterator modIter = modifiers.iterator();
+                        for (int i = 0; i < 2; i++) {
+                            String modName = BOSS_MODS_LIST.getRandom().get().toLowerCase();
+                            List<VaultModifier<?>> modifiers = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("bb_" + modName), 0, (RandomSource) JavaRandom.ofNanoTime());
+                            if (!modifiers.isEmpty()) {
+                                Iterator modIter = modifiers.iterator();
 
-                                    while (modIter.hasNext()) {
-                                        VaultModifier<?> mod = (VaultModifier<?>) modIter.next();
-                                        modifiersForMsg.add(mod);
-                                        ((Modifiers) vault.get(Vault.MODIFIERS)).addModifier(mod, 1, true, (RandomSource) JavaRandom.ofNanoTime());
-                                    }
-                                }
-                            }
-                        } else {
-                            // Add 2 random vault modifiers from BOSS_MODS_LIST
-                            for (int i = 0; i < 2; i++) {
-                                String modName = BOSS_MODS_LIST.getRandom().get().toLowerCase();
-                                List<VaultModifier<?>> modifiers = ModConfigs.VAULT_MODIFIER_POOLS.getRandom(VaultMod.id("bb_" + modName), 0, (RandomSource) JavaRandom.ofNanoTime());
-                                if (!modifiers.isEmpty()) {
-                                    Iterator modIter = modifiers.iterator();
-
-                                    while (modIter.hasNext()) {
-                                        VaultModifier<?> mod = (VaultModifier<?>) modIter.next();
-                                        modifiersForMsg.add(mod);
-                                        ((Modifiers) vault.get(Vault.MODIFIERS)).addModifier(mod, 1, true, (RandomSource) JavaRandom.ofNanoTime());
-                                    }
+                                while (modIter.hasNext()) {
+                                    VaultModifier<?> mod = (VaultModifier<?>) modIter.next();
+                                    modifiersForMsg.add(mod);
+                                    ((Modifiers) vault.get(Vault.MODIFIERS)).addModifier(mod, 1, true, (RandomSource) JavaRandom.ofNanoTime());
                                 }
                             }
                         }
@@ -223,7 +204,7 @@ public class BrutalBossesObjective extends ObeliskObjective {
             entity.setCustomName(bossName);
         }
         entity.setCustomNameVisible(true);
-        InfernalMobsCore.instance().addEntityModifiersByString(entity, BrutalBossesRegistry.getRandomMobModifiers());
+        ChampionPromoter.applyRandomChampion(entity);
         BlockState state = world.getBlockState(new BlockPos(x, y - 1, z));
         if (!state.isValidSpawn(world, new BlockPos(x, y - 1, z), entity.getType())) {
             return null;

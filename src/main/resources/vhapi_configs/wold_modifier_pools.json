@@ -629,10 +629,6 @@
                 "weight": 2
               },
               {
-                "value": "woldsvaults:bingo_infernal",
-                "weight": 4
-              },
-              {
                 "value": "woldsvaults:omega_cascade",
                 "weight": 1
               },
@@ -1499,10 +1495,6 @@
             "min": 1,
             "max": 1,
             "pool": [
-              {
-                "value": "woldsvaults:bingo_infernal",
-                "weight": 1
-              },
               {
                 "value": "the_vault:companion_challenge",
                 "weight": 1

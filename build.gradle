@@ -181,7 +181,6 @@ dependencies {
     // Mods with Compat in this mod
     implementation fg.deobf('curse.maven:alexs-mobs-426558:3853078')
     implementation fg.deobf('curse.maven:angel-ring-333396:4641783')
-    implementation fg.deobf('curse.maven:atomicstrykers-infernal-mobs-227875:4149699')
     implementation fg.deobf("curse.maven:better-combat-by-daedelus-639842:4428885")
     implementation fg.deobf('curse.maven:curios-309927:4985315')
     implementation fg.deobf('curse.maven:ecologics-570463:4171283')
@@ -191,7 +190,7 @@ dependencies {
     implementation fg.deobf("curse.maven:thermal-foundation-222880:4788649")
 
     // Vault Hunters Core Mods
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:7899291") // 3.21.4.1
+    implementation fg.deobf("blank:the_vault:1.18.2-3.21.0")
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:7885720") // 3.21
     implementation fg.deobf("curse.maven:geckolib-388172:4181370")
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:5654080")
@@ -258,3 +257,5 @@ tasks.named('jar', Jar).configure {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
+
+apply from: 'applesilicon.gradle'

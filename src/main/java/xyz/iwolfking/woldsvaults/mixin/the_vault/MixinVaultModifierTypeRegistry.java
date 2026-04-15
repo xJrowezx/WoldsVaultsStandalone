@@ -16,7 +16,6 @@ public class MixinVaultModifierTypeRegistry {
     @Shadow @Final private static Map<ResourceLocation, VaultModifierType<?, ?>> MODIFIER_TYPE_REGISTRY;
 
     static {
-        MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/infernal_mobs"), VaultModifierType.of(InfernalMobModifier.class, InfernalMobModifier.Properties.class, InfernalMobModifier::new));
         MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/mob_death_bomb"), VaultModifierType.of(MobDeathBombModifier.class, MobDeathBombModifier.Properties.class, MobDeathBombModifier::new));
         MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/chest_break_bomb"), VaultModifierType.of(ChestOpenBombModifier.class, ChestOpenBombModifier.Properties.class, ChestOpenBombModifier::new));
         MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/enchanted_event_chance"), VaultModifierType.of(EnchantedVaultModifier.class, EnchantedVaultModifier.Properties.class, EnchantedVaultModifier::new));

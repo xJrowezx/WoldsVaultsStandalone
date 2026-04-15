@@ -1,6 +1,5 @@
 package xyz.iwolfking.woldsvaults.events;
 
-import atomicstryker.infernalmobs.common.InfernalMobsCore;
 import iskallia.vault.block.CoinPileBlock;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.VaultOreBlock;
@@ -81,7 +80,7 @@ public class LivingEntityEvents {
                 event.getEntityLiving().addEffect(new MobEffectInstance(ModEffects.REAVING, Integer.MAX_VALUE, 0));
                 event.getEntityLiving().addEffect(new MobEffectInstance(iskallia.vault.init.ModEffects.NO_AI, 20, 0));
 
-                if(ChampionLogic.isChampion(event.getEntityLiving()) || InfernalMobsCore.getMobModifiers(event.getEntityLiving()) != null || event.getEntityLiving() instanceof VaultBoss) {
+                if(ChampionLogic.isChampion(event.getEntityLiving()) || event.getEntityLiving() instanceof VaultBoss) {
                     event.setAmount(event.getAmount() + (event.getEntityLiving().getMaxHealth() * (data.get(ModGearAttributes.REAVING_DAMAGE, VaultGearAttributeTypeMerger.floatSum()) * 0.5F)));
                 }
                 else {
