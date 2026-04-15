@@ -3,7 +3,6 @@ package xyz.iwolfking.woldsvaults.init;
 import iskallia.vault.init.ModBlocks;
 import net.minecraftforge.event.RegistryEvent;
 import xyz.iwolfking.vhapi.api.registry.objective.CustomObjectiveRegistryEntry;
-import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.objectives.*;
 
 
