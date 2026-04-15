@@ -10,7 +10,7 @@ import java.util.stream.DoubleStream;
 @Mixin(value = ClassicListenersLogic.class, remap = false)
 public class MixinClassicListenersLogic {
 
-    @Redirect(method = "lambda$onJoin$10", at = @At(value = "INVOKE", target = "Ljava/util/stream/DoubleStream;sum()D"))
+    @Redirect(method = "lambda$onJoin$11", at = @At(value = "INVOKE", target = "Ljava/util/stream/DoubleStream;sum()D"))
     private double setDamageAvoidanceChanceToZero(DoubleStream instance) {
         return 0;
     }

@@ -173,6 +173,7 @@ public class ModItems {
         ENDER_ARTIFACT = new BasicScavengerItem("ender_artifact");
         ENDER_CRYSTAL = new BasicScavengerItem("ender_crystal");
         ENDER_EYE = new BasicScavengerItem("enderman_eye");
+        DRAGON_FRUIT = new DragonFruitItem(WoldsVaults.id("dragon_fruit"));
 
         WOLD_EGG = new BasicMobEggItem(WoldsVaults.id("wold_spawn_egg"), () -> ModEntities.WOLD, 1447446, DyeColor.GRAY.getId(), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         BOOGIEMAN_EGG = new BasicMobEggItem(WoldsVaults.id("boogieman_spawn_egg"), () -> iskallia.vault.init.ModEntities.BOOGIEMAN, 333333, DyeColor.GRAY.getId(), (new Item.Properties()).tab(VAULT_MOD_GROUP));
