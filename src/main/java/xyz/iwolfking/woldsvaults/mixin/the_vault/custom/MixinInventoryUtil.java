@@ -15,6 +15,8 @@ import xyz.iwolfking.woldsvaults.api.inventory.WoldInventoryUtil;
 import xyz.iwolfking.woldsvaults.items.ItemScavengerPouch;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
@@ -25,7 +27,14 @@ public abstract class MixinInventoryUtil {
     @Shadow
     @Final
     @Mutable
-    private static Set<Function<InventoryUtil.ItemAccess, List<InventoryUtil.ItemAccess>>> CONTENT_ACCESSORS = Set.of(WoldInventoryUtil::getScavPouchAccess);
+    private static Set<Function<InventoryUtil.ItemAccess, List<InventoryUtil.ItemAccess>>> CONTENT_ACCESSORS;
+
+    @Inject(method = "<clinit>", at = @At("TAIL"))
+    private static void appendScavPouchAccessor(CallbackInfo ci) {
+        Set<Function<InventoryUtil.ItemAccess, List<InventoryUtil.ItemAccess>>> accessors = new LinkedHashSet<>(CONTENT_ACCESSORS);
+        accessors.add(WoldInventoryUtil::getScavPouchAccess);
+        CONTENT_ACCESSORS = Collections.unmodifiableSet(accessors);
+    }
 
     @Inject(method = "makeItemsRotten(Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "INVOKE", target = "Liskallia/vault/util/InventoryUtil;doesRotten(Lnet/minecraft/world/item/ItemStack;)Z"))
     private static void clearScavPouch(Player player, CallbackInfo ci, @Local ItemStack stack) {
