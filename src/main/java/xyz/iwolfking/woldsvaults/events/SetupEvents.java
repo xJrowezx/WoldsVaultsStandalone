@@ -52,6 +52,13 @@ public class SetupEvents {
         registerManualConfigFile("/vhapi_configs/expertise_descriptions.json", WoldsVaults.id("skill/descriptions/wold_skill_descriptions"));
         registerManualConfigFile("/vhapi_configs/wold_mobs.json", WoldsVaults.id("vault/mobs/wold_mobs"));
 
+        //Gear Model Rolls
+        registerManualConfigFile("/vhapi_configs/custom_model_rolls/battlestaff.json", VHAPI.of("gear/custom/model_rolls/battlestaff"));
+        registerManualConfigFile("/vhapi_configs/custom_model_rolls/loot_sack.json", VHAPI.of("gear/custom/model_rolls/loot_sack"));
+        registerManualConfigFile("/vhapi_configs/custom_model_rolls/plushie.json", VHAPI.of("gear/custom/model_rolls/plushie"));
+        registerManualConfigFile("/vhapi_configs/custom_model_rolls/trident.json", VHAPI.of("gear/custom/model_rolls/trident"));
+        registerManualConfigFile("/vhapi_configs/custom_model_rolls/rang.json", VHAPI.of("gear/custom/model_rolls/rang"));
+
         //Gear Modifiers
         registerManualConfigFile("/vhapi_configs/gear_modifiers/overwrite/battlestaff.json", VHAPI.of("gear/gear_modifiers/overwrite/battlestaff"));
         registerManualConfigFile("/vhapi_configs/gear_modifiers/overwrite/loot_sack.json", VHAPI.of("gear/gear_modifiers/overwrite/loot_sack"));
