@@ -13,10 +13,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
-import xyz.iwolfking.woldsvaults.items.fruits.DragonFruitItem;
-import xyz.iwolfking.woldsvaults.items.fruits.HastyPomegranteItem;
-import xyz.iwolfking.woldsvaults.items.fruits.PoltergeistPlum;
-import xyz.iwolfking.woldsvaults.items.fruits.WisdomFruitItem;
+
+import xyz.iwolfking.woldsvaults.items.fruits.*;
 import xyz.iwolfking.woldsvaults.items.gear.*;
 import xyz.iwolfking.woldsvaults.items.rings.*;
 
@@ -141,6 +139,8 @@ public class ModItems {
     public static PoltergeistPlum POLTERGEIST_PLUM;
     public static HastyPomegranteItem HASTY_POMEGRANATE;
     public static WisdomFruitItem WISDOM_FRUIT;
+    public static OneUpMushroomItem ONE_UP_MUSHROOM;
+    public static SuperMushroomItem SUPER_MUSHROOM;
 
 
 
@@ -174,6 +174,8 @@ public class ModItems {
         ENDER_CRYSTAL = new BasicScavengerItem("ender_crystal");
         ENDER_EYE = new BasicScavengerItem("enderman_eye");
         DRAGON_FRUIT = new DragonFruitItem(WoldsVaults.id("dragon_fruit"));
+        ONE_UP_MUSHROOM = new OneUpMushroomItem(WoldsVaults.id("one_up_mushroom"));
+        SUPER_MUSHROOM = new SuperMushroomItem(WoldsVaults.id("super_mushroom"));
 
         WOLD_EGG = new BasicMobEggItem(WoldsVaults.id("wold_spawn_egg"), () -> ModEntities.WOLD, 1447446, DyeColor.GRAY.getId(), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         BOOGIEMAN_EGG = new BasicMobEggItem(WoldsVaults.id("boogieman_spawn_egg"), () -> iskallia.vault.init.ModEntities.BOOGIEMAN, 333333, DyeColor.GRAY.getId(), (new Item.Properties()).tab(VAULT_MOD_GROUP));
@@ -324,5 +326,7 @@ public class ModItems {
         registry.register(SCAVENGER_POUCH_ITEM);
         registry.register(XL_BACKPACK);
         registry.register(DRAGON_FRUIT);
+        registry.register(ONE_UP_MUSHROOM);
+        registry.register(SUPER_MUSHROOM);
     }
 }

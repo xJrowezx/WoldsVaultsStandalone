@@ -127,11 +127,11 @@ public class ColossusAbility extends InstantManaAbility {
 
             if (entity instanceof ServerPlayer player) {
                 //get data from the skill tree
-                float size = 1.0f;
+                float size = amplifier + 1.0f;
                 //float additionalResistance = 0.0f;
                 AbilityTree abilities = PlayerAbilitiesData.get((ServerLevel)player.level).getAbilities(player);
                 for (ColossusAbility ability : abilities.getAll(ColossusAbility.class, Skill::isUnlocked)) {
-                    size = ability.getSize();
+                    size = Math.max(size, ability.getSize());
                     //additionalResistance = ability.getAdditionalResistance();
                 }
                 //set scale

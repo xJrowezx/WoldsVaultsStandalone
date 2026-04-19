@@ -37,5 +37,17 @@
     "sounds": [
       "woldsvaults:portal_spawn"
     ]
+  },
+  "one_up": {
+    "category": "player",
+    "sounds": [
+      "woldsvaults:1up"
+    ]
+  },
+  "super_mushroom": {
+    "category": "player",
+    "sounds": [
+      "woldsvaults:super_mushroom"
+    ]
   }
 }
