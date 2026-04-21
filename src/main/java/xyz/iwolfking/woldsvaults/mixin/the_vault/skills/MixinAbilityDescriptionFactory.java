@@ -26,8 +26,10 @@ public class MixinAbilityDescriptionFactory {
         } else {
             AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(Minecraft.getInstance().player);
             float reduction = snapshot.getAttributeValue(ModGearAttributes.MANA_COST_REDUCTION, VaultGearAttributeTypeMerger.floatSum());
+            float baseCost = Float.parseFloat(AbilityLabelBindingRegistry.getBindingValue(context.config(), key));
+            int adjustedCost = Math.round(baseCost * (1 - reduction));
             return AbilityLabelFactory.create(key, context)
-                    .append(" (" + Integer.parseInt(AbilityLabelBindingRegistry.getBindingValue(context.config(), key)) * (1 - reduction) + ")")
+                    .append(" (" + adjustedCost + ")")
                     .withStyle(Style.EMPTY.withColor(ModConfigs.COLORS.getColor("manaCost")));
         }
     }
