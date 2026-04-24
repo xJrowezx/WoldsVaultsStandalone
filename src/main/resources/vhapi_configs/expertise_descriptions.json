@@ -54,7 +54,7 @@
     ],
     "Navigator": [
       {
-        "text": "Grants a chance for selecting a Vault Compass objective to consume no player health. "
+        "text": "Grants a chance to not lose health when selecting a Vault Compass objective. "
       },
       {
         "text": "\n\n",
