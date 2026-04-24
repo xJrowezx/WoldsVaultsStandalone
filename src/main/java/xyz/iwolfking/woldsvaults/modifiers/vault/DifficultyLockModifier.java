@@ -43,20 +43,21 @@ public class DifficultyLockModifier extends VaultModifier<DifficultyLockModifier
                         return;
                     }
 
-                    if(event.player.getUUID() != vault.get(Vault.OWNER)) {
+                    if(!event.player.getUUID().equals(vault.get(Vault.OWNER))) {
                         return;
                     }
-                    if(WorldSettings.get(world).getPlayerDifficulty(vault.get(Vault.OWNER)).equals(properties.getDifficulty())) {
-                        return;
-                    }
-
-                    if(!properties().shouldLockHigher() && isDifficultyHigher(world, vault)) {
-                        return;
-                    }
-                    RETURN_DIFFICULTY_MAP.put(vault.get(Vault.OWNER), WorldSettings.get(world).getPlayerDifficulty(vault.get(Vault.OWNER)));
-                    WorldSettings.get(world).setPlayerDifficulty(vault.get(Vault.OWNER), properties.getDifficulty());
+                    applyDifficulty(world, vault.get(Vault.OWNER));
                 }
             });
+    }
+
+    @Override
+    public void onListenerAdd(VirtualWorld world, Vault vault, ModifierContext context, Listener listener) {
+        vault.ifPresent(Vault.OWNER, owner -> {
+            if(listener.getPlayer().isPresent() && listener.getPlayer().get().getUUID().equals(owner)) {
+                applyDifficulty(world, owner);
+            }
+        });
     }
 
     @Override
@@ -64,20 +65,33 @@ public class DifficultyLockModifier extends VaultModifier<DifficultyLockModifier
             vault.ifPresent(Vault.OWNER, owner -> {
                 if(listener.getPlayer().isPresent()) {
                     if(listener.getPlayer().get().getUUID().equals(owner)) {
-                        if(RETURN_DIFFICULTY_MAP.containsKey(vault.get(Vault.OWNER))) {
-                            WorldSettings.get(world).setPlayerDifficulty(vault.get(Vault.OWNER), RETURN_DIFFICULTY_MAP.get(vault.get(Vault.OWNER)));
+                        if(RETURN_DIFFICULTY_MAP.containsKey(owner)) {
+                            WorldSettings.get(world).setPlayerDifficulty(owner, RETURN_DIFFICULTY_MAP.remove(owner));
                             return;
                         }
 
-                        WorldSettings.get(world).setPlayerDifficulty(vault.get(Vault.OWNER), VaultDifficulty.NORMAL);
-                        RETURN_DIFFICULTY_MAP.clear();
+                        WorldSettings.get(world).setPlayerDifficulty(owner, VaultDifficulty.NORMAL);
                     }
                 }
             });
     }
 
-    private boolean isDifficultyHigher(VirtualWorld world, Vault vault) {
-        return ((VaultDifficultyAccessor)(Object)WorldSettings.get(world).getPlayerDifficulty(vault.get(Vault.OWNER))).getDisplayOrder() >= ((VaultDifficultyAccessor)(Object)properties.getDifficulty()).getDisplayOrder();
+    private void applyDifficulty(VirtualWorld world, UUID owner) {
+        VaultDifficulty currentDifficulty = WorldSettings.get(world).getPlayerDifficulty(owner);
+        if(currentDifficulty.equals(properties.getDifficulty())) {
+            return;
+        }
+
+        if(!properties().shouldLockHigher() && isDifficultyHigher(currentDifficulty)) {
+            return;
+        }
+
+        RETURN_DIFFICULTY_MAP.putIfAbsent(owner, currentDifficulty);
+        WorldSettings.get(world).setPlayerDifficulty(owner, properties.getDifficulty());
+    }
+
+    private boolean isDifficultyHigher(VaultDifficulty currentDifficulty) {
+        return ((VaultDifficultyAccessor)(Object)currentDifficulty).getDisplayOrder() >= ((VaultDifficultyAccessor)(Object)properties.getDifficulty()).getDisplayOrder();
     }
 
     public static class Properties {
