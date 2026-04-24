@@ -147,8 +147,9 @@ public class ScavengerPouchContainer extends OverSizedSlotContainer {
             if (scavItemSlots.contains(slot)) {
                 ScavengerItemSlot scavSlot = (ScavengerItemSlot) slot;
                 OverSizedInventory inventory = (OverSizedInventory) scavSlot.container;
+                int backingIndex = scavSlot.getSlotIndex();
 
-                OverSizedItemStack stored = inventory.getOverSizedContents().get(slot.index);
+                OverSizedItemStack stored = inventory.getOverSizedContents().get(backingIndex);
                 if (stored.isEmpty() || stored.amount() <= 0) return ItemStack.EMPTY;
 
                 int giveAmount = Math.min(stack.getMaxStackSize(), stored.amount());
@@ -161,7 +162,7 @@ public class ScavengerPouchContainer extends OverSizedSlotContainer {
                 }
 
                 OverSizedItemStack updated = new OverSizedItemStack(stored.stack(), stored.amount() - giveAmount);
-                inventory.setOverSizedStack(slot.index, updated);
+                inventory.setOverSizedStack(backingIndex, updated);
 
                 slot.set(stack);
                 return out;

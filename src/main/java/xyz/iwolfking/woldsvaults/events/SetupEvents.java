@@ -73,8 +73,6 @@ public class SetupEvents {
 //        registerManualConfigFile("/vhapi_configs/gear_workbench/plushie.json", VHAPI.of("gear/gear_workbench/plushie"));
 //        registerManualConfigFile("/vhapi_configs/gear_workbench/rang.json", VHAPI.of("gear/gear_workbench/rang"));
 
-        //Research
-        registerManualConfigFile("/vhapi_configs/research_adjustments.json", WoldsVaults.id("research/researches/salvager"));
 
         //Tooltips
         registerManualConfigFile("/vhapi_configs/tooltips.json", WoldsVaults.id("tooltips/wold_tooltips"));
