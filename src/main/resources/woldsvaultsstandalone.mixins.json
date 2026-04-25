@@ -71,20 +71,7 @@
     "the_vault.skills.MixinModAbilityLabelBindings",
     "the_vault.skills.MixinResistanceHelper",
     "the_vault.skills.modifications.MixinFireballAbility",
-    "the_vault.skills.modifications.MixinIceBoltChunkAbility",
-    "the_vault.trinketer.AccessorClientExpertiseData",
-    "the_vault.trinketer.AetherTrinketMixin",
-    "the_vault.trinketer.AttributeSnapshotCalculatorMixin",
-    "the_vault.trinketer.DamageImmunityTrinketMixin",
-    "the_vault.trinketer.MixinBounceTrinket",
-    "the_vault.trinketer.MixinClassicListenersLogic",
-    "the_vault.trinketer.MixinDiceTrinket",
-    "the_vault.trinketer.MixinExplosionBlockPreventionTrinket",
-    "the_vault.trinketer.MixinMultiJumpTrinket",
-    "the_vault.trinketer.MixinNightVisionTrinket",
-    "the_vault.trinketer.MixinShadowCloakTrinket",
-    "the_vault.trinketer.MixinVanillaAttributeTrinket",
-    "the_vault.trinketer.MixinWallClimbingTrinket"
+    "the_vault.skills.modifications.MixinIceBoltChunkAbility"
   ],
   "client": [
     "MixinThrownTridentRenderer",
