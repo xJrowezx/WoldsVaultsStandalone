@@ -11,9 +11,11 @@ import iskallia.vault.init.ModGearAttributes;
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.tree.ExpertiseTree;
 import iskallia.vault.world.data.PlayerExpertisesData;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.server.ServerLifecycleHooks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -72,7 +74,14 @@ public class MixinGearRollHelper {
         }
 
         if (itemLevel >= 20 && rand.nextFloat() <= 0.12F + increasedSpecialRollsChance) { //12% is a test value, can change later
-            WoldGearModifierHelper.addUnusualModifier(stack, player.level.getGameTime(), rand);
+            long gameTime;
+            if (player != null) {
+                gameTime = player.level.getGameTime();
+            } else {
+                MinecraftServer currentServer = ServerLifecycleHooks.getCurrentServer();
+                gameTime = currentServer != null ? currentServer.overworld().getGameTime() : 0L;
+            }
+            WoldGearModifierHelper.addUnusualModifier(stack, gameTime, rand);
         }
     }
 }
