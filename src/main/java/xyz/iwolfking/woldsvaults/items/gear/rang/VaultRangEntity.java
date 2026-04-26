@@ -146,20 +146,22 @@ public class VaultRangEntity extends Projectile {
         Vec3 position = position();
         Vec3 rayEnd = position.add(motion);
 
+        HitResult blockResult = level.clip(new ClipContext(position, rayEnd, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
+        Vec3 entityRayEnd = blockResult.getType() == HitResult.Type.MISS ? rayEnd : blockResult.getLocation();
+
         boolean doEntities = true;
         int tries = 100;
 
         while(isAlive() && (!entityData.get(RETURNING) || returningDamage > 0F)) {
             if(doEntities) {
-                EntityHitResult result = raycastEntities(position, rayEnd);
+                EntityHitResult result = raycastEntities(position, entityRayEnd);
                 if(result != null)
                     onHit(result);
                 else doEntities = false;
             } else {
-                HitResult result = level.clip(new ClipContext(position, rayEnd, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, this));
-                if(result.getType() == HitResult.Type.MISS)
+                if(blockResult.getType() == HitResult.Type.MISS)
                     return;
-                else onHit(result);
+                else onHit(blockResult);
             }
 
             if(tries-- <= 0) {
