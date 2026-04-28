@@ -41,6 +41,7 @@ import net.minecraftforge.network.NetworkHooks;
 import vazkii.quark.base.handler.QuarkSounds;
 import xyz.iwolfking.woldsvaults.init.ModEntities;
 import xyz.iwolfking.woldsvaults.init.ModItems;
+import xyz.iwolfking.woldsvaults.items.gear.VaultRangItem;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -357,10 +358,6 @@ public class VaultRangEntity extends Projectile {
         LivingEntity owner = getThrower();
         if(owner == null || !owner.isAlive() || !(owner instanceof Player)) {
             if(!level.isClientSide) {
-                while(isInWall())
-                    setPos(getX(), getY() + 1, getZ());
-
-                spawnAtLocation(stack, 0);
                 discard();
             }
 
@@ -400,15 +397,16 @@ public class VaultRangEntity extends Projectile {
             if(motion.lengthSqr() < motionMag) {
                 Player player = (Player) owner;
                 Inventory inventory = player.getInventory();
-                ItemStack stackInSlot = inventory.getItem(slot);
 
                 if(!level.isClientSide) {
                     playSound(QuarkSounds.ENTITY_PICKARANG_PICKUP, 1, 1);
 
-                    if(!stack.isEmpty()) if (player.isAlive() && stackInSlot.isEmpty())
-                        inventory.setItem(slot, stack);
-                    else if (!player.isAlive() || !inventory.add(stack))
-                        player.drop(stack, false);
+                    if (!stack.isEmpty() && player.isAlive()) {
+                        int placeholderSlot = findInFlightPlaceholderSlot(inventory);
+                        if (placeholderSlot >= 0) {
+                            inventory.setItem(placeholderSlot, stack);
+                        }
+                    }
 
                     if (player.isAlive()) {
                         for (ItemEntity item : items)
@@ -447,6 +445,21 @@ public class VaultRangEntity extends Projectile {
             player.drop(drop, false);
             itemEntity.discard();
         }
+    }
+
+    private int findInFlightPlaceholderSlot(Inventory inventory) {
+        UUID myId = this.getUUID();
+        if (slot >= 0 && slot < inventory.getContainerSize()
+                && myId.equals(VaultRangItem.getInFlightEntityId(inventory.getItem(slot)))) {
+            return slot;
+        }
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            if (i == slot) continue;
+            if (myId.equals(VaultRangItem.getInFlightEntityId(inventory.getItem(i)))) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Nullable

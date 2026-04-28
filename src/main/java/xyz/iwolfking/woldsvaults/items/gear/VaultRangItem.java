@@ -17,9 +17,12 @@ import iskallia.vault.item.BasicItem;
 import iskallia.vault.snapshot.AttributeSnapshot;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.world.data.DiscoveredModelsData;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -44,6 +47,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 import vazkii.quark.base.handler.QuarkSounds;
 import xyz.iwolfking.woldsvaults.items.gear.rang.VaultRangEntity;
@@ -55,11 +61,56 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
+@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone")
 public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLeatherItem {
+
+    public static final String TAG_RANG_FLIGHT_ID = "RangFlightId";
 
     public VaultRangItem(ResourceLocation id,  Item.Properties properties) {
         super(id, properties);
+    }
+
+    public static boolean isInFlight(ItemStack stack) {
+        return stack.getItem() instanceof VaultRangItem
+                && stack.hasTag()
+                && stack.getTag().hasUUID(TAG_RANG_FLIGHT_ID);
+    }
+
+    @Nullable
+    public static UUID getInFlightEntityId(ItemStack stack) {
+        return isInFlight(stack) ? stack.getTag().getUUID(TAG_RANG_FLIGHT_ID) : null;
+    }
+
+    private static void clearInFlight(ItemStack stack) {
+        if (stack.hasTag()) {
+            stack.getTag().remove(TAG_RANG_FLIGHT_ID);
+        }
+    }
+
+    @Nullable
+    private static VaultRangEntity findInFlightEntity(ItemStack stack, ServerLevel level) {
+        UUID flightId = getInFlightEntityId(stack);
+        if (flightId == null) return null;
+        return level.getEntity(flightId) instanceof VaultRangEntity rang ? rang : null;
+    }
+
+    private static void cleanupInFlightStack(ItemStack stack, Player player) {
+        if (!isInFlight(stack)) return;
+        if (player.level instanceof ServerLevel serverLevel) {
+            VaultRangEntity rang = findInFlightEntity(stack, serverLevel);
+            if (rang != null) rang.discard();
+        }
+        clearInFlight(stack);
+    }
+
+    @SubscribeEvent
+    public static void onItemToss(ItemTossEvent event) {
+        ItemStack stack = event.getEntityItem().getItem();
+        if (isInFlight(stack)) {
+            cleanupInFlightStack(stack, event.getPlayer());
+        }
     }
 
 
@@ -79,10 +130,13 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @Nonnull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
+        if (isInFlight(itemstack)) {
+            return InteractionResultHolder.fail(itemstack);
+        }
         if(VaultGearHelper.rightClick(worldIn, playerIn, handIn, super.use(worldIn, playerIn, handIn)).getResult().equals(InteractionResult.FAIL)) {
             return InteractionResultHolder.fail(itemstack);
         }
-        playerIn.setItemInHand(handIn, ItemStack.EMPTY);
+
         AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(playerIn);
         float velocity = VaultRangLogic.getVelocity(itemstack);
         Double attackSpeed = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED, VaultGearAttributeTypeMerger.doubleSum());
@@ -96,6 +150,10 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             entity.setThrowData(slot, itemstack);
             entity.shoot(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 1.5F + velocity * 0.325F, 0F);
             worldIn.addFreshEntity(entity);
+
+            ItemStack placeholder = itemstack.copy();
+            placeholder.getOrCreateTag().putUUID(TAG_RANG_FLIGHT_ID, entity.getUUID());
+            playerIn.setItemInHand(handIn, placeholder);
         }
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
@@ -153,15 +211,32 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int itemSlot, boolean isSelected) {
         super.inventoryTick(stack, world, entity, itemSlot, isSelected);
         if (entity instanceof ServerPlayer player) {
+            if (isInFlight(stack) && world instanceof ServerLevel serverLevel) {
+                VaultRangEntity rang = findInFlightEntity(stack, serverLevel);
+                if (rang == null || !rang.isAlive()) {
+                    clearInFlight(stack);
+                }
+            }
             this.vaultGearTick(stack, player);
         }
 
     }
 
     @Override
+    public boolean onDroppedByPlayer(ItemStack item, Player player) {
+        if (isInFlight(item)) {
+            cleanupInFlightStack(item, player);
+        }
+        return super.onDroppedByPlayer(item, player);
+    }
+
+    @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
+        if (isInFlight(stack)) {
+            tooltip.add(new TextComponent("(In Flight)").withStyle(ChatFormatting.AQUA, ChatFormatting.ITALIC));
+        }
         tooltip.addAll(this.createTooltip(stack, GearTooltip.itemTooltip()));
     }
 
