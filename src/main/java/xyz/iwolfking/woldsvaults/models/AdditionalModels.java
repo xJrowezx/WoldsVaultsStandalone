@@ -29,6 +29,7 @@ public class AdditionalModels {
 
     //Axes
     public static final HandHeldModel LEVIATHAN_AXE;
+    public static final HandHeldModel DARIUS_AXE;
     public static final HandHeldModel HORSE_AXE;
     public static final HandHeldModel ARROGANTE;
     public static final HandHeldModel WOLDIANCHOR;
@@ -62,6 +63,7 @@ public class AdditionalModels {
         CHEESEBLADE = ModDynamicModels.Swords.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/sword/cheese"), "Cheeseblade")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll());
 
         //Axes
+        DARIUS_AXE = (ModDynamicModels.Axes.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/axe/darius_axe"), "Noxian Axe"))).properties((new DynamicModelProperties()));
         LEVIATHAN_AXE = ModDynamicModels.Axes.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/axe/leviathan"), "Leviathan Axe")).properties(new DynamicModelProperties());
         HORSE_AXE = ModDynamicModels.Axes.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/axe/zombie_horse"), "Zombie-Horse Axe")).properties(new DynamicModelProperties());
         ARROGANTE = ModDynamicModels.Axes.REGISTRY.register(new HandHeldModel(VaultMod.id("gear/axe/arrogante"), "Arrogante Axe")).properties(new DynamicModelProperties());
