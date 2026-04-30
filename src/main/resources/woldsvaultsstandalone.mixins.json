@@ -60,7 +60,6 @@
     "the_vault.custom.MixinPylonBlock",
     "the_vault.custom.MixinScavengerObjective",
     "the_vault.custom.MixinSpecialAbilityModificationRegistry",
-    "the_vault.custom.MixinTreasureDoorTileEntityRenderer",
     "the_vault.custom.MixinVaultCrateType",
     "the_vault.custom.MixinVaultXPFoodItem",
     "the_vault.optimization.MixinGearStackingTalent",
