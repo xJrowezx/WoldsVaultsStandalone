@@ -54,7 +54,6 @@
     "the_vault.custom.MixinGearAttributeEvents",
     "the_vault.custom.MixinGrantedEffectHelper",
     "the_vault.custom.MixinInventoryUtil",
-    "the_vault.custom.MixinMagnetItem",
     "the_vault.custom.MixinModDynamicModels",
     "the_vault.custom.MixinModifierAffixTagGroupEnum",
     "the_vault.custom.MixinPylonBlock",
