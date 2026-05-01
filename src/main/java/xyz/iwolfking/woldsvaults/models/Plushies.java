@@ -80,6 +80,8 @@ public class Plushies {
     public static final HandHeldModel DOGV2;
     public static final HandHeldModel KATABLES;
     public static final HandHeldModel BUSTIN;
+    public static final HandHeldModel CAROLINE;
+    public static final HandHeldModel CYBER;
 
     //unique
     public static final HandHeldModel BOGSTER;  //unique
@@ -145,8 +147,8 @@ public class Plushies {
 
         //epic
         DRAGON = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/dragon"), "Drew the Dragon")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
-        HRRY = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/hrry"), "Nate the Operator")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
-        SPARKLEZ = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/sparklez"), "FyN the Salesman")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
+        HRRY = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/hrry"), "CsaBa")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
+        SPARKLEZ = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/sparklez"), "Chaaaland")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         WARDEN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/warden"), "Wally the Warden")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         GANDER = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/gander"), "Gander the Goat")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         IDRIS = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/idris"), "Idris the Illusionist")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
@@ -165,6 +167,8 @@ public class Plushies {
         DOGV2 = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/dogv2"), "Dog the Developer")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         KATABLES = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/katables"), "Katables the Builder")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
         BUSTIN = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/bustin"), "Bustin the Developer")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
+        CAROLINE = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/caroline"), "Caroline the Ticketmaster")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
+        CYBER = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/cyber"), "Cyberwolf the Artist")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
 
         //unique
         BATTY = (HandHeldModel)REGISTRY.register((HandHeldModel)(new HandHeldModel(VaultMod.id("gear/plushie/batty"), "Batty the Bat")).properties(new DynamicModelProperties().allowTransmogrification().discoverOnRoll()));
