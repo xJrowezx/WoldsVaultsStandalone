@@ -170,5 +170,16 @@
   "vault_objective.woldsvaultsstandalone.haunted_braziers": "Haunted Brazier",
   "vault_objective.woldsvaultsstandalone.enchanted_elixir": "Enchanted Elixir",
   "vault_objective.woldsvaultsstandalone.brutal_bosses": "Brutal Bosses",
-  "vault_objective.woldsvaultsstandalone.unhinged_scavenger": "Unhinged Scavenger Hunt"
+  "vault_objective.woldsvaultsstandalone.unhinged_scavenger": "Unhinged Scavenger Hunt",
+
+  "create.item_attributes.antique_name": "is a \"%1$s\" Antique",
+  "create.item_attributes.antique_name.inverted": "isn't a \"%1$s\" Antique",
+  "create.item_attributes.has_unusual": "has an unusual modifier",
+  "create.item_attributes.has_unusual.inverted": "doesn't have an unusual modifier",
+  "create.item_attributes.unusual_prefix": "has an unusual \"%1$s\" prefix",
+  "create.item_attributes.unusual_prefix.inverted": "doesn't have an unusual \"%1$s\" prefix",
+  "create.item_attributes.unusual_suffix": "has an unusual \"%1$s\" suffix",
+  "create.item_attributes.unusual_suffix.inverted": "doesn't have an unusual \"%1$s\" suffix",
+  "create.item_attributes.vault_doll_completed": "is a completed Vault Doll",
+  "create.item_attributes.vault_doll_completed.inverted": "is not a completed Vault Doll"
 }
