@@ -49,5 +49,11 @@
     "sounds": [
       "woldsvaults:super_mushroom"
     ]
+  },
+  "rang_ricochet": {
+    "category": "player",
+    "sounds": [
+      "woldsvaults:rang_ricochet"
+    ]
   }
 }

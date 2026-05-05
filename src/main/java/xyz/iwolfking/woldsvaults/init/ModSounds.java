@@ -14,6 +14,7 @@ public class ModSounds {
     public static SoundEvent OVERVAULT_PORTAL_SPAWN;
     public static SoundEvent ONE_UP;
     public static SoundEvent SUPER_MUSHROOM;
+    public static SoundEvent RANG_RICOCHET;
 
 
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event) {
@@ -24,6 +25,7 @@ public class ModSounds {
         OVERVAULT_PORTAL_SPAWN = registerSound(event, "overworld_portal_spawn");
         ONE_UP = registerSound(event, "one_up");
         SUPER_MUSHROOM = registerSound(event, "super_mushroom");
+        RANG_RICOCHET = registerSound(event, "rang_ricochet");
 
     }
 
