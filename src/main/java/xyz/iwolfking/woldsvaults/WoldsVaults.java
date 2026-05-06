@@ -26,6 +26,7 @@ import xyz.iwolfking.woldsvaults.events.LivingEntityEvents;
 import xyz.iwolfking.woldsvaults.events.SetupEvents;
 import xyz.iwolfking.woldsvaults.init.ModCustomVaultGearEntries;
 import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
+import xyz.iwolfking.woldsvaults.init.ModCrystalObjectives;
 import xyz.iwolfking.woldsvaults.init.ModVaultFilterAttributes;
 import xyz.iwolfking.woldsvaults.models.AdditionalModels;
 import xyz.iwolfking.woldsvaults.network.PacketHandler;
@@ -55,6 +56,7 @@ public class WoldsVaults {
         MinecraftForge.EVENT_BUS.addListener(this::onVHAPIProcessorEnd);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        ModCrystalObjectives.init();
         new AdditionalModels();
     }
 

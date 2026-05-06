@@ -14,6 +14,9 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackItem;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.items.*;
 
+import xyz.iwolfking.woldsvaults.items.alchemy.AlchemyIngredientItem;
+import xyz.iwolfking.woldsvaults.items.alchemy.CatalystItem;
+import xyz.iwolfking.woldsvaults.items.alchemy.DecoPotionItem;
 import xyz.iwolfking.woldsvaults.items.fruits.*;
 import xyz.iwolfking.woldsvaults.items.gear.*;
 import xyz.iwolfking.woldsvaults.items.rings.*;
@@ -27,6 +30,7 @@ import static iskallia.vault.init.ModItems.VAULT_MOD_GROUP;
 public class ModItems {
     public static Random rand = new Random();
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_UNHINGED;
+    public static ItemVaultCrystalSeal CRYSTAL_SEAL_ALCHEMY;
 
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_SPIRITS;
     public static ItemVaultCrystalSeal CRYSTAL_SEAL_ENCHANTER;
@@ -99,6 +103,20 @@ public class ModItems {
     public static AirMobilityItem ZEPHYR_CHARM;
     public static VaultBasicFoodItem VAULT_ROCK_CANDY;
 
+    public static AlchemyIngredientItem ROTTEN_HEART;
+    public static AlchemyIngredientItem ROTTEN_APPLE;
+    public static AlchemyIngredientItem VERDANT_GLOBULE;
+    public static AlchemyIngredientItem ERRATIC_EMBER;
+    public static AlchemyIngredientItem REFINED_POWDER;
+    public static AlchemyIngredientItem AURIC_CRYSTAL;
+    public static BasicItem INGREDIENT_TEMPLATE;
+    public static DecoPotionItem DECO_POTION;
+    public static CatalystItem CATALYST_STABILITY;
+    public static CatalystItem CATALYST_AMPLIFYING;
+    public static CatalystItem CATALYST_FOCUSING;
+    public static CatalystItem CATALYST_TEMPORAL;
+    public static CatalystItem CATALYST_UNSTABLE;
+
     public static BasicItem CHROMATIC_GOLD_NUGGET;
     public static BasicItem CHROMATIC_GOLD_INGOT;
     public static BasicItem SMASHED_VAULT_GEM;
@@ -147,6 +165,7 @@ public class ModItems {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         CRYSTAL_SEAL_UNHINGED = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_unhinged"));
+        CRYSTAL_SEAL_ALCHEMY = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_alchemy"));
         CRYSTAL_SEAL_SPIRITS = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_spirits"));
         CRYSTAL_SEAL_ENCHANTER = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_enchanter"));
         CRYSTAL_SEAL_TITAN = new ItemVaultCrystalSeal(WoldsVaults.id("crystal_seal_titan"));
@@ -205,6 +224,19 @@ public class ModItems {
         CHISELING_FOCUS = new ToolModifierNullifyingItem(WoldsVaults.id("chiseling_focus"), (new Item.Properties()).tab(VAULT_MOD_GROUP));
         ZEPHYR_CHARM = new AirMobilityItem(WoldsVaults.id("zephyr_charm"));
         VAULT_ROCK_CANDY = new VaultBasicFoodItem(WoldsVaults.id("vault_rock_candy"), (new FoodProperties.Builder()).alwaysEat().fast().nutrition(8).saturationMod(1.4F).build());
+        ROTTEN_HEART = new AlchemyIngredientItem(WoldsVaults.id("rotten_heart"), AlchemyIngredientItem.AlchemyIngredientType.DEADLY);
+        ROTTEN_APPLE = new AlchemyIngredientItem(WoldsVaults.id("rotten_apple"), AlchemyIngredientItem.AlchemyIngredientType.RUTHLESS);
+        VERDANT_GLOBULE = new AlchemyIngredientItem(WoldsVaults.id("verdant_globule"), AlchemyIngredientItem.AlchemyIngredientType.NEUTRAL);
+        ERRATIC_EMBER = new AlchemyIngredientItem(WoldsVaults.id("erratic_ember"), AlchemyIngredientItem.AlchemyIngredientType.VOLATILE);
+        REFINED_POWDER = new AlchemyIngredientItem(WoldsVaults.id("refined_powder"), AlchemyIngredientItem.AlchemyIngredientType.REFINED);
+        AURIC_CRYSTAL = new AlchemyIngredientItem(WoldsVaults.id("auric_crystal"), AlchemyIngredientItem.AlchemyIngredientType.EMPOWERED);
+        INGREDIENT_TEMPLATE = new BasicItem(WoldsVaults.id("ingredient_template"));
+        DECO_POTION = new DecoPotionItem(WoldsVaults.id("deco_potion"));
+        CATALYST_STABILITY = new CatalystItem(WoldsVaults.id("catalyst_stability"), CatalystItem.CatalystType.STABILIZING);
+        CATALYST_AMPLIFYING = new CatalystItem(WoldsVaults.id("catalyst_amplifying"), CatalystItem.CatalystType.AMPLIFYING);
+        CATALYST_FOCUSING = new CatalystItem(WoldsVaults.id("catalyst_focusing"), CatalystItem.CatalystType.FOCUSING);
+        CATALYST_TEMPORAL = new CatalystItem(WoldsVaults.id("catalyst_temporal"), CatalystItem.CatalystType.TEMPORAL);
+        CATALYST_UNSTABLE = new CatalystItem(WoldsVaults.id("catalyst_unstable"), CatalystItem.CatalystType.UNSTABLE);
         CHROMATIC_GOLD_NUGGET = new BasicItem(WoldsVaults.id("chromatic_gold_nugget"));
         CHROMATIC_GOLD_INGOT = new BasicItem(WoldsVaults.id("chromatic_gold_ingot"));
         SMASHED_VAULT_GEM = new BasicItem(WoldsVaults.id("smashed_vault_gem"));
@@ -240,6 +272,7 @@ public class ModItems {
 
         IForgeRegistry<Item> registry = event.getRegistry();
         registry.register(CRYSTAL_SEAL_UNHINGED);
+        registry.register(CRYSTAL_SEAL_ALCHEMY);
         registry.register(CRYSTAL_SEAL_SPIRITS);
         registry.register(CRYSTAL_SEAL_ENCHANTER);
         registry.register(CRYSTAL_SEAL_TITAN);
@@ -289,6 +322,19 @@ public class ModItems {
         registry.register(ZEPHYR_CHARM);
         registry.register(STYLISH_FOCUS);
         registry.register(VAULT_ROCK_CANDY);
+        registry.register(ROTTEN_HEART);
+        registry.register(ROTTEN_APPLE);
+        registry.register(VERDANT_GLOBULE);
+        registry.register(ERRATIC_EMBER);
+        registry.register(REFINED_POWDER);
+        registry.register(AURIC_CRYSTAL);
+        registry.register(INGREDIENT_TEMPLATE);
+        registry.register(DECO_POTION);
+        registry.register(CATALYST_STABILITY);
+        registry.register(CATALYST_AMPLIFYING);
+        registry.register(CATALYST_FOCUSING);
+        registry.register(CATALYST_TEMPORAL);
+        registry.register(CATALYST_UNSTABLE);
         registry.register(UBER_CHAOS_CATALYST);
         registry.register(HASTY_POMEGRANATE);
         registry.register(VAULTAR_BOX);

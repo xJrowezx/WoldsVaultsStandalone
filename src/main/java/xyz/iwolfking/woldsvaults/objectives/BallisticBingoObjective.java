@@ -46,6 +46,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import xyz.iwolfking.woldsvaults.mixin.accessors.BingoObjectiveAccessor;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -56,6 +57,7 @@ public class BallisticBingoObjective extends BingoObjective {
     public static final FieldKey<Task> TASK;
     public static final FieldKey<TaskSource> TASK_SOURCE;
     public static final FieldKey<Integer> JOINED;
+    public static final FieldKey<Boolean> BLACKOUT;
     public static final FieldKey<BingoObjective.TaskMap> TASKS;
     private boolean pvp;
     private int lastScaledJoined = -1;
@@ -70,6 +72,11 @@ public class BallisticBingoObjective extends BingoObjective {
     public static BallisticBingoObjective of(BingoTask task, int width, int height) {
         task.getConfig().setSize(width, height);
         return (BallisticBingoObjective) (new BallisticBingoObjective()).set(TASK, task).set(TASKS, new TaskMap());
+    }
+
+    public static BallisticBingoObjective of(BingoTask task, int width, int height, boolean blackout) {
+        task.getConfig().setSize(width, height);
+        return (BallisticBingoObjective)((new BallisticBingoObjective()).set(TASK, task).set(TASKS, new TaskMap())).set(BLACKOUT, blackout);
     }
 
     public TaskContext getContext(VirtualWorld world, Vault vault) {
@@ -158,6 +165,7 @@ public class BallisticBingoObjective extends BingoObjective {
                         if (patt5225$temp instanceof EntityTaskSource) {
                             EntityTaskSource entitySource = (EntityTaskSource)patt5225$temp;
                             entitySource.add(new UUID[]{runner.getId()});
+                            this.markDirty(TASK_SOURCE);
                         }
 
                         this.set(JOINED, (Integer)this.getOr(JOINED, 0) + 1);
@@ -181,6 +189,7 @@ public class BallisticBingoObjective extends BingoObjective {
                         if (patt5819$temp instanceof EntityTaskSource) {
                             EntityTaskSource entitySource = (EntityTaskSource)patt5819$temp;
                             entitySource.remove(new UUID[]{runner.getId()});
+                            this.markDirty(TASK_SOURCE);
                         }
                     }
 
@@ -302,6 +311,16 @@ public class BallisticBingoObjective extends BingoObjective {
             }
         }
 
+        this.markTaskProgressDirty();
+    }
+
+    private void markTaskProgressDirty() {
+        if (this.pvp) {
+            BingoObjective.TaskMap tasks = this.get(TASKS);
+            new ArrayList<>(tasks.entrySet()).forEach(entry -> tasks.put(entry.getKey(), entry.getValue()));
+        } else {
+            this.markDirty(TASK);
+        }
     }
 
     @Override
@@ -458,6 +477,7 @@ public class BallisticBingoObjective extends BingoObjective {
         TASK = FieldKey.of("task", Task.class).with(Version.v1_27, Adapters.TASK_NBT, DISK.all().or(CLIENT.all())).register(FIELDS);
         TASK_SOURCE = FieldKey.of("task_source", TaskSource.class).with(Version.v1_27, Adapters.TASK_SOURCE_NBT, DISK.all().or(CLIENT.all())).register(FIELDS);
         JOINED = FieldKey.of("joined", Integer.class).with(Version.v1_27, Adapters.INT_SEGMENTED_3, DISK.all().or(CLIENT.all())).register(FIELDS);
+        BLACKOUT = FieldKey.of("blackout", Boolean.class).with(Version.v1_27, Adapters.BOOLEAN, DISK.all().or(CLIENT.all())).register(FIELDS);
         TASKS = FieldKey.of("tasks", BingoObjective.TaskMap.class).with(Version.v1_38, CompoundAdapter.of(BingoObjective.TaskMap::new), DISK.all().or(CLIENT.all())).register(FIELDS);
     }
 }

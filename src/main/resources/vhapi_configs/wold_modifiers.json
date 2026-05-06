@@ -278,7 +278,7 @@
       }
     },
     "the_vault:modifier_type/cast_on_kill": {
-      "woldsvaults:bingo_kill_nuke": {
+      "the_vault:bingo_kill_nuke": {
         "properties": {
           "filter": "",
           "ability": "nova_explosion_8",
@@ -291,7 +291,7 @@
           "icon": "the_vault:gui/modifiers/kill_nuke"
         }
       },
-      "woldsvaults:bingo_kill_charm": {
+      "the_vault:bingo_kill_charm": {
         "properties": {
           "filter": "",
           "ability": "charm_8",
@@ -360,7 +360,7 @@
       }
     },
     "the_vault:modifier_type/mob_attribute": {
-      "woldsvaults:bingo_critical_mobs": {
+      "the_vault:bingo_critical_mobs": {
         "properties": {
           "type": "crit_chance_additive",
           "amount": 0.075,
@@ -539,7 +539,7 @@
           "icon": "the_vault:gui/modifiers/regeneration"
         }
       },
-      "woldsvaults:bingo_drained": {
+      "the_vault:bingo_drained": {
         "properties": {
           "type": "mana_regen_additive_percentile",
           "amount": -0.3,
@@ -740,7 +740,7 @@
           "icon": "the_vault:gui/modifiers/trapped"
         }
       },
-      "woldsvaults:bingo_trapped": {
+      "the_vault:bingo_trapped": {
         "properties": {
           "stat": "trap_disarm_chance",
           "addend": -0.25
@@ -1017,7 +1017,7 @@
           "icon": "the_vault:gui/modifiers/god_token_wendarr"
         }
       },
-      "woldsvaults:safari_bingo": {
+      "the_vault:safari_bingo": {
         "properties": {
           "children": {
             "the_vault:bingo_quantity": 1,
@@ -1032,10 +1032,10 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:challenge_bingo": {
+      "the_vault:challenge_bingo": {
         "properties": {
           "children": {
-            "woldsvaults:bingo_challenge": 5,
+            "the_vault:bingo_challenge": 5,
             "the_vault:bingo_quantity": 1,
             "the_vault:bingo_rarity": 1,
             "the_vault:champion_chance": 2
@@ -1048,11 +1048,11 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:boinging_bingo": {
+      "the_vault:boinging_bingo": {
         "properties": {
           "children": {
-            "woldsvaults:bingo_slime_grenade_mob": 1,
-            "woldsvaults:bingo_slime_grenade_chest": 1,
+            "the_vault:bingo_slime_grenade_mob": 1,
+            "the_vault:bingo_slime_grenade_chest": 1,
             "the_vault:bingo_quantity": 1,
             "the_vault:bingo_rarity": 1,
             "woldsvaults:jumpy_deluxe": 1
@@ -1065,7 +1065,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:retro_bingo": {
+      "the_vault:retro_bingo": {
         "properties": {
           "children": {
             "woldsvaults:classic_retro": 1,
@@ -1081,7 +1081,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:surprise_bingo": {
+      "the_vault:surprise_bingo": {
         "properties": {
           "children": {
             "woldsvaults:surprise_boxes": 1,
@@ -1096,10 +1096,10 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:enchanted_bingo": {
+      "the_vault:enchanted_bingo": {
         "properties": {
           "children": {
-            "woldsvaults:bingo_enchanted": 1
+            "the_vault:bingo_enchanted": 1
           }
         },
         "display": {
@@ -1109,7 +1109,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:cursed_bingo": {
+      "the_vault:cursed_bingo": {
         "properties": {
           "children": {
             "the_vault:curse": 1,
@@ -1125,7 +1125,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:spooky_bingo": {
+      "the_vault:spooky_bingo": {
         "properties": {
           "children": {
             "woldsvaults:haunted_mansion": 1,
@@ -1140,7 +1140,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:sweet_bingo": {
+      "the_vault:sweet_bingo": {
         "properties": {
           "children": {
             "the_vault:cake_layer": 20,
@@ -1154,7 +1154,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:fungal_bingo": {
+      "the_vault:fungal_bingo": {
         "properties": {
           "children": {
             "woldsvaults:fungal": 1,
@@ -1172,11 +1172,11 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:electrifying_bingo": {
+      "the_vault:electrifying_bingo": {
         "properties": {
           "children": {
-            "woldsvaults:bingo_lightning_grenade_mob": 1,
-            "woldsvaults:bingo_lightning_grenade_chest": 1,
+            "the_vault:bingo_lightning_grenade_mob": 1,
+            "the_vault:bingo_lightning_grenade_chest": 1,
             "woldsvaults:electric": 1,
             "the_vault:bingo_quantity": 1,
             "the_vault:bingo_rarity": 1,
@@ -1191,11 +1191,11 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:freezing_bingo": {
+      "the_vault:freezing_bingo": {
         "properties": {
           "children": {
-            "woldsvaults:bingo_ice_grenade_mob": 1,
-            "woldsvaults:bingo_ice_grenade_chest": 1,
+            "the_vault:bingo_ice_grenade_mob": 1,
+            "the_vault:bingo_ice_grenade_chest": 1,
             "woldsvaults:winter": 1,
             "the_vault:bingo_quantity": 1,
             "the_vault:bingo_rarity": 1,
@@ -1210,11 +1210,11 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:burning_bingo": {
+      "the_vault:burning_bingo": {
         "properties": {
           "children": {
-            "woldsvaults:bingo_fire_grenade_mob": 1,
-            "woldsvaults:bingo_fire_grenade_chest": 1,
+            "the_vault:bingo_fire_grenade_mob": 1,
+            "the_vault:bingo_fire_grenade_chest": 1,
             "woldsvaults:burning": 1,
             "the_vault:bingo_quantity": 1,
             "the_vault:bingo_rarity": 1,
@@ -1228,7 +1228,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:mini_bingo": {
+      "the_vault:mini_bingo": {
         "properties": {
           "children": {
             "woldsvaults:daycare": 1,
@@ -1244,7 +1244,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:big_bingo": {
+      "the_vault:big_bingo": {
         "properties": {
           "children": {
             "woldsvaults:chungus": 1,
@@ -1260,7 +1260,7 @@
           "icon": "the_vault:gui/modifiers/bingo"
         }
       },
-      "woldsvaults:bonus_bingo": {
+      "the_vault:bonus_bingo": {
         "properties": {
           "children": {
             "the_vault:bingo_quantity": 3,
@@ -1290,7 +1290,7 @@
           "icon": "the_vault:gui/modifiers/door_hunter"
         }
       },
-      "woldsvaults:bingo_challenge": {
+      "the_vault:bingo_challenge": {
         "properties": {
           "children": {
             "the_vault:furious_mobs": 2,
@@ -1447,7 +1447,7 @@
           "icon": "the_vault:gui/modifiers/enchanted"
         }
       },
-      "woldsvaults:bingo_enchanted": {
+      "the_vault:bingo_enchanted": {
         "properties": {
           "chance": 1.0,
           "ticksPerCheck": 900
@@ -1515,7 +1515,7 @@
           "icon": "the_vault:gui/modifiers/fire_grenade"
         }
       },
-      "woldsvaults:bingo_slime_grenade_chest": {
+      "the_vault:bingo_slime_grenade_chest": {
         "properties": {
           "chance": 0.09,
           "amounts": [
@@ -1541,7 +1541,7 @@
           "icon": "the_vault:gui/modifiers/slime_grenade"
         }
       },
-      "woldsvaults:bingo_lightning_grenade_chest": {
+      "the_vault:bingo_lightning_grenade_chest": {
         "properties": {
           "chance": 0.07,
           "amounts": [
@@ -1567,7 +1567,7 @@
           "icon": "the_vault:gui/modifiers/lightning_grenade"
         }
       },
-      "woldsvaults:bingo_fire_grenade_chest": {
+      "the_vault:bingo_fire_grenade_chest": {
         "properties": {
           "chance": 0.07,
           "amounts": [
@@ -1593,7 +1593,7 @@
           "icon": "the_vault:gui/modifiers/fire_grenade"
         }
       },
-      "woldsvaults:bingo_ice_grenade_chest": {
+      "the_vault:bingo_ice_grenade_chest": {
         "properties": {
           "chance": 0.04,
           "amounts": [
@@ -2267,7 +2267,7 @@
           "icon": "woldsvaults:gui/modifiers/fungal"
         }
       },
-      "woldsvaults:bingo_slime_grenade_mob": {
+      "the_vault:bingo_slime_grenade_mob": {
         "properties": {
           "filter": "",
           "filterShouldExclude": false,
@@ -2295,7 +2295,7 @@
           "icon": "woldsvaults:gui/modifiers/slime_grenade"
         }
       },
-      "woldsvaults:bingo_ice_grenade_mob": {
+      "the_vault:bingo_ice_grenade_mob": {
         "properties": {
           "filter": "",
           "filterShouldExclude": false,
@@ -2323,7 +2323,7 @@
           "icon": "woldsvaults:gui/modifiers/ice_grenade"
         }
       },
-      "woldsvaults:bingo_fire_grenade_mob": {
+      "the_vault:bingo_fire_grenade_mob": {
         "properties": {
           "filter": "",
           "filterShouldExclude": false,
@@ -2351,7 +2351,7 @@
           "icon": "woldsvaults:gui/modifiers/fire_grenade"
         }
       },
-      "woldsvaults:bingo_lightning_grenade_mob": {
+      "the_vault:bingo_lightning_grenade_mob": {
         "properties": {
           "filter": "",
           "filterShouldExclude": false,

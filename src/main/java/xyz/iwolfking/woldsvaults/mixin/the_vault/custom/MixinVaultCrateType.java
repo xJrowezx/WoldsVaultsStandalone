@@ -16,7 +16,7 @@ public class MixinVaultCrateType {
     private static VaultCrateBlock.Type[] $VALUES;
 
     //private static final VaultCrateBlock.Type CORRUPTED = enumExpansion$addVariant("CORRUPTED");
-    //private static final VaultCrateBlock.Type ALCHEMY = enumExpansion$addVariant("ALCHEMY");
+    private static final VaultCrateBlock.Type ALCHEMY = enumExpansion$addVariant("ALCHEMY");
     private static final VaultCrateBlock.Type BRUTAL_BOSSES = enumExpansion$addVariant("BRUTAL_BOSSES");
     private static final VaultCrateBlock.Type ENCHANTED_ELIXIR = enumExpansion$addVariant("ENCHANTED_ELIXIR");
     private static final VaultCrateBlock.Type UNHINGED_SCAVENGER = enumExpansion$addVariant("UNHINGED_SCAVENGER");

@@ -6,6 +6,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.network.simple.SimpleChannel;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
+import xyz.iwolfking.woldsvaults.network.message.BrewingAltarParticleMessage;
 import xyz.iwolfking.woldsvaults.network.packets.StopFlightMessage;
 
 public class PacketHandler {
@@ -21,6 +22,7 @@ public class PacketHandler {
 
     public static void init() {
         channel.registerMessage(id++, StopFlightMessage.class, StopFlightMessage::encode, StopFlightMessage::decode, StopFlightMessage::handle);
+        channel.registerMessage(id++, BrewingAltarParticleMessage.class, BrewingAltarParticleMessage::encode, BrewingAltarParticleMessage::decode, BrewingAltarParticleMessage::handle);
     }
 
     public static void sendStopFlightToPlayer(ServerPlayer player) {

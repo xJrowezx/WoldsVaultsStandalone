@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.init;
 import com.mojang.datafixers.types.Type;
 import iskallia.vault.VaultMod;
 import iskallia.vault.block.CoinPileDecorBlock;
+import iskallia.vault.block.VaultCrateBlock;
 import iskallia.vault.block.render.ScavengerAltarRenderer;
 import iskallia.vault.init.ModItems;
 import iskallia.vault.item.CoinBlockItem;
@@ -22,6 +23,7 @@ import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlock;
 import net.p3pp3rf1y.sophisticatedbackpacks.backpack.BackpackBlockEntity;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.blocks.*;
+import xyz.iwolfking.woldsvaults.client.renderers.BrewingAltarRenderer;
 import xyz.iwolfking.woldsvaults.blocks.renderers.DecoGridGatewayRenderer;
 import xyz.iwolfking.woldsvaults.blocks.renderers.DungeonPedestalRenderer;
 import xyz.iwolfking.woldsvaults.blocks.renderers.SurvivalMobBarrierRenderer;
@@ -55,6 +57,9 @@ public class ModBlocks {
     public static final DecoGridGatewayBlock DECO_GRID_GATEWAY_BLOCK;
     public static final CoinPileDecorBlock VAULT_PALLADIUM_PILE;
     public static final CoinPileDecorBlock VAULT_IRIDIUM_PILE;
+    public static final BrewingAltar BREWING_ALTAR;
+    public static final VaultCrateBlock VAULT_CRATE_ALCHEMY;
+    public static final VaultCrateBlock VAULT_CRATE_BALLISTIC_BINGO;
     public static BlockItem VAULT_PALLADIUM;
     public static BlockItem VAULT_IRIDIUM;
 
@@ -78,6 +83,7 @@ public class ModBlocks {
     public static final BlockEntityType<DecoTenosAltarTileEntity> DECO_TENOS_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoWendarrAltarTileEntity> DECO_WENDARR_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<DecoVelaraAltarTileEntity> DECO_VELARA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE;
+    public static final BlockEntityType<BrewingAltarTileEntity> BREWING_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE;
     public static final BlockEntityType<BackpackBlockEntity> SOPHISTICATED_BACKPACK;
 
     public static final BackpackBlock XL_BACKPACK;
@@ -85,6 +91,9 @@ public class ModBlocks {
     static {
         VAULT_PALLADIUM_PILE = new CoinPileDecorBlock();
         VAULT_IRIDIUM_PILE = new CoinPileDecorBlock();
+        BREWING_ALTAR = new BrewingAltar();
+        VAULT_CRATE_ALCHEMY = new VaultCrateBlock();
+        VAULT_CRATE_BALLISTIC_BINGO = new VaultCrateBlock();
         VAULT_PALLADIUM  = new CoinBlockItem(VAULT_PALLADIUM_PILE, new Item.Properties().tab(iskallia.vault.init.ModItems.VAULT_MOD_GROUP));
         VAULT_IRIDIUM  = new CoinBlockItem(VAULT_IRIDIUM_PILE, new Item.Properties().tab(iskallia.vault.init.ModItems.VAULT_MOD_GROUP));
         VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
@@ -127,6 +136,7 @@ public class ModBlocks {
         DECO_TENOS_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoTenosAltarTileEntity::new, new Block[]{DECO_TENOS_ALTAR_BLOCK}).build((Type)null);
         DECO_WENDARR_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoWendarrAltarTileEntity::new, new Block[]{DECO_WENDARR_ALTAR_BLOCK}).build((Type)null);
         DECO_VELARA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(DecoVelaraAltarTileEntity::new, new Block[]{DECO_VELARA_ALTAR_BLOCK}).build((Type)null);
+        BREWING_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE = BlockEntityType.Builder.of(BrewingAltarTileEntity::new, new Block[]{BREWING_ALTAR}).build((Type)null);
         SOPHISTICATED_BACKPACK = BlockEntityType.Builder.of(BackpackBlockEntity::new, new Block[]{XL_BACKPACK}).build((Type)null);
     }
 
@@ -148,6 +158,9 @@ public class ModBlocks {
         registerBlock(event, DECO_VELARA_ALTAR_BLOCK, WoldsVaults.id("velara_altar"));
         registerBlock(event, VAULT_PALLADIUM_PILE, WoldsVaults.id("vault_palladium"));
         registerBlock(event, VAULT_IRIDIUM_PILE, WoldsVaults.id("vault_iridium"));
+        registerBlock(event, BREWING_ALTAR, WoldsVaults.id("brewing_altar"));
+        registerBlock(event, VAULT_CRATE_ALCHEMY, WoldsVaults.id("vault_crate_alchemy"));
+        registerBlock(event, VAULT_CRATE_BALLISTIC_BINGO, WoldsVaults.id("vault_crate_ballistic_bingo"));
         registerBlock(event, CHROMATIC_GOLD_BLOCK, WoldsVaults.id("chromatic_gold_block"));
         registerBlock(event, OMEGA_POG_BLOCK, WoldsVaults.id("omega_pog_block"));
         registerBlock(event, ECHO_POG_BLOCK, WoldsVaults.id("echo_pog_block"));
@@ -176,6 +189,7 @@ public class ModBlocks {
         registerTileEntity(event, DECO_TENOS_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("god_altar.tenos_deco_tile_entity"));
         registerTileEntity(event, DECO_WENDARR_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("god_altar.wendarr_deco_tile_entity"));
         registerTileEntity(event, DECO_VELARA_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("god_altar.velara_deco_tile_entity"));
+        registerTileEntity(event, BREWING_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, WoldsVaults.id("brewing_altar_tile_entity"));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
@@ -205,6 +219,9 @@ public class ModBlocks {
         registerBlockItem(event, KNOWLEDGE_STAR_BLOCK);
         registerBlockItem(event, VAULT_PALLADIUM_PILE, VAULT_PALLADIUM);
         registerBlockItem(event, VAULT_IRIDIUM_PILE, VAULT_IRIDIUM);
+        registerBlockItem(event, BREWING_ALTAR);
+        registerBlockItem(event, VAULT_CRATE_ALCHEMY);
+        registerBlockItem(event, VAULT_CRATE_BALLISTIC_BINGO);
 
     }
 
@@ -213,6 +230,7 @@ public class ModBlocks {
         event.registerBlockEntityRenderer(SURVIVAL_MOB_BARRIER_TILE_ENTITY_BLOCK_ENTITY_TYPE, SurvivalMobBarrierRenderer::new);
         event.registerBlockEntityRenderer(DUNGEON_PEDESTAL_TILE_ENTITY_BLOCK_ENTITY_TYPE, DungeonPedestalRenderer::new);
         event.registerBlockEntityRenderer(DECO_GRID_GATEWAY_TILE_ENTITY_BLOCK_ENTITY_TYPE, DecoGridGatewayRenderer::new);
+        event.registerBlockEntityRenderer(BREWING_ALTAR_TILE_ENTITY_BLOCK_ENTITY_TYPE, BrewingAltarRenderer::new);
     }
 
 

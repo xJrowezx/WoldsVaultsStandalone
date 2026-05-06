@@ -12,8 +12,9 @@ public class ModCustomVaultObjectiveEntries {
     public static final CustomObjectiveRegistryEntry ENCHANTED_ELIXIR = new CustomObjectiveRegistryEntry.CustomObjectiveBuilder("enchanted_elixir", "Enchanted Elixir", EnchantedElixirCrystalObjective.class, EnchantedElixirCrystalObjective::new, EnchantedElixirObjective.E_KEY, EnchantedElixirObjective.class).setCrateItem(ModBlocks.VAULT_CRATE_ELIXIR).build();
     public static final CustomObjectiveRegistryEntry UNHINGED_SCAVENGER_HUNT = new CustomObjectiveRegistryEntry.CustomObjectiveBuilder("unhinged_scavenger", "Unhinged Scavenger Hunt", UnhingedScavengerCrystalObjective.class, UnhingedScavengerCrystalObjective::new, UnhingedScavengerObjective.E_KEY, UnhingedScavengerObjective.class).setCrateItem(ModBlocks.VAULT_CRATE_SCAVENGER).build();
     public static final CustomObjectiveRegistryEntry HAUNTED_BRAZIERS = new CustomObjectiveRegistryEntry.CustomObjectiveBuilder("haunted_braziers", "Haunted Braziers", HauntedBraziersCrystalObjective.class, HauntedBraziersCrystalObjective::new, HauntedBraziersObjective.E_KEY, HauntedBraziersObjective.class).setCrateItem(ModBlocks.VAULT_CRATE_MONOLITH).build();
-    public static final CustomObjectiveRegistryEntry BALLISTIC_BINGO = new CustomObjectiveRegistryEntry.CustomObjectiveBuilder("ballistic_bingo", "Ballistic Bingo", BallisticBingoCrystalObjective.class, BallisticBingoCrystalObjective::new, BallisticBingoObjective.KEY, BallisticBingoObjective.class).setCrateItem(ModBlocks.VAULT_CRATE_BINGO).build();
+    public static final CustomObjectiveRegistryEntry BALLISTIC_BINGO = new CustomObjectiveRegistryEntry.CustomObjectiveBuilder("ballistic_bingo", "Ballistic Bingo", BallisticBingoCrystalObjective.class, BallisticBingoCrystalObjective::new, BallisticBingoObjective.KEY, BallisticBingoObjective.class).setCrateItem(xyz.iwolfking.woldsvaults.init.ModBlocks.VAULT_CRATE_BALLISTIC_BINGO).build();
     public static final CustomObjectiveRegistryEntry ZEALOT = new CustomObjectiveRegistryEntry.CustomObjectiveBuilder("zealot", "Zealot", ZealotCrystalObjective.class, ZealotCrystalObjective::new, ZealotObjective.KEY, ZealotObjective.class).setCrateItem(ModBlocks.VAULT_CRATE_ELIXIR).build();
+    public static final CustomObjectiveRegistryEntry ALCHEMY = new CustomObjectiveRegistryEntry.CustomObjectiveBuilder("alchemy", "Alchemy", AlchemyCrystalObjective.class, AlchemyCrystalObjective::new, AlchemyObjective.KEY, AlchemyObjective.class).setCrateItem(xyz.iwolfking.woldsvaults.init.ModBlocks.VAULT_CRATE_ALCHEMY).build();
 
 
     public static void registerCustomObjectives(RegistryEvent.Register<CustomObjectiveRegistryEntry> event) {
@@ -23,5 +24,6 @@ public class ModCustomVaultObjectiveEntries {
         event.getRegistry().register(HAUNTED_BRAZIERS);
         event.getRegistry().register(BALLISTIC_BINGO);
         event.getRegistry().register(ZEALOT);
+        event.getRegistry().register(ALCHEMY);
     }
 }

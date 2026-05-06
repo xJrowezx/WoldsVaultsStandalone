@@ -2,25 +2,24 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "XGX",
-    "XRX",
+    "XOX",
     "XBX"
   ],
   "key": {
-    "G": {
-      "item": "minecraft:spyglass"
-    },
     "X": {
       "item": "woldsvaults:compressed_vault_essence"
     },
-    "R": {
+    "O": {
       "item": "the_vault:crystal_seal_prophet"
     },
+    "G": {
+      "item": "minecraft:ender_eye"
+    },
     "B": {
-      "item": "the_vault:extraordinary_benitoite"
+      "item": "the_vault:vault_diamond_block"
     }
   },
   "result": {
-    "item": "woldsvaults:crystal_seal_doomsayer",
-    "count": 1
+    "item": "woldsvaults:crystal_seal_doomsayer"
   }
 }
