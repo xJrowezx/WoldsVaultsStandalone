@@ -47,9 +47,13 @@ import xyz.iwolfking.woldsvaults.api.inventory.SimpleOversizedSidedContainer;
 import xyz.iwolfking.woldsvaults.blocks.containers.VaultSalvagerContainer;
 import xyz.iwolfking.woldsvaults.init.ModBlocks;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+
 import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
@@ -71,6 +75,9 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
     }
 
     public static void tick(Level world, BlockPos pos, BlockState state, VaultSalvagerTileEntity tile) {
+        if (!world.isClientSide()) {
+            ejectOutputsToHandlerBelow(tile);
+        }
         if (!world.isClientSide() && tile.gearIdProcessing != null) {
             if (!tile.canCraft()) {
                 tile.resetProcess(world);
@@ -88,6 +95,90 @@ public class VaultSalvagerTileEntity extends BlockEntity implements MenuProvider
 
             }
         }
+    }
+
+    private static boolean ejectOutputsToHandlerBelow(VaultSalvagerTileEntity tile) {
+        if (tile.level == null) {
+            return false;
+        }
+        Optional<Pair<IItemHandler, BlockEntity>> below = getItemHandlerBelow(tile);
+        if (below.isEmpty()) {
+            return false;
+        }
+        IItemHandler destination = below.get().getKey();
+        if (isHandlerFull(destination)) {
+            return false;
+        }
+
+        boolean movedAnything = false;
+        for (int slot = 1; slot < tile.inventory.getContainerSize(); slot++) {
+            ItemStack stackInSlot = tile.inventory.getItem(slot);
+            if (stackInSlot.isEmpty()) {
+                continue;
+            }
+            ItemStack originalSlotContents = stackInSlot.copy();
+            int extractCount = Math.min(stackInSlot.getMaxStackSize(), stackInSlot.getCount());
+            ItemStack extracted = tile.inventory.removeItem(slot, extractCount);
+            if (extracted.isEmpty()) {
+                continue;
+            }
+
+            ItemStack remainder = insertIntoHandler(destination, extracted);
+            int movedCount = extractCount - remainder.getCount();
+
+            if (movedCount > 0) {
+                originalSlotContents.shrink(movedCount);
+                tile.inventory.setItem(slot, originalSlotContents);
+                movedAnything = true;
+            } else {
+                tile.inventory.setItem(slot, originalSlotContents);
+            }
+
+            if (isHandlerFull(destination)) {
+                break;
+            }
+        }
+
+        if (movedAnything) {
+            tile.setChanged();
+        }
+        return movedAnything;
+    }
+
+    private static ItemStack insertIntoHandler(IItemHandler handler, ItemStack stack) {
+        ItemStack remaining = stack;
+        for (int slot = 0; slot < handler.getSlots() && !remaining.isEmpty(); slot++) {
+            remaining = handler.insertItem(slot, remaining, false);
+        }
+        return remaining;
+    }
+
+    private static boolean isHandlerFull(IItemHandler handler) {
+        for (int slot = 0; slot < handler.getSlots(); slot++) {
+            ItemStack stackInSlot = handler.getStackInSlot(slot);
+            if (stackInSlot.isEmpty() || stackInSlot.getCount() < stackInSlot.getMaxStackSize()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static Optional<Pair<IItemHandler, BlockEntity>> getItemHandlerBelow(VaultSalvagerTileEntity tile) {
+        Level level = tile.level;
+        if (level == null) {
+            return Optional.empty();
+        }
+        BlockPos belowPos = tile.getBlockPos().below();
+        BlockState belowState = level.getBlockState(belowPos);
+        if (!belowState.hasBlockEntity()) {
+            return Optional.empty();
+        }
+        BlockEntity belowEntity = level.getBlockEntity(belowPos);
+        if (belowEntity == null) {
+            return Optional.empty();
+        }
+        return belowEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.UP)
+                .map(handler -> ImmutablePair.of(handler, belowEntity));
     }
 
     private void finishCraft() {
