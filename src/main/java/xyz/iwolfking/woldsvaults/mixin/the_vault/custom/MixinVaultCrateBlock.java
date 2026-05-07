@@ -14,8 +14,14 @@ public abstract class MixinVaultCrateBlock {
     private static void handleWoldCrate(VaultCrateBlock.Type type, CallbackInfoReturnable<Block> cir) {
         if ("ALCHEMY".equals(type.name())) {
             cir.setReturnValue(ModBlocks.VAULT_CRATE_ALCHEMY);
+        } else if ("BRUTAL_BOSSES".equals(type.name())) {
+            cir.setReturnValue(ModBlocks.VAULT_CRATE_BRUTAL_BOSSES);
+        } else if ("HAUNTED_BRAZIERS".equals(type.name())) {
+            cir.setReturnValue(ModBlocks.VAULT_CRATE_HAUNTED_BRAZIERS);
         } else if ("BALLISTIC_BINGO".equals(type.name())) {
             cir.setReturnValue(ModBlocks.VAULT_CRATE_BALLISTIC_BINGO);
+        } else if ("UNHINGED_SCAVENGER".equals(type.name())) {
+            cir.setReturnValue(ModBlocks.VAULT_CRATE_UNHINGED_SCAVENGER);
         }
     }
 }

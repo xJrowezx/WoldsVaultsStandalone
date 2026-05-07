@@ -313,7 +313,7 @@
           "percentage": 0.25
         },
         "display": {
-          "name": ":item_quant_1: Affluent",
+          "name": "Affluent",
           "color": "#ffcc73",
           "description": "+25% Item Quantity",
           "descriptionFormatted": "+%d%% Item Quantity",
@@ -454,7 +454,7 @@
           "onHitApplyChance": 0.1
         },
         "display": {
-          "name": ":drop_of_blood: Bleeding",
+          "name": "Bleeding",
           "color": "#9B3E56",
           "description": "+10% increased chance mobs inflict Bleed on hit",
           "descriptionFormatted": "+%d%% increased chance mobs inflict Bleed on hit",
@@ -733,7 +733,7 @@
           "addend": 0.25
         },
         "display": {
-          "name": ":trapped: Disarming",
+          "name": "Disarming",
           "color": "#cb9be5",
           "description": "+25% Trap Disarm chance",
           "descriptionFormatted": "+%d%% Trap Disarm",
@@ -746,7 +746,7 @@
           "addend": -0.25
         },
         "display": {
-          "name": ":trapped: Trapped",
+          "name": "Trapped",
           "color": "#CB866D",
           "description": "-25% Trap Disarm & Increases traps while below 0%",
           "descriptionFormatted": "%d%% Trap Disarm",
@@ -759,7 +759,7 @@
           "addend": -1.0
         },
         "display": {
-          "name": ":trapped: Rigged",
+          "name": "Rigged",
           "color": "#CB866D",
           "description": "-100% Trap Disarm & Increases traps while below 0%",
           "descriptionFormatted": "%d%% Trap Disarm",
@@ -772,7 +772,7 @@
           "addend": -0.25
         },
         "display": {
-          "name": ":inert: Rended",
+          "name": "Rended",
           "color": "#6DACB5",
           "description": "-25% Cooldown Reduction",
           "descriptionFormatted": "%d%% Cooldown Reduction",
@@ -785,7 +785,7 @@
           "addend": -0.5
         },
         "display": {
-          "name": ":black_large_square: Nullified",
+          "name": "Nullified",
           "color": "#6DACB5",
           "description": "-50% Cooldown Reduction",
           "descriptionFormatted": "%d%% Cooldown Reduction",
@@ -824,7 +824,7 @@
           "addend": 0.25
         },
         "display": {
-          "name": ":gem_pog_gif: Oremania",
+          "name": "Oremania",
           "color": "#F74780",
           "description": "+25% Copiously",
           "descriptionFormatted": "%d%% Copiously",
@@ -945,7 +945,7 @@
           "chance": 0.75
         },
         "display": {
-          "name": ":wealthy: Wealthy",
+          "name": "Wealthy",
           "color": "#ffae00",
           "description": "+75% Coin Piles",
           "descriptionFormatted": "+%d%% Coin Piles",
@@ -1415,7 +1415,7 @@
           }
         },
         "display": {
-          "name": ":plunderer: Plunderer",
+          "name": "Plunderer",
           "color": "#d89e01",
           "description": "This vault yields no experience, and has a lower chance of finding an artifact, but has 10% more loot and slightly more ores",
           "icon": "the_vault:gui/modifiers/plunderer"
@@ -2487,7 +2487,7 @@
           "chance": 1.0
         },
         "display": {
-          "name": ":no_soul_shard: Soulless",
+          "name": "Soulless",
           "color": "#a996ca",
           "description": "Mobs in this vault do not drop soul shards",
           "icon": "the_vault:gui/modifiers/no_soul_shard"

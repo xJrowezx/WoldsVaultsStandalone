@@ -59,7 +59,10 @@ public class ModBlocks {
     public static final CoinPileDecorBlock VAULT_IRIDIUM_PILE;
     public static final BrewingAltar BREWING_ALTAR;
     public static final VaultCrateBlock VAULT_CRATE_ALCHEMY;
+    public static final VaultCrateBlock VAULT_CRATE_BRUTAL_BOSSES;
+    public static final VaultCrateBlock VAULT_CRATE_HAUNTED_BRAZIERS;
     public static final VaultCrateBlock VAULT_CRATE_BALLISTIC_BINGO;
+    public static final VaultCrateBlock VAULT_CRATE_UNHINGED_SCAVENGER;
     public static BlockItem VAULT_PALLADIUM;
     public static BlockItem VAULT_IRIDIUM;
 
@@ -93,7 +96,10 @@ public class ModBlocks {
         VAULT_IRIDIUM_PILE = new CoinPileDecorBlock();
         BREWING_ALTAR = new BrewingAltar();
         VAULT_CRATE_ALCHEMY = new VaultCrateBlock();
+        VAULT_CRATE_BRUTAL_BOSSES = new VaultCrateBlock();
+        VAULT_CRATE_HAUNTED_BRAZIERS = new VaultCrateBlock();
         VAULT_CRATE_BALLISTIC_BINGO = new VaultCrateBlock();
+        VAULT_CRATE_UNHINGED_SCAVENGER = new VaultCrateBlock();
         VAULT_PALLADIUM  = new CoinBlockItem(VAULT_PALLADIUM_PILE, new Item.Properties().tab(iskallia.vault.init.ModItems.VAULT_MOD_GROUP));
         VAULT_IRIDIUM  = new CoinBlockItem(VAULT_IRIDIUM_PILE, new Item.Properties().tab(iskallia.vault.init.ModItems.VAULT_MOD_GROUP));
         VAULT_SALVAGER_BLOCK = new VaultSalvagerBlock();
@@ -160,7 +166,10 @@ public class ModBlocks {
         registerBlock(event, VAULT_IRIDIUM_PILE, WoldsVaults.id("vault_iridium"));
         registerBlock(event, BREWING_ALTAR, WoldsVaults.id("brewing_altar"));
         registerBlock(event, VAULT_CRATE_ALCHEMY, WoldsVaults.id("vault_crate_alchemy"));
+        registerBlock(event, VAULT_CRATE_BRUTAL_BOSSES, WoldsVaults.id("vault_crate_brutal_bosses"));
+        registerBlock(event, VAULT_CRATE_HAUNTED_BRAZIERS, WoldsVaults.id("vault_crate_haunted_braziers"));
         registerBlock(event, VAULT_CRATE_BALLISTIC_BINGO, WoldsVaults.id("vault_crate_ballistic_bingo"));
+        registerBlock(event, VAULT_CRATE_UNHINGED_SCAVENGER, WoldsVaults.id("vault_crate_unhinged_scavenger"));
         registerBlock(event, CHROMATIC_GOLD_BLOCK, WoldsVaults.id("chromatic_gold_block"));
         registerBlock(event, OMEGA_POG_BLOCK, WoldsVaults.id("omega_pog_block"));
         registerBlock(event, ECHO_POG_BLOCK, WoldsVaults.id("echo_pog_block"));
@@ -221,7 +230,10 @@ public class ModBlocks {
         registerBlockItem(event, VAULT_IRIDIUM_PILE, VAULT_IRIDIUM);
         registerBlockItem(event, BREWING_ALTAR);
         registerBlockItem(event, VAULT_CRATE_ALCHEMY);
+        registerBlockItem(event, VAULT_CRATE_BRUTAL_BOSSES);
+        registerBlockItem(event, VAULT_CRATE_HAUNTED_BRAZIERS);
         registerBlockItem(event, VAULT_CRATE_BALLISTIC_BINGO);
+        registerBlockItem(event, VAULT_CRATE_UNHINGED_SCAVENGER);
 
     }
 

@@ -119,6 +119,7 @@ public class BrutalBossesObjective extends ObeliskObjective {
                         wave.modify(Wave.COUNT, (x) -> {
                             return x + 1;
                         });
+                        this.markDirty(WAVES);
                         List<VaultModifier<?>> modifiersForMsg = new ArrayList<>();
 
                         for (int i = 0; i < 2; i++) {
@@ -163,6 +164,7 @@ public class BrutalBossesObjective extends ObeliskObjective {
         for(int i = 0; i < (Integer)wave.get(Wave.TARGET); ++i) {
             ((UUIDList)wave.get(Wave.MOBS)).add(this.doSpawn(world, vault, pos, random).getUUID());
         }
+        this.markDirty(WAVES);
 
     }
 

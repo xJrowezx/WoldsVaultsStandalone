@@ -7,7 +7,11 @@ import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.core.vault.ClassicPortalLogic;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
-import iskallia.vault.core.vault.objective.*;
+import iskallia.vault.core.vault.objective.AwardCrateObjective;
+import iskallia.vault.core.vault.objective.BailObjective;
+import iskallia.vault.core.vault.objective.DeathObjective;
+import iskallia.vault.core.vault.objective.FindExitObjective;
+import iskallia.vault.core.vault.objective.Objectives;
 import iskallia.vault.core.world.roll.IntRoll;
 import iskallia.vault.item.crystal.CrystalData;
 import iskallia.vault.item.crystal.objective.CrystalObjective;
@@ -40,8 +44,8 @@ public class HauntedBraziersCrystalObjective extends WoldCrystalObjective {
     public void configure(Vault vault, RandomSource random, @Nullable String sigil) {
         int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
-            objectives.add(HauntedBraziersObjective.of(this.target.get(random), this.objectiveProbability, ModConfigs.HAUNTED_BRAZIERS.getStackModifierPool(level),  ModConfigs.HAUNTED_BRAZIERS.getOverStackModifierPool(level), ModConfigs.HAUNTED_BRAZIERS.getOverStackLootTable(level)).add(FindExitObjective.create(new ResourceLocation[]{ClassicPortalLogic.EXIT}).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.MONOLITH, "haunted_braziers", level, true))));
-            objectives.add(BailObjective.create(true, new ResourceLocation[]{ClassicPortalLogic.EXIT}));
+            objectives.add(HauntedBraziersObjective.of(this.target.get(random), this.objectiveProbability, ModConfigs.HAUNTED_BRAZIERS.getStackModifierPool(level),  ModConfigs.HAUNTED_BRAZIERS.getOverStackModifierPool(level), ModConfigs.HAUNTED_BRAZIERS.getOverStackLootTable(level)).add(FindExitObjective.create(ClassicPortalLogic.EXIT).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.valueOf("HAUNTED_BRAZIERS"), "haunted_braziers", level, true))));
+            objectives.add(BailObjective.create(true, ClassicPortalLogic.EXIT));
             objectives.add(DeathObjective.create(true));
             objectives.set(Objectives.KEY, CrystalData.OBJECTIVE.getType(this));
         });
@@ -72,7 +76,7 @@ public class HauntedBraziersCrystalObjective extends WoldCrystalObjective {
 
     @Override
     public void readNbt(CompoundTag nbt) {
-        this.target = (IntRoll)Adapters.INT_ROLL.readNbt(nbt.getCompound("target")).orElse((IntRoll) null);
+        this.target = (IntRoll)Adapters.INT_ROLL.readNbt(nbt.getCompound("target")).orElse(IntRoll.ofUniform(3, 5));
         this.objectiveProbability = (Float)Adapters.FLOAT.readNbt(nbt.get("objective_probability")).orElse(0.0F);
     }
 
@@ -90,7 +94,7 @@ public class HauntedBraziersCrystalObjective extends WoldCrystalObjective {
 
     @Override
     public void readJson(JsonObject json) {
-        this.target = (IntRoll)Adapters.INT_ROLL.readJson(json.getAsJsonObject("target")).orElse((IntRoll) null);
+        this.target = (IntRoll)Adapters.INT_ROLL.readJson(json.getAsJsonObject("target")).orElse(IntRoll.ofUniform(3, 5));
         this.objectiveProbability = (Float)Adapters.FLOAT.readJson(json.get("objective_probability")).orElse(0.0F);
     }
 

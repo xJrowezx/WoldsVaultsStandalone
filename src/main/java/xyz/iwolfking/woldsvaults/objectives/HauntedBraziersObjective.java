@@ -4,6 +4,7 @@ import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
+import iskallia.vault.VaultMod;
 import iskallia.vault.block.MonolithBlock;
 import iskallia.vault.block.PlaceholderBlock;
 import iskallia.vault.block.entity.MonolithTileEntity;
@@ -108,7 +109,7 @@ public class HauntedBraziersObjective extends MonolithObjective {
 
         if(!hasGeneratedModifiers) {
             VaultModifierUtils.addModifier(vault, WoldsVaults.id("ghost_town"), 1);
-            VaultModifierUtils.addModifier(vault, WoldsVaults.id("haunting"), 1);
+            VaultModifierUtils.addModifier(vault, VaultMod.id("haunting"), 1);
         }
 
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
@@ -331,7 +332,7 @@ public class HauntedBraziersObjective extends MonolithObjective {
             current = (Integer)this.get(COUNT);
             int total = (Integer)this.get(TARGET);
             Component txt = (new TextComponent(String.valueOf(current))).withStyle(ChatFormatting.WHITE).append((new TextComponent(" / ")).withStyle(ChatFormatting.WHITE)).append((new TextComponent(String.valueOf(total))).withStyle(ChatFormatting.WHITE));
-            int midX = window.getGuiScaledWidth() / 2;
+            int midX = 0;
             matrixStack.pushPose();
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
