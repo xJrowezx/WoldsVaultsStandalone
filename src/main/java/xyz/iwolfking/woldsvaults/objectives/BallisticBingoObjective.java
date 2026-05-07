@@ -149,6 +149,19 @@ public class BallisticBingoObjective extends BingoObjective {
     public void initServer(VirtualWorld world, Vault vault) {
 
         this.pvp = ((Objectives)vault.get(Vault.OBJECTIVES)).forEach(PvPObjective.class, (obj) -> true);
+        TaskContext taskContext = this.getContext(world, vault);
+        if (!this.pvp) {
+            Object source = this.get(TASK_SOURCE);
+            if (source instanceof EntityTaskSource entitySource) {
+                for (Runner runner : ((Listeners)vault.get(Vault.LISTENERS)).getAll(Runner.class)) {
+                    entitySource.add(runner.getId());
+                }
+
+                this.set(JOINED, entitySource.getCount());
+                this.markDirty(TASK_SOURCE);
+            }
+        }
+
         CommonEvents.LISTENER_JOIN.register(this, (data) -> {
             if (data.getVault() == vault) {
                 Listener patt4799$temp = data.getListener();
@@ -161,14 +174,18 @@ public class BallisticBingoObjective extends BingoObjective {
                             ((BingoObjective.TaskMap)this.get(TASKS)).put(runner.getId(), board);
                         }
                     } else {
+                        boolean joined = true;
                         Object patt5225$temp = this.get(TASK_SOURCE);
                         if (patt5225$temp instanceof EntityTaskSource) {
                             EntityTaskSource entitySource = (EntityTaskSource)patt5225$temp;
+                            joined = !entitySource.matches(runner.getId());
                             entitySource.add(new UUID[]{runner.getId()});
                             this.markDirty(TASK_SOURCE);
                         }
 
-                        this.set(JOINED, (Integer)this.getOr(JOINED, 0) + 1);
+                        if (joined) {
+                            this.set(JOINED, (Integer)this.getOr(JOINED, 0) + 1);
+                        }
                     }
 
                 }
@@ -196,7 +213,7 @@ public class BallisticBingoObjective extends BingoObjective {
                 }
             }
         });
-        ((Task)this.get(TASK)).onAttach(this.getContext(world, vault));
+        ((Task)this.get(TASK)).onAttach(taskContext);
         if (this.pvp) {
             for(Runner runner : ((Listeners)vault.get(Vault.LISTENERS)).getAll(Runner.class)) {
                 BingoTask board = (BingoTask)((BingoTask)this.get(TASK)).copy();
