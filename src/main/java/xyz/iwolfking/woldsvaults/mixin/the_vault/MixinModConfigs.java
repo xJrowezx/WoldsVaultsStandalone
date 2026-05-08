@@ -41,7 +41,6 @@ public class MixinModConfigs {
             Path configDir = FMLPaths.GAMEDIR.get().resolve("config").resolve("the_vault");
             Files.createDirectories(configDir);
             mergeDefaultEntityGroups(configDir.resolve("entity_groups.json"));
-            mergeDefaultVaultMobs(configDir.resolve("vault_mobs.json"));
             repairBallisticBingoConfig(configDir.resolve("ballistic_bingo.json"));
             mergeObjectiveSealsIntoVaultCrystal(configDir.resolve("vault_crystal.json"));
         } catch (IOException e) {
@@ -92,46 +91,6 @@ public class MixinModConfigs {
 
         if (changed) {
             try (Writer writer = Files.newBufferedWriter(vaultCrystalFile, StandardCharsets.UTF_8)) {
-                GSON.toJson(targetRoot, writer);
-            }
-        }
-    }
-
-    private static void mergeDefaultVaultMobs(Path vaultMobsFile) throws IOException {
-        JsonObject bundledRoot;
-        try (InputStream stream = MixinModConfigs.class.getResourceAsStream("/default_configs/vault_mobs.json")) {
-            if (stream == null) {
-                return;
-            }
-
-            if (!Files.exists(vaultMobsFile)) {
-                Files.copy(stream, vaultMobsFile, java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-                return;
-            }
-
-            try (Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
-                bundledRoot = new JsonParser().parse(reader).getAsJsonObject();
-            }
-        }
-
-        JsonObject targetRoot;
-        try (Reader reader = Files.newBufferedReader(vaultMobsFile, StandardCharsets.UTF_8)) {
-            JsonElement parsed = new JsonParser().parse(reader);
-            if (parsed == null || !parsed.isJsonObject()) {
-                return;
-            }
-
-            targetRoot = parsed.getAsJsonObject();
-        } catch (RuntimeException e) {
-            return;
-        }
-
-        JsonObject bundledOverrides = getOrCreateObject(bundledRoot, "ATTRIBUTE_OVERRIDES");
-        JsonObject targetOverrides = getOrCreateObject(targetRoot, "ATTRIBUTE_OVERRIDES");
-        JsonElement standaloneWold = bundledOverrides.get("woldsvaults:wold");
-        if (standaloneWold != null && !standaloneWold.equals(targetOverrides.get("woldsvaults:wold"))) {
-            targetOverrides.add("woldsvaults:wold", standaloneWold);
-            try (Writer writer = Files.newBufferedWriter(vaultMobsFile, StandardCharsets.UTF_8)) {
                 GSON.toJson(targetRoot, writer);
             }
         }
