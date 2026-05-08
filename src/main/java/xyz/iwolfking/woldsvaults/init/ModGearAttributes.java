@@ -101,10 +101,10 @@ public class ModGearAttributes {
             VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Mana Cost Reduction Cap", 20220), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Float> SWIFT_SNEAK = attr("swift_sneak",
-            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Swift Sneak", 65280), VaultGearAttributeComparator.floatComparator());
+            VaultGearAttributeType.floatType(), ModGearAttributeGenerators.floatRange(), ModGearAttributeReaders.percentageReader("Swift Sneak", 8356289), VaultGearAttributeComparator.floatComparator());
 
     public static final VaultGearAttribute<Integer> RICOCHET = attr("ricochet",
-            VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.addedIntReader("Ricochet", 65280), VaultGearAttributeComparator.intComparator());
+            VaultGearAttributeType.intType(), ModGearAttributeGenerators.intRange(), ModGearAttributeReaders.addedIntReader("Ricochet", 5930400), VaultGearAttributeComparator.intComparator());
 
     @SubscribeEvent
     public static void init(RegistryEvent.Register<VaultGearAttribute<?>> event) {
