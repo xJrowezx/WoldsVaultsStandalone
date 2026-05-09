@@ -17,6 +17,7 @@ import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.core.vault.Modifiers;
 import iskallia.vault.core.vault.Vault;
+import iskallia.vault.core.vault.modifier.modifier.ObjectiveShuffleModifier;
 import iskallia.vault.core.vault.modifier.spi.VaultModifier;
 import iskallia.vault.core.vault.objective.BingoObjective;
 import iskallia.vault.core.vault.objective.Objective;
@@ -49,6 +50,7 @@ import xyz.iwolfking.woldsvaults.mixin.accessors.BingoObjectiveAccessor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class BallisticBingoObjective extends BingoObjective {
@@ -238,13 +240,14 @@ public class BallisticBingoObjective extends BingoObjective {
 
     @Override
     public void tickServer(VirtualWorld world, Vault vault) {
-        if (this.getBingos() > 0) {
+        if (this.isGatewayReady()) {
             this.get(CHILDREN).forEach(child -> child.tickServer(world, vault));
             if (this.isCompleted()) {
                 return;
             }
         }
 
+        int bingos = this.getBingos();
         if (this.pvp) {
             ((BingoObjective.TaskMap)this.get(TASKS)).forEach((uuid, task) -> {
                 if (task instanceof BingoTask bingo) {
@@ -260,11 +263,43 @@ public class BallisticBingoObjective extends BingoObjective {
             }
         }
 
+        if (this.getBingos() > bingos) {
+            this.getBingoShuffleModifier(vault).ifPresent(modifier -> {
+                if (modifier.shouldRegenerate()) {
+                    if (this.pvp) {
+                        ((BingoObjective.TaskMap)this.get(TASKS)).forEach((uuid, task) -> {
+                            if (task instanceof BingoTask bingo) {
+                                bingo.regenerateIncomplete(((BingoObjectiveAccessor)this).getContext(world, vault, uuid));
+                            }
+                        });
+                    } else {
+                        Object task = this.get(TASK);
+                        if (task instanceof BingoTask bingo) {
+                            bingo.regenerateIncomplete(this.getContext(world, vault));
+                            this.lastScaledJoined = -1;
+                        }
+                    }
+                } else if (this.pvp) {
+                    ((BingoObjective.TaskMap)this.get(TASKS)).forEach((uuid, task) -> {
+                        if (task instanceof BingoTask bingo) {
+                            bingo.shuffleIncomplete();
+                        }
+                    });
+                } else {
+                    Object task = this.get(TASK);
+                    if (task instanceof BingoTask bingo) {
+                        bingo.shuffleIncomplete();
+                    }
+                }
+            });
+        }
+
         if (world.getTickCount() % 20 == 0) {
             int joined = (Integer)this.getOr(JOINED, 0);
             if (this.pvp) {
-                (this.get(TASKS)).values().forEach((task) -> {
+                ((BingoObjective.TaskMap)this.get(TASKS)).forEach((uuid, task) -> {
                     if (task instanceof BingoTask root) {
+                        TaskContext context = ((BingoObjectiveAccessor)this).getContext(world, vault, uuid);
                         for(int index = 0; index < root.getWidth() * root.getHeight(); ++index) {
                             if (!root.isCompleted(index)) {
                                 root.getChild(index).streamSelfAndDescendants(ProgressConfiguredTask.class).forEach((t) -> {
@@ -272,16 +307,7 @@ public class BallisticBingoObjective extends BingoObjective {
                                     if (patt7787$temp instanceof TargetTaskCounter<?, ?> counter) {
                                         if (counter.isPopulated()) {
                                             counter.get("targetPlayerContribution", Adapters.DOUBLE).ifPresent((contribution) -> {
-                                                Object patt8038$temp = counter.getBaseTarget();
-                                                if (patt8038$temp instanceof Integer base) {
-                                                    counter.setTarget((int)((double)base + contribution * (double)base));
-                                                } else {
-                                                    patt8038$temp = counter.getBaseTarget();
-                                                    if (patt8038$temp instanceof Float base) {
-                                                        counter.setTarget((float)((double)base + contribution * (double)base));
-                                                    }
-                                                }
-
+                                                this.scaleTargetWithCondition(t, counter, contribution, 1, context);
                                             });
                                             return;
                                         }
@@ -298,6 +324,7 @@ public class BallisticBingoObjective extends BingoObjective {
                 if (var5 instanceof BingoTask) {
                     BingoTask root = (BingoTask)var5;
                     this.lastScaledJoined = joined;
+                    TaskContext context = this.getContext(world, vault);
 
                     for(int index = 0; index < root.getWidth() * root.getHeight(); ++index) {
                         if (!root.isCompleted(index)) {
@@ -306,20 +333,7 @@ public class BallisticBingoObjective extends BingoObjective {
                                 if (patt9064$temp instanceof TargetTaskCounter<?, ?> counter) {
                                     if (counter.isPopulated()) {
                                         counter.get("targetPlayerContribution", Adapters.DOUBLE).ifPresent((contribution) -> {
-                                            int additional = Math.max(joined - 1, 0);
-                                            Object patt9378$temp = counter.getBaseTarget();
-                                            if (patt9378$temp instanceof Integer base) {
-                                                counter.setTarget((int)((double)base + (double)additional * contribution * (double)base));
-                                            } else {
-                                                patt9378$temp = counter.getBaseTarget();
-                                                if (!(patt9378$temp instanceof Float)) {
-                                                    throw new UnsupportedOperationException();
-                                                }
-
-                                                Float base = (Float)patt9378$temp;
-                                                counter.setTarget((float)((double)base + (double)additional * contribution * (double)base));
-                                            }
-
+                                            this.scaleTargetWithCondition(task, counter, contribution, Math.max(joined - 1, 0), context);
                                         });
                                         return;
                                     }
@@ -341,6 +355,28 @@ public class BallisticBingoObjective extends BingoObjective {
             new ArrayList<>(tasks.entrySet()).forEach(entry -> tasks.put(entry.getKey(), entry.getValue()));
         } else {
             this.markDirty(TASK);
+        }
+    }
+
+    private Optional<ObjectiveShuffleModifier> getBingoShuffleModifier(Vault vault) {
+        return ((Modifiers)vault.get(Vault.MODIFIERS)).getModifiers().stream()
+                .filter(modifier -> modifier instanceof ObjectiveShuffleModifier)
+                .map(modifier -> (ObjectiveShuffleModifier)modifier)
+                .findFirst();
+    }
+
+    private void scaleTargetWithCondition(ProgressConfiguredTask<?, ?> task, TargetTaskCounter<?, ?> counter, double contribution, int additionalPlayers, TaskContext context) {
+        Object baseTarget = counter.getBaseTarget();
+        if (baseTarget instanceof Integer base) {
+            counter.setTarget((int)((double)base + (double)additionalPlayers * contribution * (double)base));
+        } else if (baseTarget instanceof Float base) {
+            counter.setTarget((float)((double)base + (double)additionalPlayers * contribution * (double)base));
+        } else {
+            throw new UnsupportedOperationException();
+        }
+
+        if (task.getCondition() != null) {
+            task.getCondition().isConditionFulfilled(task, context);
         }
     }
 
