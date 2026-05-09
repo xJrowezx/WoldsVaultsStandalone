@@ -346,6 +346,9 @@ public class VaultRangEntity extends Projectile {
             if (!candidate.isAlive() || candidate.isSpectator()) {
                 continue;
             }
+            if(candidate instanceof Player){
+                continue;
+            }
             if (candidate == thrower || candidate == lastHit) {
                 continue;
             }
