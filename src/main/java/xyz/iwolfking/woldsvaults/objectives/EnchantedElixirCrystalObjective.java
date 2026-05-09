@@ -2,6 +2,7 @@ package xyz.iwolfking.woldsvaults.objectives;
 
 import com.google.gson.JsonObject;
 import iskallia.vault.block.VaultCrateBlock;
+import iskallia.vault.config.sigil.SigilConfig;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.core.vault.ClassicPortalLogic;
@@ -9,7 +10,6 @@ import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
 import iskallia.vault.core.vault.objective.*;
 import iskallia.vault.item.crystal.CrystalData;
-import iskallia.vault.item.crystal.objective.CrystalObjective;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -28,10 +28,13 @@ public class EnchantedElixirCrystalObjective extends WoldCrystalObjective {
     public EnchantedElixirCrystalObjective() {
     }
 
+    @Override
     public void configure(Vault vault, RandomSource random, @Nullable String sigil) {
         int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
+        Optional<SigilConfig.LevelEntry> entry = SigilConfig.getConfig(sigil).map(config -> config.getLevel(level));
+        float targetMultiplier = entry.map(SigilConfig.LevelEntry::getElixirTargetMultiplier).orElse(1.0F);
         vault.ifPresent(Vault.OBJECTIVES, (objectives) -> {
-            objectives.add(EnchantedElixirObjective.create().add(LodestoneObjective.of(this.objectiveProbability).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.ELIXIR, "enchanted_elixir", level, true)).add(VictoryObjective.of(300))));
+            objectives.add(EnchantedElixirObjective.create().withTargetMultiplier(targetMultiplier).add(LodestoneObjective.of(this.objectiveProbability).add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.ELIXIR, "enchanted_elixir", level, true)).add(VictoryObjective.of(300))));
             objectives.add(BailObjective.create(true, new ResourceLocation[]{ClassicPortalLogic.EXIT}));
             objectives.add(DeathObjective.create(true));
             objectives.set(Objectives.KEY, CrystalData.OBJECTIVE.getType(this));

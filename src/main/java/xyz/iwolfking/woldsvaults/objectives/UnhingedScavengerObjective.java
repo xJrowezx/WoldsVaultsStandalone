@@ -15,6 +15,8 @@ import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.VaultLevel;
 import iskallia.vault.core.vault.objective.Objective;
+import iskallia.vault.core.vault.objective.Objectives;
+import iskallia.vault.core.vault.objective.PvPObjective;
 import iskallia.vault.core.vault.objective.ScavengerObjective;
 import iskallia.vault.core.vault.objective.scavenger.ScavengeTask;
 import iskallia.vault.core.vault.objective.scavenger.ScavengerGoal;
@@ -133,7 +135,9 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
     private void generateGoal(Vault vault, Listener listener) {
         ScavengerGoal.ObjList list = new ScavengerGoal.ObjList();
         this.get(GOALS).put(listener.get(Listener.ID), list);
-        JavaRandom random = JavaRandom.ofInternal(vault.get(Vault.SEED) ^ listener.get(Listener.ID).getMostSignificantBits());
+        boolean pvp = ((Objectives) vault.get(Vault.OBJECTIVES)).forEach(PvPObjective.class, objective -> true);
+        long seed = pvp ? vault.get(Vault.SEED) : vault.get(Vault.SEED) ^ listener.get(Listener.ID).getMostSignificantBits();
+        JavaRandom random = JavaRandom.ofInternal(seed);
         list.addAll((this.getOr(CONFIG, UnhingedScavengerObjective.Config.DEFAULT)).get().generateGoals(this.getOr(ENTRY_POOL, VaultMod.id("default")), vault.get(Vault.LEVEL).get(), random));
     }
 

@@ -104,10 +104,14 @@ public class EnchantedElixirObjective extends ElixirObjective {
     private void generateGoal(VirtualWorld world, Vault vault, Runner listener) {
         ElixirGoal goal = new ElixirGoal();
         ((GoalMap)this.get(GOALS)).put((UUID)listener.get(Listener.ID), goal);
+        int level = ((VaultLevel)vault.get(Vault.LEVEL)).get();
         JavaRandom random = JavaRandom.ofInternal((Long)vault.get(Vault.SEED) ^ ((UUID)listener.get(Listener.ID)).getMostSignificantBits());
-        goal.set(ElixirGoal.TARGET, ModConfigs.ENCHANTED_ELIXIR.generateTarget(((VaultLevel)vault.get(Vault.LEVEL)).get(), random));
-        goal.set(ElixirGoal.BASE_TARGET, (Integer)goal.get(ElixirGoal.TARGET));
-        Iterator var6 = ModConfigs.ENCHANTED_ELIXIR.generateGoals(((VaultLevel)vault.get(Vault.LEVEL)).get(), random).iterator();
+        int baseTarget = ModConfigs.ENCHANTED_ELIXIR.generateTarget(level, random);
+        float targetMultiplier = Math.max(0.0F, this.getOr(TARGET_MULTIPLIER, 1.0F));
+        int scaledTarget = this.scaleTarget(baseTarget, targetMultiplier);
+        goal.set(ElixirGoal.TARGET, scaledTarget);
+        goal.set(ElixirGoal.BASE_TARGET, scaledTarget);
+        Iterator var6 = ModConfigs.ENCHANTED_ELIXIR.generateGoals(level, random).iterator();
 
         while(var6.hasNext()) {
             ElixirTask task = (ElixirTask)var6.next();
@@ -115,6 +119,14 @@ public class EnchantedElixirObjective extends ElixirObjective {
         }
 
         goal.initServer(world, vault, this, listener.getId());
+    }
+
+    private int scaleTarget(int target, float multiplier) {
+        if (target <= 0 || multiplier <= 0.0F) {
+            return Math.max(0, Math.round(target * multiplier));
+        }
+
+        return Math.max(1, Math.round(target * multiplier));
     }
 
     private void generateElixirBreakpointsMap(Listener listener, boolean sendMessage) {
