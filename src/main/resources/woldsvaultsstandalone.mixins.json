@@ -13,6 +13,7 @@
     "MixinPlayerInventory",
     "MixinThrownTrident",
     "ThrownTridentAccessor",
+    "accessors.BingoTaskAccessor",
     "accessors.ClassicCircleCrystalLayoutAccessor",
     "accessors.ClassicInfiniteCrystalLayoutAccessor",
     "accessors.ClassicPolygonCrystalLayoutAccessor",
