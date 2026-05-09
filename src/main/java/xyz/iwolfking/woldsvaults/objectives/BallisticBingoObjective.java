@@ -66,7 +66,11 @@ public class BallisticBingoObjective extends BingoObjective {
     }
 
     public static BallisticBingoObjective of(BingoTask task) {
-        return (BallisticBingoObjective)(new BallisticBingoObjective()).set(TASK, task);
+        return (BallisticBingoObjective)(new BallisticBingoObjective()).set(TASK, task).set(TASKS, new TaskMap());
+    }
+
+    public static BallisticBingoObjective of(BingoTask task, boolean blackout) {
+        return (BallisticBingoObjective)((new BallisticBingoObjective()).set(TASK, task).set(TASKS, new TaskMap())).set(BLACKOUT, blackout);
     }
 
     public static BallisticBingoObjective of(BingoTask task, int width, int height) {

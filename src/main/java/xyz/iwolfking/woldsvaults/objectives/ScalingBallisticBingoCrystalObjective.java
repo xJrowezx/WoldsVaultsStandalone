@@ -28,9 +28,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class ScalingBallisticBingoCrystalObjective extends CrystalObjective {
-    public static final int DEFAULT_WIDTH = 6;
-    public static final int DEFAULT_HEIGHT = 6;
-
     private float objectiveProbability;
     private int sealCount;
 
@@ -54,7 +51,7 @@ public class ScalingBallisticBingoCrystalObjective extends CrystalObjective {
         Optional<SigilConfig.LevelEntry> entry = SigilConfig.getConfig(sigil).map(config -> config.getLevel(level));
         vault.ifPresent(Vault.OBJECTIVES, objectives -> {
             ModConfigs.BALLISTIC_BINGO_CONFIG.generate(entry.map(SigilConfig.LevelEntry::getBingoPool).orElse(VaultMod.id("default")), level)
-                    .ifPresent(task -> objectives.add(BallisticBingoObjective.of(task, getWidth(), getHeight())
+                    .ifPresent(task -> objectives.add(BallisticBingoObjective.of(task)
                             .add(GridGatewayObjective.of(this.objectiveProbability)
                                     .add(AwardCrateObjective.ofConfig(VaultCrateBlock.Type.valueOf("BALLISTIC_BINGO"), "ballistic_bingo", level, true))
                                     .add(VictoryObjective.of(300)))));
@@ -67,16 +64,8 @@ public class ScalingBallisticBingoCrystalObjective extends CrystalObjective {
     @Override
     public void addText(List<Component> tooltip, int minIndex, TooltipFlag flag, float time, int level) {
         tooltip.add(new TextComponent("Objective: ")
-                .append(new TextComponent(getHeight() + "x" + getWidth() + " Ballistic Bingo")
+                .append(new TextComponent("Ballistic Bingo")
                         .withStyle(Style.EMPTY.withColor(this.getColor(time).orElseThrow()))));
-    }
-
-    public int getHeight() {
-        return DEFAULT_HEIGHT + sealCount - 1;
-    }
-
-    public int getWidth() {
-        return DEFAULT_WIDTH + sealCount - 1;
     }
 
     public int getSealCount() {
