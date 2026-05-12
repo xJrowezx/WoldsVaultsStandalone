@@ -54,6 +54,7 @@
     "the_vault.custom.MixinAttributeSnapshot",
     "the_vault.custom.MixinAttributeSnapshotCalculator",
     "the_vault.custom.MixinBingoTask",
+    "the_vault.custom.MixinCatalystAnvilRecipe",
     "the_vault.custom.MixinClassicListenersLogic",
     "the_vault.custom.MixinCoinLooting",
     "the_vault.custom.MixinCompassPenalty",

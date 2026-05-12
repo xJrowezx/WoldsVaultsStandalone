@@ -11,6 +11,7 @@ import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 import xyz.iwolfking.woldsvaults.expertises.EclecticGearExpertise;
 import xyz.iwolfking.woldsvaults.expertises.NavigatorExpertise;
 import xyz.iwolfking.woldsvaults.expertises.PylonPilfererExpertise;
+import xyz.iwolfking.woldsvaults.prestige.CrystalSizePrestigePower;
 import xyz.iwolfking.woldsvaults.prestige.GearSealerPrestigePower;
 import xyz.iwolfking.woldsvaults.prestige.ToolCapacityPrestigePower;
 
@@ -43,5 +44,6 @@ public abstract class MixinSkill extends TypeSupplierAdapter<Skill> {
         //Prestige Powers
         this.register("tool_capacity_power", ToolCapacityPrestigePower.class, ToolCapacityPrestigePower::new);
         this.register("gear_sealer_power", GearSealerPrestigePower.class, GearSealerPrestigePower::new);
+        this.register("crystal_size_power", CrystalSizePrestigePower.class, CrystalSizePrestigePower::new);
     }
 }
