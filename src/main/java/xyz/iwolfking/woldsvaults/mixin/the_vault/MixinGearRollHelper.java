@@ -13,6 +13,7 @@ import iskallia.vault.skill.tree.ExpertiseTree;
 import iskallia.vault.world.data.PlayerExpertisesData;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.server.ServerLifecycleHooks;
@@ -24,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.iwolfking.woldsvaults.api.gear.modification.WoldGearModifierHelper;
+import xyz.iwolfking.woldsvaults.api.util.PrestigePowerHelper;
 import xyz.iwolfking.woldsvaults.expertises.CraftsmanExpertise;
 import xyz.iwolfking.woldsvaults.expertises.EclecticGearExpertise;
 
@@ -59,6 +61,30 @@ public class MixinGearRollHelper {
             }
         }
     }
+
+//    @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "INVOKE", target = "Liskallia/vault/gear/VaultGearModifierHelper;generateAffixSlots(Lnet/minecraft/world/item/ItemStack;Ljava/util/Random;)V"))
+//    private static void initializeGearWithCraftingPotential(ItemStack stack, Player player, CallbackInfo ci) {
+//        if(player instanceof ServerPlayer serverPlayer) {
+//            List<CraftingPotentialPrestigePower> craftingPotentialPrestigePowers = PrestigePowerHelper.getPrestigePowersOfType(serverPlayer, CraftingPotentialPrestigePower.class);
+//            if(craftingPotentialPrestigePowers.isEmpty()) {
+//                return;
+//            }
+//
+//            int additionalPotential = 0;
+//
+//            for(CraftingPotentialPrestigePower power : craftingPotentialPrestigePowers) {
+//                additionalPotential += power.getPotentialIncrease();
+//            }
+//
+//            if(additionalPotential > 0) {
+//                VaultGearData data = VaultGearData.read(stack);
+//                int currentPotential = data.getFirstValue(ModGearAttributes.MAX_CRAFTING_POTENTIAL).orElse(0);
+//                data.createOrReplaceAttributeValue(ModGearAttributes.MAX_CRAFTING_POTENTIAL, currentPotential + additionalPotential);
+//                data.createOrReplaceAttributeValue(ModGearAttributes.CRAFTING_POTENTIAL, currentPotential + additionalPotential);
+//                data.write(stack);
+//            }
+//        }
+//    }
 
     @Inject(method = "initializeGear(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/entity/player/Player;)V", at = @At(value = "INVOKE", target = "Liskallia/vault/gear/VaultGearModifierHelper;generateModifiers(Lnet/minecraft/world/item/ItemStack;Ljava/util/Random;)Liskallia/vault/gear/modification/GearModification$Result;", shift = At.Shift.AFTER))
     private static void initializeGearWithEffects(ItemStack stack, Player player, CallbackInfo ci, @Local VaultGearData data) {
