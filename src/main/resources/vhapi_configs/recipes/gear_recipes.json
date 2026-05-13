@@ -15,7 +15,7 @@
           "NBT": "{}"
         },
         {
-          "AMOUNT": 9,
+          "AMOUNT": 3,
           "ITEM": "the_vault:vault_alloy",
           "NBT": "{}"
         }
@@ -36,7 +36,7 @@
           "NBT": "{}"
         },
         {
-          "AMOUNT": 9,
+          "AMOUNT": 3,
           "ITEM": "the_vault:vault_alloy",
           "NBT": "{}"
         }
@@ -57,7 +57,7 @@
           "NBT": "{}"
         },
         {
-          "AMOUNT": 9,
+          "AMOUNT": 3,
           "ITEM": "the_vault:vault_alloy",
           "NBT": "{}"
         }
@@ -78,7 +78,7 @@
           "NBT": "{}"
         },
         {
-          "AMOUNT": 9,
+          "AMOUNT": 3,
           "ITEM": "the_vault:vault_alloy",
           "NBT": "{}"
         }
