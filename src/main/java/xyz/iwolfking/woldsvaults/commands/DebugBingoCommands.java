@@ -25,7 +25,7 @@ import xyz.iwolfking.woldsvaults.objectives.BallisticBingoObjective;
 import java.util.Arrays;
 import java.util.UUID;
 
-@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone")
+@Mod.EventBusSubscriber(modid = "woldsvaults")
 public final class DebugBingoCommands {
     private static final SimpleCommandExceptionType NOT_IN_VAULT = new SimpleCommandExceptionType(new TextComponent("You must be inside an active vault."));
     private static final SimpleCommandExceptionType NOT_BINGO = new SimpleCommandExceptionType(new TextComponent("Active vault objective is not a bingo objective."));

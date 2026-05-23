@@ -20,7 +20,7 @@ import xyz.iwolfking.woldsvaults.util.UniqueEffectGearAttribute;
 
 import javax.annotation.Nullable;
 
-@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone", bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = "woldsvaults", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModGearAttributes {
     public static final VaultGearAttribute<Boolean> ROTATING_TOOL = attr("rotating", VaultGearAttributeType.booleanType(), ModGearAttributeGenerators.booleanFlag(), ModGearAttributeReaders.booleanReader("Stylish", 15378160), VaultGearAttributeComparator.booleanComparator());
     public static final VaultGearAttribute<Integer> TRIDENT_LOYALTY = attr("trident_loyalty",

@@ -95,7 +95,7 @@
       }
     },
     "the_vault:modifier_type/chance_catalyst": {
-      "woldsvaults:sparkling": {
+      "the_vault:sparkling": {
         "properties": {
           "chance": 0.05
         },
@@ -179,7 +179,7 @@
           "icon": "woldsvaults:gui/modifiers/vexation"
         }
       },
-      "woldsvaults:wooden": {
+      "the_vault:wooden": {
         "properties": {
           "output": "the_vault:placeholder[type=wooden_chest]",
           "attemptsPerChunk": 8,
@@ -192,7 +192,7 @@
           "icon": "the_vault:gui/modifiers/wooden"
         }
       },
-      "woldsvaults:spooky": {
+      "the_vault:spooky": {
         "properties": {
           "output": "the_vault:wild_spawner",
           "attemptsPerChunk": 16,
@@ -332,7 +332,7 @@
           "icon": "the_vault:gui/modifiers/poor"
         }
       },
-      "woldsvaults:poor": {
+      "the_vault:poor": {
         "properties": {
           "percentage": -0.25
         },
@@ -374,7 +374,7 @@
           "icon": "woldsvaults:gui/modifiers/destructive"
         }
       },
-      "woldsvaults:critical_mobs": {
+      "the_vault:critical_mobs": {
         "properties": {
           "type": "crit_chance_additive",
           "amount": 0.15,
@@ -388,7 +388,7 @@
           "icon": "woldsvaults:gui/modifiers/destructive"
         }
       },
-      "woldsvaults:chunky_mobs4": {
+      "the_vault:chunky_mobs4": {
         "properties": {
           "type": "max_health_additive_percentile",
           "amount": 1.0,
@@ -402,7 +402,7 @@
           "icon": "the_vault:gui/modifiers/chunky"
         }
       },
-      "woldsvaults:baby_mobs2": {
+      "the_vault:baby_mobs2": {
         "properties": {
           "type": "max_health_additive_percentile",
           "amount": -0.2,
@@ -416,7 +416,7 @@
           "icon": "the_vault:gui/modifiers/chunky"
         }
       },
-      "woldsvaults:brutal_mobs": {
+      "the_vault:brutal_mobs": {
         "properties": {
           "type": "attack_damage_additive_percentile",
           "amount": 0.5,
@@ -461,7 +461,7 @@
           "icon": "woldsvaults:gui/modifiers/hex_chaining"
         }
       },
-      "woldsvaults:stunning": {
+      "the_vault:stunning": {
         "properties": {
           "effect": "alexsmobs:fear",
           "effectAmplifier": 0,
@@ -476,7 +476,7 @@
           "icon": "woldsvaults:gui/modifiers/hex_stunning"
         }
       },
-      "woldsvaults:haunting": {
+      "the_vault:haunting": {
         "properties": {
           "effect": "the_vault:time_acceleration",
           "effectAmplifier": 1,
@@ -567,7 +567,7 @@
           "icon": "woldsvaults:gui/modifiers/acidic"
         }
       },
-      "woldsvaults:corrosive": {
+      "the_vault:corrosive": {
         "properties": {
           "durabilityDamageTakenMultiplier": 2.0
         },
@@ -608,7 +608,7 @@
           "icon": "woldsvaults:gui/modifiers/jump_boost"
         }
       },
-      "woldsvaults:jumpy_deluxe": {
+      "the_vault:jumpy_deluxe": {
         "properties": {
           "effect": "minecraft:jump_boost",
           "effectAmplifier": 4,
@@ -638,7 +638,7 @@
           "icon": "the_vault:gui/modifiers/speed"
         }
       },
-      "woldsvaults:super_stronk": {
+      "the_vault:super_stronk": {
         "properties": {
           "effect": "minecraft:strength",
           "effectAmplifier": 3,
@@ -753,7 +753,7 @@
           "icon": "the_vault:gui/modifiers/trapped"
         }
       },
-      "woldsvaults:rigged": {
+      "the_vault:rigged": {
         "properties": {
           "stat": "trap_disarm_chance",
           "addend": -1.0
@@ -766,7 +766,7 @@
           "icon": "the_vault:gui/modifiers/trapped"
         }
       },
-      "woldsvaults:rending": {
+      "the_vault:rending": {
         "properties": {
           "stat": "cooldown_reduction",
           "addend": -0.25
@@ -805,7 +805,7 @@
           "icon": "the_vault:gui/modifiers/vulnerable"
         }
       },
-      "woldsvaults:piercing": {
+      "the_vault:piercing": {
         "properties": {
           "stat": "resistance",
           "addend": -0.5
@@ -818,7 +818,7 @@
           "icon": "the_vault:gui/modifiers/vulnerable"
         }
       },
-      "woldsvaults:orematic": {
+      "the_vault:orematic": {
         "properties": {
           "stat": "copiously",
           "addend": 0.25
@@ -1001,7 +1001,7 @@
           "icon": "the_vault:gui/modifiers/item_quant_4"
         }
       },
-      "woldsvaults:blessed": {
+      "the_vault:blessed": {
         "properties": {
           "children": {
             "woldsvaults:idona_blessing": 1,
@@ -1055,7 +1055,7 @@
             "the_vault:bingo_slime_grenade_chest": 1,
             "the_vault:bingo_quantity": 1,
             "the_vault:bingo_rarity": 1,
-            "woldsvaults:jumpy_deluxe": 1
+            "the_vault:jumpy_deluxe": 1
           }
         },
         "display": {
@@ -1128,8 +1128,8 @@
       "the_vault:spooky_bingo": {
         "properties": {
           "children": {
-            "woldsvaults:haunted_mansion": 1,
-            "woldsvaults:haunting": 3,
+            "the_vault:haunted_mansion": 1,
+            "the_vault:haunting": 3,
             "the_vault:soul_boost": 4
           }
         },
@@ -1144,7 +1144,7 @@
         "properties": {
           "children": {
             "the_vault:cake_layer": 20,
-            "woldsvaults:sweet_retro": 1
+            "the_vault:sweet_retro": 1
           }
         },
         "display": {
@@ -1296,7 +1296,7 @@
             "the_vault:furious_mobs": 2,
             "the_vault:chunky_mobs2": 1,
             "the_vault:cake_layer_mobspeed": 2,
-            "woldsvaults:critical_mobs": 1
+            "the_vault:critical_mobs": 1
           }
         },
         "display": {
@@ -1364,7 +1364,7 @@
         "properties": {
           "children": {
             "the_vault:ruthless_mobs": 1,
-            "woldsvaults:critical_mobs": 1
+            "the_vault:critical_mobs": 1
           }
         },
         "display": {
@@ -1394,7 +1394,7 @@
             "the_vault:ruthless_mobs": 2,
             "the_vault:chunky_mobs2": 2,
             "woldsvaults:enraged_mobs": 2,
-            "woldsvaults:critical_mobs": 2,
+            "the_vault:critical_mobs": 2,
             "woldsvaults:unhinged_mob_increase": 1
           }
         },
@@ -1916,7 +1916,7 @@
           "icon": "woldsvaults:gui/modifiers/vexation"
         }
       },
-      "woldsvaults:sweet_retro": {
+      "the_vault:sweet_retro": {
         "properties": {
           "chance": 0.15,
           "ticksPerCheck": 120,
@@ -2203,7 +2203,7 @@
       }
     },
     "woldsvaults:modifier_type/mob_death_bomb": {
-      "woldsvaults:haunted_mansion": {
+      "the_vault:haunted_mansion": {
         "properties": {
           "filter": "quark:wraith",
           "filterShouldExclude": true,
@@ -2395,7 +2395,7 @@
           "icon": "the_vault:gui/modifiers/chunky"
         }
       },
-      "woldsvaults:phantasmal_mobs": {
+      "the_vault:phantasmal_mobs": {
         "properties": {
           "filter": "",
           "effect": "minecraft:invisibility",
@@ -2409,7 +2409,7 @@
           "icon": "woldsvaults:gui/modifiers/vexation"
         }
       },
-      "woldsvaults:fleet_footed_mobs": {
+      "the_vault:fleet_footed_mobs": {
         "properties": {
           "filter": "",
           "effect": "minecraft:speed",

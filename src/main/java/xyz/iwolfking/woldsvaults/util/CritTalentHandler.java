@@ -23,7 +23,7 @@ import xyz.iwolfking.woldsvaults.abilities.CritHitDamageTalent;
 
 import java.util.Random;
 
-@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone")
+@Mod.EventBusSubscriber(modid = "woldsvaults")
 public class CritTalentHandler {
 
     private static final Random RNG = new Random();

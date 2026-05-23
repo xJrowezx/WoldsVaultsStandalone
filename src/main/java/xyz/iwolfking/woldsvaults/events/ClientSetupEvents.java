@@ -13,7 +13,7 @@ import xyz.iwolfking.woldsvaults.init.client.ModEntityRenderers;
 import xyz.iwolfking.woldsvaults.init.client.ModScreens;
 import xyz.iwolfking.woldsvaults.particle.BloodParticle;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT}, modid = "woldsvaultsstandalone")
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT}, modid = "woldsvaults")
 public class ClientSetupEvents {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void setupClient(FMLClientSetupEvent event) {

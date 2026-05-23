@@ -171,3 +171,56 @@ Verification:
 Next runtime check:
 
 - Test a fresh Doomsayer vault and verify that task progress numbers, completed-cell highlights, and checkmarks update live without leaving/re-entering the vault.
+
+## 2026-05-23 Prompt 1
+
+User requested execution of the Codex handoff for WoldsVaults namespace normalization.
+
+Findings:
+
+- No standalone handoff markdown matching that exact title was present in this repo, and the earlier sibling repo paths referenced by older logs were not available on this machine, so the normalization scope was derived from the current standalone sources.
+- A subset of Wolds-added vault modifiers was still defined under `woldsvaults:*` in `src/main/resources/vhapi_configs/wold_modifiers.json`, while other standalone configs and Java already referenced the same logical modifiers under `the_vault:*`.
+- The mixed namespace set included `sparkling`, `wooden`, `spooky`, `poor`, `critical_mobs`, `chunky_mobs4`, `baby_mobs2`, `brutal_mobs`, `stunning`, `haunting`, `corrosive`, `jumpy_deluxe`, `super_stronk`, `rigged`, `rending`, `piercing`, `orematic`, `blessed`, `sweet_retro`, `haunted_mansion`, `phantasmal_mobs`, and `fleet_footed_mobs`.
+- This mismatch had already leaked into runtime-facing paths:
+  - `HauntedBraziersObjective` applies `VaultMod.id("haunting")`.
+  - `MixinWildSpawnerTileEntity` checks for `the_vault:spooky`.
+  - `UnusualModifierLib` already targets `the_vault:*` ids for several unusual affixes.
+
+Completed:
+
+- Renamed the affected modifier definition ids in `src/main/resources/vhapi_configs/wold_modifiers.json` from `woldsvaults:*` to `the_vault:*`.
+- Updated grouped modifier child references in `wold_modifiers.json` to the normalized ids.
+- Updated all remaining stale pool entries for that modifier subset in `src/main/resources/vhapi_configs/wold_modifier_pools.json`.
+- Left item/block/resource namespaces unchanged; this pass only normalized the mixed vault modifier ids.
+
+Verification:
+
+- Confirmed there are no remaining `woldsvaults:*` references for that normalized modifier subset in `src/main/resources/vhapi_configs` or `src/main/java`.
+- Build/test still pending after the normalization patch at the time of this note.
+
+## 2026-05-23 Prompt 2
+
+User added the actual handoff file `CODEX_HANDOFF_WOLDSVAULTS_NAMESPACE.md` and asked for that specific namespace-normalization pass to be executed.
+
+Findings:
+
+- The handoff scope is loader/build identity normalization, not a content namespace migration.
+- The repo was split between loader-facing `woldsvaultsstandalone` and content-facing `woldsvaults`.
+- Core mismatches confirmed by the handoff were present locally:
+  - `@Mod("woldsvaultsstandalone")` while `WoldsVaults.MODID` remained `woldsvaults`
+  - `gradle.properties` still had `mod_id=woldsvaultsstandalone`
+  - multiple `@Mod.EventBusSubscriber` annotations still targeted `woldsvaultsstandalone`
+  - `AddonLoader` still queried `ModList.get().getModFileById("woldsvaultsstandalone")`
+  - objective lang keys still only existed under `objective.woldsvaultsstandalone.*` / `vault_objective.woldsvaultsstandalone.*`
+
+Completed:
+
+- Switched loader-facing mod identity from `woldsvaultsstandalone` to `woldsvaults` in Java annotations and `gradle.properties`.
+- Updated `AddonLoader` to resolve the mod file by `WoldsVaults.MODID`.
+- Renamed the mixin config resource from `woldsvaultsstandalone.mixins.json` to `woldsvaults.mixins.json` and aligned the configured refmap name to `woldsvaults.refmap.json`.
+- Added `objective.woldsvaults.*` and `vault_objective.woldsvaults.*` lang aliases for the custom objectives while keeping the old `woldsvaultsstandalone` keys for compatibility.
+- Intentionally kept the jar basename on `woldsvaultsstandalone` in `build.gradle` so artifact filenames do not change as a side effect of the loader-id normalization.
+
+Verification:
+
+- Pending build/test after this namespace-normalization patch at the time of writing this note.

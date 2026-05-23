@@ -44,7 +44,7 @@ import xyz.iwolfking.woldsvaults.util.WoldEventHelper;
 import xyz.iwolfking.woldsvaults.util.WoldEventUtils;
 
 @Mod.EventBusSubscriber(
-        modid = "woldsvaultsstandalone"
+        modid = "woldsvaults"
 )
 public class LivingEntityEvents {
 

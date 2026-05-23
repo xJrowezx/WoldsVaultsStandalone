@@ -20,7 +20,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone")
+@Mod.EventBusSubscriber(modid = "woldsvaults")
 public final class DebugObjectiveCommands {
     private static final SimpleCommandExceptionType NOT_IN_VAULT = new SimpleCommandExceptionType(new TextComponent("You must be inside an active vault."));
     private static final SimpleCommandExceptionType NO_LISTENER = new SimpleCommandExceptionType(new TextComponent("No active vault listener was found for this player."));

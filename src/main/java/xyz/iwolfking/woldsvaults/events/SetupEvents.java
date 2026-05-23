@@ -18,7 +18,7 @@ import xyz.iwolfking.woldsvaults.init.ModItems;
 import java.io.IOException;
 import java.io.InputStream;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = "woldsvaultsstandalone")
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = "woldsvaults")
 public class SetupEvents {
 
 

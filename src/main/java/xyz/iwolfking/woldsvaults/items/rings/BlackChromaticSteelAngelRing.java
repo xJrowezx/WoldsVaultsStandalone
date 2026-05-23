@@ -28,7 +28,7 @@ import xyz.iwolfking.woldsvaults.items.rings.lib.ChromaticIronAngelRingInteracti
 import java.util.List;
 
 @Mod.EventBusSubscriber(
-        modid = "woldsvaultsstandalone",
+        modid = "woldsvaults",
         bus = Mod.EventBusSubscriber.Bus.MOD
 )
 @ObjectHolder("angelring")

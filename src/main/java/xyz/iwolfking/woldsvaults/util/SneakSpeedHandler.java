@@ -17,7 +17,7 @@ import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
 import java.util.UUID;
 import java.util.logging.Level;
 
-@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone")
+@Mod.EventBusSubscriber(modid = "woldsvaults")
 public class SneakSpeedHandler {
 
     private static final UUID SNEAK_SPEED_UUID = UUID.fromString("2d6b8f20-8b3e-4c6c-9b1e-7d5a4f2b9c11");

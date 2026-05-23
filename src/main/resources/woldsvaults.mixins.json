@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "xyz.iwolfking.woldsvaults.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "woldsvaultsstandalone.refmap.json",
+  "refmap": "woldsvaults.refmap.json",
   "plugin": "xyz.iwolfking.woldsvaults.mixin.plugins.WoldMixinPlugin",
   "mixins": [
     "LivingEntityAccessor",

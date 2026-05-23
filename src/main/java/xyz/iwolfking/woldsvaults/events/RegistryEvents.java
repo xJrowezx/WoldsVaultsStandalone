@@ -20,7 +20,7 @@ import xyz.iwolfking.woldsvaults.api.pehkui.CustomScaleTypes;
 import xyz.iwolfking.woldsvaults.init.*;
 import xyz.iwolfking.woldsvaults.init.client.ModModels;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = "woldsvaultsstandalone")
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = "woldsvaults")
 public class RegistryEvents {
     @SubscribeEvent
     public static void onBlockRegister(RegistryEvent.Register<Block> event) {

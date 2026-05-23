@@ -13,7 +13,7 @@
                 "weight": 60
               },
               {
-                "value": "woldsvaults:super_stronk",
+                "value": "the_vault:super_stronk",
                 "weight": 12
               },
               {
@@ -25,7 +25,7 @@
                 "weight": 12
               },
               {
-                "value": "woldsvaults:orematic",
+                "value": "the_vault:orematic",
                 "weight": 12
               },
               {
@@ -67,11 +67,11 @@
                 "weight": 35
               },
               {
-                "value": "woldsvaults:phantasmal_mobs",
+                "value": "the_vault:phantasmal_mobs",
                 "weight": 20
               },
               {
-                "value": "woldsvaults:fleet_footed_mobs",
+                "value": "the_vault:fleet_footed_mobs",
                 "weight": 30
               },
               {
@@ -91,15 +91,15 @@
                 "weight": 30
               },
               {
-                "value": "woldsvaults:haunted_mansion",
+                "value": "the_vault:haunted_mansion",
                 "weight": 35
               },
               {
-                "value": "woldsvaults:critical_mobs",
+                "value": "the_vault:critical_mobs",
                 "weight": 40
               },
               {
-                "value": "woldsvaults:brutal_mobs",
+                "value": "the_vault:brutal_mobs",
                 "weight": 40
               },
               {
@@ -127,11 +127,11 @@
                 "weight": 30
               },
               {
-                "value": "woldsvaults:rigged",
+                "value": "the_vault:rigged",
                 "weight": 10
               },
               {
-                "value": "woldsvaults:rending",
+                "value": "the_vault:rending",
                 "weight": 40
               },
               {
@@ -164,7 +164,7 @@
                 "weight": 20
               },
               {
-                "value": "woldsvaults:chunky_mobs4",
+                "value": "the_vault:chunky_mobs4",
                 "weight": 40
               },
               {
@@ -180,7 +180,7 @@
                 "weight": 30
               },
               {
-                "value": "woldsvaults:corrosive",
+                "value": "the_vault:corrosive",
                 "weight": 10
               },
               {
@@ -200,7 +200,7 @@
                 "weight": 30
               },
               {
-                "value": "woldsvaults:piercing",
+                "value": "the_vault:piercing",
                 "weight": 25
               },
               {
@@ -279,7 +279,7 @@
                 "weight": 2
               },
               {
-                "value": "woldsvaults:corrosive",
+                "value": "the_vault:corrosive",
                 "weight": 2
               }
             ]
@@ -296,7 +296,7 @@
             "max": 1,
             "pool": [
               {
-                "value": "woldsvaults:critical_mobs",
+                "value": "the_vault:critical_mobs",
                 "weight": 10
               },
               {
@@ -360,7 +360,7 @@
                 "weight": 8
               },
               {
-                "value": "woldsvaults:brutal_mobs",
+                "value": "the_vault:brutal_mobs",
                 "weight": 15
               },
               {
@@ -461,7 +461,7 @@
                 "weight": 4
               },
               {
-                "value": "woldsvaults:wooden",
+                "value": "the_vault:wooden",
                 "weight": 4
               },
               {
@@ -541,7 +541,7 @@
                 "weight": 4
               },
               {
-                "value": "woldsvaults:super_stronk",
+                "value": "the_vault:super_stronk",
                 "weight": 4
               },
               {
@@ -557,7 +557,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:rending",
+                "value": "the_vault:rending",
                 "weight": 4
               },
               {
@@ -565,7 +565,7 @@
                 "weight": 4
               },
               {
-                "value": "woldsvaults:orematic",
+                "value": "the_vault:orematic",
                 "weight": 4
               },
               {
@@ -585,7 +585,7 @@
                 "weight": 2
               },
               {
-                "value": "woldsvaults:blessed",
+                "value": "the_vault:blessed",
                 "weight": 2
               },
               {
@@ -613,7 +613,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:sweet_retro",
+                "value": "the_vault:sweet_retro",
                 "weight": 1
               },
               {
@@ -621,7 +621,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:haunted_mansion",
+                "value": "the_vault:haunted_mansion",
                 "weight": 1
               },
               {
@@ -641,11 +641,11 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:chunky_mobs4",
+                "value": "the_vault:chunky_mobs4",
                 "weight": 3
               },
               {
-                "value": "woldsvaults:rigged",
+                "value": "the_vault:rigged",
                 "weight": 3
               },
               {
@@ -988,7 +988,7 @@
                 "weight": 4
               },
               {
-                "value": "woldsvaults:orematic",
+                "value": "the_vault:orematic",
                 "weight": 1
               }
             ]
@@ -1302,11 +1302,11 @@
             "max": 1,
             "pool": [
               {
-                "value": "woldsvaults:orematic",
+                "value": "the_vault:orematic",
                 "weight": 1
               },
               {
-                "value": "woldsvaults:jumpy_deluxe",
+                "value": "the_vault:jumpy_deluxe",
                 "weight": 1
               },
               {
@@ -1370,11 +1370,11 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:sparkling",
+                "value": "the_vault:sparkling",
                 "weight": 1
               },
               {
-                "value": "woldsvaults:baby_mobs2",
+                "value": "the_vault:baby_mobs2",
                 "weight": 1
               }
             ]
@@ -1395,7 +1395,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:haunted_mansion",
+                "value": "the_vault:haunted_mansion",
                 "weight": 1
               },
               {
@@ -1403,7 +1403,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:sweet_retro",
+                "value": "the_vault:sweet_retro",
                 "weight": 1
               },
               {
@@ -1415,7 +1415,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:piercing",
+                "value": "the_vault:piercing",
                 "weight": 1
               },
               {
@@ -1427,7 +1427,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:corrosive",
+                "value": "the_vault:corrosive",
                 "weight": 1
               },
               {
@@ -1504,7 +1504,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:rending",
+                "value": "the_vault:rending",
                 "weight": 1
               },
               {
@@ -1540,7 +1540,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:brutal_mobs",
+                "value": "the_vault:brutal_mobs",
                 "weight": 1
               },
               {
@@ -1552,7 +1552,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:critical_mobs",
+                "value": "the_vault:critical_mobs",
                 "weight": 1
               },
               {
@@ -1572,11 +1572,11 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:haunting",
+                "value": "the_vault:haunting",
                 "weight": 1
               },
               {
-                "value": "woldsvaults:stunning",
+                "value": "the_vault:stunning",
                 "weight": 1
               },
               {
@@ -1584,7 +1584,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:critical_mobs",
+                "value": "the_vault:critical_mobs",
                 "weight": 1
               }
             ]
@@ -1801,7 +1801,7 @@
                 "weight": 1
               },
               {
-                "value": "woldsvaults:critical_mobs",
+                "value": "the_vault:critical_mobs",
                 "weight": 1
               },
               {
@@ -1890,7 +1890,7 @@
             "max": 1,
             "pool": [
               {
-                "value": "woldsvaults:stunning",
+                "value": "the_vault:stunning",
                 "weight": 1
               },
               {
@@ -1969,7 +1969,7 @@
             "max": 1,
             "pool": [
               {
-                "value": "woldsvaults:blessed",
+                "value": "the_vault:blessed",
                 "weight": 1
               },
               {

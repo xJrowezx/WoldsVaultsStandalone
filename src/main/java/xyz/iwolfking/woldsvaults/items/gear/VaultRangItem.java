@@ -63,7 +63,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
-@Mod.EventBusSubscriber(modid = "woldsvaultsstandalone")
+@Mod.EventBusSubscriber(modid = "woldsvaults")
 public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLeatherItem {
 
     public static final String TAG_RANG_FLIGHT_ID = "RangFlightId";

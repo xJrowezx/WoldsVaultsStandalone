@@ -34,7 +34,7 @@ import xyz.iwolfking.woldsvaults.objectives.data.BrutalBossesRegistry;
 import xyz.iwolfking.woldsvaults.objectives.data.EnchantedEventsRegistry;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("woldsvaultsstandalone")
+@Mod("woldsvaults")
 public class WoldsVaults {
 
     // Directly reference a slf4j logger
@@ -87,7 +87,7 @@ public class WoldsVaults {
         return ResourceLocation.fromNamespaceAndPath(MODID, path).toString();
     }
 
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = "woldsvaultsstandalone")
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = "woldsvaults")
     public static class Client {
         @OnlyIn(Dist.CLIENT)
         @SubscribeEvent
