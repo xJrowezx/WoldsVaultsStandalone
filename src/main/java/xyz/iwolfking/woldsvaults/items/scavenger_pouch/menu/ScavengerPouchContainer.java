@@ -34,6 +34,7 @@ public class ScavengerPouchContainer extends OverSizedSlotContainer {
     private int scavRows = 1;
     private final Inventory inventory;
     private final int scavPouchSlot;
+    private final ItemStack openedPouchStack;
 
     private final List<Runnable> slotListeners = new ArrayList<>();
     private final List<ScavengerItemSlot> scavItemSlots = new ArrayList<>();
@@ -42,6 +43,7 @@ public class ScavengerPouchContainer extends OverSizedSlotContainer {
         super(ModContainers.SCAVENGER_POUCH_CONTAINER, id, playerInventory.player);
         this.inventory = playerInventory;
         this.scavPouchSlot = slot;
+        this.openedPouchStack = playerInventory.getItem(slot);
 
         if (!playerInventory.player.level.isClientSide) {
             this.slotListeners.add(this::updateScavengerItems);
@@ -210,7 +212,9 @@ public class ScavengerPouchContainer extends OverSizedSlotContainer {
 
     public boolean hasScavPouch() {
         ItemStack stack = this.inventory.getItem(this.scavPouchSlot);
-        return !stack.isEmpty() && stack.getItem() instanceof ItemScavengerPouch;
+        return !stack.isEmpty()
+            && stack == this.openedPouchStack
+            && stack.getItem() instanceof ItemScavengerPouch;
     }
 
     public Optional<ItemStack> getScavengerPouchStack() {

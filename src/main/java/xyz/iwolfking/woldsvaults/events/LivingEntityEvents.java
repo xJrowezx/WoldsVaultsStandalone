@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.events;
 import iskallia.vault.block.CoinPileBlock;
 import iskallia.vault.block.VaultChestBlock;
 import iskallia.vault.block.VaultOreBlock;
+import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.entity.VaultBoss;
 import iskallia.vault.entity.champion.ChampionLogic;
@@ -48,6 +49,7 @@ import xyz.iwolfking.woldsvaults.util.WoldEventUtils;
 )
 public class LivingEntityEvents {
 
+    private static final java.util.Random random = new java.util.Random();
     private static SoundEvent ANCHOR_SLAM_SOUND = null;
     private static SoundEvent ALTERNATIVE_SOUND = null;
 
@@ -222,6 +224,18 @@ public class LivingEntityEvents {
                     ItemStack offHand = event.getPlayer().getOffhandItem();
                     if (!ServerVaults.get(world).isEmpty() || !(offHand.getItem() instanceof VaultGearItem)) {
                         if (offHand.getItem() instanceof VaultLootSackItem) {
+                            if (event.getState().getBlock() instanceof VaultChestBlock chestBlock && world.getBlockEntity(event.getPos()) instanceof VaultChestTileEntity chest) {
+                                if (chestBlock.hasStepBreaking(chest)) {
+                                    if (random.nextFloat() < 0.75F) {
+                                        return;
+                                    }
+                                }
+                            }
+                            if (event.getState().getBlock() instanceof VaultOreBlock) {
+                                if (random.nextFloat() < 0.75F) {
+                                    return;
+                                }
+                            }
                             int damage = (int)CommonEvents.PLAYER_STAT.invoke(PlayerStat.DURABILITY_DAMAGE, player, 1.0F).getValue();
                             if (damage <= 1) {
                                 damage = 1;
