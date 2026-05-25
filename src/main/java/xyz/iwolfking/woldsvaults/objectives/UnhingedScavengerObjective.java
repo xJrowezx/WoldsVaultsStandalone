@@ -4,6 +4,8 @@ import iskallia.vault.VaultMod;
 import iskallia.vault.block.DivineAltarBlock;
 import iskallia.vault.block.PlaceholderBlock;
 import iskallia.vault.block.entity.ScavengerAltarTileEntity;
+import iskallia.vault.container.oversized.OverSizedInventory;
+import iskallia.vault.container.oversized.OverSizedItemStack;
 import iskallia.vault.core.Version;
 import iskallia.vault.core.data.adapter.Adapters;
 import iskallia.vault.core.data.adapter.basic.EnumAdapter;
@@ -35,9 +37,12 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fml.loading.LoadingModList;
+import xyz.iwolfking.woldsvaults.api.util.ObjectiveHelper;
 import xyz.iwolfking.woldsvaults.configs.UnhingedScavengerConfig;
+import xyz.iwolfking.woldsvaults.items.ItemScavengerPouch;
 
 
 import java.util.Iterator;
@@ -73,6 +78,8 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
+        ObjectiveHelper.handleAddingNormalizedToVault(vault, world);
+
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, data -> {
             this.ifPresent(OBJECTIVE_PROBABILITY, probability -> data.setProbability(probability));
         });
@@ -112,6 +119,48 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
             }
         });
 
+        CommonEvents.SCAVENGER_ALTAR_CONSUME.register(this, data -> {
+            if (!(data.getTile() instanceof ScavengerAltarTileEntity entity)) return;
+            if (!(entity.getHeldItem().getItem() instanceof ItemScavengerPouch)) return;
+
+            ItemStack pouch = entity.getHeldItem();
+            OverSizedInventory inv = ItemScavengerPouch.getInventory(pouch);
+            List<ScavengerGoal> goals = this.get(GOALS).get(entity.getItemPlacedBy());
+            if (goals == null) return;
+
+            Listener listener = vault.get(Vault.LISTENERS).get(entity.getItemPlacedBy());
+            boolean changed = false;
+
+            for (int i = 0; i < inv.getOverSizedContents().size(); i++) {
+                OverSizedItemStack os = inv.getOverSizedContents().get(i);
+                if (os.isEmpty()) continue;
+
+                ItemStack temp = os.overSizedStack().copy();
+                if (!temp.hasTag() || !temp.getTag().contains("VaultId")) continue;
+
+                if (!temp.getTag().getString("VaultId").equals(vault.get(Vault.ID).toString())) {
+                    if (listener == null || !listener.getPlayer().map(ServerPlayer::isCreative).orElse(false)) {
+                        continue;
+                    }
+                }
+
+                int before = temp.getCount();
+                for (ScavengerGoal goal : goals) {
+                    goal.consume(temp);
+                }
+
+                int consumed = before - temp.getCount();
+                if (consumed > 0) {
+                    ItemScavengerPouch.getInventory(pouch).removeItem(i, consumed);
+                    changed = true;
+                }
+            }
+
+            if (changed) {
+                ItemScavengerPouch.getInventory(pouch).save();
+            }
+        });
+
         for (ScavengeTask task : (this.getOr(CONFIG, Config.DEFAULT)).get().getTasks()) {
             task.initServer(world, vault, this);
         }
@@ -135,9 +184,7 @@ public class UnhingedScavengerObjective extends ScavengerObjective {
     private void generateGoal(Vault vault, Listener listener) {
         ScavengerGoal.ObjList list = new ScavengerGoal.ObjList();
         this.get(GOALS).put(listener.get(Listener.ID), list);
-        boolean pvp = ((Objectives) vault.get(Vault.OBJECTIVES)).forEach(PvPObjective.class, objective -> true);
-        long seed = pvp ? vault.get(Vault.SEED) : vault.get(Vault.SEED) ^ listener.get(Listener.ID).getMostSignificantBits();
-        JavaRandom random = JavaRandom.ofInternal(seed);
+        JavaRandom random = JavaRandom.ofInternal(vault.get(Vault.SEED) ^ listener.get(Listener.ID).getMostSignificantBits());
         list.addAll((this.getOr(CONFIG, UnhingedScavengerObjective.Config.DEFAULT)).get().generateGoals(this.getOr(ENTRY_POOL, VaultMod.id("default")), vault.get(Vault.LEVEL).get(), random));
     }
 

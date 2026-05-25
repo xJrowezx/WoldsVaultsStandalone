@@ -68,7 +68,7 @@ import net.minecraftforge.fml.loading.LoadingModList;
 import net.minecraftforge.network.PacketDistributor;
 import vazkii.quark.content.mobs.entity.Wraith;
 import xyz.iwolfking.woldsvaults.WoldsVaults;
-import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
+import xyz.iwolfking.woldsvaults.api.util.ObjectiveHelper;
 
 import java.util.*;
 
@@ -100,17 +100,11 @@ public class HauntedBraziersObjective extends MonolithObjective {
 
     @Override
     public void initServer(VirtualWorld world, Vault vault) {
-        boolean hasGeneratedModifiers = false;
-        for(VaultModifier<?> modifier : vault.get(Vault.MODIFIERS).getModifiers()) {
-            if(modifier.getId().equals(WoldsVaults.id("ghost_town"))) {
-                hasGeneratedModifiers = true;
-            }
-        }
-
-        if(!hasGeneratedModifiers) {
-            VaultModifierUtils.addModifier(vault, WoldsVaults.id("ghost_town"), 1);
-            VaultModifierUtils.addModifier(vault, VaultMod.id("haunting"), 1);
-        }
+        ObjectiveHelper.handleAddingNormalizedToVault(vault, world);
+        ObjectiveHelper.addInitModifiersToVault(vault, modifiers -> {
+            modifiers.add(WoldsVaults.id("ghost_town"));
+            modifiers.add(VaultMod.id("haunting"));
+        });
 
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> {
             if (data.getVault() == vault) {
@@ -225,14 +219,6 @@ public class HauntedBraziersObjective extends MonolithObjective {
                     }
                 }
             }
-        });
-        CommonEvents.BLOCK_SET.at(BlockSetEvent.Type.RETURN).in(world).register(this, (data) -> {
-            PartialTile target = PartialTile.of(PartialBlockState.of(ModBlocks.PLACEHOLDER), PartialCompoundNbt.empty());
-            target.getState().set(PlaceholderBlock.TYPE, PlaceholderBlock.Type.OBJECTIVE);
-            if (target.isSubsetOf(PartialTile.of(data.getState()))) {
-                data.getWorld().setBlock(data.getPos(), ModBlocks.MONOLITH.defaultBlockState(), 3);
-            }
-
         });
         CommonEvents.MONOLITH_UPDATE.register(this, (data) -> {
             if (data.getWorld() == world) {

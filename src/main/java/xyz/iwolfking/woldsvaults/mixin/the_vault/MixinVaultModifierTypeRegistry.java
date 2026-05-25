@@ -22,5 +22,7 @@ public class MixinVaultModifierTypeRegistry {
         MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/retro_spawn_modifier"), VaultModifierType.of(RetroSpawnVaultModifier.class, RetroSpawnVaultModifier.Properties.class, RetroSpawnVaultModifier::new));
         MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/experience_multiplier"), VaultModifierType.of(ExperienceMultiplierModifier.class, ExperienceMultiplierModifier.Properties.class, ExperienceMultiplierModifier::new));
         MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/difficulty_lock"), VaultModifierType.of(DifficultyLockModifier.class, DifficultyLockModifier.Properties.class, DifficultyLockModifier::new));
+        MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/enchanted_elixir_tags"), VaultModifierType.of(EnchantedElixirPoolModifier.class, EnchantedElixirPoolModifier.Properties.class, EnchantedElixirPoolModifier::new));
+        MODIFIER_TYPE_REGISTRY.put(WoldsVaults.id("modifier_type/enchanted_elixir_event_count"), VaultModifierType.of(EnchantedElixirEventAmountModifier.class, EnchantedElixirEventAmountModifier.Properties.class, EnchantedElixirEventAmountModifier::new));
     }
 }

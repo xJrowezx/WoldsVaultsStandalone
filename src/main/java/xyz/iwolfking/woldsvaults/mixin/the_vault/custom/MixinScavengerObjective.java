@@ -34,8 +34,10 @@ public abstract class MixinScavengerObjective extends Objective {
 
             List<ScavengerGoal> goals = this.get(GOALS)
                     .get(entity.getItemPlacedBy());
+            if (goals == null) return;
 
             boolean changed = false;
+            Listener listener = vault.get(Vault.LISTENERS).get(entity.getItemPlacedBy());
 
             for(int i = 0; i < inv.getOverSizedContents().size(); i++) {
                 OverSizedItemStack os = inv.getOverSizedContents().get(i);
@@ -51,12 +53,8 @@ public abstract class MixinScavengerObjective extends Objective {
                     continue;
                 }
 
-                Listener listener = vault.get(Vault.LISTENERS).get(entity.getItemPlacedBy());
-
-
-
                 if(!temp.getTag().getString("VaultId").equals(vault.get(Vault.ID).toString())) {
-                    if(!listener.getPlayer().map(ServerPlayer::isCreative).orElse(false)) {
+                    if(listener == null || !listener.getPlayer().map(ServerPlayer::isCreative).orElse(false)) {
                         continue;
                     }
                 }

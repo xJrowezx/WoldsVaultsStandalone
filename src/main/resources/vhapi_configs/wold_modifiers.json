@@ -106,6 +106,18 @@
           "descriptionFormatted": "+%d%% Catalyst Fragments",
           "icon": "the_vault:gui/modifiers/more_catalyst"
         }
+      },
+      "woldsvaults:sparkling": {
+        "properties": {
+          "chance": 0.05
+        },
+        "display": {
+          "name": "Sparkling",
+          "color": "#FC00E3",
+          "description": "+5% Catalyst Fragments",
+          "descriptionFormatted": "+%d%% Catalyst Fragments",
+          "icon": "the_vault:gui/modifiers/more_catalyst"
+        }
       }
     },
     "the_vault:modifier_type/chance_chest_trap": {
@@ -192,7 +204,34 @@
           "icon": "the_vault:gui/modifiers/wooden"
         }
       },
+      "woldsvaults:wooden": {
+        "properties": {
+          "output": "the_vault:placeholder[type=wooden_chest]",
+          "attemptsPerChunk": 8,
+          "requireConditions": true
+        },
+        "display": {
+          "name": "Bonus Wooden",
+          "color": "#fbcc3f",
+          "description": "+1 Set of Wooden Chests",
+          "icon": "the_vault:gui/modifiers/wooden"
+        }
+      },
       "the_vault:spooky": {
+        "properties": {
+          "output": "the_vault:wild_spawner",
+          "attemptsPerChunk": 16,
+          "requireConditions": true
+        },
+        "display": {
+          "name": "Spooky",
+          "color": "#b3b3cc",
+          "description": "Ghosts spawn wildly inside this vault",
+          "descriptionFormatted": "+1 Set of Wildly Spawned Wraiths",
+          "icon": "woldsvaults:gui/modifiers/spooky"
+        }
+      },
+      "woldsvaults:spooky": {
         "properties": {
           "output": "the_vault:wild_spawner",
           "attemptsPerChunk": 16,
@@ -343,6 +382,18 @@
           "descriptionFormatted": "-%d%% Item Quantity",
           "icon": "the_vault:gui/modifiers/poor"
         }
+      },
+      "woldsvaults:poor": {
+        "properties": {
+          "percentage": -0.25
+        },
+        "display": {
+          "name": "Poor",
+          "color": "#38C9C0",
+          "description": "-25% Item Quantity",
+          "descriptionFormatted": "-%d%% Item Quantity",
+          "icon": "the_vault:gui/modifiers/poor"
+        }
       }
     },
     "the_vault:modifier_type/loot_item_rarity": {
@@ -388,7 +439,35 @@
           "icon": "woldsvaults:gui/modifiers/destructive"
         }
       },
+      "woldsvaults:critical_mobs": {
+        "properties": {
+          "type": "crit_chance_additive",
+          "amount": 0.15,
+          "attributeStackingStrategy": "STACK"
+        },
+        "display": {
+          "name": "Critical",
+          "color": "#dc693c",
+          "description": "+15% Mob Critical Strike Chance",
+          "descriptionFormatted": "+%d%% Mob Critical Strike Chance",
+          "icon": "woldsvaults:gui/modifiers/destructive"
+        }
+      },
       "the_vault:chunky_mobs4": {
+        "properties": {
+          "type": "max_health_additive_percentile",
+          "amount": 1.0,
+          "attributeStackingStrategy": "STACK"
+        },
+        "display": {
+          "name": "Chungus Mobs",
+          "color": "#dc693c",
+          "description": "+100% Mob Health",
+          "descriptionFormatted": "+%d%% Mob Health",
+          "icon": "the_vault:gui/modifiers/chunky"
+        }
+      },
+      "woldsvaults:chunky_mobs4": {
         "properties": {
           "type": "max_health_additive_percentile",
           "amount": 1.0,
@@ -416,7 +495,35 @@
           "icon": "the_vault:gui/modifiers/chunky"
         }
       },
+      "woldsvaults:baby_mobs2": {
+        "properties": {
+          "type": "max_health_additive_percentile",
+          "amount": -0.2,
+          "attributeStackingStrategy": "STACK"
+        },
+        "display": {
+          "name": "Lean Mobs",
+          "color": "#D4E157",
+          "description": "-20% Mob Health",
+          "descriptionFormatted": "-%d%% Mob Health",
+          "icon": "the_vault:gui/modifiers/chunky"
+        }
+      },
       "the_vault:brutal_mobs": {
+        "properties": {
+          "type": "attack_damage_additive_percentile",
+          "amount": 0.5,
+          "attributeStackingStrategy": "STACK"
+        },
+        "display": {
+          "name": "Brutal Mobs",
+          "color": "#da6d5a",
+          "description": "+50% Mob Damage",
+          "descriptionFormatted": "+%d%% Mob Damage",
+          "icon": "the_vault:gui/modifiers/furious"
+        }
+      },
+      "woldsvaults:brutal_mobs": {
         "properties": {
           "type": "attack_damage_additive_percentile",
           "amount": 0.5,
@@ -476,7 +583,37 @@
           "icon": "woldsvaults:gui/modifiers/hex_stunning"
         }
       },
+      "woldsvaults:stunning": {
+        "properties": {
+          "effect": "alexsmobs:fear",
+          "effectAmplifier": 0,
+          "effectDurationTicks": 20,
+          "onHitApplyChance": 0.02
+        },
+        "display": {
+          "name": "Stunning",
+          "color": "#5A5851",
+          "description": "+2% increased chance mobs Stun on hit",
+          "descriptionFormatted": "+%d%% increased chance mobs Stun on hit",
+          "icon": "woldsvaults:gui/modifiers/hex_stunning"
+        }
+      },
       "the_vault:haunting": {
+        "properties": {
+          "effect": "the_vault:time_acceleration",
+          "effectAmplifier": 1,
+          "effectDurationTicks": 20,
+          "onHitApplyChance": 0.05
+        },
+        "display": {
+          "name": "Haunting",
+          "color": "#5A5851",
+          "description": "+5% increased chance mobs will void a small bit of time on hit",
+          "descriptionFormatted": "+%d%% increased chance mobs will void a small bit of time on hit",
+          "icon": "woldsvaults:gui/modifiers/hex_wither"
+        }
+      },
+      "woldsvaults:haunting": {
         "properties": {
           "effect": "the_vault:time_acceleration",
           "effectAmplifier": 1,
@@ -579,6 +716,18 @@
           "icon": "woldsvaults:gui/modifiers/super_frail"
         }
       },
+      "woldsvaults:corrosive": {
+        "properties": {
+          "durabilityDamageTakenMultiplier": 2.0
+        },
+        "display": {
+          "name": "Corrosive",
+          "color": "#7B7E7F",
+          "description": "+100% Durability Damage",
+          "descriptionFormatted": "+%d%% Durability Damage",
+          "icon": "woldsvaults:gui/modifiers/super_frail"
+        }
+      },
       "woldsvaults:plated": {
         "properties": {
           "durabilityDamageTakenMultiplier": 0.6
@@ -623,6 +772,21 @@
           "icon": "woldsvaults:gui/modifiers/jump_boost"
         }
       },
+      "woldsvaults:jumpy_deluxe": {
+        "properties": {
+          "effect": "minecraft:jump_boost",
+          "effectAmplifier": 4,
+          "operator": "add",
+          "type": "icon_only"
+        },
+        "display": {
+          "name": "Jumpy",
+          "color": "#00CDFF",
+          "description": "+4 Jump Boost",
+          "descriptionFormatted": "+%d Jump Boost",
+          "icon": "woldsvaults:gui/modifiers/jump_boost"
+        }
+      },
       "woldsvaults:tailwind": {
         "properties": {
           "effect": "minecraft:speed",
@@ -639,6 +803,21 @@
         }
       },
       "the_vault:super_stronk": {
+        "properties": {
+          "effect": "minecraft:strength",
+          "effectAmplifier": 3,
+          "operator": "add",
+          "type": "icon_only"
+        },
+        "display": {
+          "name": "Super Stronk",
+          "color": "#d73b46",
+          "description": "+3 Strength",
+          "descriptionFormatted": "+%d Strength",
+          "icon": "the_vault:gui/modifiers/stronk"
+        }
+      },
+      "woldsvaults:super_stronk": {
         "properties": {
           "effect": "minecraft:strength",
           "effectAmplifier": 3,
@@ -766,7 +945,33 @@
           "icon": "the_vault:gui/modifiers/trapped"
         }
       },
+      "woldsvaults:rigged": {
+        "properties": {
+          "stat": "trap_disarm_chance",
+          "addend": -1.0
+        },
+        "display": {
+          "name": "Rigged",
+          "color": "#CB866D",
+          "description": "-100% Trap Disarm & Increases traps while below 0%",
+          "descriptionFormatted": "%d%% Trap Disarm",
+          "icon": "the_vault:gui/modifiers/trapped"
+        }
+      },
       "the_vault:rending": {
+        "properties": {
+          "stat": "cooldown_reduction",
+          "addend": -0.25
+        },
+        "display": {
+          "name": "Rended",
+          "color": "#6DACB5",
+          "description": "-25% Cooldown Reduction",
+          "descriptionFormatted": "%d%% Cooldown Reduction",
+          "icon": "the_vault:gui/modifiers/inert"
+        }
+      },
+      "woldsvaults:rending": {
         "properties": {
           "stat": "cooldown_reduction",
           "addend": -0.25
@@ -818,7 +1023,33 @@
           "icon": "the_vault:gui/modifiers/vulnerable"
         }
       },
+      "woldsvaults:piercing": {
+        "properties": {
+          "stat": "resistance",
+          "addend": -0.5
+        },
+        "display": {
+          "name": "Piercing",
+          "color": "#CA9A5B",
+          "description": "-50% Resistance",
+          "descriptionFormatted": "%d%% Resistance",
+          "icon": "the_vault:gui/modifiers/vulnerable"
+        }
+      },
       "the_vault:orematic": {
+        "properties": {
+          "stat": "copiously",
+          "addend": 0.25
+        },
+        "display": {
+          "name": "Oremania",
+          "color": "#F74780",
+          "description": "+25% Copiously",
+          "descriptionFormatted": "%d%% Copiously",
+          "icon": "woldsvaults:gui/modifiers/orematic"
+        }
+      },
+      "woldsvaults:orematic": {
         "properties": {
           "stat": "copiously",
           "addend": 0.25
@@ -1002,6 +1233,22 @@
         }
       },
       "the_vault:blessed": {
+        "properties": {
+          "children": {
+            "woldsvaults:idona_blessing": 1,
+            "woldsvaults:tenos_blessing": 1,
+            "woldsvaults:wendarr_blessing": 1,
+            "woldsvaults:velara_blessing": 1
+          }
+        },
+        "display": {
+          "name": "Blessed",
+          "color": "#3ffbf4",
+          "description": "Adds 30% of each God's affinity.",
+          "icon": "the_vault:gui/modifiers/god_token_wendarr"
+        }
+      },
+      "woldsvaults:blessed": {
         "properties": {
           "children": {
             "woldsvaults:idona_blessing": 1,
@@ -1987,6 +2234,77 @@
           "icon": "the_vault:gui/modifiers/candy"
         }
       },
+      "woldsvaults:sweet_retro": {
+        "properties": {
+          "chance": 0.15,
+          "ticksPerCheck": 120,
+          "amounts": [
+            {
+              "value": 2,
+              "weight": 2
+            },
+            {
+              "value": 4,
+              "weight": 4
+            },
+            {
+              "value": 6,
+              "weight": 1
+            }
+          ],
+          "entities": [
+            {
+              "value": {
+                "type": "the_vault:vault_blue_gummy_soldier",
+                "randomMotion": false
+              },
+              "weight": 8
+            },
+            {
+              "value": {
+                "type": "the_vault:vault_green_gummy_soldier",
+                "randomMotion": false
+              },
+              "weight": 10
+            },
+            {
+              "value": {
+                "type": "the_vault:vault_red_gummy_soldier",
+                "randomMotion": false
+              },
+              "weight": 6
+            },
+            {
+              "value": {
+                "type": "the_vault:vault_yellow_gummy_soldier",
+                "randomMotion": false
+              },
+              "weight": 12
+            },
+            {
+              "value": {
+                "type": "auxiliaryblocks:gingerbread_man",
+                "randomMotion": false
+              },
+              "weight": 6
+            },
+            {
+              "value": {
+                "type": "auxiliaryblocks:gingerbread_man_small",
+                "randomMotion": false
+              },
+              "weight": 6
+            }
+          ],
+          "cap": 5
+        },
+        "display": {
+          "name": "Sweet Retro",
+          "color": "#33691E",
+          "description": "Candy mobs wildly spawn constantly.",
+          "icon": "the_vault:gui/modifiers/candy"
+        }
+      },
       "woldsvaults:classic_retro": {
         "properties": {
           "chance": 0.16,
@@ -2231,6 +2549,34 @@
           "icon": "woldsvaults:gui/modifiers/haunted"
         }
       },
+      "woldsvaults:haunted_mansion": {
+        "properties": {
+          "filter": "quark:wraith",
+          "filterShouldExclude": true,
+          "chance": 0.25,
+          "amounts": [
+            {
+              "value": 1,
+              "weight": 2
+            }
+          ],
+          "entities": [
+            {
+              "value": {
+                "type": "quark:wraith",
+                "randomMotion": false
+              },
+              "weight": 2
+            }
+          ]
+        },
+        "display": {
+          "name": "Haunted Grounds",
+          "color": "#33691E",
+          "description": "Mobs sometimes spawn spooky ghosts on death.",
+          "icon": "woldsvaults:gui/modifiers/haunted"
+        }
+      },
       "woldsvaults:fungal_infestation": {
         "properties": {
           "filter": "the_vault:smolcap",
@@ -2409,7 +2755,35 @@
           "icon": "woldsvaults:gui/modifiers/vexation"
         }
       },
+      "woldsvaults:phantasmal_mobs": {
+        "properties": {
+          "filter": "",
+          "effect": "minecraft:invisibility",
+          "amplifier": 0,
+          "chance": 0.1
+        },
+        "display": {
+          "name": "Phantasmal Mobs",
+          "color": "#a996ca",
+          "description": "Mobs in this vault spawn invisible sometimes.",
+          "icon": "woldsvaults:gui/modifiers/vexation"
+        }
+      },
       "the_vault:fleet_footed_mobs": {
+        "properties": {
+          "filter": "",
+          "effect": "minecraft:speed",
+          "amplifier": 3,
+          "chance": 0.15
+        },
+        "display": {
+          "name": "Fleet Footed Mobs",
+          "color": "#a996ca",
+          "description": "Mobs in this vault spawn with much greater speed sometimes.",
+          "icon": "woldsvaults:gui/modifiers/rush"
+        }
+      },
+      "woldsvaults:fleet_footed_mobs": {
         "properties": {
           "filter": "",
           "effect": "minecraft:speed",
@@ -2701,6 +3075,34 @@
           "color": "#FF9100",
           "description": "Highlights Wendarr God Altars in this vault",
           "icon": "the_vault:gui/modifiers/god_token_wendarr"
+        }
+      }
+    },
+    "woldsvaults:modifier_type/enchanted_elixir_tags": {
+      "woldsvaults:all_bad_enchanted_elixir": {
+        "properties": {
+          "allowedTags": [
+            "NEGATIVE"
+          ]
+        },
+        "display": {
+          "name": "All Bad Enchanted Elixir",
+          "color": "#47402d",
+          "description": "Enchanted Elixir events are always negative",
+          "icon": "the_vault:gui/modifiers/impossible"
+        }
+      }
+    },
+    "woldsvaults:modifier_type/enchanted_elixir_event_count": {
+      "woldsvaults:enchanted_elixir_50_events": {
+        "properties": {
+          "count": 50
+        },
+        "display": {
+          "name": "Events Extravaganza",
+          "color": "#47402d",
+          "description": "Enchanted Elixir will roll 50 events",
+          "icon": "the_vault:gui/modifiers/impossible"
         }
       }
     },

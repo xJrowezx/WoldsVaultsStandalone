@@ -27,6 +27,7 @@ import xyz.iwolfking.woldsvaults.events.SetupEvents;
 import xyz.iwolfking.woldsvaults.init.ModCustomVaultGearEntries;
 import xyz.iwolfking.woldsvaults.init.ModCustomVaultObjectiveEntries;
 import xyz.iwolfking.woldsvaults.init.ModCrystalObjectives;
+import xyz.iwolfking.woldsvaults.init.ModGameRules;
 import xyz.iwolfking.woldsvaults.init.ModVaultFilterAttributes;
 import xyz.iwolfking.woldsvaults.models.AdditionalModels;
 import xyz.iwolfking.woldsvaults.network.PacketHandler;
@@ -62,6 +63,7 @@ public class WoldsVaults {
 
     private void setup(final FMLCommonSetupEvent event) {
         PacketHandler.init();
+        ModGameRules.initialize();
         ModVaultFilterAttributes.initAttributes();
 
         LivingEntityEvents.init();

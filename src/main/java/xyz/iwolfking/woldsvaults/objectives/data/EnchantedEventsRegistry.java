@@ -14,6 +14,7 @@ import samebutdifferent.ecologics.registry.ModMobEffects;
 import vazkii.quark.content.mobs.module.WraithModule;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 import xyz.iwolfking.woldsvaults.init.ModItems;
+import xyz.iwolfking.woldsvaults.api.core.vault_events.lib.EventTag;
 import xyz.iwolfking.woldsvaults.objectives.data.lib.events.*;
 import xyz.iwolfking.woldsvaults.objectives.data.lib.events.unique.LaCucarachaSpecialEnchantedEvent;
 import xyz.iwolfking.woldsvaults.objectives.data.lib.events.unique.PlayerSwapEnchantedEvent;
@@ -185,6 +186,8 @@ public class EnchantedEventsRegistry {
     }
 
     public static void register(BasicEnchantedEvent event, Double weight, boolean isOmega, boolean isPositive) {
+        event.isOmega = isOmega;
+        event.isPositive = isPositive;
         ENCHANTED_EVENTS.add(event, weight);
         if(isOmega) {
             OMEGA_ENCHANTED_EVENTS.add(event, 1.0);
@@ -196,6 +199,32 @@ public class EnchantedEventsRegistry {
         else {
             NEGATIVE_ENCHANTED_EVENTS.add(event, weight);
         }
+    }
+
+    public static WeightedList<BasicEnchantedEvent> getEventsWithTags(List<EventTag> tags) {
+        WeightedList<BasicEnchantedEvent> events = new WeightedList<>();
+
+        ENCHANTED_EVENTS.entrySet().stream()
+                .filter(entry -> matchesTags(entry.getKey(), tags))
+                .forEach(entry -> events.add(entry.getKey(), entry.getValue()));
+
+        return events;
+    }
+
+    private static boolean matchesTags(BasicEnchantedEvent event, List<EventTag> tags) {
+        for (EventTag tag : tags) {
+            if (tag == EventTag.OMEGA && !event.isOmega) {
+                return false;
+            }
+            if (tag == EventTag.POSITIVE && !event.isPositive) {
+                return false;
+            }
+            if (tag == EventTag.NEGATIVE && event.isPositive) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static WeightedList<BasicEnchantedEvent> getEvents() {

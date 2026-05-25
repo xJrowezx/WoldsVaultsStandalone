@@ -52,10 +52,13 @@ import xyz.iwolfking.woldsvaults.events.vault.BrewingAltarBrewEvent;
 import xyz.iwolfking.woldsvaults.events.vault.WoldCommonEvents;
 import xyz.iwolfking.woldsvaults.client.events.WoldClientEvents;
 import xyz.iwolfking.woldsvaults.init.ModConfigs;
+import xyz.iwolfking.woldsvaults.init.ModGameRules;
 import xyz.iwolfking.woldsvaults.items.alchemy.AlchemyIngredientItem;
 import xyz.iwolfking.woldsvaults.items.alchemy.CatalystItem;
 import xyz.iwolfking.woldsvaults.objectives.data.alchemy.AlchemyTasks;
-import xyz.iwolfking.woldsvaults.util.VaultModifierUtils;
+import xyz.iwolfking.woldsvaults.api.util.GameruleHelper;
+import xyz.iwolfking.woldsvaults.api.util.SigilUtils;
+import xyz.iwolfking.woldsvaults.api.util.VaultModifierUtils;
 
 import java.util.*;
 
@@ -162,6 +165,8 @@ public class AlchemyObjective extends Objective {
         CommonEvents.OBJECTIVE_PIECE_GENERATION.register(this, (data) -> this.ifPresent(OBJECTIVE_PROBABILITY, (probability) -> data.setProbability((double)probability)));
         CommonEvents.ENTITY_DROPS.register(this, (data) -> {handleChampionDeath(data, vault, world);});
         WoldCommonEvents.BREWING_ALTAR_BREW_EVENT.register(this, (data -> handleBrewEvent(data, vault, world)));
+
+        SigilUtils.addStacksFromSigil(vault);
 
         // Call super.tickListener() on listener leave, to generate a crate at the end so we can process all the crate quantity modifier at the end
         // there is probably a better way, but i am lazy, lmao
@@ -439,7 +444,7 @@ public class AlchemyObjective extends Objective {
                 );
 
 
-                if(VaultModifierUtils.hasCountOfModifiers(vault, VaultMod.id("crate_quantity"), this.get(OVERSTACK_ALLOWANCE))) {
+                if(!GameruleHelper.isEnabled(ModGameRules.UNLIMITED_ALCHEMY_OVERSTACKING, world.getLevel()) && VaultModifierUtils.hasCountOfModifiers(vault, VaultMod.id("crate_quantity"), this.get(OVERSTACK_ALLOWANCE))) {
                     this.set(FULLY_OVERSTACKED, true);
                     world.players().forEach(player ->
                             player.sendMessage(
