@@ -121,7 +121,7 @@ public class ZealotObjective extends Objective {
             int current = this.get(COUNT);
             int total = this.get(TARGET);
             Component txt = (new TextComponent(String.valueOf(current))).withStyle(ChatFormatting.WHITE).append((new TextComponent(" / ")).withStyle(ChatFormatting.WHITE)).append((new TextComponent(String.valueOf(total))).withStyle(ChatFormatting.WHITE));
-            int midX = window.getGuiScaledWidth() / 2;
+            int midX = 0;
             matrixStack.pushPose();
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
