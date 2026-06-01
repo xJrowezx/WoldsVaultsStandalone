@@ -1,29 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "M#M",
-    "EAE",
-    "MSM"
+    "E#E",
+    "ESE",
+    "EBE"
   ],
   "key": {
     "#": {
       "item": "the_vault:vault_rock"
     },
     "E": {
-      "item": "the_vault:eternal_soul"
-    },
-    "A": {
-      "item": "minecraft:iron_sword"
+      "item": "the_vault:vault_essence"
     },
     "S": {
-      "type": "forge:nbt",
-      "item": "the_vault:god_token",
-      "nbt": {
-        "type": "idona"
-      }
+      "item": "the_vault:crystal_seal_empty"
     },
-    "M": {
-      "item": "the_vault:memory_powder"
+    "B": {
+      "item": "minecraft:iron_sword"
     }
   },
   "result": {

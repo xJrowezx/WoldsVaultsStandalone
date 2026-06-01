@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "M#M",
-    "EAE",
-    "MSM"
+    "E#E",
+    "ESE",
+    "EBE"
   ],
   "key": {
     "#": {
@@ -12,18 +12,11 @@
     "E": {
       "item": "the_vault:vault_essence"
     },
-    "A": {
-      "item": "minecraft:clock"
-    },
     "S": {
-      "type": "forge:nbt",
-      "item": "the_vault:god_token",
-      "nbt": {
-        "type": "wendarr"
-      }
+      "item": "the_vault:crystal_seal_empty"
     },
-    "M": {
-      "item": "the_vault:memory_powder"
+    "B": {
+      "item": "minecraft:clock"
     }
   },
   "result": {
