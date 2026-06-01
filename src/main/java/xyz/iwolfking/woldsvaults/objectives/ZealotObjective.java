@@ -110,7 +110,7 @@ public class ZealotObjective extends Objective {
     @OnlyIn(Dist.CLIENT)
     public boolean render(Vault vault, PoseStack matrixStack, Window window, float partialTicks, Player player) {
         if (this.get(COUNT) >= this.get(TARGET)) {
-            int midX = window.getGuiScaledWidth() / 2;
+            int midX = 0;
             Font font = Minecraft.getInstance().font;
             MultiBufferSource.BufferSource buffer = MultiBufferSource.immediate(Tesselator.getInstance().getBuilder());
             Component txt = (new TextComponent("The gods are pleased, you may exit when ready.")).withStyle(ChatFormatting.GOLD);
