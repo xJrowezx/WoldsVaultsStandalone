@@ -84,13 +84,13 @@
     "the_vault.recipes.MixinAnvilRecipes",
     "the_vault.skills.MixinAbilityDescriptionFactory",
     "the_vault.skills.MixinAbilityLabelFactory",
-    "the_vault.skills.MixinAbstractVeinMinerAbility",
     "the_vault.skills.MixinModAbilityLabelBindings",
     "the_vault.skills.MixinResistanceHelper",
     "the_vault.skills.modifications.MixinFireballAbility",
     "the_vault.skills.modifications.MixinIceBoltChunkAbility"
   ],
   "client": [
+    "create.MixinBakedModelHelper",
     "MixinThrownTridentRenderer",
     "the_vault.MixinCardItem",
     "the_vault.MixinCatalystItem",

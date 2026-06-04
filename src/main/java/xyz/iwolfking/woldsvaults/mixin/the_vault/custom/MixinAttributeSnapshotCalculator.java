@@ -9,8 +9,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.iwolfking.woldsvaults.init.ModGearAttributes;
-import xyz.iwolfking.woldsvaults.mixin.the_vault.accessors.AttributeSnapshotAccessor;
-import xyz.iwolfking.woldsvaults.mixin.the_vault.accessors.AttributeSnapshotValueAccessor;
 import xyz.iwolfking.woldsvaults.util.calc.AttackDamageHelper;
 
 @Mixin(value = AttributeSnapshotCalculator.class, remap = false)
@@ -20,7 +18,7 @@ public class MixinAttributeSnapshotCalculator {
         float thornsScaling = snapshot.getAttributeValue(ModGearAttributes.THORNS_ADAPTATION, VaultGearAttributeTypeMerger.floatSum());
         if (thornsScaling > 0) {
             double attackDamage = AttackDamageHelper.getAttackDamage(player, snapshot);
-            ((AttributeSnapshotValueAccessor) ((AttributeSnapshotAccessor) snapshot).getGearAttributeValues().get(iskallia.vault.init.ModGearAttributes.THORNS_DAMAGE_FLAT)).getCachedValues().add((float) (attackDamage * thornsScaling));
+            snapshot.addAttributeValue(iskallia.vault.init.ModGearAttributes.THORNS_DAMAGE_FLAT, (float) (attackDamage * thornsScaling));
         }
     }
 }
