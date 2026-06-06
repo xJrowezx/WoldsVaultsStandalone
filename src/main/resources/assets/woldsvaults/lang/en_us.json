@@ -229,5 +229,11 @@
   "create.item_attributes.unusual_suffix": "has an unusual \"%1$s\" suffix",
   "create.item_attributes.unusual_suffix.inverted": "doesn't have an unusual \"%1$s\" suffix",
   "create.item_attributes.vault_doll_completed": "is a completed Vault Doll",
-  "create.item_attributes.vault_doll_completed.inverted": "is not a completed Vault Doll"
+  "create.item_attributes.vault_doll_completed.inverted": "is not a completed Vault Doll",
+  "create.item_attributes.is_super_inscription": "is a super inscription",
+  "create.item_attributes.is_super_inscription.inverted": "is not a super inscription",
+  "create.item_attributes.is_super_catalyst": "is a super catalyst",
+  "create.item_attributes.is_super_catalyst.inverted": "is not a super catalyst",
+  "create.item_attributes.is_greed_catalyst": "is a greed catalyst",
+  "create.item_attributes.is_greed_catalyst.inverted": "is not a greed catalyst"
 }
