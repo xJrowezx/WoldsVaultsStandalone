@@ -24,6 +24,8 @@ import xyz.iwolfking.woldsvaults.objectives.lib.BasicEnchantedEvent;
 import javax.annotation.Nullable;
 
 public class SpawnEntityEnchantedEvent extends BasicEnchantedEvent {
+    private static final int MAX_SPAWN_ATTEMPTS = 64;
+
     @Expose
     private final WeightedList<EntityType<?>> entities;
     @Expose
@@ -61,7 +63,8 @@ public class SpawnEntityEnchantedEvent extends BasicEnchantedEvent {
     @Override
     public void triggerEvent(BlockPos pos, ServerPlayer player, Vault vault) {
         JavaRandom javaRandom = JavaRandom.ofNanoTime();
-        for(int i = 0; i < amounts.getRandom().get(); i++) {
+        int amount = amounts.getRandom().orElse(0);
+        for(int i = 0; i < amount; i++) {
             doSpawn((VirtualWorld) player.level, pos, javaRandom);
         }
 
@@ -72,46 +75,47 @@ public class SpawnEntityEnchantedEvent extends BasicEnchantedEvent {
         super.triggerEvent(pos, player, vault);
     }
 
-    public LivingEntity doSpawn(VirtualWorld world, BlockPos pos, RandomSource random) {
+    @Nullable
+    public Entity doSpawn(VirtualWorld world, BlockPos pos, RandomSource random) {
         double min = 10.0;
         double max = 13.0;
 
-        LivingEntity spawned;
-        int x;
-        int z;
-        int y;
-        for(spawned = null; spawned == null; spawned = spawnMob(world, pos.getX() + x, pos.getY() + y, pos.getZ() + z, random)) {
+        for(int attempt = 0; attempt < MAX_SPAWN_ATTEMPTS; attempt++) {
             double angle = 6.283185307179586 * random.nextDouble();
             double distance = Math.sqrt(random.nextDouble() * (max * max - min * min) + min * min);
-            x = (int)Math.ceil(distance * Math.cos(angle));
-            z = (int)Math.ceil(distance * Math.sin(angle));
+            int x = (int)Math.ceil(distance * Math.cos(angle));
+            int z = (int)Math.ceil(distance * Math.sin(angle));
             double xzRadius = Math.sqrt((double)(x * x + z * z));
             double yRange = Math.sqrt(max * max - xzRadius * xzRadius);
-            y = random.nextInt((int)Math.ceil(yRange) * 2 + 1) - (int)Math.ceil(yRange);
+            int y = random.nextInt((int)Math.ceil(yRange) * 2 + 1) - (int)Math.ceil(yRange);
+
+            Entity spawned = spawnMob(world, pos.getX() + x, pos.getY() + y, pos.getZ() + z, random);
+            if(spawned != null) {
+                return spawned;
+            }
         }
 
-        return spawned;
+        return null;
     }
 
     @Nullable
-    public LivingEntity spawnMob(VirtualWorld world, int x, int y, int z, RandomSource random) {
-        Entity entity;
-        EntityType<?> type = null;
-        if(entities.getRandom().isPresent()) {
-           type = entities.getRandom().get();
+    public Entity spawnMob(VirtualWorld world, int x, int y, int z, RandomSource random) {
+        EntityType<?> type = entities.getRandom().orElse(null);
+        if(type == null) {
+            return null;
         }
 
-        if(type != null) {
-            entity = type.create(world);
-        } else {
-            entity = null;
+        Entity entity = type.create(world);
+        if(entity == null) {
+            return null;
         }
 
-        BlockState state = world.getBlockState(new BlockPos(x, y - 1, z));
-        if (!state.isValidSpawn(world, new BlockPos(x, y - 1, z), entity.getType())) {
+        BlockPos floorPos = new BlockPos(x, y - 1, z);
+        BlockState state = world.getBlockState(floorPos);
+        if (!state.isValidSpawn(world, floorPos, type)) {
             return null;
         } else {
-            AABB entityBox = entity.getType().getAABB((double)x + 0.5, (double)y, (double)z + 0.5);
+            AABB entityBox = type.getAABB((double)x + 0.5, (double)y, (double)z + 0.5);
             if (!world.noCollision(entityBox)) {
                 return null;
             } else {
@@ -126,14 +130,14 @@ public class SpawnEntityEnchantedEvent extends BasicEnchantedEvent {
                     }
 
                 }
-                if(!effects.isEmpty()) {
+                if(!effects.isEmpty() && entity instanceof LivingEntity livingEntity) {
                     effects.forEach((mobEffectInstance, aDouble) -> {
-                        ((LivingEntity)entity).addEffect(mobEffectInstance);
+                        livingEntity.addEffect(mobEffectInstance);
                     });
                 }
                 world.addWithUUID(entity);
 
-                return (LivingEntity) entity;
+                return entity;
             }
         }
     }
