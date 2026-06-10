@@ -3,7 +3,7 @@ package xyz.iwolfking.woldsvaults.items;
 import iskallia.vault.core.random.JavaRandom;
 import iskallia.vault.core.random.RandomSource;
 import iskallia.vault.core.vault.Vault;
-import iskallia.vault.init.ModConfigs;
+import iskallia.vault.config.VaultCrystalConfig;
 import iskallia.vault.item.crystal.layout.*;
 import iskallia.vault.item.core.DataTransferItem;
 import iskallia.vault.item.core.VaultLevelItem;
@@ -20,6 +20,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Rotation;
+import xyz.iwolfking.vhapi.api.lib.core.readers.CustomVaultConfigReader;
+import xyz.iwolfking.vhapi.api.util.JsonUtils;
+import xyz.iwolfking.woldsvaults.WoldsVaults;
 import xyz.iwolfking.woldsvaults.init.ModItems;
 import xyz.iwolfking.woldsvaults.mixin.accessors.ClassicCircleCrystalLayoutAccessor;
 import xyz.iwolfking.woldsvaults.mixin.accessors.ClassicInfiniteCrystalLayoutAccessor;
@@ -28,11 +31,16 @@ import xyz.iwolfking.woldsvaults.mixin.accessors.ClassicSpiralCrystalLayoutAcces
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class LayoutModificationItem extends Item implements VaultLevelItem, DataTransferItem {
+    private static final String ETCHED_LAYOUT_CONFIG_PATH = "/vhapi_configs/etched_layouts.json";
+    private static VaultCrystalConfig etchedLayoutConfig;
+
     public LayoutModificationItem(CreativeModeTab group, ResourceLocation id) {
         super((new Properties()).tab(group));
         this.setRegistryName(id);
@@ -133,7 +141,7 @@ public class LayoutModificationItem extends Item implements VaultLevelItem, Data
             if (!nbt.contains("level")) {
                 return stack;
             } else {
-                int level = nbt.getInt("pool");
+                int level = nbt.getInt("level");
                 return createStackFromLevel(level, stack);
             }
         }
@@ -149,7 +157,7 @@ public class LayoutModificationItem extends Item implements VaultLevelItem, Data
                 return stack;
             }
             else {
-                Optional<CrystalLayout> layout = ModConfigs.VAULT_CRYSTAL.getRandomLayout(level, JavaRandom.ofNanoTime());
+                Optional<CrystalLayout> layout = getRandomEtchedLayout(level, JavaRandom.ofNanoTime());
 
                 if(layout.isEmpty()) {
                     return stack;
@@ -181,5 +189,31 @@ public class LayoutModificationItem extends Item implements VaultLevelItem, Data
             }
         }
         return stack;
+    }
+
+    private static Optional<CrystalLayout> getRandomEtchedLayout(int level, RandomSource random) {
+        VaultCrystalConfig config = getEtchedLayoutConfig();
+        if(config == null || config.LAYOUTS == null) {
+            return Optional.empty();
+        }
+
+        return config.LAYOUTS.getForLevel(level).flatMap(entry -> entry.pool.getRandom(random));
+    }
+
+    private static VaultCrystalConfig getEtchedLayoutConfig() {
+        if(etchedLayoutConfig == null) {
+            try (InputStream stream = WoldsVaults.class.getResourceAsStream(ETCHED_LAYOUT_CONFIG_PATH)) {
+                if(stream == null) {
+                    throw new IOException("Missing " + ETCHED_LAYOUT_CONFIG_PATH);
+                }
+
+                CustomVaultConfigReader<VaultCrystalConfig> reader = new CustomVaultConfigReader<>();
+                etchedLayoutConfig = reader.readCustomConfig("etched_layouts", JsonUtils.parseJsonContentFromStream(stream), VaultCrystalConfig.class);
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to read etched vault layout config", e);
+            }
+        }
+
+        return etchedLayoutConfig;
     }
 }
