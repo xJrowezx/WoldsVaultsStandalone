@@ -12,5 +12,6 @@ public class ModVaultFilterAttributes {
         new SuperCatalystAttribute(true).register(SuperCatalystAttribute::new);
         new GreedCatalystAttribute(true).register(GreedCatalystAttribute::new);
         new SuperInscriptionAttribute(true).register(SuperInscriptionAttribute::new);
+        new AncientCompanionRelicModifierCountAttribute("the_vault:plentiful", 1).register(AncientCompanionRelicModifierCountAttribute::new);
     }
 }

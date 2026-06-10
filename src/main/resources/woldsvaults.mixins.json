@@ -60,6 +60,7 @@
     "the_vault.custom.MixinCoinLooting",
     "the_vault.custom.MixinCompassPenalty",
     "the_vault.custom.MixinCorruptGearModification",
+    "the_vault.custom.MixinCrystalWorkbenchOutputSlot",
     "the_vault.custom.MixinEffectTrailAttribute",
     "the_vault.custom.MixinGearAttributeEvents",
     "the_vault.custom.MixinGrantedEffectHelper",

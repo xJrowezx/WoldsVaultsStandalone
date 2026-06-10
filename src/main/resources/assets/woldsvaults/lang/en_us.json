@@ -235,5 +235,9 @@
   "create.item_attributes.is_super_catalyst": "is a super catalyst",
   "create.item_attributes.is_super_catalyst.inverted": "is not a super catalyst",
   "create.item_attributes.is_greed_catalyst": "is a greed catalyst",
-  "create.item_attributes.is_greed_catalyst.inverted": "is not a greed catalyst"
+  "create.item_attributes.is_greed_catalyst.inverted": "is not a greed catalyst",
+  "create.item_attributes.ancient_companion_relic_modifier_count_single": "is an Ancient Companion Relic with a \"%1$s\" modifier",
+  "create.item_attributes.ancient_companion_relic_modifier_count_single.inverted": "isn't an Ancient Companion Relic with a \"%1$s\" modifier",
+  "create.item_attributes.ancient_companion_relic_modifier_count_plural": "is an Ancient Companion Relic with at least %2$s \"%1$s\" modifiers",
+  "create.item_attributes.ancient_companion_relic_modifier_count_plural.inverted": "isn't an Ancient Companion Relic with at least %2$s \"%1$s\" modifiers"
 }
