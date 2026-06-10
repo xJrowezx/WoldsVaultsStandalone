@@ -6,6 +6,7 @@ import iskallia.vault.block.VaultOreBlock;
 import iskallia.vault.block.entity.VaultChestTileEntity;
 import iskallia.vault.core.event.CommonEvents;
 import iskallia.vault.entity.VaultBoss;
+import iskallia.vault.entity.boss.TheVesselEntity;
 import iskallia.vault.entity.champion.ChampionLogic;
 import iskallia.vault.event.ActiveFlags;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
@@ -71,7 +72,9 @@ public class LivingEntityEvents {
     @SubscribeEvent
     public static void reavingDamage(LivingHurtEvent event) {
         //Prevent an entity from being reaved more than once or applying to non-melee strikes.
-        if(event.getEntityLiving().hasEffect(ModEffects.REAVING) || !WoldEventUtils.isNormalAttack()) {
+        if(event.getEntityLiving() instanceof TheVesselEntity
+                || event.getEntityLiving().hasEffect(ModEffects.REAVING)
+                || !WoldEventUtils.isNormalAttack()) {
             return;
         }
 
