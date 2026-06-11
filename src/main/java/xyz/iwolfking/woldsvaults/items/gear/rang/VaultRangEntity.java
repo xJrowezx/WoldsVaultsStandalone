@@ -520,7 +520,7 @@ public class VaultRangEntity extends Projectile {
 
             owner.attackStrengthTicker = ticksSinceLastSwing;
             if (this.getLevel().dimension().location().getNamespace().equals("the_vault")) {
-                this.getStack().hurt(1, this.level.random, null);
+                this.getStack().hurt(1, this.level.random, owner instanceof ServerPlayer serverPlayer ? serverPlayer : null);
             }
 
             this.setStack(owner.getMainHandItem());
