@@ -13,5 +13,11 @@ public class ModVaultFilterAttributes {
         new GreedCatalystAttribute(true).register(GreedCatalystAttribute::new);
         new SuperInscriptionAttribute(true).register(SuperInscriptionAttribute::new);
         new AncientCompanionRelicModifierCountAttribute("the_vault:plentiful", 1).register(AncientCompanionRelicModifierCountAttribute::new);
+        new DeckCoreTypeAttribute("equilibrium").register(DeckCoreTypeAttribute::new);
+        new DeckCoreTierAttribute("greater").register(DeckCoreTierAttribute::new);
+        new DeckCoreCategoryAttribute("Resource").register(DeckCoreCategoryAttribute::new);
+        new DeckCoreTargetAttribute("Stat").register(DeckCoreTargetAttribute::new);
+        new DeckCoreStrengthAttribute(50).register(DeckCoreStrengthAttribute::new);
+        new DeckCoreSlotCountAttribute(3).register(DeckCoreSlotCountAttribute::new);
     }
 }

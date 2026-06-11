@@ -239,5 +239,17 @@
   "create.item_attributes.ancient_companion_relic_modifier_count_single": "is an Ancient Companion Relic with a \"%1$s\" modifier",
   "create.item_attributes.ancient_companion_relic_modifier_count_single.inverted": "isn't an Ancient Companion Relic with a \"%1$s\" modifier",
   "create.item_attributes.ancient_companion_relic_modifier_count_plural": "is an Ancient Companion Relic with at least %2$s \"%1$s\" modifiers",
-  "create.item_attributes.ancient_companion_relic_modifier_count_plural.inverted": "isn't an Ancient Companion Relic with at least %2$s \"%1$s\" modifiers"
+  "create.item_attributes.ancient_companion_relic_modifier_count_plural.inverted": "isn't an Ancient Companion Relic with at least %2$s \"%1$s\" modifiers",
+  "create.item_attributes.deck_core_type": "is a \"%1$s\" Deck Core",
+  "create.item_attributes.deck_core_type.inverted": "isn't a \"%1$s\" Deck Core",
+  "create.item_attributes.deck_core_tier": "is a %1$s Deck Core",
+  "create.item_attributes.deck_core_tier.inverted": "isn't a %1$s Deck Core",
+  "create.item_attributes.deck_core_category": "has deck-core category \"%1$s\"",
+  "create.item_attributes.deck_core_category.inverted": "doesn't have deck-core category \"%1$s\"",
+  "create.item_attributes.deck_core_target": "targets \"%1$s\" cards",
+  "create.item_attributes.deck_core_target.inverted": "doesn't target \"%1$s\" cards",
+  "create.item_attributes.deck_core_strength": "has at least %1$s%% deck-core strength",
+  "create.item_attributes.deck_core_strength.inverted": "has less than %1$s%% deck-core strength",
+  "create.item_attributes.deck_core_slot_count": "affects exactly %1$s deck slots",
+  "create.item_attributes.deck_core_slot_count.inverted": "doesn't affect exactly %1$s deck slots"
 }

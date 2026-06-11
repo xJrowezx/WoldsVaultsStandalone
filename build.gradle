@@ -185,13 +185,12 @@ dependencies {
     implementation fg.deobf('curse.maven:curios-309927:4985315')
     implementation fg.deobf('curse.maven:ecologics-570463:4171283')
     implementation fg.deobf("curse.maven:just-enough-vh-1035310:7318869")
-    implementation fg.deobf('curse.maven:pehkui-319596:4823461')
     implementation fg.deobf('curse.maven:quark-243121:3840125')
     implementation fg.deobf("curse.maven:thermal-foundation-222880:4788649")
     implementation fg.deobf("curse.maven:create-328085:4835188")
 
     // Vault Hunters Core Mods
-    implementation fg.deobf("local.libs:the_vault:1.18.2-3.21.0")
+    implementation fg.deobf("local.libs:the_vault:1.18.2-3.21.6")
     implementation fg.deobf("curse.maven:vault-hunters-api-1118899:7885720") // 3.21
     implementation fg.deobf("curse.maven:geckolib-388172:4181370")
     implementation fg.deobf("curse.maven:sophisticated-backpacks-422301:5654080")

@@ -1,36 +1,35 @@
 package xyz.iwolfking.woldsvaults.effect.mobeffects;
 
+import iskallia.vault.entity.scale.EntityScaleHelper;
+import iskallia.vault.entity.scale.EntityScaleProfile;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
-import virtuoel.pehkui.api.ScaleData;
-import virtuoel.pehkui.api.ScaleType;
+import xyz.iwolfking.woldsvaults.api.scale.WoldsScaleSources;
 
 public class GrowingPotionEffect extends MobEffect {
-    private final ScaleType scaleType;
-
-    public GrowingPotionEffect(MobEffectCategory mobEffectCategory, int i, ScaleType scaleType, ResourceLocation id) {
+    public GrowingPotionEffect(MobEffectCategory mobEffectCategory, int i, ResourceLocation id) {
         super(mobEffectCategory, i);
-        this.scaleType = scaleType;
         this.setRegistryName(id);
     }
 
-
     @Override
     public void addAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
-        ScaleData scaleData = scaleType.getScaleData(entity);
         double newScale = (amplifier + 1) * 2;
         newScale = Math.min(newScale, 10D);
-        scaleData.setTargetScale((float) newScale);
-        scaleData.setScaleTickDelay(scaleData.getScaleTickDelay());
+        EntityScaleHelper.setScale(
+                entity,
+                WoldsScaleSources.SIZE,
+                (float) newScale,
+                EntityScaleHelper.PEHKUI_COMPAT_TRANSITION_TICKS,
+                EntityScaleProfile.BODY_MOTION_AND_VISIBILITY
+        );
     }
 
     @Override
     public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
-        ScaleData scaleData = scaleType.getScaleData(entity);
-        scaleData.setTargetScale(1.0F);
-        scaleData.setScaleTickDelay(scaleData.getScaleTickDelay());
+        EntityScaleHelper.clearScale(entity, WoldsScaleSources.SIZE, EntityScaleHelper.PEHKUI_COMPAT_TRANSITION_TICKS);
     }
 }

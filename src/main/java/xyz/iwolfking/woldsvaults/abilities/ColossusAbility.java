@@ -20,8 +20,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import virtuoel.pehkui.api.ScaleData;
-import virtuoel.pehkui.api.ScaleType;
+import iskallia.vault.entity.scale.EntityScaleHelper;
+import iskallia.vault.entity.scale.EntityScaleProfile;
+import xyz.iwolfking.woldsvaults.api.scale.WoldsScaleSources;
 import xyz.iwolfking.woldsvaults.init.ModEffects;
 
 import java.util.Optional;
@@ -114,11 +115,8 @@ public class ColossusAbility extends InstantManaAbility {
             bus = Mod.EventBusSubscriber.Bus.FORGE
     )
     public static class ColossusEffect extends MobEffect {
-        private final ScaleType scaleType;
-
-        public ColossusEffect(MobEffectCategory mobEffectCategory, int i, ScaleType scaleType, ResourceLocation id) {
+        public ColossusEffect(MobEffectCategory mobEffectCategory, int i, ResourceLocation id) {
             super(mobEffectCategory, i);
-            this.scaleType = scaleType;
             this.setRegistryName(id);
         }
 
@@ -135,9 +133,13 @@ public class ColossusAbility extends InstantManaAbility {
                     //additionalResistance = ability.getAdditionalResistance();
                 }
                 //set scale
-                ScaleData scaleData = scaleType.getScaleData(player);
-                scaleData.setTargetScale(size);
-                scaleData.setScaleTickDelay(scaleData.getScaleTickDelay());
+                EntityScaleHelper.setScale(
+                        player,
+                        WoldsScaleSources.SIZE_NO_MOVEMENT,
+                        size,
+                        EntityScaleHelper.PEHKUI_COMPAT_TRANSITION_TICKS,
+                        EntityScaleProfile.BODY_AND_VISIBILITY
+                );
 
             }
         }
@@ -147,9 +149,7 @@ public class ColossusAbility extends InstantManaAbility {
         public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
             if (entity instanceof ServerPlayer player) {
                 //reset scale
-                ScaleData scaleData = scaleType.getScaleData(player);
-                scaleData.setTargetScale(1.0F);
-                scaleData.setScaleTickDelay(scaleData.getScaleTickDelay());
+                EntityScaleHelper.clearScale(player, WoldsScaleSources.SIZE_NO_MOVEMENT, EntityScaleHelper.PEHKUI_COMPAT_TRANSITION_TICKS);
                 //continue cooldown
                 PlayerAbilitiesData.setAbilityOnCooldown(player, ColossusAbility.class);
             }
