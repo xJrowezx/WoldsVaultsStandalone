@@ -166,15 +166,22 @@ public class ScavengerPouchContainer extends OverSizedSlotContainer {
                 OverSizedItemStack updated = new OverSizedItemStack(stored.stack(), stored.amount() - giveAmount);
                 inventory.setOverSizedStack(backingIndex, updated);
 
-                slot.set(stack);
+                if (stored.amount() - giveAmount <= 0) {
+                    slot.set(ItemStack.EMPTY);
+                } else {
+                    slot.setChanged();
+                }
                 return out;
             }
 
             boolean moved = false;
             for (ScavengerItemSlot scavSlot : scavItemSlots) {
                 if (scavSlot.mayPlace(stack)) {
-                    moved = this.moveItemStackTo(stack, scavSlot.index, scavSlot.index + 1, false);
-                    if (moved) break;
+                    int containerSlotIndex = this.slots.indexOf(scavSlot);
+                    if (containerSlotIndex != -1) {
+                        moved = this.moveItemStackTo(stack, containerSlotIndex, containerSlotIndex + 1, false);
+                        if (moved) break;
+                    }
                 }
             }
 
