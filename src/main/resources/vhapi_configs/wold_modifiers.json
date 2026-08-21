@@ -3009,71 +3009,79 @@
           "icon": "the_vault:gui/modifiers/god_token_tenos"
         }
       },
-      "woldsvaults:velara_hunter": {
+      "the_vault:velara_hunter": {
         "properties": {
           "entries": [
             {
               "filter": "the_vault:god_altar[god=velara]",
               "radius": 64.0,
+              "target": "god_altars",
               "color": 65280
             }
           ]
         },
         "display": {
-          "name": "Velara Hunter",
+          "name": "God Altar Hunter (Velara)",
           "color": "#00FF00",
-          "description": "Highlights Velara God Altars in this vault",
+          "description": "Highlights Velara God Altars in this Vault",
+          "descriptionFormatted": "Highlights Velara God Altars in this Vault",
           "icon": "the_vault:gui/modifiers/god_token_velara"
         }
       },
-      "woldsvaults:tenos_hunter": {
+      "the_vault:tenos_hunter": {
         "properties": {
           "entries": [
             {
               "filter": "the_vault:god_altar[god=tenos]",
               "radius": 64.0,
+              "target": "god_altars",
               "color": 197
             }
           ]
         },
         "display": {
-          "name": "Tenos Hunter",
+          "name": "God Altar Hunter (Tenos)",
           "color": "#0000C5",
-          "description": "Highlights Tenos God Altars in this vault",
+          "description": "Highlights Tenos God Altars in this Vault",
+          "descriptionFormatted": "Highlights Tenos God Altars in this Vault",
           "icon": "the_vault:gui/modifiers/god_token_tenos"
         }
       },
-      "woldsvaults:idona_hunter": {
+      "the_vault:idona_hunter": {
         "properties": {
           "entries": [
             {
               "filter": "the_vault:god_altar[god=idona]",
               "radius": 64.0,
+              "target": "god_altars",
               "color": 16711680
             }
           ]
         },
         "display": {
-          "name": "Idona Hunter",
+          "name": "God Altar Hunter (Idona)",
           "color": "#FF0000",
-          "description": "Highlights Idona God Altars in this vault",
+          "description": "Highlights Idona God Altars in this Vault",
+          "descriptionFormatted": "Highlights Idona God Altars in this Vault",
           "icon": "the_vault:gui/modifiers/god_token_idona"
         }
       },
-      "woldsvaults:wendarr_hunter": {
+      "the_vault:wendarr_hunter": {
         "properties": {
           "entries": [
             {
               "filter": "the_vault:god_altar[god=wendarr]",
               "radius": 64.0,
+              "target": "god_altars",
               "color": 16748800
             }
           ]
         },
         "display": {
-          "name": "Wendarr Hunter",
+          "name": "God Altar Hunter (Wendarr)",
           "color": "#FF9100",
-          "description": "Highlights Wendarr God Altars in this vault",
+          "description": "Highlights Wendarr God Altars in this Vault",
+          "descriptionFormatted": "Highlights Wendarr God Altars in this Vault",
           "icon": "the_vault:gui/modifiers/god_token_wendarr"
         }
       }

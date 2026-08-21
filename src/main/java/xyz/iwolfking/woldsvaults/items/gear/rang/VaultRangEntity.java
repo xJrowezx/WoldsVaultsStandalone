@@ -75,9 +75,11 @@ public class VaultRangEntity extends Projectile {
 
     private static final double RICOCHET_SEARCH_RADIUS = 6.0D;
     private static final double RICOCHET_SPEED = 1.0D;
+    private static final double OWNER_TELEPORT_DISTANCE_SQR = 16.0D * 16.0D;
 
     protected LivingEntity owner;
     private UUID ownerId;
+    private Vec3 lastOwnerPosition;
 
     private int liveTime;
     private int slot;
@@ -100,6 +102,7 @@ public class VaultRangEntity extends Projectile {
         Vec3 pos = throwerIn.position();
         this.setPos(pos.x, pos.y + throwerIn.getEyeHeight(), pos.z);
         this.ownerId = throwerIn.getUUID();
+        this.lastOwnerPosition = pos;
     }
 
     @Override
@@ -555,6 +558,9 @@ public class VaultRangEntity extends Projectile {
         this.yOld = pos.y;
         this.zOld = pos.z;
         super.tick();
+        if (!this.level.isClientSide) {
+            this.recallAfterOwnerTeleport();
+        }
 
         if (this.isRicocheting()) {
             this.tickRicochetFlight();
@@ -703,6 +709,22 @@ public class VaultRangEntity extends Projectile {
         } else {
             this.setDeltaMovement(motion.normalize().scale(0.7D + VaultRangLogic.getVelocity(stack) * 0.325F));
         }
+    }
+
+    private void recallAfterOwnerTeleport() {
+        LivingEntity thrower = this.getThrower();
+        if (!(thrower instanceof Player) || !thrower.isAlive()) return;
+
+        Vec3 ownerPosition = thrower.position();
+        if (this.lastOwnerPosition != null
+                && ownerPosition.distanceToSqr(this.lastOwnerPosition) > OWNER_TELEPORT_DISTANCE_SQR) {
+            this.setReturning();
+            this.setPos(ownerPosition.x, ownerPosition.y + 1.0D, ownerPosition.z);
+            this.setDeltaMovement(Vec3.ZERO);
+            this.hasImpulse = true;
+            this.deferMovementThisTick = true;
+        }
+        this.lastOwnerPosition = ownerPosition;
     }
 
     private void giveItemToPlayer(Player player, ItemEntity itemEntity) {
