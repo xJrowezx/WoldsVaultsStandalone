@@ -3,6 +3,7 @@ package xyz.iwolfking.woldsvaults.util;
 
 import iskallia.vault.skill.base.Skill;
 import iskallia.vault.skill.tree.TalentTree;
+import iskallia.vault.util.damage.AdditiveDamageHelper;
 import iskallia.vault.world.data.PlayerTalentsData;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -83,15 +84,11 @@ public class CritTalentHandler {
 
         if (!forcedCrit && !vanillaCrit) return;
 
-        float bonus = getCritDamage(sp);
-        float mult = 1.0F;
-
+        float criticalBonus = getCritDamage(sp);
         if (forcedCrit) {
-            mult *= 1.5F;
+            criticalBonus += 0.5F;
         }
-        mult *= (1.0F + bonus);
-
-        event.setAmount(event.getAmount() * mult);
+        AdditiveDamageHelper.addCriticalBonus(event, criticalBonus);
 
         if (forcedCrit) sp.getPersistentData().putBoolean(FORCED_CRIT_TAG, false);
     }
