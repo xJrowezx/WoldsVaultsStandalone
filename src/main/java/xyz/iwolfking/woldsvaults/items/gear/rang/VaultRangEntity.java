@@ -493,6 +493,8 @@ public class VaultRangEntity extends Projectile {
 
         if (owner != null) {
             ItemStack prev = owner.getMainHandItem();
+            Multimap<Attribute, AttributeModifier> prevModifiers = prev.getAttributeModifiers(EquipmentSlot.MAINHAND);
+            owner.getAttributes().removeAttributeModifiers(prevModifiers);
             owner.setItemInHand(InteractionHand.MAIN_HAND, rang);
             owner.getAttributes().addTransientAttributeModifiers(modifiers);
 
@@ -528,7 +530,11 @@ public class VaultRangEntity extends Projectile {
 
             this.setStack(owner.getMainHandItem());
             owner.setItemInHand(InteractionHand.MAIN_HAND, prev);
-            owner.getAttributes().addTransientAttributeModifiers(modifiers);
+            owner.getAttributes().removeAttributeModifiers(modifiers);
+            owner.getAttributes().addTransientAttributeModifiers(prevModifiers);
+            if (owner instanceof ServerPlayer serverPlayer) {
+                AttributeSnapshotHelper.getInstance().refreshSnapshot(serverPlayer);
+            }
         } else {
             AttributeSupplier.Builder mapBuilder = new AttributeSupplier.Builder();
             mapBuilder.add(Attributes.ATTACK_DAMAGE, 1);

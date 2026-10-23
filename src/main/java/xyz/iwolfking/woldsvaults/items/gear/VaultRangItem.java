@@ -1,5 +1,6 @@
 package xyz.iwolfking.woldsvaults.items.gear;
 
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import iskallia.vault.dynamodel.DynamicModel;
 import iskallia.vault.gear.VaultGearClassification;
@@ -26,6 +27,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -33,6 +35,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CreativeModeTab;
@@ -67,6 +70,8 @@ import java.util.UUID;
 public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLeatherItem {
 
     public static final String TAG_RANG_FLIGHT_ID = "RangFlightId";
+    private static final double TICKS_PER_SECOND = 20.0D;
+    private static final double MIN_ATTACK_SPEED = 0.1D;
 
     public VaultRangItem(ResourceLocation id,  Item.Properties properties) {
         super(id, properties);
@@ -150,6 +155,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             entity.setThrowData(slot, itemstack);
             entity.shoot(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 1.5F + velocity * 0.325F, 0F);
             worldIn.addFreshEntity(entity);
+            playerIn.getCooldowns().addCooldown(this, getThrowCooldownTicks(playerIn, itemstack, handIn));
 
             ItemStack placeholder = itemstack.copy();
             placeholder.getOrCreateTag().putUUID(TAG_RANG_FLIGHT_ID, entity.getUUID());
@@ -158,6 +164,25 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
+    }
+
+    /** One throw per full swing at the thrower's attack speed with this rang, like a melee weapon. */
+    private static int getThrowCooldownTicks(Player player, ItemStack stack, InteractionHand hand) {
+        if (hand == InteractionHand.MAIN_HAND) {
+            return attackSpeedToTicks(player.getAttributeValue(Attributes.ATTACK_SPEED));
+        }
+        Multimap<Attribute, AttributeModifier> mainHandModifiers = player.getMainHandItem().getAttributeModifiers(EquipmentSlot.MAINHAND);
+        Multimap<Attribute, AttributeModifier> rangModifiers = VaultGearHelper.getModifiers(stack, EquipmentSlot.MAINHAND);
+        player.getAttributes().removeAttributeModifiers(mainHandModifiers);
+        player.getAttributes().addTransientAttributeModifiers(rangModifiers);
+        double attackSpeed = player.getAttributeValue(Attributes.ATTACK_SPEED);
+        player.getAttributes().removeAttributeModifiers(rangModifiers);
+        player.getAttributes().addTransientAttributeModifiers(mainHandModifiers);
+        return attackSpeedToTicks(attackSpeed);
+    }
+
+    private static int attackSpeedToTicks(double attackSpeed) {
+        return Mth.ceil(TICKS_PER_SECOND / Math.max(attackSpeed, MIN_ATTACK_SPEED));
     }
 
     @Override
@@ -204,6 +229,9 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+        if (isInFlight(stack)) {
+            return ImmutableMultimap.of();
+        }
         return VaultGearHelper.getModifiers(stack, slot);
     }
 
