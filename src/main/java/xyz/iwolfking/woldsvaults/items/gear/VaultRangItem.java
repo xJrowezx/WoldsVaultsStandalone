@@ -20,6 +20,7 @@ import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import iskallia.vault.world.data.DiscoveredModelsData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -70,6 +71,8 @@ import java.util.UUID;
 public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLeatherItem {
 
     public static final String TAG_RANG_FLIGHT_ID = "RangFlightId";
+    private static final String TAG_LAST_THROW_TIME = "woldsvaults:RangLastThrowTime";
+    private static final String TAG_THROW_COOLDOWN_TICKS = "woldsvaults:RangThrowCooldownTicks";
     private static final double TICKS_PER_SECOND = 20.0D;
     private static final double MIN_ATTACK_SPEED = 0.1D;
 
@@ -135,7 +138,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, @Nonnull InteractionHand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
-        if (isInFlight(itemstack)) {
+        if (isInFlight(itemstack) || !isThrowReady(playerIn)) {
             return InteractionResultHolder.fail(itemstack);
         }
         if(VaultGearHelper.rightClick(worldIn, playerIn, handIn, super.use(worldIn, playerIn, handIn)).getResult().equals(InteractionResult.FAIL)) {
@@ -147,6 +150,7 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
         Double attackSpeed = snapshot.getAttributeValue(ModGearAttributes.ATTACK_SPEED, VaultGearAttributeTypeMerger.doubleSum());
         Vec3 pos = playerIn.position();
         worldIn.playSound(null, pos.x, pos.y, pos.z, QuarkSounds.ENTITY_PICKARANG_THROW, SoundSource.NEUTRAL, 0.5F + velocity * 0.14F, 0.4F / (worldIn.random.nextFloat() * 0.4F + 0.8F));
+        startThrowCooldown(playerIn, getThrowCooldownTicks(playerIn, itemstack, handIn));
 
         if(!worldIn.isClientSide) {
             Inventory inventory = playerIn.getInventory();
@@ -155,7 +159,6 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
             entity.setThrowData(slot, itemstack);
             entity.shoot(playerIn, playerIn.getXRot(), playerIn.getYRot(), 0.0F, 1.5F + velocity * 0.325F, 0F);
             worldIn.addFreshEntity(entity);
-            playerIn.getCooldowns().addCooldown(this, getThrowCooldownTicks(playerIn, itemstack, handIn));
 
             ItemStack placeholder = itemstack.copy();
             placeholder.getOrCreateTag().putUUID(TAG_RANG_FLIGHT_ID, entity.getUUID());
@@ -164,6 +167,26 @@ public class VaultRangItem extends BasicItem implements VaultGearItem, DyeableLe
 
         playerIn.awardStat(Stats.ITEM_USED.get(this));
         return new InteractionResultHolder<>(InteractionResult.SUCCESS, itemstack);
+    }
+
+    /*
+     * Throws are gated here instead of with ItemCooldowns: the_vault's attribute snapshot skips gear whose item is on
+     * cooldown, so a vanilla cooldown would strip the rang's stats from its own thrown hits.
+     */
+    private static boolean isThrowReady(Player player) {
+        CompoundTag data = player.getPersistentData();
+        if (!data.contains(TAG_LAST_THROW_TIME)) {
+            return true;
+        }
+        long elapsedTicks = player.level.getGameTime() - data.getLong(TAG_LAST_THROW_TIME);
+        // Game time can run backwards when the player moves to a level with its own clock.
+        return elapsedTicks < 0 || elapsedTicks >= data.getInt(TAG_THROW_COOLDOWN_TICKS);
+    }
+
+    private static void startThrowCooldown(Player player, int cooldownTicks) {
+        CompoundTag data = player.getPersistentData();
+        data.putLong(TAG_LAST_THROW_TIME, player.level.getGameTime());
+        data.putInt(TAG_THROW_COOLDOWN_TICKS, cooldownTicks);
     }
 
     /** One throw per full swing at the thrower's attack speed with this rang, like a melee weapon. */

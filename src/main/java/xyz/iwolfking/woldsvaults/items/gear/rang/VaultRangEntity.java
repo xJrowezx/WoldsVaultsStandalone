@@ -1,6 +1,8 @@
 package xyz.iwolfking.woldsvaults.items.gear.rang;
 
 import com.google.common.collect.Multimap;
+import iskallia.vault.entity.entity.EternalEntity;
+import iskallia.vault.entity.entity.PetEntity;
 import iskallia.vault.snapshot.AttributeSnapshotHelper;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import net.minecraft.core.BlockPos;
@@ -25,6 +27,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
@@ -76,6 +79,8 @@ public class VaultRangEntity extends Projectile {
     private static final double RICOCHET_SEARCH_RADIUS = 6.0D;
     private static final double RICOCHET_SPEED = 1.0D;
     private static final double OWNER_TELEPORT_DISTANCE_SQR = 16.0D * 16.0D;
+    // the_vault's SoulSummons.TAG; the_vault jar this addon compiles against predates SoulSummons.
+    private static final String SOUL_SUMMON_TAG = "the_vault_soul_summon";
 
     protected LivingEntity owner;
     private UUID ownerId;
@@ -219,6 +224,7 @@ public class VaultRangEntity extends Projectile {
                         && entity.isAlive()
                         && (entity.isPickable() || entity instanceof VaultRangEntity)
                         && entity != this.getThrower()
+                        && !isAlly(entity)
                         && (this.entitiesHit == null || !this.entitiesHit.contains(entity.getId()))
         );
     }
@@ -349,7 +355,7 @@ public class VaultRangEntity extends Projectile {
             if (!candidate.isAlive() || candidate.isSpectator()) {
                 continue;
             }
-            if(candidate instanceof Player){
+            if (candidate instanceof Player || isAlly(candidate)) {
                 continue;
             }
             if (candidate == thrower || candidate == lastHit) {
@@ -379,6 +385,13 @@ public class VaultRangEntity extends Projectile {
         }
 
         return nearest;
+    }
+
+    private static boolean isAlly(Entity entity) {
+        if (entity instanceof EternalEntity || entity instanceof PetEntity || entity.getTags().contains(SOUL_SUMMON_TAG)) {
+            return true;
+        }
+        return entity instanceof OwnableEntity ownable && ownable.getOwnerUUID() != null;
     }
 
     private Vec3 getRicochetAimPos(LivingEntity entity) {
