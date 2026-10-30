@@ -6,6 +6,7 @@ import iskallia.vault.core.vault.ScheduledModifiers;
 import iskallia.vault.core.vault.Vault;
 import iskallia.vault.core.vault.influence.VaultGod;
 import iskallia.vault.core.vault.time.TickClock;
+import iskallia.vault.core.vault.time.TickStopwatch;
 import iskallia.vault.gear.attribute.custom.RandomGodVaultModifierAttribute;
 import iskallia.vault.gear.attribute.talent.RandomVaultModifierAttribute;
 import iskallia.vault.gear.attribute.type.VaultGearAttributeTypeMerger;
@@ -32,17 +33,24 @@ public class MixinScheduledModifiers {
     @Overwrite
     public void onJoin(Vault vault, ServerPlayer player) {
         RandomSource random = JavaRandom.ofScrambled(player.getUUID().getLeastSignificantBits() ^ ((UUID) vault.get(Vault.ID)).getMostSignificantBits());
-        int logicalTime = (Integer) ((TickClock) vault.get(Vault.CLOCK)).get(TickClock.LOGICAL_TIME);
-        int displayTime = (Integer) ((TickClock) vault.get(Vault.CLOCK)).get(TickClock.DISPLAY_TIME);
+        TickClock clock = vault.get(Vault.CLOCK);
+        int activationWindow = clock.get(TickClock.LOGICAL_TIME) + clock.get(TickClock.DISPLAY_TIME);
+
+        // Stopwatch vaults (Herald, Hollow Court) start at 0, so use their limit when present; nextInt needs a positive bound.
+        if (clock instanceof TickStopwatch stopwatch && stopwatch.has(TickStopwatch.LIMIT)) {
+            activationWindow = Math.max(activationWindow, stopwatch.get(TickStopwatch.LIMIT));
+        }
+
+        activationWindow = Math.max(1, activationWindow);
         AttributeSnapshot snapshot = AttributeSnapshotHelper.getInstance().getSnapshot(player);
 
         for (RandomVaultModifierAttribute attribute : snapshot.getAttributeValue(ModGearAttributes.RANDOM_VAULT_MODIFIER, VaultGearAttributeTypeMerger.asList())) {
-            int activationTime = random.nextInt(logicalTime + displayTime);
+            int activationTime = random.nextInt(activationWindow);
             this.cache.add(new ScheduledModifiers.Entry(attribute.getModifier(), attribute.getCount(), attribute.getTime(), activationTime).setVaultGod(VaultGod.IDONA));
         }
 
         for (RandomGodVaultModifierAttribute attribute : snapshot.getAttributeValue(ModGearAttributes.RANDOM_VAULT_GOD_MODIFIER, VaultGearAttributeTypeMerger.asList())) {
-            int activationTime = random.nextInt(logicalTime + displayTime);
+            int activationTime = random.nextInt(activationWindow);
             this.cache.add((new ScheduledModifiers.Entry(attribute.getModifier(), attribute.getCount(), attribute.getTime(), activationTime)).setVaultGod(attribute.getVaultGod()));
         }
 
